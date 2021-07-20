@@ -1,2 +1,2 @@
 # Sistema-Academico
-proyecto Sistema de gestión academica 
+proyecto Sistema de gestión académica 
