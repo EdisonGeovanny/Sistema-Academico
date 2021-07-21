@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const userSchema = new Schema({
 
     DNI: {
-        type: Number,
+        type: String,
         required: true,
         trim: true,
         unique: true
@@ -60,12 +60,22 @@ const userSchema = new Schema({
         trim:true
     },
     Telefono:{
-        type: Number,
+        type: String,
         required: true, 
         trim:true
     },
     Celular:{
-        type: Number,
+        type: String,
+        required: true, 
+        trim:true
+    },
+    Estado:{
+        type: Boolean,
+        required: true, 
+        trim:true
+    },
+    Genero:{
+        type: String,
         required: true, 
         trim:true
     },

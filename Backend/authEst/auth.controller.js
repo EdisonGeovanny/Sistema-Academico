@@ -10,17 +10,18 @@ exports.createUser = (req, res, next)=> {
         DNI: req.body.DNI,
         Nombres: req.body.Nombres,
         Apellidos: req.body.Apellidos,
-        Fecha_ingreso_magisterio: req.body.Fecha_ingreso_magisterio,
-        Fecha_ingreso_institucion: req.body.Fecha_ingreso_institucion,
-        Titulo_profesional: req.body.Titulo_profesional,
-        Años_servicio: req.body.Años_servicio,
-        Condicion_laboral: req.body.Condicion_laboral,
+        Tutor: req.body.Tutor,
         Fecha_nacimiento: req.body.Fecha_nacimiento,
-        Direccion: req.body.Direccion,
+        Genero: req.body.Genero,
+        Discapacidad: req.body.Discapacidad,
         Email: req.body.Email,
         Telefono: req.body.Telefono,
         Celular: req.body.Celular,
+        Direccion: req.body.Direccion,
+        Estado: req.body.Estado,
         Foto:req.body.Foto,
+        Grado: req.body.Grado,
+        Paralelo: req.body.Paralelo,
         Usuario: req.body.Usuario,
         Contraseña: bcrypt.hashSync(req.body.Contraseña)
     }
@@ -40,7 +41,6 @@ if( err && err.code == 11000) return res.status(409).send('Email already exists'
             accessToken: accessToken,
             expiresIn: expiresIn
         }
-
         //Response
         res.send({dataUser});
     });

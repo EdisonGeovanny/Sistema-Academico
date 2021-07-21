@@ -10,7 +10,7 @@ const userSchema = new Schema({
         unique: true
     },
     DNI: {
-        type: Number,
+        type: String,
         required: true,
         trim: true,
         unique: true
@@ -25,34 +25,24 @@ const userSchema = new Schema({
         required: true,
         trim: true
     },
-    Fecha_ingreso_magisterio:{
-        type: Date,
-        required: true,
-        trim: true
-    },
-    Fecha_ingreso_institucion:{
-        type: Date,
-        required: true,
-        trim: true
-    },
-    Titulo_profesional: {
+    Tutor: {
         type: String,
         required: true,
         trim: true
-    }, 
-    Años_servicio:{
-        type: String,
-        required: true, 
-        trim:true
-    },
-    Condicion_laboral:{
-        type: String,
-        required: true, 
-        trim:true
     },
     Fecha_nacimiento:{
         type: Date,
         required: true, 
+        trim:true
+    },
+    Genero:{
+        type: String,
+        required: true, 
+        trim:true
+    },
+    Discapacidad:{
+        type: String,
+        required: false, 
         trim:true
     },
     Direccion:{
@@ -62,22 +52,37 @@ const userSchema = new Schema({
     },
     Email:{
         type: String,
-        required: true, 
+        required: false, 
         trim:true
     },
     Telefono:{
-        type: Number,
-        required: true, 
+        type: String,
+        required: false, 
         trim:true
     },
     Celular:{
-        type: Number,
+        type: String,
+        required: false, 
+        trim:true
+    },
+    Estado:{
+        type: Boolean,
         required: true, 
         trim:true
     },
     Foto:{
         type: String,
         requiered: false, 
+        trim:true
+    },
+    Grado:{
+        type: String,
+        required: true, 
+        trim:true
+    },
+    Paralelo:{
+        type: String,
+        required: true, 
         trim:true
     },
     Usuario: {

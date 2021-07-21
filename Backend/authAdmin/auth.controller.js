@@ -20,6 +20,8 @@ exports.createUser = (req, res, next)=> {
         Telefono: req.body.Telefono,
         Celular: req.body.Celular,
         Foto:req.body.Foto,
+        Estado:req.body.Estado,
+        Genero:req.body.Genero,
         Usuario: req.body.Usuario,
         Contraseña: bcrypt.hashSync(req.body.Contraseña)
     }
