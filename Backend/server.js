@@ -1,5 +1,5 @@
 'use strict'
-//const cors = require('cors');
+const cors = require('cors');
 const authRoutes = require('./authAdmin/auth.routes'); //Admin
 const authRoutesp = require('./authProf/auth.routes'); //Profesor
 const authRoutese = require('./authEst/auth.routes'); //Estudiante
@@ -18,7 +18,7 @@ const bodyParserURLEncoded = bodyParser.urlencoded({extended: true});
 
 app.use(bodyParserJSON);
 app.use(bodyParserURLEncoded);
-//app.use(cors()); // api abierta a toda peticion -- se puede limitar -- ver documentacion
+app.use(cors()); // api abierta a toda peticion -- se puede limitar -- ver documentacion
 
 app.use('/api', router);
 authRoutes(router); //admin
