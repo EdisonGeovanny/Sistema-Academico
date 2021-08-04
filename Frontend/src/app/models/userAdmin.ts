@@ -1,5 +1,5 @@
 export interface UserAdminI {
-   id:number,
+    id:number,
     DNI: string,
     Nombres: string,
     Apellidos: string,

@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import { AuthRoutingModule } from './auth.routing.model';
-import { RegisterComponent } from './register/register.component';
-import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './registerAdmin/register.component';
+import { LoginComponent } from './loginAdmin/login.component';
 import { AuthService } from '../services/auth.service';
 
 @NgModule({

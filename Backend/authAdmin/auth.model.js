@@ -71,7 +71,7 @@ const userSchema = new Schema({
     },
     Estado:{
         type: Boolean,
-        required: true, 
+        required: false, 
         trim:true
     },
     Genero:{
