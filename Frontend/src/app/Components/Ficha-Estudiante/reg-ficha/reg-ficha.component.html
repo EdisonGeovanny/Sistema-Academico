@@ -1,0 +1,714 @@
+<body class="hold-transition sidebar-mini">
+    <div class="wrapper">
+        <!-- Navbar -->
+        <nav class="main-header navbar navbar-expand navbar-dark navbar-gray-dark">
+            <!--navbar-primary,secundary,info,success,dark,  -->
+            <!-- Left navbar links -->
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+                </li>
+            </ul>
+
+            <!--------------------------Cerrar Sesión----------------------------->
+
+            <ul class="navbar-nav ml-auto">
+
+                <!-- Cerrar sesion -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link" href="#"> <abbr title="Cerrar Sesión"><i
+                                class="far fa-sign-out-alt fa-2x "></i></abbr> </a>
+
+                </li>
+                <!-- Colchones derecha -->
+                <li class="nav-item dropdown"><a class="nav-link" routerLink="/app/reg-prof"> <i></i></a></li>
+                <li class="nav-item dropdown"><a class="nav-link" routerLink="/app/reg-prof"><i></i></a></li>
+
+            </ul>
+        </nav>
+        <!-- /.navbar -->
+
+        <!-- Main Sidebar Container -->
+        <aside class="main-sidebar elevation-4 sidebar-dark-success">
+            <!--navbar-orange,warning,pink,secundary,info,success,indigo,purple,vany,teal,cyan,--->
+            <!-- Brand Logo -->
+            <a routerLink="/app/reg-prof" class="brand-link navbar-danger">
+                <!--navbar-orange,warning,pink,secundary,info,success,indigo,purple,vany,teal,cyan,--->
+                <img src="./assets/dist/img/AdminLTELogo.png" alt="AdminLTE Logo"
+                    class="brand-image img-circle elevation-3" style="opacity: .8">
+                <span class="brand-text font-weight-light">Administrador</span>
+            </a>
+
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <!-- Sidebar user (optional) -->
+                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                    <div class="image">
+                        <img src="./assets/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+                    </div>
+                    <div class="info">
+                        <a href="(click)=RedirectName()" class="d-block">Alexander Pierce</a>
+                    </div>
+                </div>
+
+                <!-- Sidebar Menu -->
+                <nav class="mt-2">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                        data-accordion="false">
+                        <!-- Add icons to the links using the .nav-icon class
+                 with font-awesome or any other icon font library -->
+
+                        <!-- REGISTRO DE DATOS -->
+                        <li class="nav-item has-treeview menu-open">
+                            <a href="#" class="nav-link active">
+                                <i class="nav-icon fas fa-edit"></i>
+                                <p>
+                                    Registro de Datos
+                                    <i class="fas fa-angle-left right "></i>
+                                </p>
+                            </a>
+
+
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a routerLink="/app/reg-prof" class="nav-link active">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Docente</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a routerLink="/app/reg-est" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Estudiante</p>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a href="../tables/jsgrid.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Representante</p>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a href="../forms/editors.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Ficha Estudiantil</p>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a routerLink="/app/aut-system" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Usuario de acceso</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <!-- USUARIOS -->
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-table"></i>
+                                <p>
+                                    Creación de Usuario
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="../tables/simple.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Docente</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="../tables/data.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Administrador</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="../tables/jsgrid.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Estudiante</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <!-- ACADEMICO -->
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-table"></i>
+                                <p>
+                                    Académico
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="../tables/simple.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Simple Tables</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="../tables/data.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>DataTables</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="../tables/jsgrid.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>jsGrid</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <!-- MATRICULAS -->
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-table"></i>
+                                <p>
+                                    Matrículas
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="../tables/simple.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Simple Tables</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="../tables/data.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>DataTables</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="../tables/jsgrid.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>jsGrid</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <!-- CALIFICACIONES -->
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-table"></i>
+                                <p>
+                                    Calificaciones
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="../tables/simple.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Simple Tables</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="../tables/data.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>DataTables</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="../tables/jsgrid.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>jsGrid</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <!-- HORARIO -->
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-table"></i>
+                                <p>
+                                    Horarios
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="../tables/simple.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Simple Tables</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="../tables/data.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>DataTables</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="../tables/jsgrid.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>jsGrid</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+
+                        <li class="nav-header">MISCELLANEOUS</li>
+                        <li class="nav-item">
+                            <a href="https://adminlte.io/docs/3.0" class="nav-link">
+                                <i class="nav-icon fas fa-file"></i>
+                                <p>Documentation</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-header">MULTI LEVEL EXAMPLE</li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="fas fa-circle nav-icon"></i>
+                                <p>Level 1</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-circle"></i>
+                                <p>
+                                    Level 1
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Level 2</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item has-treeview">
+                                    <a href="#" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>
+                                            Level 2
+                                            <i class="right fas fa-angle-left"></i>
+                                        </p>
+                                    </a>
+                                    <ul class="nav nav-treeview">
+                                        <li class="nav-item">
+                                            <a href="#" class="nav-link">
+                                                <i class="far fa-dot-circle nav-icon"></i>
+                                                <p>Level 3</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="#" class="nav-link">
+                                                <i class="far fa-dot-circle nav-icon"></i>
+                                                <p>Level 3</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="#" class="nav-link">
+                                                <i class="far fa-dot-circle nav-icon"></i>
+                                                <p>Level 3</p>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Level 2</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="fas fa-circle nav-icon"></i>
+                                <p>Level 1</p>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                <!-- /.sidebar-menu -->
+            </div>
+            <!-- /.sidebar -->
+        </aside>
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+
+                        <div class="col-sm-6">
+                            <h1>{{Titulo}}</h1>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item">Usuario de acceso</li>
+                                <li class="breadcrumb-item active">{{Titulo}}</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div><!-- /.container-fluid -->
+            </section>
+
+            <!-- Main content -->
+<!--////////////////////////////////Usuario Docente/Admin/////////////////////////-->
+            <section class="content">
+                <div class="container-fluid">
+
+                    <div class="row justify-content-center">
+                        <!-- left column -->
+                        <div class="col-md-12">
+                            <!-- general form elements -->
+                            <div class="card card-primary">
+                                <div class="card-header">
+                                    <h3 class="card-title">Ingreso de Datos en Ficha - Estudiantil</h3>
+                                    <div class="card-tools">
+                                        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
+                                                class="fas fa-minus"></i></button>
+                                    </div>
+                                </div>
+                                <!-- /.card-header -->
+                                <!-- form start -->
+
+                                <form class="card-body" role="form" [formGroup]="FichaForm" (ngSubmit)="saveData()">
+                                    <div class="card-body">
+<!--/////////////////////////////////////busqueda de ficha de Estudiante/////////////////////////////////////////-->
+                                        <!--busqueda por dni, Nombre o Apellido-->
+                                        <!--Encabezado de agregar usuario-->
+                                        <div class="row">
+                                            <div class="col-md-7 h2">
+                                                <h2>Añadir Estudiante</h2>
+                                            </div>
+                                            <div class="col-md-1">
+
+                                            </div>
+                                            <div class="col-md-4 h2">
+                                                <h2>Verificación</h2>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="row">
+                                            <!--Tabla de busqueda-->
+                                            <div class="col-md-7">
+
+                                                <div class="row">
+                                                    <div class="col-md-5">
+
+                                                        <div class="form-group">
+                                                            <select name="Comboe" formControlName="Comboe"
+                                                                class="form-control combo">
+                                                                ngModel="elegido2">
+                                                                <option *ngFor="let n2 of Buscar">{{ n2.name }}</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2">
+
+                                                        <div class="card-tools">
+                                                            <div class="input-group input-group-sm"
+                                                                style="width: 250px;">
+                                                                <input type="text" name="Searche"
+                                                                    formControlName="Searche"
+                                                                    class="form-control float-right"
+                                                                    placeholder="Buscar">
+
+                                                                <div class="input-group-append">
+                                                                    <button type="button" (click)="searchEst()"
+                                                                        class="btn btn-default"><i
+                                                                            class="fas fa-search"></i></button>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="card-body table-responsive p-0" style="height: 150px;">
+                                                    <table *ngIf="datae$.dni.length > 0"
+                                                        class="table table-hover table-head-fixed text-nowrap">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Cédula</th>
+                                                                <th>Nombre</th>
+                                                                <th>crear</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr *ngFor="let estudiante of  datae$.dni ">
+                                                                <td>{{estudiante.DNI}}</td>
+                                                                <td>{{estudiante.Nombres}} {{estudiante.Apellidos}}</td>
+                                                                <td class="colum">
+                                                                    <i (click)="viewEst(estudiante._id)"
+                                                                        class="fas fa-plus fa-lg text-success mr-2"></i>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <h5 style="text-align:start; margin-top: 10px;"
+                                                        *ngIf="datae$.dni.length == 0">No hay registros para mostrar</h5>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-1"></div>
+
+                                            <div class="col-md-4">
+
+
+                                                <address>
+                                                    <strong> Cédula de identidad:</strong><br>{{estudiante.DNI}}
+                                                </address>
+                                              
+                                                <address>
+                                                    <strong> Nombre:</strong><br>{{estudiante.Apellidos}}
+                                                    {{estudiante.Nombres}}
+                                                </address>
+
+                                                <address>
+                                                    <strong> Fecha
+                                                        nacimiento:</strong><br>{{estudiante.Fecha_nacimiento |
+                                                    date:'dd-MM-yyyy'}}
+                                                </address>
+                                              
+
+                                                <!-- identidad -->
+                                              
+                                            </div>
+                                        </div>
+
+                                        <hr>
+
+<!-- ////////////////////////////////// ficha - busqueda de representante//////////////////////////////////-->
+                          <!--busqueda por dni, Nombre o Apellido-->
+                                        <!--Encabezado de agregar usuario-->
+                                        <div class="row">
+                                            <div class="col-md-7 h2">
+                                                <h2>Añadir Representante</h2>
+                                            </div>
+                                            <div class="col-md-1">
+
+                                            </div>
+                                            <div class="col-md-4 h2">
+                                                <h2>Verificación</h2>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="row">
+                                            <!--Tabla de busqueda-->
+                                            <div class="col-md-7">
+
+                                                <div class="row">
+                                                    <div class="col-md-5">
+
+                                                        <div class="form-group">
+                                                            <select name="Combo" formControlName="Combo"
+                                                                class="form-control combo">
+                                                                ngModel="elegido2">
+                                                                <option *ngFor="let n2 of Buscar">{{ n2.name }}</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2">
+
+                                                        <div class="card-tools">
+                                                            <div class="input-group input-group-sm"
+                                                                style="width: 250px;">
+                                                                <input type="text" name="search"
+                                                                    formControlName="Search"
+                                                                    class="form-control float-right"
+                                                                    placeholder="Buscar">
+
+                                                                <div class="input-group-append">
+                                                                    <button type="button" (click)="search()"
+                                                                        class="btn btn-default"><i
+                                                                            class="fas fa-search"></i></button>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="card-body table-responsive p-0" style="height: 150px;">
+                                                    <table *ngIf="data$.dni.length > 0"
+                                                        class="table table-hover table-head-fixed text-nowrap">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Cédula</th>
+                                                                <th>Nombre</th>
+                                                                <th>crear</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr *ngFor="let representante of  data$.dni ">
+                                                                <td>{{representante.DNI}}</td>
+                                                                <td>{{representante.Nombres}} {{representante.Apellidos}}</td>
+                                                                <td class="colum">
+                                                                    <i (click)="viewRep(representante._id)"
+                                                                        class="fas fa-plus fa-lg text-success mr-2"></i>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <h5 style="text-align:start; margin-top: 10px;"
+                                                        *ngIf="data$.dni.length == 0">No hay registros para mostrar</h5>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-1"></div>
+
+                                            <div class="col-md-4">
+
+
+                                                <address>
+                                                    <strong> Cédula de identidad:</strong><br>{{representante.DNI}}
+                                                </address>
+                                              
+                                                <address>
+                                                    <strong> Nombre:</strong><br>{{representante.Apellidos}}
+                                                    {{representante.Nombres}}
+                                                </address>
+
+                                                <address>
+                                                    <strong> Fecha
+                                                        nacimiento:</strong><br>{{representante.Fecha_nacimiento |
+                                                    date:'dd-MM-yyyy'}}
+                                                </address>
+                                              
+
+                                                <!-- identidad -->
+                                              
+                                            </div>
+                                        </div>
+
+                                        <hr>
+
+<!-- ////////////////////////////////// datos de ficha /////////////////////////////////////////////////-->
+                                        <div class="row">
+                                            <div class="col-md-12 h2">
+                                                <h2>Crear Ficha - Estudiantil</h2>
+                                            </div>
+
+                                        </div>
+                                        <!--Datos de Usuario-->
+                                        <div class="row">
+                                           
+                                            <!-- Rol-->
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label>Rol de Usuario</label>
+                                                    <select name="Rol" formControlName="Rol" class="form-control combo"
+                                                        ngModel="elegido1">
+                                                        <option *ngFor="let n of Rol">{{ n.name }}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                             <!-- Usuario-->
+                                             <div class="col-md-5">
+                                                <div class="form-group">
+                                                    <label for="Usuario">Usuario</label>
+                                                    <input type="text" class="form-control" name="Usuario"
+                                                        formControlName="Usuario" placeholder="usuario">
+                                                    <div class="text-danger"
+                                                        *ngIf="FichaForm.get('Usuario')?.hasError('required') && FichaForm.get('Usuario')?.touched">
+                                                        <span>El campo Usuario <strong>es obligatorio</strong></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Contraseña-->
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="Contraseña">Contraseña</label>
+                                                    <input type="password" class="form-control" name="Contraseña"
+                                                        formControlName="Contraseña" placeholder="contraseña">
+                                                    <div class="text-danger"
+                                                        *ngIf="FichaForm.get('Contraseña')?.hasError('required') && FichaForm.get('Contraseña')?.touched">
+                                                        <span>El campo de Apellidos <strong>es
+                                                                obligatorio</strong></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                    <!-- /.card-body -->
+
+                                    <div class="card-footer">
+                                        <div class="row">
+                                            <div class="col-md-2">
+                                                <button type="submit" value="Crear"
+                                                    class="btn btn-block bg-gradient-success ">Crear</button>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <button type="button" (click)="RedirectCancel()"
+                                                    class="btn btn-block bg-gradient-secondary"
+                                                    value="Tabla">Limpiar</button>
+                                            </div>
+                                            <div class="col-md-6"></div>
+                                            <div class="col-md-2">
+                                                <button type="button" routerLink="/app/list-prof"
+                                                    class="btn btn-block bg-gradient-info" value="Tabla">Tabla</button>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                    <hr>
+                                    <!-- tabla de Usuarios Docente-->
+                                    <hr>
+
+                                </form>
+                            </div>
+                            <!-- /.card -->
+
+                        </div>
+                        <!--/.col (left) -->
+                    </div>
+                    <!-- /.row -->
+                </div><!-- /.container-fluid -->
+            </section>
+
+
+
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+        <footer class="main-footer">
+            <div class="float-right d-none d-sm-block">
+                <b>Copyright &copy;</b> 2021
+            </div>
+            <strong> <a href="https://www.facebook.com/uecibbenitojuarez/">Unidad Educativa Comunitaria Intercultural
+                    Bilingüe "Benito Juárez"</a>.</strong>
+
+        </footer>
+
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- Control sidebar content goes here -->
+        </aside>
+        <!-- /.control-sidebar -->
+    </div>
+    <!-- ./wrapper -->
+
+</body>

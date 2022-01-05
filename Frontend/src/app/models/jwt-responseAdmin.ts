@@ -2,7 +2,7 @@ export interface JwtResponseAdminI {
   dataUser:{ 
     id:number,
     Nombres: string,
-    Usuario: string,
+    Apellidos: string,
     accessToken: string,
      expiresIn: string
     }

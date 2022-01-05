@@ -18,7 +18,12 @@
     "@angular/platform-browser": "~12.1.0-",
     "@angular/platform-browser-dynamic": "~12.1.0-",
     "@angular/router": "~12.1.0-",
+    "dateformat": "^5.0.2",
+    "ngx-toastr": "^14.1.0",
+    "print-js": "^1.6.0",
     "rxjs": "~6.6.0",
+    "sweetalert2": "^11.2.1",
+    "toastr": "^2.1.4",
     "tslib": "^2.2.0",
     "zone.js": "~0.11.4"
   },

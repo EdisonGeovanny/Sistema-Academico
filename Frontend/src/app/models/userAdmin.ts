@@ -13,9 +13,7 @@ export interface UserAdminI {
     Email:string,
     Telefono: string,
     Celular: string,
-    Foto:string,
     Estado:boolean,
     Genero:string,
-    Usuario: string,
-    Contraseña: string
+    Observacion:string
 }

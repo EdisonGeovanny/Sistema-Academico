@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>AdminLTE 3 | Log in</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+</head>
+
+<body class="hold-transition login-page">
+  <div class="login-box">
+    <div class="login-logo">
+      <b>Docente</b>
+    </div>
+    <!-- /.login-logo -->
+    <div class="card">
+      <div class="card-body login-card-body">
+        <a routerLink="/app/pag-inicio" class="btn btn-sm btn-dark float-right">
+          <i class="fas fa-home"></i>
+        </a>
+        <p class="login-box-msg">Regístrese para iniciar su sesión</p>
+
+        <form [formGroup]="AutentificacionForm" (ngSubmit)="Autentificar()">
+          <div class="input-group mb-3">
+            <input type="text" name="Usuario" formControlName="Usuario"
+             class="form-control" placeholder="Usuario" maxlength="" >
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-envelope"></span>
+              </div>
+            </div> 
+          </div>
+
+
+          <div class="input-group mb-3">
+            <input type="password" name="Contraseña" formControlName="Contraseña" 
+            class="form-control" placeholder="Contraseña" maxlength="12">
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-lock"></span>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="col-8-center">
+            <button type="submit"  class="btn btn-primary btn-block">iniciar sesión</button>
+          </div>
+          <!-- /.col -->
+        </form>
+
+        <p class="mb-0" onMouseover="this.style.color='#007bff'" onMouseout="this.style.color='gray'">
+          <a (click)="AlertProblema()" class="text-center">¿Olvidaste tu contraseña o usuario?</a>
+        </p>
+
+      </div>
+    </div>
+  </div>
+  <!-- /.login-box -->
+
+
+</body>
+
+</html>
