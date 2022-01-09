@@ -8,6 +8,12 @@ const userSchema = new Schema({
         required: true,
         trim: true
     },
+    Tipo_documento: {
+        type: String,
+        required: true,
+        default: 'Cédula de identidad',
+        trim: true
+    },
     DNI: {
         type: String,
         required: true,
@@ -24,17 +30,7 @@ const userSchema = new Schema({
         required: true,
         trim: true
     },
-    Fecha_nacimiento:{
-        type: Date,
-        required: true, 
-        trim:true
-    },
-    Direccion:{
-        type: String,
-        required: true, 
-        trim:true
-    },
-    Genero:{
+     Genero:{
         type: String,
         required: true, 
         trim:true,
@@ -44,37 +40,115 @@ const userSchema = new Schema({
         type: String,
         required: true, 
         trim:true,
-        default:'Soltero'
+        default:'Soltero(a)'
     },
-    Profesion:{
+    Fecha_nacimiento:{
+        type: Date,
+        required: true, 
+        trim:true
+    },
+    Lugar_nacimiento:{
         type: String,
         required: true, 
         trim:true
     },
-    Email:{
+    Nacionalidad:{
+        type: String,
+        required: true, 
+        trim:true,
+        default: 'Ecuatoriana'
+    },
+    Etnia:{
+        type: String,
+        required: true, 
+        trim:true,
+        default: 'Mestizo'
+    },
+    Grupo_sanguineo:{
+        type: String,
+        required: true, 
+        trim:true,
+        default:'Desconocido'
+    },
+    Nivel_educacion:{
+        type: String,
+        required: true, 
+        trim:true
+    },
+    Actividad:{
+        type: String,
+        required: true, 
+        trim:true,
+        default: 'Desconocido'
+    },
+    Area:{
+        type: String,
+        required: true, 
+        trim:true,
+        default: 'Desconocido'
+    },
+    
+    Observacion_medica:{
+        type: String,
+        required: false, 
+        trim:true,
+        default: "Ninguna"
+    },
+    Tipo_discapacidad:{
+        type: String,
+        required: false, 
+        trim:true,
+        default: "Ninguno"
+    },
+    Carnet_discapacidad:{
+        type: String,
+        required: false, 
+        trim:true,
+        default: "No"
+    },
+    Porcentaje_discapacidad:{
+        type: Number,
+        required: false, 
+        trim:true,
+        default: "0"
+    },
+    Direccion:{
+        type: String,
+        required: true, 
+        trim:true
+    },
+    Sector_domicilio:{
+        type: String,
+        required: true, 
+        trim:true
+    },
+    Referencia_domicilio:{
         type: String,
         required: true, 
         trim:true
     },
     Telefono:{
         type: String,
-        required: true, 
-        trim:true
+        required: false, 
+        trim:true,
+        default: 'No'
     },
     Celular:{
         type: String,
         required: true, 
-        trim:true
-    },
-    Estado:{
-        type: Boolean,
-        required: true, 
         trim:true,
-        default: true
+        default: 'No'
+    },
+    Email:{
+        type: String,
+        required: false, 
+        trim:true,
+        default: 'No'
     },
     Observacion: {
         type: String,
-        trim: true
+        trim: true,
+        default:'Ninguna'
     }
 },{
     timestamps:true

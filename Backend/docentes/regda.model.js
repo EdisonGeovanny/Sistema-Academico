@@ -3,6 +3,12 @@ const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
 
+    Tipo_documento: {
+        type: String,
+        required: true,
+        default: 'Cédula de identificación',
+        trim: true
+    },
     DNI: {
         type: String,
         required: true,
@@ -19,6 +25,155 @@ const userSchema = new Schema({
         required: true,
         trim: true
     },
+     Genero:{
+        type: String,
+        required: true, 
+        trim:true,
+        default:'Masculino'
+    },
+    Estado_civil:{
+        type: String,
+        required: true, 
+        trim:true,
+        default:'Soltero(a)'
+    },
+    Fecha_nacimiento:{
+        type: Date,
+        required: true, 
+        trim:true
+    },
+    Lugar_nacimiento:{
+        type: String,
+        required: true, 
+        trim:true
+    },
+    Nacionalidad:{
+        type: String,
+        required: true, 
+        trim:true,
+        default: 'Ecuatoriana'
+    },
+    Etnia:{
+        type: String,
+        required: true, 
+        trim:true,
+        default: 'Mestizo'
+    },
+    Grupo_sanguineo:{
+        type: String,
+        required: true, 
+        trim:true,
+        default:'Desconocido'
+    },
+    Telefono:{
+        type: String,
+        required: false, 
+        trim:true,
+        default: 'No'
+    },
+    Celular:{
+        type: String,
+        required: true, 
+        trim:true,
+        default: 'No'
+    },
+    Email:{
+        type: String,
+        required: false, 
+        trim:true,
+        default: 'No'
+    },
+    Observacion_medica:{
+        type: String,
+        required: false, 
+        trim:true,
+        default: "Ninguna"
+    },
+    Tipo_discapacidad:{
+        type: String,
+        required: false, 
+        trim:true,
+        default: "Ninguno"
+    },
+    Carnet_discapacidad:{
+        type: String,
+        required: false, 
+        trim:true,
+        default: "No"
+    },
+    Porcentaje_discapacidad:{
+        type: Number,
+        required: false, 
+        trim:true,
+        default: "0"
+    },
+    Direccion:{
+        type: String,
+        required: true, 
+        trim:true
+    },
+    Sector_domicilio:{
+        type: String,
+        required: true, 
+        trim:true
+    },
+    Referencia_domicilio:{
+        type: String,
+        required: true, 
+        trim:true
+    },
+    Nombre_emergente:{
+        type: String,
+        required: false, 
+        trim:true,
+        default:'No'
+    },
+    Contacto_emergente:{
+        type: String,
+        required: false, 
+        trim:true,
+        default:'No'
+    },
+    Nivel_educacion:{
+        type: String,
+        required: true, 
+        trim:true
+    },
+    Institucion:{
+        type: String,
+        required: true, 
+        trim:true
+    },
+    Lugar_institucion:{
+        type: String,
+        required: true, 
+        trim:true
+    },
+    Tipo_institucion:{
+        type: String,
+        required: true, 
+        trim:true
+    },
+    Especialidad:{
+        type: String,
+        required: true, 
+        trim:true
+    },
+    Fecha_grado:{
+        type: Date,
+        required: true, 
+        trim:true
+    },
+    Nota_grado:{
+        type: Number,
+        required: true, 
+        trim:true
+    },
+    Otros_titulos:{
+        type: Array,
+        required: true, 
+        trim:true
+    },
     Fecha_ingreso_magisterio:{
         type: Date,
         required: true,
@@ -26,11 +181,6 @@ const userSchema = new Schema({
     },
     Fecha_ingreso_institucion:{
         type: Date,
-        required: true,
-        trim: true
-    },
-    Titulo_profesional: {
-        type: String,
         required: true,
         trim: true
     }, 
@@ -45,30 +195,10 @@ const userSchema = new Schema({
         trim:true,
         default:'Nombramiento Provisional'
     },
-    Fecha_nacimiento:{
-        type: Date,
-        required: true, 
-        trim:true
-    },
-    Direccion:{
+    Observacion: {
         type: String,
-        required: true, 
-        trim:true
-    },
-    Email:{
-        type: String,
-        required: true, 
-        trim:true
-    },
-    Telefono:{
-        type: String,
-        required: true, 
-        trim:true
-    },
-    Celular:{
-        type: String,
-        required: true, 
-        trim:true
+        trim: true,
+        default:'Ninguna'
     },
     Estado:{
         type: Boolean,
@@ -76,16 +206,6 @@ const userSchema = new Schema({
         trim:true,
         default: true
     },
-    Genero:{
-        type: String,
-        required: true, 
-        trim:true,
-        default:'Masculino'
-    },
-    Observacion: {
-        type: String,
-        trim: true
-    }
 },{
     timestamps:true
 });

@@ -10,18 +10,30 @@ const SECRET_KEY = 'secretkey1234';
 exports.regRep = (req, res, next) => {
     const newUser = {
         Parentesco: req.body.Parentesco,
+        Tipo_documento: req.body.Tipo_documento,
         DNI: req.body.DNI,
         Nombres: req.body.Nombres,
         Apellidos: req.body.Apellidos,
-        Fecha_nacimiento: req.body.Fecha_nacimiento,
-        Direccion: req.body.Direccion,
         Genero: req.body.Genero,
         Estado_civil: req.body.Estado_civil,
-        Profesion: req.body.Profesion,
+        Fecha_nacimiento: req.body.Fecha_nacimiento,
+        Lugar_nacimiento: req.body.Lugar_nacimiento,
+        Nacionalidad: req.body.Nacionalidad,
+        Etnia: req.body.Etnia,
+        Grupo_sanguineo: req.body.Grupo_sanguineo,
+        Nivel_educacion: req.body.Nivel_educacion,
+        Actividad: req.body.Actividad,
+        Area: req.body.Area,
+        Observacion_medica: req.body.Observacion_medica,
+        Tipo_discapacidad: req.body.Tipo_discapacidad,
+        Carnet_discapacidad :req.body.Carnet_discapacidad,
+        Porcentaje_discapacidad: req.body.Porcentaje_discapacidad,
+        Direccion: req.body.Direccion,
+        Sector_domicilio: req.body.Sector_domicilio,
+        Referencia_domicilio: req.body.Referencia_domicilio,
         Email: req.body.Email,
         Telefono: req.body.Telefono,
         Celular: req.body.Celular,
-        Estado: req.body.Estado,
         Observacion: req.body.Observacion
     }
 
@@ -35,7 +47,7 @@ exports.regRep = (req, res, next) => {
                     Parentesco: user.Parentesco,
                     Nombres: user.Nombres,
                    Apellidos: user.Apellidos,
-                    Profesion: user.Profesion
+                    Actividad: user.Actividad,
                 }
         
                 //Response
@@ -46,14 +58,14 @@ exports.regRep = (req, res, next) => {
 //Listar datos de Estudiantes por paginada (paginate cambiar por find)
 exports.listRep = (req, res, next) => {
 
-    User.find({}, (err, user)=>{
+    User.find({}, (err, dni)=>{
         if (err) return res. status(500).send('Server error!');
-        if(!user) {
+        if(!dni) {
             //email does not exist
             res.status(484).send({ message: 'No existen productos'});
         }else {
             
-                res.send({user});
+                res.send({dni});
             
         }
     })
@@ -62,26 +74,42 @@ exports.listRep = (req, res, next) => {
 //update de registros de representantes
 exports.updateRep  = async (req, res) => {
     try{
-        const { Parentesco, DNI, Nombres, Apellidos, Fecha_nacimiento, Direccion, Genero,
-            Estado_civil, Profesion, Email, Telefono, Celular, Estado, Observacion} = req.body;
+        const { Parentesco, Tipo_documento, DNI,  Apellidos, Nombres, Genero, Estado_civil, Fecha_nacimiento,
+            Lugar_nacimiento, Nacionalidad,  Etnia, Grupo_sanguineo, Nivel_educacion, Actividad,
+            Area, Observacion_medica, Tipo_discapacidad, Carnet_discapacidad, Porcentaje_discapacidad,
+            Direccion, Sector_domicilio, Referencia_domicilio, Telefono, Celular,
+            Email, Observacion} = req.body;
             let representante = await User.findById(req.params.id);
 
             if(!representante) {
                 res.status(404).json({msg: 'No existe el producto'})
             } 
+
             representante.Parentesco = Parentesco;
+            representante.Tipo_documento= Tipo_documento;
             representante.DNI = DNI;
             representante.Nombres = Nombres;
             representante.Apellidos = Apellidos;
-            representante.Fecha_nacimiento = Fecha_nacimiento;
+            representante.Genero = Genero;
             representante.Estado_civil = Estado_civil;
-            representante.Profesion = Profesion;
+            representante.Fecha_nacimiento = Fecha_nacimiento;
+            representante.Lugar_nacimiento= Lugar_nacimiento;
+            representante.Nacionalidad= Nacionalidad;
+            representante.Etnia= Etnia;
+            representante.Grupo_sanguineo= Grupo_sanguineo;
+            representante.Nivel_educacion= Nivel_educacion;
+            representante.Actividad= Actividad;
+            representante.Area= Area;
+            representante.Observacion_medica= Observacion_medica;
+            representante.Tipo_discapacidad= Tipo_discapacidad;
+            representante.Carnet_discapacidad= Carnet_discapacidad;
+            representante.Porcentaje_discapacidad= Porcentaje_discapacidad;
             representante.Direccion = Direccion;
+            representante.Sector_domicilio= Sector_domicilio;
+            representante.Referencia_domicilio= Referencia_domicilio;
             representante.Email = Email;
             representante.Telefono = Telefono;
-            representante.Celular =  Celular;
-            representante.Estado = Estado;
-            representante.Genero = Genero;
+            representante.Celular =  Celular; 
             representante.Observacion = Observacion;
 
             representante = await User.findOneAndUpdate({_id: req.params.id}, representante, {new:true})
@@ -117,13 +145,13 @@ exports.deleteRep = async (req, res) => {
 //Listar por ID
 exports.listID = async (req, res) => {
     try{
-            let representante = await User.findById(req.params.id);
+            let dni = await User.findById(req.params.id);
 
-            if(!representante) {
+            if(!dni) {
                 res.status(404).json({msg: 'No existe el producto'})
             }
 
-                 res.json(representante);
+                 res.json(dni);
 
 
     }catch(err){

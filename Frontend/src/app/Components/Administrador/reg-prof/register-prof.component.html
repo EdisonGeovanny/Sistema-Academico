@@ -1,38 +1,42 @@
 <body class="hold-transition sidebar-mini">
     <div class="wrapper">
         <!-- Navbar -->
-        <nav class="main-header navbar navbar-expand navbar-dark navbar-gray-dark"> <!--navbar-primary,secundary,info,success,dark,  -->
+        <nav class="main-header navbar navbar-expand navbar-dark navbar-gray-dark">
+            <!--navbar-primary,secundary,info,success,dark,  -->
             <!-- Left navbar links -->
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
             </ul>
-            
-<!--------------------------Cerrar Sesión----------------------------->
 
-<ul class="navbar-nav ml-auto">
+            <!--------------------------Cerrar Sesión----------------------------->
 
-    <!-- Cerrar sesion -->
-    <li class="nav-item dropdown">
-      <a class="nav-link" href="#" > <abbr title="Cerrar Sesión"><i class="far fa-sign-out-alt fa-2x "></i></abbr> </a>
-      
-    </li>
-    <!-- Colchones derecha -->
-    <li class="nav-item dropdown"><a class="nav-link"  routerLink="/app/reg-prof" > <i ></i></a></li>
-    <li class="nav-item dropdown"><a class="nav-link" routerLink="/app/reg-prof"><i ></i></a></li>
-  
-  </ul>
+            <ul class="navbar-nav ml-auto">
+
+                <!-- Cerrar sesion -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link" href="#"> <abbr title="Cerrar Sesión"><i
+                                class="far fa-sign-out-alt fa-2x "></i></abbr> </a>
+
+                </li>
+                <!-- Colchones derecha -->
+                <li class="nav-item dropdown"><a class="nav-link" routerLink="/app/reg-prof"> <i></i></a></li>
+                <li class="nav-item dropdown"><a class="nav-link" routerLink="/app/reg-prof"><i></i></a></li>
+
+            </ul>
         </nav>
         <!-- /.navbar -->
 
         <!-- Main Sidebar Container -->
-        <aside class="main-sidebar elevation-4 sidebar-dark-success"><!--navbar-orange,warning,pink,secundary,info,success,indigo,purple,vany,teal,cyan,--->
+        <aside class="main-sidebar elevation-4 sidebar-dark-success">
+            <!--navbar-orange,warning,pink,secundary,info,success,indigo,purple,vany,teal,cyan,--->
             <!-- Brand Logo -->
-            <a routerLink="/app/reg-prof" class="brand-link navbar-danger"> <!--navbar-orange,warning,pink,secundary,info,success,indigo,purple,vany,teal,cyan,--->
+            <a routerLink="/app/reg-prof" class="brand-link navbar-warning">
+                <!--navbar-orange,warning,pink,secundary,info,success,indigo,purple,vany,teal,cyan,--->
                 <img src="./assets/dist/img/AdminLTELogo.png" alt="AdminLTE Logo"
                     class="brand-image img-circle elevation-3" style="opacity: .8">
-                <span class="brand-text font-weight-light">Administrador</span>
+                <span class="brand-text text-secondary">ADMINISTRADOR</span>
             </a>
 
             <!-- Sidebar -->
@@ -54,7 +58,7 @@
                         <!-- Add icons to the links using the .nav-icon class
                  with font-awesome or any other icon font library -->
 
-                            <!-- REGISTRO DE DATOS -->
+                        <!-- REGISTRO DE DATOS -->
                         <li class="nav-item has-treeview menu-open">
                             <a href="#" class="nav-link active">
                                 <i class="nav-icon fas fa-edit"></i>
@@ -78,7 +82,7 @@
                                         <p>Estudiante</p>
                                     </a>
                                 </li>
-                                
+
                                 <li class="nav-item">
                                     <a routerLink="/app/reg-rep" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
@@ -102,7 +106,7 @@
                             </ul>
                         </li>
 
-                            <!-- USUARIOS -->
+                        <!-- USUARIOS -->
                         <li class="nav-item has-treeview">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-table"></i>
@@ -133,12 +137,12 @@
                             </ul>
                         </li>
 
-                         <!-- ACADEMICO -->
+                        <!-- ACADEMICO -->
                         <li class="nav-item has-treeview">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-table"></i>
                                 <p>
-                                   Académico
+                                    Académico
                                     <i class="fas fa-angle-left right"></i>
                                 </p>
                             </a>
@@ -164,12 +168,12 @@
                             </ul>
                         </li>
 
-                         <!-- MATRICULAS -->
-                         <li class="nav-item has-treeview">
+                        <!-- MATRICULAS -->
+                        <li class="nav-item has-treeview">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-table"></i>
                                 <p>
-                                  Matrículas
+                                    Matrículas
                                     <i class="fas fa-angle-left right"></i>
                                 </p>
                             </a>
@@ -195,12 +199,12 @@
                             </ul>
                         </li>
 
-                         <!-- CALIFICACIONES -->
-                         <li class="nav-item has-treeview">
+                        <!-- CALIFICACIONES -->
+                        <li class="nav-item has-treeview">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-table"></i>
                                 <p>
-                                  Calificaciones
+                                    Calificaciones
                                     <i class="fas fa-angle-left right"></i>
                                 </p>
                             </a>
@@ -226,12 +230,12 @@
                             </ul>
                         </li>
 
-                         <!-- HORARIO -->
-                         <li class="nav-item has-treeview">
+                        <!-- HORARIO -->
+                        <li class="nav-item has-treeview">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-table"></i>
                                 <p>
-                                   Horarios
+                                    Horarios
                                     <i class="fas fa-angle-left right"></i>
                                 </p>
                             </a>
@@ -346,17 +350,18 @@
             <section class="content-header">
                 <div class="container-fluid">
                     <div class="row mb-2">
-                        <div class="col-sm-1"></div>
-                        <div class="col-sm-5">
-                            <h1>{{Titulo}}</h1>
+                        
+                        <div class="col-sm-6">
+                        <h5><strong>{{Titulo}}</strong></h5>
+                            
                         </div>
-                        <div class="col-sm-5">
+                        <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item">Registro de Datos</li>
-                                <li class="breadcrumb-item active">{{Titulo}}</li>
+                                <li class="breadcrumb-item ">{{subnivel}}</li>
+                                <li class="breadcrumb-item active">DATOS DE DOCENTE</li>
                             </ol>
                         </div>
-                        <div class="col-sm-1"></div>
+                        
                     </div>
                 </div><!-- /.container-fluid -->
             </section>
@@ -369,220 +374,524 @@
                         <!-- left column -->
                         <div class="col-md-12">
                             <!-- general form elements -->
-                            <div class="card card-primary">
+                            <div class="card card-warning">
                                 <div class="card-header">
-                                    <h3 class="card-title">Ingreso de Datos</h3>
+                                    <h3 class="card-title">INGRESO DE DATOS</h3>
                                     <div class="card-tools">
-                                        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
-                                      </div>
+                                        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
+                                                class="fas fa-minus"></i></button>
+                                    </div>
                                 </div>
                                 <!-- /.card-header -->
                                 <!-- form start -->
-                                
-                                <form class="card-body" role="form" [formGroup]="ProfesoresForm" (ngSubmit)="saveData()">
+
+                                <form class="card-body" role="form" [formGroup]="ProfesoresForm"
+                                    (ngSubmit)="saveData()">
                                     <div class="card-body">
-                                        
+
                                         <div class="row">
 
+                                            <div class="col-md-12 h2">
+                                                <h2>DATOS PERSONALES DEL DOCENTE</h2>
+                                            </div>
+
                                             <div class="col-md-4">
+
                                                 <div class="form-group">
-                                                    <label for="DNI">DNI/CI</label>
-                                                    <input type="text" class="form-control" name="DNI" formControlName="DNI"
-                                                        placeholder="Identificación" >
-                                                        <div class="text-danger"
-                                                *ngIf="ProfesoresForm.get('DNI')?.hasError('required') && ProfesoresForm.get('DNI')?.touched">
-                                                            <span>El campo de Cédula de Identidad <strong>es obligatorio</strong></span>
-                                                        </div>
-                                                </div> 
-                                                
+                                                    <label>Seleccione el tipo de identificación</label>
+                                                    <select class="form-control combo" name="Tipo_documento"
+                                                        formControlName="Tipo_documento" [(ngModel)]="elegido3">
+                                                        <option *ngFor="let n3 of Documento">{{ n3.name }}</option>
+                                                    </select>
+                                                </div>
+
                                                 <div class="form-group">
-                                                    <label>Género</label>
-                                                    <select class="form-control" name="Genero" formControlName="Genero"
-                                                        [(ngModel)]="elegido2" >
+                                                    <label for="DNI">Número de identificación:</label>
+                                                    <input type="text" class="form-control" name="DNI"
+                                                        formControlName="DNI" placeholder="Identificación">
+                                                    <div class="text-danger"
+                                                        *ngIf="ProfesoresForm.get('DNI')?.hasError('required') && ProfesoresForm.get('DNI')?.touched">
+                                                        <span>El campo: Cédula de Identidad <strong>es
+                                                                obligatorio</strong></span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="Fecha_nacimiento">Fecha de nacimiento:</label>
+                                                    <input type="date" class="form-control" name="Fecha_nacimiento"
+                                                        formControlName="Fecha_nacimiento">
+                                                    <div class="text-danger"
+                                                        *ngIf="ProfesoresForm.get('Fecha_nacimiento')?.hasError('required') && ProfesoresForm.get('Fecha_nacimiento')?.touched">
+                                                        <span>La Fecha de Nacimiento <strong>es
+                                                                obligatorio</strong></span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="Etnia">Etnia a la que pertenece:</label>
+                                                    <input type="text" class="form-control" name="Etnia"
+                                                        formControlName="Etnia" placeholder="Etnia">
+                                                    <div class="text-danger"
+                                                        *ngIf="ProfesoresForm.get('Etnia')?.hasError('required') && ProfesoresForm.get('Etnia')?.touched">
+                                                        <span>El campo: Etnia <strong>es obligatorio</strong></span>
+                                                    </div>
+                                                </div>
+
+
+
+
+                                            </div>
+
+                                            <div class="col-md-4">
+
+                                                <div class="form-group">
+                                                    <label>Seleccione el estado civil</label>
+                                                    <select class="form-control combo" name="Estado_civil"
+                                                        formControlName="Estado_civil" [(ngModel)]="elegido4">
+                                                        <option *ngFor="let n4 of Estado_civil">{{ n4.name }}</option>
+                                                    </select>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="Nombres">Nombres del registrado:</label>
+                                                    <input type="text" class="form-control" name="Nombres"
+                                                        formControlName="Nombres" placeholder="Nombres">
+                                                    <div class="text-danger"
+                                                        *ngIf="ProfesoresForm.get('Nombres')?.hasError('required') && ProfesoresForm.get('Nombres')?.touched">
+                                                        <span>El campo: Nombres <strong>es obligatorio</strong></span>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="form-group">
+                                                    <label for="Lugar_nacimiento">Lugar de nacimiento:</label>
+                                                    <input type="text" class="form-control" name="Lugar_nacimiento"
+                                                        formControlName="Lugar_nacimiento"
+                                                        placeholder="Lugar de nacimiento">
+                                                    <div class="text-danger"
+                                                        *ngIf="ProfesoresForm.get('Lugar_nacimiento')?.hasError('required') && ProfesoresForm.get('Lugar_nacimiento')?.touched">
+                                                        <span>El campo: Lugarde Nacimiento <strong>es
+                                                                obligatorio</strong></span>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="col-md-4">
+
+                                                <div class="form-group">
+                                                    <label>Seleccione el género</label>
+                                                    <select class="form-control combo" name="Genero"
+                                                        formControlName="Genero" [(ngModel)]="elegido2">
                                                         <option *ngFor="let n2 of Genero">{{ n2.name }}</option>
                                                     </select>
                                                 </div>
-                                            </div>
 
-                                            <div class="col-md-4">
+                                                
                                                 <div class="form-group">
-                                                    <label for="Nombres">Nombres</label>
-                                                    <input type="text" class="form-control" name="Nombres"
-                                                        formControlName="Nombres" placeholder="Nombres" >
-                                                        <div class="text-danger"
-                                                        *ngIf="ProfesoresForm.get('Nombres')?.hasError('required') && ProfesoresForm.get('Nombres')?.touched">
-                                                            <span>El campo de Nombres <strong>es obligatorio</strong></span>
-                                                        </div>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label for="Fecha_nacimiento">Fecha de Nacimiento</label>
-                                                    <input type="date" class="form-control" name="Fecha_nacimiento"
-                                                        formControlName="Fecha_nacimiento" >
-                                                        <div class="text-danger"
-                                                        *ngIf="ProfesoresForm.get('Fecha_nacimiento')?.hasError('required') && ProfesoresForm.get('Fecha_nacimiento')?.touched">
-                                                            <span>La Fecha de Nacimiento <strong>es obligatorio</strong></span>
-                                                        </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label for="Apellidos">Apellidos</label>
+                                                    <label for="Apellidos">Apellidos del registrado:</label>
                                                     <input type="text" class="form-control" name="Apellidos"
-                                                        formControlName="Apellidos" placeholder="Apellidos" >
-                                                        <div class="text-danger"
+                                                        formControlName="Apellidos" placeholder="Apellidos">
+                                                    <div class="text-danger"
                                                         *ngIf="ProfesoresForm.get('Apellidos')?.hasError('required') && ProfesoresForm.get('Apellidos')?.touched">
-                                                            <span>El campo de Apellidos <strong>es obligatorio</strong></span>
-                                                        </div>
+                                                        <span>El campo: Apellidos <strong>es obligatorio</strong></span>
+                                                    </div>
                                                 </div>
+
+                                                
+                                                <div class="form-group">
+                                                    <label for="Nacionalidado">Nacionalidad:</label>
+                                                    <input type="text" class="form-control" name="Nacionalidad"
+                                                        formControlName="Nacionalidad" placeholder="Nacionalidad">
+                                                    <div class="text-danger"
+                                                        *ngIf="ProfesoresForm.get('Nacionalidad')?.hasError('required') && ProfesoresForm.get('Nacionalidad')?.touched">
+                                                        <span>El campo: Nacionalidad <strong>es
+                                                                obligatorio</strong></span>
+                                                    </div>
+                                                </div>
+
+
                                             </div>
 
                                         </div>
-                                        <hr>
+                                        
+                                        <br><hr><br>
+
                                         <div class="row">
+                                            <div class="col-md-12 h2">
+                                                <h2> DATOS DE UBICACIÓN Y CONTACTO </h2>
+                                            </div>
+
                                             <div class="col-md-6">
 
                                                 <div class="form-group">
-                                                    <label for="Titulo_profesional">Titulo Profesional</label>
-                                                    <input type="text" class="form-control" name="Titulo_profesional"
-                                                        formControlName="Titulo_profesional" placeholder="Titulo Profesional">
-                                                        <div class="text-danger"
-                                                        *ngIf="ProfesoresForm.get('Titulo_profesional')?.hasError('required') && ProfesoresForm.get('Titulo_profesional')?.touched">
-                                                            <span>El campo de Titulo Profesional <strong>es obligatorio</strong></span>
-                                                        </div>
+                                                    <label for="Direccion">Lugar de domicilio:</label>
+                                                    <input type="text" class="form-control" name="Direccion"
+                                                        formControlName="Direccion" placeholder="Ubicación">
+                                                    <div class="text-danger"
+                                                        *ngIf="ProfesoresForm.get('Direccion')?.hasError('required') && ProfesoresForm.get('Direccion')?.touched">
+                                                        <span>El campo de Ubicación <strong>es
+                                                                obligatorio</strong></span>
+                                                    </div>
+                                                </div>
+
+                                                       
+                                                <div class="form-group">
+                                                    <label for="Referencia_domicilio">Referencia de domicilio:</label>
+                                                    <input type="text" class="form-control" name="Referencia_domicilio"
+                                                        formControlName="Referencia_domicilio" placeholder="Referencia">
+                                                    <div class="text-danger"
+                                                        *ngIf="ProfesoresForm.get('Referencia_domicilio')?.hasError('required') && ProfesoresForm.get('Referencia_domicilio')?.touched">
+                                                        <span>El campo de Referencia <strong>es
+                                                                obligatorio</strong></span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="Telefono">N° Teléfono:</label>
+                                                    <input type="text" class="form-control" name="Telefono"
+                                                        formControlName="Telefono" placeholder="Teléfono">
+                                                    <div class="text-danger"
+                                                        *ngIf="ProfesoresForm.get('Telefono')?.hasError('required') && ProfesoresForm.get('Telefono')?.touched">
+                                                        <span>El campo Nro Teléfono <strong>es
+                                                                obligatorio</strong></span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="Nombre_emergente"> En Caso de emergencia, Nombre de
+                                                        contacto:</label>
+                                                    <input type="text" class="form-control" name="Nombre_emergente"
+                                                        formControlName="Nombre_emergente"
+                                                        placeholder="Contacto de emergencia">
+                                                    <div class="text-danger"
+                                                        *ngIf="ProfesoresForm.get('Nombre_emergente')?.hasError('required') && ProfesoresForm.get('Nombre_emergente')?.touched">
+                                                        <span>El campo de Contacto emergente <strong>es
+                                                                obligatorio</strong></span>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="col-md-6">
+                                               
+                                                <div class="form-group">
+                                                    <label for="Sector_domicilio">Dirección de domicilio:</label>
+                                                    <input type="text" class="form-control" name="Sector_domicilio"
+                                                        formControlName="Sector_domicilio" placeholder="Dirección">
+                                                    <div class="text-danger"
+                                                        *ngIf="ProfesoresForm.get('Sector_domicilio')?.hasError('required') && ProfesoresForm.get('Sector_domicilio')?.touched">
+                                                        <span>El campo de Dirección <strong>es
+                                                                obligatorio</strong></span>
+                                                    </div>
+                                                </div>   
+
+                                                <div class="form-group">
+                                                    <label for="Email">Correo electrónico:</label>
+                                                    <input type="email" class="form-control" formControlName="Email"
+                                                        name="Email" placeholder="Email">
+                                                    <div class="text-danger"
+                                                        *ngIf="ProfesoresForm.get('Email')?.hasError('required') && ProfesoresForm.get('Email')?.touched">
+                                                        <span>El campo Email <strong>es obligatorio</strong></span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="Celular"> N° Celular:</label>
+                                                    <input type="text" class="form-control" name="Celular"
+                                                        formControlName="Celular" placeholder="Celular">
+                                                    <div class="text-danger"
+                                                        *ngIf="ProfesoresForm.get('Celular')?.hasError('required') && ProfesoresForm.get('Celular')?.touched">
+                                                        <span>El campo Nro Celular <strong>es
+                                                                obligatorio</strong></span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="Contacto_emergente"> En Caso de emergencia, Número
+                                                        cel./telf. de contacto:</label>
+                                                    <input type="text" class="form-control" name="Contacto_emergencia"
+                                                        formControlName="Contacto_emergente"
+                                                        placeholder="Numero de emergencia">
+                                                    <div class="text-danger"
+                                                        *ngIf="ProfesoresForm.get('Contacto_emergente')?.hasError('required') && ProfesoresForm.get('Contacto_emergente')?.touched">
+                                                        <span>El campo de Número emergencia <strong>es
+                                                                obligatorio</strong></span>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                        <br><hr><br>
+
+
+                                        <div class="row">
+                                            <div class="col-md-12 h2">
+                                                <h2>DATOS ACADÉMICOS</h2>
+                                            </div>
+
+                                            <div class="col-md-3">
+                                              
+                                                <div class="form-group">
+                                                    <label>Nivel de educación</label>
+                                                    <select class="form-control combo" name="Nivel_educacion"
+                                                        formControlName="Nivel_educacion" [(ngModel)]="elegido7">
+                                                        <option *ngFor="let n7 of Nivel">{{ n7.name }}</option>
+                                                    </select>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="col-md-3">
+                                                
+                                                <div class="form-group">
+                                                    <label>Tipo de institución</label>
+                                                    <select class="form-control combo" name="Tipo_institucion"
+                                                        formControlName="Tipo_institucion" [(ngModel)]="elegido8">
+                                                        <option *ngFor="let n8 of Institucion">{{ n8.name }}</option>
+                                                    </select>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="Institucion">Nombre de la institución en donde obtuvo su
+                                                        titulo:</label>
+                                                    <input type="text" class="form-control" name="Institucion"
+                                                        formControlName="Institucion"
+                                                        placeholder="Nombre de Institución">
+                                                    <div class="text-danger"
+                                                        *ngIf="ProfesoresForm.get('Institucion')?.hasError('required') && ProfesoresForm.get('Institucion')?.touched">
+                                                        <span>El campo: Nombre de Institución <strong>es
+                                                                obligatorio</strong></span>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+
+                                            <div class="col-md-6">
+
+                                                <div class="form-group">
+                                                    <label for="Lugar_institucion">Dirección de la institución:</label>
+                                                    <input type="text" class="form-control" name="Lugar_institucion"
+                                                        formControlName="Lugar_institucion"
+                                                        placeholder="Ubicación de la Institución">
+                                                    <div class="text-danger"
+                                                        *ngIf="ProfesoresForm.get('Lugar_institucion')?.hasError('required') && ProfesoresForm.get('Lugar_institucion')?.touched">
+                                                        <span>El campo: Ubicación de la Institución <strong>es
+                                                                obligatorio</strong></span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="Fecha_grado">Fecha obtención de titulo</label>
+                                                    <input type="date" class="form-control" name="Fecha_grado"
+                                                        formControlName="Fecha_grado">
+                                                    <div class="text-danger"
+                                                        *ngIf="ProfesoresForm.get('Fecha_grado')?.hasError('required') && ProfesoresForm.get('Fecha_grado')?.touched">
+                                                        <span>La Fecha de graduación <strong>es
+                                                                obligatorio</strong></span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="Fecha_ingreso_magisterio">Fecha de Ingreso al
+                                                        Magisterio</label>
+                                                    <input type="date" class="form-control"
+                                                        name="Fecha_ingreso_magisterio"
+                                                        formControlName="Fecha_ingreso_magisterio">
+                                                    <div class="text-danger"
+                                                        *ngIf="ProfesoresForm.get('Fecha_ingreso_magisterio')?.hasError('required') && ProfesoresForm.get('Fecha_ingreso_magisterio')?.touched">
+                                                        <span>La fecha de Ingreso al Magisterio <strong>es
+                                                                obligatorio</strong></span>
+                                                    </div>
+                                                </div>
+
+                                            
+                                                <div class="form-group">
+                                                    <label for="Fecha_ingreso_institucion">Fecha de Ingreso a la
+                                                        Institución</label>
+                                                    <input type="date" class="form-control"
+                                                        name="Fecha_ingreso_institucion"
+                                                        formControlName="Fecha_ingreso_institucion">
+                                                    <div class="text-danger"
+                                                        *ngIf="ProfesoresForm.get('Fecha_ingreso_institucion')?.hasError('required') && ProfesoresForm.get('Fecha_ingreso_institucion')?.touched">
+                                                        <span>La fecha de Ingreso a la Institución <strong>es
+                                                                obligatorio</strong></span>
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+
+                                            <div class="col-md-6">
+
+                                                <div class="form-group">
+                                                    <label for="Especialidad">Titulo Profesional</label>
+                                                    <input type="text" class="form-control" name="Especialidad"
+                                                        formControlName="Especialidad" placeholder="Especialidad">
+                                                    <div class="text-danger"
+                                                        *ngIf="ProfesoresForm.get('Especialidad')?.hasError('required') && ProfesoresForm.get('Especialidad')?.touched">
+                                                        <span>El campo: Titulo Profesional <strong>es
+                                                                obligatorio</strong></span>
+                                                    </div>
+                                                </div>
+
+                                          
+                                                <div class="form-group">
+                                                    <label for="Nota_grado">Nota de Titulo Profesional</label>
+                                                    <input type="number" class="form-control" name="Nota_grado"
+                                                        formControlName="Nota_grado" placeholder="0.0">
+                                                    <div class="text-danger"
+                                                        *ngIf="ProfesoresForm.get('Nota_grado')?.hasError('required') && ProfesoresForm.get('Nota_grado')?.touched">
+                                                        <span>El campo: Nota de Titulación <strong>es
+                                                                obligatorio</strong></span>
+                                                    </div>
                                                 </div>
 
                                                 <div class="form-group">
                                                     <label for="Años_servicio">Años de Servicio Docente</label>
                                                     <input type="text" class="form-control" name="Años_servicio"
-                                                        formControlName="Años_servicio" placeholder="Años de Servicio" >
-                                                        <div class="text-danger"
+                                                        formControlName="Años_servicio" placeholder="Años de Servicio">
+                                                    <div class="text-danger"
                                                         *ngIf="ProfesoresForm.get('Años_servicio')?.hasError('required') && ProfesoresForm.get('Años_servicio')?.touched">
-                                                            <span>el campo de Años de Servicio <strong>es obligatorio</strong></span>
-                                                        </div>
+                                                        <span>El campo: Años de Servicio <strong>es
+                                                                obligatorio</strong></span>
                                                     </div>
-
-                                                    <div class="form-group">
-                                                        <label>Condición Laboral</label>
-                                                        <select name="Condicion_laboral" formControlName="Condicion_laboral"
-                                                            class="form-control" ngModel="elegido1" >
-                                                            <option *ngFor="let n of Nombramiento">{{ n.name }}</option>
-                                                        </select>
-                                                    </div>
-                                            </div>
-
-                                            <div class="col-md-6">
-                                                
-                                                <div class="form-group">
-                                                    <label for="Fecha_ingreso_magisterio">Fecha de Ingreso al Magisterio</label>
-                                                    <input type="date" class="form-control" name="Fecha_ingreso_magisterio"
-                                                        formControlName="Fecha_ingreso_magisterio" >
-                                                        <div class="text-danger"
-                                                        *ngIf="ProfesoresForm.get('Fecha_ingreso_magisterio')?.hasError('required') && ProfesoresForm.get('Fecha_ingreso_magisterio')?.touched">
-                                                            <span>La fecha de Ingreso al Magisterio <strong>es obligatorio</strong></span>
-                                                        </div>
                                                 </div>
-        
-                                                <div class="form-group">
-                                                    <label for="Fecha_ingreso_institucion">Fecha de Ingreso a la
-                                                        Institución</label>
-                                                    <input type="date" class="form-control" name="Fecha_ingreso_institucion"
-                                                        formControlName="Fecha_ingreso_institucion" >
-                                                        <div class="text-danger" 
-                                                        *ngIf="ProfesoresForm.get('DNI')?.hasError('required') && ProfesoresForm.get('DNI')?.touched">
-                                                            <span>La fecha de Ingreso a la Institución <strong>es obligatorio</strong></span>
-                                                        </div>
-                                                </div>      
 
+                                                <div class="form-group">
+                                                    <label>Seleccione la condición Laboral</label>
+                                                    <select name="Condicion_laboral" formControlName="Condicion_laboral"
+                                                        class="form-control combo" ngModel="elegido1">
+                                                        <option *ngFor="let n of Nombramiento">{{ n.name }}</option>
+                                                    </select>
+                                                </div>
+
+                                         
                                             </div>
 
                                         </div>
-                                        <hr>
+                                        
+                                        <br> <hr><br>
 
                                         <div class="row">
-                                            <div class="col-md-6">
-
-                                                <div class="form-group">
-                                                    <label for="Direccion">Dirección de Domicilio</label>
-                                                    <input type="text" class="form-control" name="Direccion"
-                                                        formControlName="Direccion" placeholder="Dirección">
-                                                        <div class="text-danger"
-                                                        *ngIf="ProfesoresForm.get('Direccion')?.hasError('required') && ProfesoresForm.get('Direccion')?.touched">
-                                                            <span>El campo de Dirección <strong>es obligatorio</strong></span>
-                                                        </div>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label for="Telefono">Teléfono Convencional</label>
-                                                    <input type="text" class="form-control" name="Telefono"
-                                                        formControlName="Telefono" placeholder="Teléfono" >
-                                                        <div class="text-danger"
-                                                        *ngIf="ProfesoresForm.get('Telefono')?.hasError('required') && ProfesoresForm.get('Telefono')?.touched">
-                                                            <span>El campo Nro Teléfono <strong>es obligatorio</strong></span>
-                                                        </div>
-                                                </div>
+                                            <div class="col-md-12 h2">
+                                                <h2>DATOS DE SALUD</h2>
                                             </div>
+
+                                            <div class="col-md-3">
+
+                                                <div class="form-group">
+                                                    <label>Tipo de Discapacidad</label>
+                                                    <select class="form-control combo" name="Tipo_discapacidad"
+                                                        formControlName="Tipo_discapacidad" [(ngModel)]="elegido6">
+                                                        <option *ngFor="let n6 of Discapacidad">{{ n6.name }}</option>
+                                                    </select>
+                                                </div>
+
+  
+                                            </div>
+
                                             <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="Carnet_discapacidad">Carnet de discapacidad</label>
+                                                    <input type="text" class="form-control" name="Carnet_discapacidad"
+                                                        formControlName="Carnet_discapacidad" placeholder="Especificar">
+                                                </div>
+                                                
+                                            </div>
+
+                                            <div class="col-md-3">
 
                                                 <div class="form-group">
-                                                    <label for="Email">Correo Electrónico</label>
-                                                    <input type="email" class="form-control" formControlName="Email"
-                                                        name="Email" placeholder="Email" >
-                                                        <div class="text-danger"
-                                                        *ngIf="ProfesoresForm.get('Email')?.hasError('required') && ProfesoresForm.get('Email')?.touched">
-                                                            <span>El campo Email <strong>es obligatorio</strong></span>
-                                                        </div>
+                                                    <label for="Porcentaje_discapacidad">(%) de discapacidad
+                                                        </label>
+                                                    <input type="number" class="form-control"
+                                                        name="Porcentaje_discapacidad" maxlength="5"
+                                                        formControlName="Porcentaje_discapacidad" placeholder="0.0">
                                                 </div>
 
+                                            </div>
+
+                                            <div class="col-md-3">
+
                                                 <div class="form-group">
-                                                    <label for="Celular"> Teléfono Celular</label>
-                                                    <input type="text" class="form-control" name="Celular"
-                                                        formControlName="Celular" placeholder="Celular" >
-                                                        <div class="text-danger"
-                                                        *ngIf="ProfesoresForm.get('Celular')?.hasError('required') && ProfesoresForm.get('Celular')?.touched">
-                                                            <span>El campo Nro Celular <strong>es obligatorio</strong></span>
-                                                        </div>
+                                                    <label>Grupo Sanguineo</label>
+                                                    <select class="form-control combo" name="Grupo_sanguineo"
+                                                        formControlName="Grupo_sanguineo" [(ngModel)]="elegido5">
+                                                        <option *ngFor="let n5 of Sangre">{{ n5.name }}</option>
+                                                    </select>
                                                 </div>
-        
+
+                                            </div>
+
+                                           
+                                            <div class="col-md-9">
+
+                                                <div class="form-group">
+                                                    <label for="Observacion_medica">Alguna observación médica</label>
+                                                    <input type="text" class="form-control" name="Observacion_medica"
+                                                        formControlName="Observacion_medica" value="Ninguna"
+                                                        placeholder="Cualquier observación">
+                                                </div>
+                                                
+                                            </div>
+
+                                        
+                                        </div>
+                                      
+                                        <br><hr><br>
+
+                                        <div class="row">
+
+                                            <div class="col-md-12 h2">
+                                                <h2>INFORMACIÓN ADICIONAL</h2>
                                             </div>
                                         </div>
-                                          
-                                            <div class="form-group">
-                                                <label for="Observacion">Observaciones</label>
-                                                <input type="text" class="form-control" maxlength="200" name="Observacion"
-                                                    formControlName="Observacion" placeholder="Observacion" >
-                                                   
-                                            </div>
-    
-                                            <div class="form-group form-check form-switch">
-                                                <input class="form-check-input" type="checkbox" formControlName="Estado"
-                                                    name="Estado" checked>
-                                                <label for="Estado">Habilitar Docente</label>
-                                            </div>
-    
-    
-                                       
+
+                                        <div class="form-group">
+                                            <label for="Observacion">Otras observaciones</label>
+                                            <input type="text" class="form-control" maxlength="400"
+                                                name="Observacion" value="Ninguna" formControlName="Observacion"
+                                                placeholder="Observación">
+
+                                        </div>
+
+                                        <div class="form-group form-check form-switch">
+                                            <input class="form-check-input" type="checkbox"
+                                                formControlName="Estado" name="Estado"  checked>
+                                            <label for="Estado">Habilitar Docente</label>
+                                        </div>
+                                        <br><br>
+
+
 
                                     </div>
-                                    <!-- /.card-body -->
+                                    <!-- /.card-body  en button-->
 
                                     <div class="card-footer">
                                         <div class="row">
-                                            <div  class="col-md-2">
-                                                <button  type="submit" [disabled]="ProfesoresForm.invalid" value="Registrar"
-                                                class="btn btn-block bg-gradient-success ">Guardar</button>
+                                            <div class="col-md-2">
+                                                <button type="submit" value="Registrar" [disabled]="ProfesoresForm.invalid"
+                                                    class="btn btn-block bg-gradient-success "><i class="fas fa-archive"></i> Guardar</button>
                                             </div>
                                             <div class="col-md-2">
-                                                <button type="button" (click)="RedirectCancel()" class="btn btn-block bg-gradient-secondary" value="Tabla">Limpiar</button>  
+                                                <button type="button" (click)="RedirectCancel()"
+                                                    class="btn btn-block bg-gradient-secondary"
+                                                    value="Tabla"><i class="fad fa-eraser"></i> Limpiar</button>
                                             </div>
                                             <div class="col-md-6"></div>
                                             <div class="col-md-2">
-                                                <button type="button" routerLink="/app/list-prof" class="btn btn-block bg-gradient-info" value="Tabla">Tabla</button>
+                                                <button type="button" routerLink="/app/list-prof"
+                                                    class="btn btn-block bg-gradient-info" value="Tabla"><i class="fas fa-list"></i> Listado</button>
                                             </div>
-                                            
+
                                         </div>
-                                            
+
                                     </div>
                                 </form>
                             </div>

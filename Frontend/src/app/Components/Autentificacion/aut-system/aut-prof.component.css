@@ -5,3 +5,7 @@
 .combo{
     background-color: #dbdbdb;
 }
+.text-danger{
+    text-align: start;
+    margin-left: 7 px;
+}

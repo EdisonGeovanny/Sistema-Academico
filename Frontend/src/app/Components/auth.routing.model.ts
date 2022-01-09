@@ -43,9 +43,9 @@ const routes: Routes = [
 
   //Representante
   { path: 'reg-rep', component: RegRepComponent }, //yes
-  { path: 'list-rep', component: ListRepComponent },
-  { path: 'edit-rep/:id', component: RegRepComponent },
-  { path: 'view-rep/:id', component: ViewRepComponent }, 
+  { path: 'list-rep', component: ListRepComponent },//yes
+  { path: 'edit-rep/:id', component: RegRepComponent },//yes
+  { path: 'view-rep/:id', component: ViewRepComponent }, //yes
 
   //Ficha estudiantil
   { path: 'reg-ficha', component: RegFichaComponent },

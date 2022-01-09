@@ -14,30 +14,67 @@ export class RegEstComponent implements OnInit {
   EstudianteForm: FormGroup;
 
   //titulo
-  Titulo = 'Registrar Estudiante';
+  Titulo = 'ESTUDIANTE: REGISTRO DE INFORMACIÓN';
+  subnivel = 'REGISTRO DE DATOS';
   id: string | null;
 
-    //Genero
-    Genero = [{ name: "Masculino" }, { name: "Femenino" }];
-    elegido2: string = "";
+  //Genero
+  Genero = [{ name: "Seleccionar opción" }, { name: "Masculino" }, { name: "Femenino" }];
+  elegido2: string = "";
+
+
+  //Documento
+  Documento = [{ name: "Seleccionar opción" }, { name: "Cédula de identidad" }, { name: "Pasaporte" }, { name: "Licencia de conducir" },
+  { name: "Identificación militar" }, { name: "Residencia permanente" }];
+  elegido3: string = "";
+
+
+  //Estado_civil
+  Estado_civil = [{ name: "Seleccionar opción" }, { name: "Soltero(a)" }, { name: "Casado(a)" }, { name: "Divorciado(a)" },
+  { name: "Viudo(a)" }];
+  elegido4: string = "";
+
+  //Tipo Sangre
+  Sangre = [{ name: "Seleccionar opción" }, { name: "Desconicido" }, { name: "O positivo" }, { name: "O negativo" }, { name: "A positivo" }, { name: "A negativo" },
+  { name: "B positivo" }, { name: "B negativo" }, { name: "AB positivo" }, { name: "AB negativo" }];
+  elegido5: string = "";
+
+  //Tipo Discapacidad
+  Discapacidad = [{ name: "Seleccionar opción" }, { name: "Ninguna" }, { name: "Discapacidad Física o Motora" }, { name: "Discapacidad Sensorial" },
+  { name: "Discapacidad Intelectual" }, { name: "Discapacidad Psíquica" }];
+  elegido6: string = "";
+
+
+
 
   constructor(private authService: AuthService, private router: Router,
-    private fb: FormBuilder, private aRouter: ActivatedRoute) { 
-      this.EstudianteForm = this.fb.group({
-        Codigo: ['', Validators.required],
-        DNI: ['', Validators.required],
-        Nombres: ['', Validators.required],
-        Apellidos: ['', Validators.required],
-        Fecha_nacimiento: ['', Validators.required],
-        Direccion: ['', Validators.required],
-        Estado: [''],
-        Genero: ['', Validators.required],
-        Observacion: ['', Validators.maxLength(200)],
-      })
-     this.id = this.aRouter.snapshot.paramMap.get('id')
+    private fb: FormBuilder, private aRouter: ActivatedRoute) {
+    this.EstudianteForm = this.fb.group({
+      Tipo_documento: ['', Validators.required],
+      Codigo: ['', Validators.required],
+      DNI: ['', Validators.required],
+      Nombres: ['', Validators.required],
+      Apellidos: ['', Validators.required],
+      Genero: ['', Validators.required],
+      Estado_civil: ['', Validators.required],
+      Fecha_nacimiento: ['', Validators.required],
+      Lugar_nacimiento: ['', Validators.required],
+      Nacionalidad: ['', Validators.required],
+      Etnia: ['', Validators.required],
+      Grupo_sanguineo: [''],
+      Observacion_medica: [''],
+      Tipo_discapacidad: [''],
+      Carnet_discapacidad: [''],
+      Porcentaje_discapacidad: ['', Validators.maxLength(5)],
+      Direccion: ['', Validators.required],
+      Sector_domicilio: ['', Validators.required],
+      Referencia_domicilio: ['', Validators.required],
+      Estado: [''],
+      Observacion: ['', Validators.maxLength(200)],
+    })
+    this.id = this.aRouter.snapshot.paramMap.get('id')
     //  console.log(this.id)
-
-    }
+  }
 
   ngOnInit(): void {
     this.esEditar();
@@ -45,25 +82,37 @@ export class RegEstComponent implements OnInit {
 
 
   //agregar datos o actualizar datos
- saveData(){
-  if (this.id !== null) {
-    this.upDate();
-  }else{
-    this.create();
+  saveData() {
+    if (this.id !== null) {
+      this.upDate();
+    } else {
+      this.create();
+    }
   }
- }
 
- // Registrar
+  // Registrar
   create() {
-    const ESTUDIANTE: Estudiante = {
+    const ESTUDIANTE: any = {
       Codigo: this.EstudianteForm.get('Codigo')?.value,
+      Tipo_documento: this.EstudianteForm.get('Tipo_documento')?.value,
       DNI: this.EstudianteForm.get('DNI')?.value,
       Nombres: this.EstudianteForm.get('Nombres')?.value,
       Apellidos: this.EstudianteForm.get('Apellidos')?.value,
-      Fecha_nacimiento: this.EstudianteForm.get('Fecha_nacimiento')?.value,
-      Direccion: this.EstudianteForm.get('Direccion')?.value,
-      Estado: this.EstudianteForm.get('Estado')?.value,
       Genero: this.EstudianteForm.get('Genero')?.value,
+      Estado_civil: this.EstudianteForm.get('Estado_civil')?.value,
+      Fecha_nacimiento: this.EstudianteForm.get('Fecha_nacimiento')?.value,
+      Lugar_nacimiento: this.EstudianteForm.get('Lugar_nacimiento')?.value,
+      Nacionalidad: this.EstudianteForm.get('Nacionalidad')?.value,
+      Etnia: this.EstudianteForm.get('Etnia')?.value,
+      Grupo_sanguineo: this.EstudianteForm.get('Grupo_sanguineo')?.value,
+      Observacion_medica: this.EstudianteForm.get('Observacion_medica')?.value,
+      Tipo_discapacidad: this.EstudianteForm.get('Tipo_discapacidad')?.value,
+      Carnet_discapacidad: this.EstudianteForm.get('Carnet_discapacidad')?.value,
+      Porcentaje_discapacidad: this.EstudianteForm.get('Porcentaje_discapacidad')?.value,
+      Direccion: this.EstudianteForm.get('Direccion')?.value,
+      Sector_domicilio: this.EstudianteForm.get('Sector_domicilio')?.value,
+      Referencia_domicilio: this.EstudianteForm.get('Referencia_domicilio')?.value,
+      Estado: this.EstudianteForm.get('Estado')?.value,
       Observacion: this.EstudianteForm.get('Observacion')?.value,
     }
     console.log(ESTUDIANTE);
@@ -82,21 +131,34 @@ export class RegEstComponent implements OnInit {
   //Obtener datos para Editar
   esEditar() {
     if (this.id !== null) {
-      this.Titulo = 'Editar Registro de Estudiante';
+      this.Titulo = 'ESTUDIANTE: ACTUALIZACIÓN DE INFORMACIÓN';
+      this.subnivel = 'EDITOR DE DATOS';
 
       this.authService.obtenerEstudianteId(this.id).subscribe(data => {
 
-        this.EstudianteForm.setValue({
-          Codigo: data.Codigo,
-          DNI: data.DNI,
-          Nombres: data.Nombres,
-          Apellidos: data.Apellidos,
-          Fecha_nacimiento: data.Fecha_nacimiento,
-          Direccion: data.Direccion,
-          Estado: data.Estado,
-          Genero: data.Genero,
-          Observacion: data.Observacion
-        })
+        this.EstudianteForm.controls['Codigo'].setValue(data.Codigo);
+        this.EstudianteForm.controls['Tipo_documento'].setValue(data.Tipo_documento);
+        this.EstudianteForm.controls['DNI'].setValue(data.DNI);
+        this.EstudianteForm.controls['Apellidos'].setValue(data.Apellidos);
+        this.EstudianteForm.controls['Nombres'].setValue(data.Nombres);
+        this.EstudianteForm.controls['Genero'].setValue(data.Genero);
+        this.EstudianteForm.controls['Estado_civil'].setValue(data.Estado_civil);
+        this.EstudianteForm.controls['Fecha_nacimiento'].setValue(data.Fecha_nacimiento);
+        this.EstudianteForm.controls['Lugar_nacimiento'].setValue(data.Lugar_nacimiento);
+        this.EstudianteForm.controls['Nacionalidad'].setValue(data.Nacionalidad);
+        this.EstudianteForm.controls['Etnia'].setValue(data.Etnia);
+        this.EstudianteForm.controls['Grupo_sanguineo'].setValue(data.Grupo_sanguineo);
+        this.EstudianteForm.controls['Observacion_medica'].setValue(data.Observacion_medica);
+        this.EstudianteForm.controls['Tipo_discapacidad'].setValue(data.Tipo_discapacidad);
+        this.EstudianteForm.controls['Carnet_discapacidad'].setValue(data.Carnet_discapacidad);
+        this.EstudianteForm.controls['Porcentaje_discapacidad'].setValue(data.Porcentaje_discapacidad);
+        this.EstudianteForm.controls['Direccion'].setValue(data.Direccion);
+        this.EstudianteForm.controls['Sector_domicilio'].setValue(data.Sector_domicilio);
+        this.EstudianteForm.controls['Referencia_domicilio'].setValue(data.Referencia_domicilio);
+        this.EstudianteForm.controls['Condicion_laboral'].setValue(data.Condicion_laboral);
+        this.EstudianteForm.controls['Observacion'].setValue(data.Observacion);
+        this.EstudianteForm.controls['Estado'].setValue(data.Estado);
+
       })
     }
   }
@@ -111,7 +173,7 @@ export class RegEstComponent implements OnInit {
       },
       buttonsStyling: false
     })
-    
+
     swalWithBootstrapButtons.fire({
       title: '¿Estás seguro?',
       text: "¡Se actualizarán los datos ingresados!",
@@ -124,20 +186,32 @@ export class RegEstComponent implements OnInit {
       if (result.isConfirmed) {
 
         if (this.id !== null) {
-      
-          const ESTUDIANTE: Estudiante = {
-           Codigo:this.EstudianteForm.get('Codigo')?.value,
+
+          const ESTUDIANTE: any = {
+            Codigo: this.EstudianteForm.get('Codigo')?.value,
+            Tipo_documento: this.EstudianteForm.get('Tipo_documento')?.value,
             DNI: this.EstudianteForm.get('DNI')?.value,
             Nombres: this.EstudianteForm.get('Nombres')?.value,
             Apellidos: this.EstudianteForm.get('Apellidos')?.value,
-            Fecha_nacimiento: this.EstudianteForm.get('Fecha_nacimiento')?.value,
-            Direccion: this.EstudianteForm.get('Direccion')?.value,
-            Estado: this.EstudianteForm.get('Estado')?.value,
             Genero: this.EstudianteForm.get('Genero')?.value,
+            Estado_civil: this.EstudianteForm.get('Estado_civil')?.value,
+            Fecha_nacimiento: this.EstudianteForm.get('Fecha_nacimiento')?.value,
+            Lugar_nacimiento: this.EstudianteForm.get('Lugar_nacimiento')?.value,
+            Nacionalidad: this.EstudianteForm.get('Nacionalidad')?.value,
+            Etnia: this.EstudianteForm.get('Etnia')?.value,
+            Grupo_sanguineo: this.EstudianteForm.get('Grupo_sanguineo')?.value,
+            Observacion_medica: this.EstudianteForm.get('Observacion_medica')?.value,
+            Tipo_discapacidad: this.EstudianteForm.get('Tipo_discapacidad')?.value,
+            Carnet_discapacidad: this.EstudianteForm.get('Carnet_discapacidad')?.value,
+            Porcentaje_discapacidad: this.EstudianteForm.get('Porcentaje_discapacidad')?.value,
+            Direccion: this.EstudianteForm.get('Direccion')?.value,
+            Sector_domicilio: this.EstudianteForm.get('Sector_domicilio')?.value,
+            Referencia_domicilio: this.EstudianteForm.get('Referencia_domicilio')?.value,
+            Estado: this.EstudianteForm.get('Estado')?.value,
             Observacion: this.EstudianteForm.get('Observacion')?.value,
           }
           console.log(ESTUDIANTE);
-          this.authService.updateEst(this.id,ESTUDIANTE).subscribe(data => {
+          this.authService.updateEst(this.id, ESTUDIANTE).subscribe(data => {
             this.esEditar();
             this.AlertExito2();
           }, err => {
@@ -145,8 +219,8 @@ export class RegEstComponent implements OnInit {
             this.AlertFracaso();
             //this.ProfesoresForm.reset();
           })
-      
-      
+
+
         }
 
         swalWithBootstrapButtons.fire(
@@ -154,16 +228,16 @@ export class RegEstComponent implements OnInit {
           'Tu registro fue actualizado.',
           'success'
         )
-      }   
+      }
     })
-    
+
   }
 
-////////////////////////Redirecciones ////////////////////
+  ////////////////////////Redirecciones ////////////////////
 
-RedirectCancel(): void {
-  this.EstudianteForm.reset();
-}
+  RedirectCancel(): void {
+    this.EstudianteForm.reset();
+  }
 
   ///////////   ventanas de alerta    ///////////////////
   AlertExito(): void {
@@ -191,8 +265,8 @@ RedirectCancel(): void {
     Swal.fire({
       position: 'top-end',
       icon: 'error',
-      title: 'Conficto..!<br>'+
-      'Existe un registro con el mismo número de identificación',
+      title: 'Conficto..!<br>' +
+        'Existe un registro con el mismo número de identificación',
       showConfirmButton: false,
       timer: 2500
     })

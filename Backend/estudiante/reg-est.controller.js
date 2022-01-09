@@ -7,12 +7,24 @@ const SECRET_KEY = 'secretkey1234';
 exports.createEst = (req, res, next)=> {
     const newUser = { 
         Codigo: req.body.Codigo,
+        Tipo_documento: req.body.Tipo_documento,
         DNI: req.body.DNI,
         Nombres: req.body.Nombres,
         Apellidos: req.body.Apellidos,
-        Fecha_nacimiento: req.body.Fecha_nacimiento,
         Genero: req.body.Genero,
+        Estado_civil: req.body.Estado_civil,
+        Fecha_nacimiento: req.body.Fecha_nacimiento,
+        Lugar_nacimiento:req.body.Lugar_nacimiento,
+        Nacionalidad:req.body.Nacionalidad,
+        Etnia:req.body.Etnia,
+        Grupo_sanguineo:req.body.Grupo_sanguineo,
+        Observacion_medica:req.body.Observacion_medica,
+        Tipo_discapacidad:req.body.Tipo_discapacidad,
+        Carnet_discapacidad:req.body.Carnet_discapacidad,
+        Porcentaje_discapacidad:req.body.Porcentaje_discapacidad,
         Direccion: req.body.Direccion,
+        Sector_domicilio:req.body.Sector_domicilio,
+        Referencia_domicilio:req.body.Referencia_domicilio,
         Estado: req.body.Estado,
         Observacion: req.body.Observacion
     }
@@ -35,22 +47,37 @@ exports.createEst = (req, res, next)=> {
 //update de registros de estudiantes
 exports.updateEst  = async (req, res) => {
     try{
-        const { Codigo, DNI, Nombres, Apellidos, Fecha_nacimiento, Direccion,
-                 Estado, Genero, Observacion} = req.body;
+        const { Codigo, Tipo_documento,  DNI, Apellidos,  Nombres, Genero, Estado_civil,
+            Fecha_nacimiento, Lugar_nacimiento, Nacionalidad, Etnia, Grupo_sanguineo,
+            Observacion_medica, Tipo_discapacidad, Carnet_discapacidad, Porcentaje_discapacidad,
+            Direccion, Sector_domicilio, Referencia_domicilio,
+            Estado, Observacion} = req.body;
             let estudiante = await User.findById(req.params.id);
 
             if(!estudiante) {
                 res.status(404).json({msg: 'No existe el registro'})
             } 
-            
+            estudiante.Tipo_documento = Tipo_documento;
             estudiante.Codigo = Codigo;
             estudiante.DNI = DNI;
             estudiante.Nombres = Nombres;
             estudiante.Apellidos = Apellidos;
-            estudiante.Fecha_nacimiento = Fecha_nacimiento;
-            estudiante.Direccion = Direccion;
-            estudiante.Estado = Estado;
             estudiante.Genero = Genero;
+            estudiante.Estado_civil = Estado_civil;
+            estudiante.Fecha_nacimiento = Fecha_nacimiento;
+            estudiante.Lugar_nacimiento = Lugar_nacimiento;
+            estudiante.Nacionalidad = Nacionalidad;
+            estudiante.Etnia = Etnia;
+            estudiante.Grupo_sanguineo = Grupo_sanguineo;
+            estudiante.Observacion_medica = Observacion_medica;
+            estudiante.Tipo_discapacidad = Tipo_discapacidad;
+            estudiante.Carnet_discapacidad = Carnet_discapacidad;
+            estudiante.Porcentaje_discapacidad = Porcentaje_discapacidad;
+            estudiante.Direccion = Direccion;
+            estudiante.Sector_domicilio = Sector_domicilio;
+            estudiante.Referencia_domicilio = Referencia_domicilio;
+            estudiante.Estado = Estado;
+            
             estudiante.Observacion = Observacion;
 
             estudiante = await User.findOneAndUpdate({_id: req.params.id}, estudiante, {new:true})
@@ -149,47 +176,16 @@ exports.searchApellido = async (req, res) => {
 //Listar datos de Estudiante 
 exports.listEst = (req, res, next) => {
 
-    User.find({}, (err, user)=>{
+    User.find({}, (err, dni)=>{
         if (err) return res. status(500).send('Server error!');
-        if(!user) {
+        if(!dni) {
             //email does not exist
             res.status(484).send({ message: 'No existen productos'});
         }else {
             
-                res.send({user});
+                res.send({dni});
             
         }
     })
 }
 
-
-// mirar codigo por si a caso 
-exports.loginUser = (req, res, next)=> {
-    const userData = {
-        Usuario: req.body.Usuario,
-        Contraseña: req.body.Contraseña
-    }
-    User.findOne({Usuario: userData.Usuario}, (err, user)=>{
-        if (err) return res. status(500).send('Server error!');
-        if(!user) {
-            //email does not exist
-            res.status(409).send({ message: 'Something is wrong'});
-        }else {
-            const resultPassword = bcrypt.compareSync(userData.Contraseña, user.Contraseña)
-            if(resultPassword){
-                const expiresIn = 24 * 60 * 60;
-                const accessToken = jwt.sign({id: user.id}, SECRET_KEY, {expiresIn: expiresIn});
-                const dataUser = {
-                    Nombres: user.Nombres,
-                    Usuario: user.Usuario,
-                    accessToken: accessToken,
-                    expiresIn: expiresIn
-                }
-                res.send({dataUser});
-            }else {
-                //password wrong
-                res.status(409).send({ message: 'Something is wrong'});
-            }
-        }
-    })
-}

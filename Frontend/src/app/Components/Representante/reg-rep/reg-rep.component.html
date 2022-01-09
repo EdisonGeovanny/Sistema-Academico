@@ -32,11 +32,11 @@
         <aside class="main-sidebar elevation-4 sidebar-dark-success">
             <!--navbar-orange,warning,pink,secundary,info,success,indigo,purple,vany,teal,cyan,--->
             <!-- Brand Logo -->
-            <a routerLink="/app/reg-prof" class="brand-link navbar-danger">
+            <a routerLink="/app/reg-prof" class="brand-link navbar-warning">
                 <!--navbar-orange,warning,pink,secundary,info,success,indigo,purple,vany,teal,cyan,--->
                 <img src="./assets/dist/img/AdminLTELogo.png" alt="AdminLTE Logo"
                     class="brand-image img-circle elevation-3" style="opacity: .8">
-                <span class="brand-text font-weight-light">Administrador</span>
+                <span class="brand-text text-secondary">ADMINISTRADOR</span>
             </a>
 
             <!-- Sidebar -->
@@ -344,23 +344,25 @@
             <!-- /.sidebar -->
         </aside>
 
+
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
             <section class="content-header">
                 <div class="container-fluid">
                     <div class="row mb-2">
-                        <div class="col-sm-1"></div>
-                        <div class="col-sm-5">
-                            <h1>{{Titulo}}</h1>
+
+                        <div class="col-sm-6">
+                            <h5><strong>{{Titulo}}</strong></h5>
+
                         </div>
-                        <div class="col-sm-5">
+                        <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item">Registro de Datos</li>
-                                <li class="breadcrumb-item active">{{Titulo}}</li>
+                                <li class="breadcrumb-item ">{{subnivel}}</li>
+                                <li class="breadcrumb-item active">DATOS DE REPRESENTANTE</li>
                             </ol>
                         </div>
-                        <div class="col-sm-1"></div>
+
                     </div>
                 </div><!-- /.container-fluid -->
             </section>
@@ -373,9 +375,9 @@
                         <!-- left column -->
                         <div class="col-md-12">
                             <!-- general form elements -->
-                            <div class="card card-primary">
+                            <div class="card card-warning">
                                 <div class="card-header">
-                                    <h3 class="card-title">Ingreso de Datos</h3>
+                                    <h3 class="card-title">INGRESO DE DATOS</h3>
                                     <div class="card-tools">
                                         <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
                                                 class="fas fa-minus"></i></button>
@@ -390,41 +392,33 @@
 
                                         <div class="row">
 
+                                            <div class="col-md-12 h2">
+                                                <h2>DATOS PERSONALES DEL REPRESENTANTE</h2>
+                                            </div>
+
                                             <div class="col-md-4">
+
                                                 <div class="form-group">
-                                                    <label>Parentesco</label>
-                                                    <select class="form-control" name="Parentesco"
-                                                        formControlName="Parentesco" [(ngModel)]="elegido1">
-                                                        <option *ngFor="let n3 of Parentesco">{{ n3.name }}</option>
+                                                    <label>Seleccione el tipo de identificación</label>
+                                                    <select class="form-control combo" name="Tipo_documento"
+                                                        formControlName="Tipo_documento" [(ngModel)]="elegido3">
+                                                        <option *ngFor="let n3 of Documento">{{ n3.name }}</option>
                                                     </select>
                                                 </div>
 
                                                 <div class="form-group">
-                                                    <label for="DNI">DNI/CI</label>
+                                                    <label for="DNI">Número de identificación:</label>
                                                     <input type="text" class="form-control" name="DNI"
                                                         formControlName="DNI" placeholder="Identificación">
                                                     <div class="text-danger"
                                                         *ngIf="RepresentantesForm.get('DNI')?.hasError('required') && RepresentantesForm.get('DNI')?.touched">
-                                                        <span>El campo de Cédula de Identidad <strong>es
+                                                        <span>El campo: Cédula de Identidad <strong>es
                                                                 obligatorio</strong></span>
                                                     </div>
                                                 </div>
 
-                                            </div>
-
-                                            <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label for="Nombres">Nombres</label>
-                                                    <input type="text" class="form-control" name="Nombres"
-                                                        formControlName="Nombres" placeholder="Nombres">
-                                                    <div class="text-danger"
-                                                        *ngIf="RepresentantesForm.get('Nombres')?.hasError('required') && RepresentantesForm.get('Nombres')?.touched">
-                                                        <span>El campo de Nombres <strong>es obligatorio</strong></span>
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label for="Fecha_nacimiento">Fecha de Nacimiento</label>
+                                                    <label for="Fecha_nacimiento">Fecha de nacimiento:</label>
                                                     <input type="date" class="form-control" name="Fecha_nacimiento"
                                                         formControlName="Fecha_nacimiento">
                                                     <div class="text-danger"
@@ -433,75 +427,144 @@
                                                                 obligatorio</strong></span>
                                                     </div>
                                                 </div>
+
+                                                <div class="form-group">
+                                                    <label for="Etnia">Etnia a la que pertenece:</label>
+                                                    <input type="text" class="form-control" name="Etnia"
+                                                        formControlName="Etnia" placeholder="Etnia">
+                                                    <div class="text-danger"
+                                                        *ngIf="RepresentantesForm.get('Etnia')?.hasError('required') && RepresentantesForm.get('Etnia')?.touched">
+                                                        <span>El campo: Etnia <strong>es obligatorio</strong></span>
+                                                    </div>
+                                                </div>
+
+
+
+
                                             </div>
 
                                             <div class="col-md-4">
+
                                                 <div class="form-group">
-                                                    <label for="Apellidos">Apellidos</label>
+                                                    <label>Seleccione el estado civil</label>
+                                                    <select class="form-control combo" name="Estado_civil"
+                                                        formControlName="Estado_civil" [(ngModel)]="elegido0">
+                                                        <option *ngFor="let n0 of Estado_civil">{{ n0.name }}</option>
+                                                    </select>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="Nombres">Nombres del registrado:</label>
+                                                    <input type="text" class="form-control" name="Nombres"
+                                                        formControlName="Nombres" placeholder="Nombres">
+                                                    <div class="text-danger"
+                                                        *ngIf="RepresentantesForm.get('Nombres')?.hasError('required') && RepresentantesForm.get('Nombres')?.touched">
+                                                        <span>El campo: Nombres <strong>es obligatorio</strong></span>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="form-group">
+                                                    <label for="Lugar_nacimiento">Lugar de nacimiento:</label>
+                                                    <input type="text" class="form-control" name="Lugar_nacimiento"
+                                                        formControlName="Lugar_nacimiento"
+                                                        placeholder="Lugar de nacimiento">
+                                                    <div class="text-danger"
+                                                        *ngIf="RepresentantesForm.get('Lugar_nacimiento')?.hasError('required') && RepresentantesForm.get('Lugar_nacimiento')?.touched">
+                                                        <span>El campo: Lugarde Nacimiento <strong>es
+                                                                obligatorio</strong></span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="Parentesco">Lugar de nacimiento:</label>
+                                                    <input type="text" class="form-control" name="Parentesco"
+                                                        formControlName="Parentesco"
+                                                        placeholder="Parentesco con el alumno">
+                                                    <div class="text-danger"
+                                                        *ngIf="RepresentantesForm.get('Parentesco')?.hasError('required') && RepresentantesForm.get('Parentesco')?.touched">
+                                                        <span>El campo: Lugarde Nacimiento <strong>es
+                                                                obligatorio</strong></span>
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+
+
+                                            <div class="col-md-4">
+
+                                                <div class="form-group">
+                                                    <label>Seleccione el género</label>
+                                                    <select class="form-control combo" name="Genero"
+                                                        formControlName="Genero" [(ngModel)]="elegido2">
+                                                        <option *ngFor="let n2 of Genero">{{ n2.name }}</option>
+                                                    </select>
+                                                </div>
+
+
+                                                <div class="form-group">
+                                                    <label for="Apellidos">Apellidos del registrado:</label>
                                                     <input type="text" class="form-control" name="Apellidos"
                                                         formControlName="Apellidos" placeholder="Apellidos">
                                                     <div class="text-danger"
                                                         *ngIf="RepresentantesForm.get('Apellidos')?.hasError('required') && RepresentantesForm.get('Apellidos')?.touched">
-                                                        <span>El campo de Apellidos <strong>es
-                                                                obligatorio</strong></span>
+                                                        <span>El campo: Apellidos <strong>es obligatorio</strong></span>
                                                     </div>
                                                 </div>
 
-                                                <div class="form-group">
-                                                    <label>Género</label>
-                                                    <select class="form-control" name="Genero" formControlName="Genero"
-                                                        [(ngModel)]="elegido2">
-                                                        <option *ngFor="let n2 of Genero">{{ n2.name }}</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-3">
 
                                                 <div class="form-group">
-                                                    <label>Estado civil</label>
-                                                    <select name="Estado_civil" formControlName="Estado_civil"
-                                                        class="form-control" ngModel="elegido3">
-                                                        <option *ngFor="let n of EstadoCivil">{{ n.name }}</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-9">
-                                              
-                                                <div class="form-group">
-                                                    <label for="Profesion">Profesion</label>
-                                                    <input type="text" class="form-control" name="Profesion"
-                                                        formControlName="Profesion" placeholder="Profesion">
+                                                    <label for="Nacionalidado">Nacionalidad:</label>
+                                                    <input type="text" class="form-control" name="Nacionalidad"
+                                                        formControlName="Nacionalidad" placeholder="Nacionalidad">
                                                     <div class="text-danger"
-                                                        *ngIf="RepresentantesForm.get('Profesional')?.hasError('required') && RepresentantesForm.get('Titulo_profesional')?.touched">
-                                                        <span>El campo de Titulo Profesional <strong>es
+                                                        *ngIf="RepresentantesForm.get('Nacionalidad')?.hasError('required') && RepresentantesForm.get('Nacionalidad')?.touched">
+                                                        <span>El campo: Nacionalidad <strong>es
                                                                 obligatorio</strong></span>
                                                     </div>
                                                 </div>
+
+
                                             </div>
 
                                         </div>
-                                        <hr>
+
+                                        <br>
+                                        <hr><br>
 
                                         <div class="row">
+                                            <div class="col-md-12 h2">
+                                                <h2> DATOS DE UBICACIÓN Y CONTACTO </h2>
+                                            </div>
+
                                             <div class="col-md-6">
 
                                                 <div class="form-group">
-                                                    <label for="Direccion">Dirección de Domicilio</label>
+                                                    <label for="Direccion">Lugar de domicilio:</label>
                                                     <input type="text" class="form-control" name="Direccion"
-                                                        formControlName="Direccion" placeholder="Dirección">
+                                                        formControlName="Direccion" placeholder="Ubicación">
                                                     <div class="text-danger"
                                                         *ngIf="RepresentantesForm.get('Direccion')?.hasError('required') && RepresentantesForm.get('Direccion')?.touched">
-                                                        <span>El campo de Dirección <strong>es
+                                                        <span>El campo de Ubicación <strong>es
+                                                                obligatorio</strong></span>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="form-group">
+                                                    <label for="Referencia_domicilio">Referencia de domicilio:</label>
+                                                    <input type="text" class="form-control" name="Referencia_domicilio"
+                                                        formControlName="Referencia_domicilio" placeholder="Referencia">
+                                                    <div class="text-danger"
+                                                        *ngIf="RepresentantesForm.get('Referencia_domicilio')?.hasError('required') && RepresentantesForm.get('Referencia_domicilio')?.touched">
+                                                        <span>El campo de Referencia <strong>es
                                                                 obligatorio</strong></span>
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group">
-                                                    <label for="Telefono">Teléfono Convencional</label>
+                                                    <label for="Telefono">N° Teléfono:</label>
                                                     <input type="text" class="form-control" name="Telefono"
                                                         formControlName="Telefono" placeholder="Teléfono">
                                                     <div class="text-danger"
@@ -510,11 +573,25 @@
                                                                 obligatorio</strong></span>
                                                     </div>
                                                 </div>
+
+
                                             </div>
+
                                             <div class="col-md-6">
 
                                                 <div class="form-group">
-                                                    <label for="Email">Correo Electrónico</label>
+                                                    <label for="Sector_domicilio">Dirección de domicilio:</label>
+                                                    <input type="text" class="form-control" name="Sector_domicilio"
+                                                        formControlName="Sector_domicilio" placeholder="Dirección">
+                                                    <div class="text-danger"
+                                                        *ngIf="RepresentantesForm.get('Sector_domicilio')?.hasError('required') && RepresentantesForm.get('Sector_domicilio')?.touched">
+                                                        <span>El campo de Dirección <strong>es
+                                                                obligatorio</strong></span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="Email">Correo electrónico:</label>
                                                     <input type="email" class="form-control" formControlName="Email"
                                                         name="Email" placeholder="Email">
                                                     <div class="text-danger"
@@ -524,7 +601,7 @@
                                                 </div>
 
                                                 <div class="form-group">
-                                                    <label for="Celular"> Teléfono Celular</label>
+                                                    <label for="Celular"> N° Celular:</label>
                                                     <input type="text" class="form-control" name="Celular"
                                                         formControlName="Celular" placeholder="Celular">
                                                     <div class="text-danger"
@@ -535,42 +612,166 @@
                                                 </div>
 
                                             </div>
+
                                         </div>
+
+                                        <br>
+                                        <hr><br>
+
+
+
+
+                                        <div class="row">
+                                            <div class="col-md-12 h2">
+                                                <h2>DATOS DE SALUD</h2>
+                                            </div>
+
+                                            <div class="col-md-3">
+
+                                                <div class="form-group">
+                                                    <label>Tipo de Discapacidad</label>
+                                                    <select class="form-control combo" name="Tipo_discapacidad"
+                                                        formControlName="Tipo_discapacidad" [(ngModel)]="elegido6">
+                                                        <option *ngFor="let n6 of Discapacidad">{{ n6.name }}</option>
+                                                    </select>
+                                                </div>
+
+
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="Carnet_discapacidad">Carnet de discapacidad</label>
+                                                    <input type="text" class="form-control" name="Carnet_discapacidad"
+                                                        formControlName="Carnet_discapacidad" placeholder="Especificar">
+                                                </div>
+
+                                            </div>
+
+                                            <div class="col-md-3">
+
+                                                <div class="form-group">
+                                                    <label for="Porcentaje_discapacidad">(%) de discapacidad
+                                                    </label>
+                                                    <input type="number" class="form-control"
+                                                        name="Porcentaje_discapacidad" maxlength="5"
+                                                        formControlName="Porcentaje_discapacidad" placeholder="0.0">
+                                                </div>
+
+                                            </div>
+
+                                            <div class="col-md-3">
+
+                                                <div class="form-group">
+                                                    <label>Grupo Sanguineo</label>
+                                                    <select class="form-control combo" name="Grupo_sanguineo"
+                                                        formControlName="Grupo_sanguineo" [(ngModel)]="elegido5">
+                                                        <option *ngFor="let n5 of Sangre">{{ n5.name }}</option>
+                                                    </select>
+                                                </div>
+
+                                            </div>
+
+
+                                            <div class="col-md-9">
+
+                                                <div class="form-group">
+                                                    <label for="Observacion_medica">Alguna observación médica</label>
+                                                    <input type="text" class="form-control" name="Observacion_medica"
+                                                        formControlName="Observacion_medica" value="Ninguna"
+                                                        placeholder="Cualquier observación">
+                                                </div>
+
+                                            </div>
+
+
+                                        </div>
+
+                                        <br>
+                                        <hr><br>
+
+                                        <div class="row">
+
+                                            <div class="col-md-12 h2">
+                                                <h2>INFORMACIÓN ADICIONAL</h2>
+                                            </div>
+
+                                            <div class="col-md-3">
+
+                                                <div class="form-group">
+                                                    <label>Nivel de educación</label>
+                                                    <select class="form-control combo" name="Nivel_educacion"
+                                                        formControlName="Nivel_educacion" [(ngModel)]="elegido7">
+                                                        <option *ngFor="let n7 of Nivel">{{ n7.name }}</option>
+                                                    </select>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="col-md-9">
+
+
+                                            </div>
+
+                                            <div class="col-md-6">
+                                               
+                                                <div class="form-group">
+                                                    <label for="Actividad">Actividad o profesion laboral en la que se
+                                                        desenvuelve:</label>
+                                                    <input type="text" class="form-control" maxlength="400" name="Actividad"
+                                                        value="Ninguna" formControlName="Actividad"
+                                                        placeholder="Actividad de Trabajo">
+                                                </div>
+
+                                            </div>
+                                            <div class="col-md-6">
+
+                                                <div class="form-group">
+                                                    <label for="Area">Área de trabajo en la que se desenvuelve:</label>
+                                                    <input type="text" class="form-control" maxlength="400" name="Area"
+                                                        value="Ninguna" formControlName="Area" placeholder="Área de Trabajo">
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                      
+
 
                                         <div class="form-group">
-                                            <label for="Observacion">Observaciones</label>
-                                            <input type="text" class="form-control" maxlength="200" name="Observacion"
-                                                formControlName="Observacion" placeholder="Observacion">
+                                            <label for="Observacion">Otras observaciones</label>
+                                            <input type="text" class="form-control" maxlength="400" name="Observacion"
+                                                value="Ninguna" formControlName="Observacion" placeholder="Observación">
 
                                         </div>
 
-                                        <div class="form-group form-check form-switch">
-                                            <input class="form-check-input" type="checkbox" formControlName="Estado"
-                                                name="Estado" checked>
-                                            <label for="Estado">Habilitar Representante</label>
-                                        </div>
 
+                                        <br><br>
 
 
 
                                     </div>
-                                    <!-- /.card-body -->
+                                    <!-- /.card-body  en button-->
 
                                     <div class="card-footer">
                                         <div class="row">
                                             <div class="col-md-2">
                                                 <button type="submit" value="Registrar"
-                                                    class="btn btn-block bg-gradient-success ">Guardar</button>
+                                                    [disabled]="RepresentantesForm.invalid"
+                                                    class="btn btn-block bg-gradient-success "><i
+                                                        class="fas fa-archive"></i> Guardar</button>
                                             </div>
                                             <div class="col-md-2">
                                                 <button type="button" (click)="RedirectCancel()"
-                                                    class="btn btn-block bg-gradient-secondary"
-                                                    value="Tabla">Limpiar</button>
+                                                    class="btn btn-block bg-gradient-secondary" value="Tabla"><i
+                                                        class="fad fa-eraser"></i> Limpiar</button>
                                             </div>
                                             <div class="col-md-6"></div>
                                             <div class="col-md-2">
                                                 <button type="button" routerLink="/app/list-rep"
-                                                    class="btn btn-block bg-gradient-info" value="Tabla">Tabla</button>
+                                                    class="btn btn-block bg-gradient-info" value="Tabla"><i
+                                                        class="fas fa-list"></i> Listado</button>
                                             </div>
 
                                         </div>
