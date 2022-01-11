@@ -169,13 +169,13 @@ exports.deleteDA = async (req, res) => {
 //Listar por ID
 exports.listID = async (req, res) => {
     try{
-            let dni = await User.findById(req.params.id);
+            let docente = await User.findById(req.params.id);
 
-            if(!dni) {
+            if(!docente) {
                 res.status(404).json({msg: 'No existe el registro'})
             }
 
-                 res.json(dni);
+                 res.json(docente);
 
 
     }catch(err){

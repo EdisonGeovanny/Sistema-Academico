@@ -352,12 +352,12 @@
                     <div class="row mb-2">
 
                         <div class="col-sm-6">
-                            <h1>{{Titulo}}</h1>
+                            <h5><strong>{{Titulo}}</strong></h5>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item">Usuario de acceso</li>
-                                <li class="breadcrumb-item active">{{Titulo}}</li>
+                                <li class="breadcrumb-item">{{subnivel}}</li>
+                                <li class="breadcrumb-item active">DATOS DE FICHA</li>
                             </ol>
                         </div>
                     </div>
@@ -365,7 +365,7 @@
             </section>
 
             <!-- Main content -->
-<!--////////////////////////////////Usuario Docente/Admin/////////////////////////-->
+            <!--////////////////////////////////Usuario Docente/Admin/////////////////////////-->
             <section class="content">
                 <div class="container-fluid">
 
@@ -373,9 +373,9 @@
                         <!-- left column -->
                         <div class="col-md-12">
                             <!-- general form elements -->
-                            <div class="card card-primary">
+                            <div class="card card-warning">
                                 <div class="card-header">
-                                    <h3 class="card-title">Ingreso de Datos en Ficha - Estudiantil</h3>
+                                    <h3 class="card-title">Ingreso de Datos</h3>
                                     <div class="card-tools">
                                         <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
                                                 class="fas fa-minus"></i></button>
@@ -386,10 +386,15 @@
 
                                 <form class="card-body" role="form" [formGroup]="FichaForm" (ngSubmit)="saveData()">
                                     <div class="card-body">
-<!--/////////////////////////////////////busqueda de ficha de Estudiante/////////////////////////////////////////-->
+                                        <!--/////////////////////////////////////busqueda de ficha de Estudiante/////////////////////////////////////////-->
                                         <!--busqueda por dni, Nombre o Apellido-->
                                         <!--Encabezado de agregar usuario-->
                                         <div class="row">
+
+                                            <div class="col-md-12 h2">
+                                                <h2>DATOS DE FICHA ESTUDIANTIL</h2>
+                                            </div>
+
                                             <div class="col-md-7 h2">
                                                 <h2>Añadir Estudiante</h2>
                                             </div>
@@ -461,7 +466,8 @@
                                                         </tbody>
                                                     </table>
                                                     <h5 style="text-align:start; margin-top: 10px;"
-                                                        *ngIf="datae$.dni.length == 0">No hay registros para mostrar</h5>
+                                                        *ngIf="datae$.dni.length == 0">No hay registros para mostrar
+                                                    </h5>
                                                 </div>
                                             </div>
 
@@ -473,7 +479,7 @@
                                                 <address>
                                                     <strong> Cédula de identidad:</strong><br>{{estudiante.DNI}}
                                                 </address>
-                                              
+
                                                 <address>
                                                     <strong> Nombre:</strong><br>{{estudiante.Apellidos}}
                                                     {{estudiante.Nombres}}
@@ -484,17 +490,17 @@
                                                         nacimiento:</strong><br>{{estudiante.Fecha_nacimiento |
                                                     date:'dd-MM-yyyy'}}
                                                 </address>
-                                              
+
 
                                                 <!-- identidad -->
-                                              
+
                                             </div>
                                         </div>
 
                                         <hr>
 
-<!-- ////////////////////////////////// ficha - busqueda de representante//////////////////////////////////-->
-                          <!--busqueda por dni, Nombre o Apellido-->
+                                        <!-- ////////////////////////////////// ficha - busqueda de representante//////////////////////////////////-->
+                                        <!--busqueda por dni, Nombre o Apellido-->
                                         <!--Encabezado de agregar usuario-->
                                         <div class="row">
                                             <div class="col-md-7 h2">
@@ -559,7 +565,8 @@
                                                         <tbody>
                                                             <tr *ngFor="let representante of  data$.dni ">
                                                                 <td>{{representante.DNI}}</td>
-                                                                <td>{{representante.Nombres}} {{representante.Apellidos}}</td>
+                                                                <td>{{representante.Nombres}}
+                                                                    {{representante.Apellidos}}</td>
                                                                 <td class="colum">
                                                                     <i (click)="viewRep(representante._id)"
                                                                         class="fas fa-plus fa-lg text-success mr-2"></i>
@@ -580,7 +587,7 @@
                                                 <address>
                                                     <strong> Cédula de identidad:</strong><br>{{representante.DNI}}
                                                 </address>
-                                              
+
                                                 <address>
                                                     <strong> Nombre:</strong><br>{{representante.Apellidos}}
                                                     {{representante.Nombres}}
@@ -591,64 +598,424 @@
                                                         nacimiento:</strong><br>{{representante.Fecha_nacimiento |
                                                     date:'dd-MM-yyyy'}}
                                                 </address>
-                                              
+
 
                                                 <!-- identidad -->
-                                              
+
                                             </div>
                                         </div>
 
                                         <hr>
 
-<!-- ////////////////////////////////// datos de ficha /////////////////////////////////////////////////-->
+                                        <!-- ////////////////////////////////// datos de ficha /////////////////////////////////////////////////-->
                                         <div class="row">
                                             <div class="col-md-12 h2">
-                                                <h2>Crear Ficha - Estudiantil</h2>
+                                                <h2>DATOS DEL GRUPO FAMILIAR: ¿CON QUIÉN VIVE EL ESTUDIANTE?</h2>
                                             </div>
 
                                         </div>
                                         <!--Datos de Usuario-->
                                         <div class="row">
-                                           
-                                            <!-- Rol-->
-                                            <div class="col-md-3">
-                                                <div class="form-group">
-                                                    <label>Rol de Usuario</label>
-                                                    <select name="Rol" formControlName="Rol" class="form-control combo"
-                                                        ngModel="elegido1">
-                                                        <option *ngFor="let n of Rol">{{ n.name }}</option>
-                                                    </select>
-                                                </div>
-                                            </div>
 
-                                             <!-- Usuario-->
-                                             <div class="col-md-5">
+                                            <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="Usuario">Usuario</label>
-                                                    <input type="text" class="form-control" name="Usuario"
-                                                        formControlName="Usuario" placeholder="usuario">
+                                                    <label for="Nombre_padre">Nombre completo del padre del
+                                                        estudiante:</label>
+                                                    <input type="text" class="form-control" name="Nombre_padre"
+                                                        formControlName="Nombre_padre"
+                                                        placeholder="apellidos y nombres">
                                                     <div class="text-danger"
-                                                        *ngIf="FichaForm.get('Usuario')?.hasError('required') && FichaForm.get('Usuario')?.touched">
-                                                        <span>El campo Usuario <strong>es obligatorio</strong></span>
+                                                        *ngIf="FichaForm.get('Nombre_padre')?.hasError('required') && FichaForm.get('Nombre_padre')?.touched">
+                                                        <span>El campo: Nombre del padre del estudiante <strong>es
+                                                                obligatorio</strong></span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="Convive">¿Con quién vive el estudiante?:</label>
+                                                    <input type="text" class="form-control" name="Convive"
+                                                        formControlName="Convive"
+                                                        placeholder="Ejemplo: ambos, solo padre, solo madre, etc">
+                                                    <div class="text-danger"
+                                                        *ngIf="FichaForm.get('Convive')?.hasError('required') && FichaForm.get('Convive')?.touched">
+                                                        <span>El campo: ¿Con quién vive el estudiante? <strong>es
+                                                                obligatorio</strong></span>
                                                     </div>
                                                 </div>
                                             </div>
 
-                                            <!-- Contraseña-->
-                                            <div class="col-md-4">
+
+                                            <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="Contraseña">Contraseña</label>
-                                                    <input type="password" class="form-control" name="Contraseña"
-                                                        formControlName="Contraseña" placeholder="contraseña">
+                                                    <label for="Nombre_madre">Nombre completo de la madre del
+                                                        estudiante:</label>
+                                                    <input type="text" class="form-control" name="Nombre_madre"
+                                                        formControlName="Nombre_madre"
+                                                        placeholder="apellidos y nombres">
                                                     <div class="text-danger"
-                                                        *ngIf="FichaForm.get('Contraseña')?.hasError('required') && FichaForm.get('Contraseña')?.touched">
-                                                        <span>El campo de Apellidos <strong>es
+                                                        *ngIf="FichaForm.get('Nombre_madre')?.hasError('required') && FichaForm.get('Nombre_madre')?.touched">
+                                                        <span>El campo: Nombre de la madre del estudiante <strong>es
                                                                 obligatorio</strong></span>
                                                     </div>
                                                 </div>
                                             </div>
 
                                         </div>
+
+                                        <hr>
+
+                                        <div class="row">
+                                            <div class="col-md-12">
+
+                                                <div class="row">
+
+                                                    <div class="col-md-12 h2">
+                                                        <h2>HERMANOS EN EL GRUPO FAMILIAR</h2>
+                                                    </div>
+
+
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="Numero_hermanos">¿Cuántos hermanos tiene el
+                                                                estudiante?:</label>
+                                                            <input type="number" class="form-control"
+                                                                name="Numero_hermanos" formControlName="Numero_hermanos"
+                                                                placeholder="Especificar">
+                                                            <div class="text-danger"
+                                                                *ngIf="FichaForm.get('Numero_hermanos')?.hasError('required') && FichaForm.get('Numero_hermanos')?.touched">
+                                                                <span>El campo: Número de hermanos <strong>es
+                                                                        obligatorio</strong></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="Numero_en_institucion">¿Cuántos hermanos están
+                                                                en la institución?:</label>
+                                                            <input type="number" class="form-control"
+                                                                name="Numero_en_institucion"
+                                                                formControlName="Numero_en_institucion"
+                                                                placeholder="Especificar">
+                                                            <div class="text-danger"
+                                                                *ngIf="FichaForm.get('Numero_en_institucion')?.hasError('required') && FichaForm.get('Numero_en_institucion')?.touched">
+                                                                <span>El campo: Número de hermanos <strong>es
+                                                                        obligatorio</strong></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-4"></div>
+
+                                                    <div class="col-md-10">
+                                                        <div class="form-group">
+                                                            <label for="Nombre">Nombre completo del hermano(a):</label>
+                                                            <input type="text" class="form-control" name="Nombre"
+                                                                formControlName="Nombre"
+                                                                placeholder="apellidos y nombres">
+                                                            <div class="text-danger"
+                                                                *ngIf="FichaForm.get('Nombre')?.hasError('required') && FichaForm.get('Nombre')?.touched">
+                                                                <span>El campo: Número de hermanos <strong>es
+                                                                        obligatorio</strong></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-2"></div>
+
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="Edad">Edad:</label>
+                                                            <input type="number" class="form-control" name="Edad"
+                                                                formControlName="Edad" placeholder="Especificar">
+                                                            <div class="text-danger"
+                                                                *ngIf="FichaForm.get('Edad')?.hasError('required') && FichaForm.get('Edad')?.touched">
+                                                                <span>El campo: Edad de hermanos <strong>es
+                                                                        obligatorio</strong></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="Puesto">Lugar que ocupa:</label>
+                                                            <input type="text" class="form-control" name="Puesto"
+                                                                formControlName="Puesto"
+                                                                placeholder="Ejemplo: 1er hijo">
+                                                            <div class="text-danger"
+                                                                *ngIf="FichaForm.get('Puesto')?.hasError('required') && FichaForm.get('Puesto')?.touched">
+                                                                <span>El campo: Lugar de ocupación estre hermanos
+                                                                    <strong>es obligatorio</strong></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-2 centrar">
+                                                        <label>Agregar</label>
+                                                        <button type="button" (click)="agregar()"
+                                                            class="btn btn-block bg-gradient-light"><i
+                                                                class="fas fa-plus fa-lg text-success mr-2"></i></button>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+
+                                            <div class="col-md-7">
+                                                <div class="row">
+                                                    <div class="col-md-11 h2">
+                                                        <h2>Hermanos que viven con el estudiante</h2>
+                                                    </div>
+                                                    <div class="col-md-1"></div>
+                                                </div>
+
+                                                <!--Tabla-->
+                                                <div class="col-md-11">
+                                                    <div class="card-body table-responsive p-0" style="height: 200px;">
+                                                        <table *ngIf="hermanos.dato.length > 0"
+                                                            class="table table-hover table-head-fixed text-nowrap">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Nombre</th>
+                                                                    <th>Edad</th>
+                                                                    <th>Puesto</th>
+                                                                    <th></th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr *ngFor="let hermano of  hermanos.dato">
+                                                                    <td>{{hermano.nombre}}</td>
+                                                                    <td>{{hermano.edad}}</td>
+                                                                    <td>{{hermano.puesto}}</td>
+                                                                    <td class="colum">
+                                                                        <i (click)="enviar(hermano.nombre)"
+                                                                            class="fas fa-paper-plane fa-lg text-primary mr-2"></i>
+
+                                                                        <i (click)="borrar(hermano.nombre)"
+                                                                            class="fas fa-minus-circle fa-lg text-danger mr-2"></i>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                        <h5 style="text-align:start; margin-top: 10px;"
+                                                            *ngIf="hermanos.dato.length == 0">No existen
+                                                            <strong>datos</strong> para agregados..!
+                                                        </h5>
+                                                    </div>
+
+
+                                                </div>
+                                                <div class="col-md-1">
+
+                                                </div>
+
+                                            </div>
+
+                                            <div class="col-md-5">
+                                                <div class="row">
+                                                    <div class="col-md-12 h2">
+                                                        <h2>Hermanos en la Institución</h2>
+                                                    </div>
+
+                                                </div>
+
+                                                <!--Tabla-->
+                                                <div class="card-body table-responsive p-0" style="height: 200px;">
+                                                    <table *ngIf="institucion.dato.length > 0"
+                                                        class="table table-hover table-head-fixed text-nowrap">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Nombre</th>
+                                                                <th>Edad</th>
+                                                                <th></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr *ngFor="let i of  institucion.dato">
+                                                                <td>{{i.nombre}}</td>
+                                                                <td>{{i.edad}}</td>
+                                                                <td class="colum">
+
+                                                                    <i (click)="borrar2(i.nombre)"
+                                                                        class="fas fa-minus-circle fa-lg text-danger mr-6"></i>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <h5 style="text-align:start; margin-top: 10px;"
+                                                        *ngIf="institucion.dato.length == 0">No existen
+                                                        <strong>datos</strong> agregados..!
+                                                    </h5>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                        <hr>
+
+                                        <div class="row">
+                                            <div class="col-md-12 h2">
+                                                <h2>INFORMACIÓN DE VIVIENDA</h2>
+                                            </div>
+
+                                            <div class="row">
+
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label>Tipo de propiedad de vivienda:</label>
+                                                        <select class="form-control combo" name="Tipo_vivienda"
+                                                            formControlName="Tipo_vivienda" [(ngModel)]="elegido3">
+                                                            <option *ngFor="let n3 of Tipo_vivienda">{{ n3.name }}
+                                                            </option>
+                                                        </select>
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label>Material de contrucción:</label>
+                                                        <select class="form-control combo" name="Material_vivienda"
+                                                            formControlName="Material_vivienda" [(ngModel)]="elegido1">
+                                                            <option *ngFor="let n1 of Material_vivienda">{{ n1.name }}
+                                                            </option>
+                                                        </select>
+                                                    </div>
+
+                                                </div>
+
+                                              
+
+                                                <div class="col-md-5">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <label>Servicios básicos:</label>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <div class="custom-control custom-checkbox">
+                                                                    <input class="custom-control-input" type="checkbox"
+                                                                        id="customCheckbox1" formControlName="agua" value="false">
+                                                                    <label for="customCheckbox1"
+                                                                        class="custom-control-label">Agua</label>
+                                                                </div>
+                                                                <div class="custom-control custom-checkbox">
+                                                                    <input class="custom-control-input" type="checkbox"
+                                                                        id="customCheckbox2" formControlName="internet" value="false">
+                                                                    <label for="customCheckbox2"
+                                                                        class="custom-control-label">Internet</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <div class="custom-control custom-checkbox">
+                                                                    <input class="custom-control-input" type="checkbox"
+                                                                        id="customCheckbox3" formControlName="luz" value="false">
+                                                                    <label for="customCheckbox3"
+                                                                        class="custom-control-label">Luz</label>
+                                                                </div>
+
+                                                                <div class="custom-control custom-checkbox">
+                                                                    <input class="custom-control-input" type="checkbox"
+                                                                        id="customCheckbox4" formControlName="tv" value="false">
+                                                                    <label for="customCheckbox4"
+                                                                        class="custom-control-label">TV por
+                                                                        cable</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <div class="custom-control custom-checkbox">
+                                                                    <input class="custom-control-input" type="checkbox"
+                                                                        id="customCheckbox5" formControlName="telefono" value="false">
+                                                                    <label for="customCheckbox5"
+                                                                        class="custom-control-label">Teléfono</label>
+                                                                </div>
+
+                                                                <div class="custom-control custom-checkbox">
+                                                                    <input class="custom-control-input" type="checkbox"
+                                                                        id="customCheckbox6"
+                                                                        formControlName="alcantarillado" value="false">
+                                                                    <label for="customCheckbox6"
+                                                                        class="custom-control-label">Alcantarillado</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+
+                                            <div class="col-md-8">
+                                                <div class="form-group">
+                                                    <label for="Propiedades">Otras propiedades materiales:</label>
+                                                    <input type="text" class="form-control" name="Propiedades"
+                                                        formControlName="Propiedades" placeholder="Ejemplo: automóvil">
+                                                    <div class="text-danger"
+                                                        *ngIf="FichaForm.get('Propiedades')?.hasError('required') && FichaForm.get('Propiedades')?.touched">
+                                                        <span>El campo: Nombre del padre del estudiante <strong>es
+                                                                obligatorio</strong></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-4"></div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-12 h2">
+                                                <h2>OTROS DATOS</h2>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="Nombre_emergente"> En Caso de emergencia, Nombre de
+                                                        contacto:</label>
+                                                    <input type="text" class="form-control" name="Nombre_emergente"
+                                                        formControlName="Nombre_emergente"
+                                                        placeholder="Contacto de emergencia">
+                                                    <div class="text-danger"
+                                                        *ngIf="FichaForm.get('Nombre_emergente')?.hasError('required') && FichaForm.get('Nombre_emergente')?.touched">
+                                                        <span>El campo de Contacto emergente <strong>es
+                                                                obligatorio</strong></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="Contacto_emergente"> En Caso de emergencia, Número
+                                                        cel./telf. de contacto:</label>
+                                                    <input type="text" class="form-control" name="Contacto_emergencia"
+                                                        formControlName="Contacto_emergente"
+                                                        placeholder="Numero de emergencia">
+                                                    <div class="text-danger"
+                                                        *ngIf="FichaForm.get('Contacto_emergente')?.hasError('required') && FichaForm.get('Contacto_emergente')?.touched">
+                                                        <span>El campo de Número emergencia <strong>es
+                                                                obligatorio</strong></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label for="Observacion">Otras observaciones</label>
+                                                    <input type="text" class="form-control" maxlength="400"
+                                                        name="Observacion" value="Ninguna" formControlName="Observacion"
+                                                        placeholder="Observación">
+
+                                                </div>
+                                            </div>
+                                        </div>
+
 
                                     </div>
                                     <!-- /.card-body -->
@@ -657,17 +1024,19 @@
                                         <div class="row">
                                             <div class="col-md-2">
                                                 <button type="submit" value="Crear"
-                                                    class="btn btn-block bg-gradient-success ">Crear</button>
+                                                    class="btn btn-block bg-gradient-success "><i
+                                                        class="fas fa-archive"></i> Guardar</button>
                                             </div>
                                             <div class="col-md-2">
                                                 <button type="button" (click)="RedirectCancel()"
-                                                    class="btn btn-block bg-gradient-secondary"
-                                                    value="Tabla">Limpiar</button>
+                                                    class="btn btn-block bg-gradient-secondary"><i
+                                                        class="fad fa-eraser"></i> Limpiar</button>
                                             </div>
                                             <div class="col-md-6"></div>
                                             <div class="col-md-2">
-                                                <button type="button" routerLink="/app/list-prof"
-                                                    class="btn btn-block bg-gradient-info" value="Tabla">Tabla</button>
+                                                <button type="button" routerLink="/app/list-ficha"
+                                                    class="btn btn-block bg-gradient-info"><i class="fas fa-list"></i>
+                                                    Tabla</button>
                                             </div>
 
                                         </div>

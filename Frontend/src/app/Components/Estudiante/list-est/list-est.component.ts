@@ -61,7 +61,6 @@ export class ListEstComponent implements OnInit {
 
   }
 
-
   // busqueda dinámica 
 async search() {
   const SCH: any = {
@@ -69,6 +68,7 @@ async search() {
     Combo: this.AccesoForm.get('Combo')?.value,
   }
   console.log(SCH);
+  
 
   if (SCH.Search) {
     if (SCH.Combo == "N° identificación" || SCH.Combo == "elegido2" || SCH.Combo == "" ) {

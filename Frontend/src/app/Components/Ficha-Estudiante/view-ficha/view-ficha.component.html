@@ -1,1 +1,103 @@
 <p>view-ficha works!</p>
+<form class="card-body" role="form" [formGroup]="FichaForm">
+    <div class="row">
+        <div class="col-md-10">
+          
+            <div class="form-group">
+                <label for="Nombre">Nombre:</label>
+                <input type="text" class="form-control" name="Nombre"
+                    formControlName="Nombre" placeholder="Especificar">
+            </div>
+            <div class="form-group">
+                <label for="Edad">Edad:</label>
+                <input type="number" class="form-control" name="Edad"
+                    formControlName="Edad" placeholder="Especificar">
+            </div>
+            <div class="form-group">
+                <label for="Puesto">Posición que ocupa entre hermanos:</label>
+                <input type="text" class="form-control" name="Puesto"
+                    formControlName="Puesto" placeholder="Especificar">
+            </div>
+    
+    
+        </div>
+        <div class="col-md-2">
+            <button (click)="agregar()" class="btn btn-success" type="button">
+                Ingresar
+            </button>
+           
+            <button (click)="limpiar()" class="btn btn-primary" type="button">
+               Limpiar
+            </button>
+        </div>
+    </div>
+</form>
+
+<div>
+    <h1>Hermanos:</h1>
+</div>
+   <!--Tabla-->
+   <div class="card-body table-responsive p-0" style="height: 400px;">
+    <table *ngIf="hermanos.dato.length > 0"
+        class="table table-hover table-head-fixed text-nowrap">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Edad</th>
+                <th>Puesto</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let hermano of  hermanos.dato">
+                <td>{{hermano.nombre}}</td>
+                <td>{{hermano.edad}}</td>
+                <td>{{hermano.puesto}}</td>
+                <td class="colum">
+                    <i (click)="enviar(hermano.nombre)"
+                    class="fas fa-trash-alt fa-lg text-primary mr-2"></i>
+
+                    <i (click)="borrar(hermano.nombre)"
+                        class="fas fa-trash-alt fa-lg text-danger mr-2"></i>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <h5 style="text-align:start; margin-top: 10px;"
+        *ngIf="hermanos.dato.length == 0">No existen
+        <strong>hermanos</strong> para agregados..!</h5>
+</div>
+
+
+<div>
+    <h1>Hermanos en la Isntitución:</h1>
+</div>
+   <!--Tabla-->
+   <div class="card-body table-responsive p-0" style="height: 400px;">
+    <table *ngIf="institucion.dato.length > 0"
+        class="table table-hover table-head-fixed text-nowrap">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Edad</th>
+                <th>Puesto</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let i of  institucion.dato">
+                <td>{{i.nombre}}</td>
+                <td>{{i.edad}}</td>
+                <td>{{i.puesto}}</td>
+                <td class="colum">
+                   
+                    <i (click)="borrar2(i.nombre)"
+                        class="fas fa-trash-alt fa-lg text-danger mr-6"></i>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <h5 style="text-align:start; margin-top: 10px;"
+        *ngIf="institucion.dato.length == 0">No existen
+        <strong>hermanos</strong> para agregados..!</h5>
+</div>

@@ -48,7 +48,7 @@ const routes: Routes = [
   { path: 'view-rep/:id', component: ViewRepComponent }, //yes
 
   //Ficha estudiantil
-  { path: 'reg-ficha', component: RegFichaComponent },
+  { path: 'reg-ficha', component: RegFichaComponent },//yes
   { path: 'list-ficha', component: ListFichaComponent },
   { path: 'edit-ficha/:id', component: RegFichaComponent },
   { path: 'view-ficha/:id', component: ViewFichaComponent },

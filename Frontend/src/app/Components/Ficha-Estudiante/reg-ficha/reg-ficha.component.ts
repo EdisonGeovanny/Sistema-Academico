@@ -3,9 +3,7 @@ import Swal from 'sweetalert2';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
-import {UserRegAcceso } from 'src/app/models/user-reg-acceso';
 import { Buscador } from 'src/app/models/buscador';
-import { Ficha } from 'src/app/models/ficha-estudiantil';
 
 @Component({
   selector: 'app-reg-ficha',
@@ -13,8 +11,12 @@ import { Ficha } from 'src/app/models/ficha-estudiantil';
   styleUrls: ['./reg-ficha.component.css']
 })
 export class RegFichaComponent implements OnInit {
- //para buscador
- public isloading = false;
+ 
+//titulo
+Titulo = 'FICHA ESTUDIANTIL: REGISTRO DE INFORMACIÓN';
+subnivel = 'REGISTRO DE DATOS';
+id: string | null;
+
  public src: string | undefined;
  public datae$: any = {
    dni: []
@@ -24,12 +26,20 @@ export class RegFichaComponent implements OnInit {
   dni: []
 }
 
+//objetos para agregar hermanos
+  hermanos: any = { dato: [] }
+  institucion: any = { dato: [] }
+  i: any = []
+  i2: any = []
 
+  //objetos para agregar servicios
+  servicios: any = { dato: [] }
+ 
   //formGroup
   FichaForm: FormGroup;
 
-  //arreglo de Docentes
-  fichas: any = {
+  //arreglo de Ficha
+  ficha: any = {
     user: []
   }
 
@@ -40,26 +50,22 @@ export class RegFichaComponent implements OnInit {
   representante: any = {
  
   }
+  edit: any =  {
 
-  //titulo
-  Titulo = 'Registro de Ficha - Estudiantil';
-  ide: string | null;
-  idr: string | null;
+  }
+
+  //variables de ides y estado
+  ide: any | null;
+  idr: any | null;
   estado: string | null;
 
-//Tipo_vivienda
-Rol = [{ name: "propia" },{ name: "arriendo" },
-{ name: "familiar" }, { name:"prestada"}];
+//Material_vivienda
+Material_vivienda = [{ name: "Seleccionar opción" },{ name: "Bloque" },{ name: "Ladrillo" },
+{ name: "Madera" }, { name:"Mixto"}];
 elegido1: string = "";
 
-//Convive
-//Tipo_vivienda
-Convive = [{ name: "Padres" },{ name: "Abuelos" },
-{ name: "Tíos" }, { name:"Primos"}, {name:"Otros"}];
-elegido4: string = "";
-
   //Tenencia_vivienda
-  Tipo_vivienda = [{ name: "Propietario" },{ name: "Arrendatario" },
+  Tipo_vivienda = [{ name: "Seleccionar opción" },{ name: "Propietario" },{ name: "Arrendatario" },
                   { name: "Allegado" }, { name:"Usufructuario"}];
   elegido3: string = "";
 
@@ -73,46 +79,107 @@ elegido4: string = "";
     private fb: FormBuilder, private aRouter: ActivatedRoute) {
     //formGroup
     this.FichaForm = this.fb.group({
-      Usuario: ['', Validators.required],
-      Contraseña: ['', Validators.required],
-      Rol: ['', Validators.required],
+      //busquedas representante
       Search: ['', Validators.required],
       Combo: ['', Validators.required],
+
+      //busqueda estudiante
       Searche: ['', Validators.required],
-      Comboe: ['', Validators.required]
+      Comboe: ['', Validators.required],
+     
+      // array hermanos 
+      Nombre: ['', Validators.required],
+      Edad: ['', Validators.required],
+      Puesto: ['', Validators.required],
+
+      //check servicios básicos
+      agua: [''],
+      luz: [''],
+      telefono: [''],
+      tv: [''],
+      internet: [''],
+      alcantarillado: [''],
+
+      //Datos de almacenamiento
+      Nombre_padre: ['', Validators.required],
+      Nombre_madre : ['', Validators.required],
+      Convive: ['', Validators.required],
+      Numero_hermanos: ['', Validators.required],
+      Numero_en_institucion:['', Validators.required],
+      Tipo_vivienda: ['', Validators.required],
+      Material_vivienda: ['', Validators.required],
+      Propiedades: ['', Validators.required],   
+      Nombre_emergente: ['', Validators.required],
+      Contacto_emergente: ['', Validators.required],
+      Observacion: ['', Validators.required],
+
     }),
 
     //mapeo de url con atributo
     this.estado = "",
-    this.ide = this.aRouter.snapshot.paramMap.get('id'),
-    this.idr = this.aRouter.snapshot.paramMap.get('id')
-    console.log("id estudiante: "+this.ide)
-    console.log("id representante: "+this.idr)
+    this.id = this.aRouter.snapshot.paramMap.get('id'),
+    this.ide = null,
+    this.idr = null
   }
 
   ngOnInit(): void {
     this.ObtenerRepresentante();
     this.ObtenerEstudiante();
+    this.esEditar();
   }
-  //editar para guardar usuario
-  saveData() {
 
-    const FICHA: Ficha = {
+
+
+  //editar para guardar usuario
+//agregar datos o actualizar datos
+saveData(){
+  if (this.id !== null) {
+    this.upDate();
+  }else{
+    this.create();
+  }
+ }
+
+
+  create() {
+    const SERVICIOS: any = {
+      agua: this.FichaForm.get('agua')?.value,
+      luz: this.FichaForm.get('luz')?.value,
+      telefono: this.FichaForm.get('telefono')?.value,
+      tv: this.FichaForm.get('tv')?.value,
+      internet: this.FichaForm.get('internet')?.value,
+      alcantarillado: this.FichaForm.get('alcantarillado')?.value,
+    }
+    this.servicios.dato.push({
+      agua: SERVICIOS.agua,
+      luz: SERVICIOS.luz,
+      telefono: SERVICIOS.telefono,
+      tv: SERVICIOS.tv,
+      internet: SERVICIOS.internet,
+      alcantarillado: SERVICIOS.alcantarillado
+    });
+
+
+    const FICHA: any = {
       Estudiante: this.ide,
       Representante: this.idr,
       Nombre_padre: this.FichaForm.get('Nombre_padre')?.value,
       Nombre_madre : this.FichaForm.get('Nombre_madre')?.value,
       Convive: this.FichaForm.get('Convive')?.value,
       Numero_hermanos: this.FichaForm.get('Numero_hermanos')?.value,
+      Nombre_hermanos: this.hermanos.dato,
+      Numero_en_institucion:this.FichaForm.get('Numero_en_institucion')?.value,
+      En_institucion: this.institucion.dato,
       Tipo_vivienda: this.FichaForm.get('Tipo_vivienda')?.value,
-      Materia_vivienda: this.FichaForm.get('Material_vivienda')?.value,
-      Servicios: this.FichaForm.get('Servicios')?.value,   
+      Material_vivienda: this.FichaForm.get('Material_vivienda')?.value,
+      Servicios_basicos: this.servicios.dato,   
+      Propiedades: this.FichaForm.get('Propiedades')?.value,   
       Nombre_emergente: this.FichaForm.get('Nombre_emergente')?.value,
       Contacto_emergente: this.FichaForm.get('Contacto_emergente')?.value,
-      Observacion: this.FichaForm.get('Observacion')?.value,
-      Estado: this.FichaForm.get('Estado')?.value,
+      Observacion: this.FichaForm.get('Observacion')?.value
 
     }
+
     console.log(FICHA);
     this.authService.registerFicha(FICHA).subscribe(data => {
       this.AlertExito()
@@ -125,9 +192,242 @@ elegido4: string = "";
 
   }
 
+
+  //Obtener datos para Editar
+  esEditar() {
+    if (this.id !== null) {
+      this.Titulo = 'FICHA - ESTUDIANTE: ACTUALIZACIÓN DE INFORMACIÓN';
+      this.subnivel = 'EDITOR DE DATOS';
+
+      this.authService.obtenerFichaId(this.id).subscribe(data => {  
+       const Ficha : any = {
+         Estudiante: data.Estudiante[0],
+         Representante : data.Representante[0],
+         Hermanos:data.Nombre_hermanos,
+         En_institucion: data.En_institucion,
+         Numero_hermanos: data.Numero_hermanos,
+         Servicios_basicos: data.Servicios_basicos
+       }
+      
+
+       this.ide = Ficha.Estudiante;
+       this.idr = Ficha.Representante;
+       this.hermanos.dato = Ficha.Hermanos;
+       this.institucion.dato = Ficha.En_institucion;
+
+       this.ObtenerEstudiante();
+       this.ObtenerRepresentante();
+
+       this.FichaForm.controls['Nombre_madre'].setValue(data.Nombre_madre);
+       this.FichaForm.controls['Nombre_padre'].setValue(data.Nombre_padre);
+       this.FichaForm.controls['Convive'].setValue(data.Convive);
+       this.FichaForm.controls['Numero_hermanos'].setValue(data.Numero_hermanos);
+       this.FichaForm.controls['Numero_en_institucion'].setValue(data.Numero_en_institucion);
+       this.FichaForm.controls['Tipo_vivienda'].setValue(data.Tipo_vivienda);
+       this.FichaForm.controls['Material_vivienda'].setValue(data.Material_vivienda);
+       this.FichaForm.controls['Propiedades'].setValue(data.Propiedades);
+       this.FichaForm.controls['Nombre_emergente'].setValue(data.Nombre_emergente);
+       this.FichaForm.controls['Contacto_emergente'].setValue(data.Contacto_emergente);
+       this.FichaForm.controls['Observacion'].setValue(data.Observacion);
+       this.FichaForm.controls['agua'].setValue(Ficha.Servicios_basicos[0].agua);
+       this.FichaForm.controls['luz'].setValue(Ficha.Servicios_basicos[0].luz);
+       this.FichaForm.controls['telefono'].setValue(Ficha.Servicios_basicos[0].telefono);
+       this.FichaForm.controls['tv'].setValue(Ficha.Servicios_basicos[0].tv);
+       this.FichaForm.controls['internet'].setValue(Ficha.Servicios_basicos[0].internet);
+       this.FichaForm.controls['alcantarillado'].setValue(Ficha.Servicios_basicos[0].alcantarillado);
+       
+     
+      })
+
+    }
+  }
+
+  //editar
+  upDate() {
+
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: 'btn btn-success',
+        cancelButton: 'btn btn-danger'
+      },
+      buttonsStyling: false
+    })
+    
+    swalWithBootstrapButtons.fire({
+      title: '¿Estás seguro?',
+      text: "¡Se modificará el registro con la infomación actual!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Si, actualizar!',
+      cancelButtonText: 'No, cancelar!',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+
+        if (this.id !== null) {
+          const SERVICIOS: any = {
+            agua: this.FichaForm.get('agua')?.value,
+            luz: this.FichaForm.get('luz')?.value,
+            telefono: this.FichaForm.get('telefono')?.value,
+            tv: this.FichaForm.get('tv')?.value,
+            internet: this.FichaForm.get('internet')?.value,
+            alcantarillado: this.FichaForm.get('alcantarillado')?.value,
+          }
+
+
+          this.servicios.dato.push({
+            agua: SERVICIOS.agua,
+            luz: SERVICIOS.luz,
+            telefono: SERVICIOS.telefono,
+            tv: SERVICIOS.tv,
+            internet: SERVICIOS.internet,
+            alcantarillado: SERVICIOS.alcantarillado
+          });
+      
+      
+      
+      
+          console.log(SERVICIOS);
+      
+          const FICHA: any = {
+            Estudiante: this.ide,
+            Representante: this.idr,
+            Nombre_padre: this.FichaForm.get('Nombre_padre')?.value,
+            Nombre_madre : this.FichaForm.get('Nombre_madre')?.value,
+            Convive: this.FichaForm.get('Convive')?.value,
+            Numero_hermanos: this.FichaForm.get('Numero_hermanos')?.value,
+            Nombre_hermanos: this.hermanos.dato,
+            Numero_en_institucion:this.FichaForm.get('Numero_en_institucion')?.value,
+            En_institucion: this.institucion.dato,
+            Tipo_vivienda: this.FichaForm.get('Tipo_vivienda')?.value,
+            Material_vivienda: this.FichaForm.get('Material_vivienda')?.value,
+            Servicios_basicos: this.servicios.dato,   
+            Propiedades: this.FichaForm.get('Propiedades')?.value,   
+            Nombre_emergente: this.FichaForm.get('Nombre_emergente')?.value,
+            Contacto_emergente: this.FichaForm.get('Contacto_emergente')?.value,
+            Observacion: this.FichaForm.get('Observacion')?.value
+      
+          }
+
+
+   
+          console.log(FICHA);
+          this.authService.updateFicha(this.id,FICHA).subscribe(data => {
+            this.esEditar();
+            this.AlertExito2();
+          }, err => {
+            console.log(err);
+            this.AlertFracaso();
+          })
+      
+      
+        }
+
+        swalWithBootstrapButtons.fire(
+          'Eliminado!',
+          'Tu registro fue actualizado.',
+          'success'
+        )
+      }   
+    })
+    
+  }
+
+
+  /////////////////////////////////////////ARRAY//////////////////////////////////////////
+  
+  agregar() {
+
+    const HERMANO: any = {
+      Nombre: this.FichaForm.get('Nombre')?.value,
+      Edad: this.FichaForm.get('Edad')?.value,
+      Puesto: this.FichaForm.get('Puesto')?.value
+    }
+
+
+    this.hermanos.dato.push({
+      nombre: HERMANO.Nombre,
+      edad: HERMANO.Edad,
+      puesto: HERMANO.Puesto
+    });
+
+
+    this.i.push(HERMANO.Nombre)
+
+    console.log(this.i)
+    console.log(this.hermanos.dato)
+
+
+  }
+
+
+  borrar(nombre: any) {
+  
+    this.i.forEach((element: any, index:any, array:any) => {
+      this
+      if(nombre == element){
+        this.hermanos.dato.splice(index, 1);
+        this.i.splice(index, 1);
+
+        console.log(this.hermanos)
+        console.log(this.i)
+      }
+    });
+
+
+  }
+
+
+  //limpiar array
+  limpiar() {
+    this.hermanos.dato.splice(0, this.hermanos.dato.length)
+    this.i.splice(0, this.hermanos.dato.length)
+    console.log(this.hermanos);
+    console.log(this.i);
+
+  }
+
+  enviar(nombre:any){
+
+    this.i.forEach((element: any, index:any, array:any) => {
+      if(nombre == element){
+        console.log(this.hermanos.dato[index])
+        this.institucion.dato.push(this.hermanos.dato[index])
+        this.i2.push(element)
+        console.log(this.institucion)
+      }
+    });
+
+
+  }
+
+  borrar2(nombre: any) {
+   
+      this.i2.forEach((element: any, index:any, array:any) => {
+        this
+        if(nombre == element){
+          this.institucion.dato.splice(index, 1);
+          this.i2.splice(index, 1);
+  
+          console.log(this.institucion)
+          console.log(this.i2)
+        }
+      });
+  
+    }
+
+    limpiar2() {
+      this.institucion.dato.splice(0, this.institucion.dato.length)
+      this.i2.splice(0, this.institucion.dato.length)
+      console.log(this.institucion);
+      console.log(this.i2);
+  
+    }
+
+
   
 
-  ///////////////////////////// busqueda dinámica Estudiante//////////////////////
+  ///////////////////////////// busqueda dinámica Estudiante/////////////////////////////////
   async searchEst() {
     const SCH: Buscador = {
       Search: this.FichaForm.get('Searche')?.value,
@@ -246,10 +546,10 @@ async ObtenerEstudiante() {
 
   }
 }
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 
-
-///////////////////////// busqueda dinámica Representante///////////////
+///////////////////////// busqueda dinámica Representante/////////////////////////////////////
 async search() {
   const SCH: Buscador = {
     Search: this.FichaForm.get('Search')?.value,
@@ -373,9 +673,9 @@ async ObtenerRepresentante() {
 
   }
 }
+//////////////////////////////////////////////////////////////////////////////////////////
 
-
-  ////////////// Alertas ///////////////////////////
+  ///////////////////////////////////// Alertas ////////////////////////////////////////
 
 
   AlertExito(): void {

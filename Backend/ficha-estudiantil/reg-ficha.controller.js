@@ -13,25 +13,30 @@ exports.regFicha = (req, res, next) => {
         Representante: req.body.Representante,
         Nombre_madre: req.body.Nombre_madre,
         Nombre_padre: req.body.Nombre_padre,
-        Convive: req.body.Convive,
+        Convive: req.body.Convive,      
         Numero_hermanos: req.body.Numero_hermanos,
+        Nombre_hermanos: req.body.Nombre_hermanos,
+        Numero_en_institucion: req.body.Numero_en_institucion,
+        En_institucion: req.body.En_institucion,
         Tipo_vivienda: req.body.Tipo_vivienda,
         Material_vivienda: req.body.Material_vivienda,
-        Servicios: req.body.Servicios,
+        Servicios_basicos: req.body.Servicios_basicos,
+        Propiedades: req.body.Propiedades,
         Nombre_emergente: req.body.Nombre_emergente,
         Contacto_emergente: req.body.Contacto_emergente,
-        Estado: req.body.Estado,
-        Observacion: req.body.Observacion
+        Observacion: req.body.Observacion,
     }
 
     User.create (newUser, (err,user)=> {
-        if( err && err.code == 11000) return res.status(409).send('El email ya existe');
+        if( err && err.code == 11000) return res.status(409).send('El registro ya existe');
         
             if (err) return res.status(500).send('Server error');
 
                 const dataUser = {
                     Id: user.id,
-                    Nombre_emergente: user.Nombre_emergente
+                    Nombre_padre: user.Nombre_padre,
+                    Nombre_madre: user.Nombre_madre,
+                    Convive : user.Convive
                 }
         
                 //Response
@@ -42,14 +47,14 @@ exports.regFicha = (req, res, next) => {
 //Listar datos de Ficha-Estudiantil por paginada (paginate cambiar por find)
 exports.listFicha = (req, res, next) => {
 
-    User.find({}, (err, user)=>{
+    User.find({}, (err, dni)=>{
         if (err) return res. status(500).send('Server error!');
-        if(!user) {
+        if(!dni) {
             //email does not exist
             res.status(484).send({ message: 'No existen productos'});
         }else {
             
-                res.send({user});
+                res.send({dni});
             
         }
     })
@@ -58,11 +63,11 @@ exports.listFicha = (req, res, next) => {
 //update de registros de Ficha-Estiduantil
 exports.updateFicha  = async (req, res) => {
     try{
-        const { Estudiante, Representante, Nombre_madre,
-             Nombre_padre, Convive, Numero_hermanos,
-             Tipo_vivienda, Material_vivienda, Servicios,
-             Nombre_emergente, Contacto_emergente, Estado,
-             Observacion} = req.body;
+        const { Estudiante, Representante, Nombre_madre, Nombre_padre,
+            Convive, Numero_hermanos, Nombre_hermanos, Numero_en_institucion,
+            En_institucion, Tipo_vivienda, Material_vivienda,
+            Servicios_basicos, Propiedades, Nombre_emergente, Contacto_emergente,
+            Observacion} = req.body;
             let ficha = await User.findById(req.params.id);
 
             if(!ficha) {
@@ -74,12 +79,15 @@ exports.updateFicha  = async (req, res) => {
             ficha.Nombre_padre = Nombre_padre;
             ficha.Convive = Convive;
             ficha.Numero_hermanos = Numero_hermanos;
+            ficha.Nombre_hermanos = Nombre_hermanos;
+            ficha.Numero_en_institucion = Numero_en_institucion;
+            ficha.En_institucion = En_institucion;
             ficha.Tipo_vivienda = Tipo_vivienda;
             ficha.Material_vivienda = Material_vivienda;
-            ficha.Servicios = Servicios;
+            ficha.Servicios_basicos = Servicios_basicos;
+            ficha.Propiedades = Propiedades;
             ficha.Nombre_emergente = Nombre_emergente;
             ficha.Contacto_emergente = Contacto_emergente;
-            ficha.Estado = Estado;
             ficha.Observacion = Observacion;
 
            ficha = await User.findOneAndUpdate({_id: req.params.id}, ficha, {new:true})
@@ -131,7 +139,7 @@ exports.listID = async (req, res) => {
     }
 }
 
-//Search - buscador
+//Search - buscador  OBSERVAR DETENIDAMENTE EL FORMATO DE BUSQUEDA
 exports.searchDNI = async (req, res) => {
     try{
         let dni = await User.find({DNI:req.params.sch});

@@ -17,12 +17,12 @@ const userSchema = new Schema({
     },
     Nombre_madre: {
         type: String,
-        required: false,
+        required:true,
         trim: true
     },
     Nombre_padre: {
         type: String,
-        required: false,
+        required:true,
         trim: true
     },
     Convive: {
@@ -31,7 +31,22 @@ const userSchema = new Schema({
         trim: true
     },
     Numero_hermanos:{
-        type: String,
+        type: Number,
+        required: true, 
+        trim:true
+    },
+     Nombre_hermanos:{
+        type: Array,
+        required: false, 
+        trim:true
+    },
+    Numero_en_institucion:{
+        type: Number,
+        required: true, 
+        trim:true
+    },
+    En_institucion:{
+        type: Array,
         required: true, 
         trim:true
     },
@@ -45,8 +60,13 @@ const userSchema = new Schema({
         required: true, 
         trim:true
     },
-    Servicios:{
+    Servicios_basicos:{
         type: Array,
+        required: false, 
+        trim:true
+    },
+    Propiedades:{
+        type: String,
         required: true, 
         trim:true
     },
@@ -64,14 +84,7 @@ const userSchema = new Schema({
         type: String,
         required: true, 
         trim:true
-    },
-    Estado:{
-        type: Boolean,
-        required: true, 
-        trim:true,
-        default: true
     }
-
 },{
     timestamps:true
 });
