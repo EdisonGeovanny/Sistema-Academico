@@ -172,7 +172,6 @@ exports.searchApellido = async (req, res) => {
     }
 }
 
-
 //Listar datos de Estudiante 
 exports.listEst = (req, res, next) => {
 

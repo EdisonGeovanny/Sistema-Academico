@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ListEstComponent } from './Estudiante/list-est/list-est.component';
-import { ListPeriodoComponent } from './list-periodo/list-periodo.component';
+import { ListPeriodoComponent } from './Periodo-lectivo/list-periodo/list-periodo.component';
 import { ListProfComponent } from './Administrador/list-prof/list-prof.component';
 import { ListRepComponent } from './Representante/list-rep/list-rep.component';
 import { LogEstComponent } from './Autentificacion/log-est/log-est.component';
 import { LoginProfComponent } from './Autentificacion/log-prof/login-prof.component';
 import { PagInicioComponent } from './pag-inicio/pag-inicio.component';
 import { RegEstComponent } from './Estudiante/reg-est/reg-est.component';
-import { RegPeriodoComponent } from './reg-periodo/reg-periodo.component';
+import { RegPeriodoComponent } from './Periodo-lectivo/reg-periodo/reg-periodo.component';
 import { RegRepComponent } from './Representante/reg-rep/reg-rep.component';
 import { RegisterProfComponent } from './Administrador/reg-prof/register-prof.component';
 import { LogAdminComponent } from './Autentificacion/log-admin/log-admin.component';
@@ -65,7 +65,7 @@ const routes: Routes = [
   { path: 'edit-ficha/:id', component: RegFichaComponent },
   { path: 'view-ficha/:id', component: ViewFichaComponent },
 
-
+  //PERIDO-LECTIVO
   { path: 'reg-periodo', component: RegPeriodoComponent },
   { path: 'list-periodo', component: ListPeriodoComponent },
 

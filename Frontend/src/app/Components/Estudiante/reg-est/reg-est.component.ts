@@ -135,7 +135,7 @@ export class RegEstComponent implements OnInit {
       this.subnivel = 'EDITOR DE DATOS';
 
       this.authService.obtenerEstudianteId(this.id).subscribe(data => {
-
+        console.log(data);
         this.EstudianteForm.controls['Codigo'].setValue(data.Codigo);
         this.EstudianteForm.controls['Tipo_documento'].setValue(data.Tipo_documento);
         this.EstudianteForm.controls['DNI'].setValue(data.DNI);
@@ -224,7 +224,7 @@ export class RegEstComponent implements OnInit {
         }
 
         swalWithBootstrapButtons.fire(
-          'Eliminado!',
+          'Actualizado!',
           'Tu registro fue actualizado.',
           'success'
         )

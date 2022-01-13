@@ -28,8 +28,8 @@
         </nav>
         <!-- /.navbar -->
 
-        <!-- Main Sidebar Container -->
-        <aside class="main-sidebar elevation-4 sidebar-dark-success">
+         <!-- Main Sidebar Container -->
+         <aside class="main-sidebar elevation-4 sidebar-dark-success">
             <!--navbar-orange,warning,pink,secundary,info,success,indigo,purple,vany,teal,cyan,--->
             <!-- Brand Logo -->
             <a routerLink="/app/reg-prof" class="brand-link navbar-warning">
@@ -56,14 +56,14 @@
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                         data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
-                 with font-awesome or any other icon font library -->
+             with font-awesome or any other icon font library -->
 
                         <!-- REGISTRO DE DATOS -->
                         <li class="nav-item has-treeview menu-open">
-                            <a href="#" class="nav-link active">
+                            <a routerLink="/app/reg-prof" class="nav-link active">
                                 <i class="nav-icon fas fa-edit"></i>
                                 <p>
-                                    Registro de Datos
+                                    REGISTRO DE DATOS
                                     <i class="fas fa-angle-left right "></i>
                                 </p>
                             </a>
@@ -71,7 +71,7 @@
 
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a routerLink="/app/reg-prof" class="nav-link active">
+                                    <a routerLink="/app/reg-prof" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Docente</p>
                                     </a>
@@ -97,39 +97,27 @@
                                     </a>
                                 </li>
 
-                                <li class="nav-item">
-                                    <a routerLink="/app/aut-system" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Usuario de acceso</p>
-                                    </a>
-                                </li>
                             </ul>
                         </li>
 
                         <!-- USUARIOS -->
                         <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-table"></i>
+                            <a routerLink="/app/aut-system" class="nav-link">
+                                <i class="nav-icon fas fa-user-plus"></i>
                                 <p>
-                                    Creación de Usuario
+                                    USUARIO DE ACCESO
                                     <i class="fas fa-angle-left right"></i>
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="../tables/simple.html" class="nav-link">
+                                    <a routerLink="/app/aut-system" class="nav-link active">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Docente</p>
+                                        <p>Docente / Administrador</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="../tables/data.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Administrador</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="../tables/jsgrid.html" class="nav-link">
+                                    <a routerLink="/app/aut-system-e" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Estudiante</p>
                                     </a>
@@ -137,20 +125,21 @@
                             </ul>
                         </li>
 
+                        
                         <!-- ACADEMICO -->
                         <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link">
+                            <a routerLink="/app/reg-periodo" class="nav-link">
                                 <i class="nav-icon fas fa-table"></i>
                                 <p>
-                                    Académico
+                                    ACADÉMICO
                                     <i class="fas fa-angle-left right"></i>
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="../tables/simple.html" class="nav-link">
+                                    <a routerLink="/app/reg-periodo" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Simple Tables</p>
+                                        <p>Periodo Lectivo</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
@@ -863,7 +852,7 @@
 
                                         <div class="form-group form-check form-switch">
                                             <input class="form-check-input" type="checkbox"
-                                                formControlName="Estado" name="Estado"  checked>
+                                                formControlName="Estado" name="Estado"  value="true">
                                             <label for="Estado">Habilitar Docente</label>
                                         </div>
                                         <br><br>

@@ -8,7 +8,7 @@
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="" class="nav-link">Inicio</a>
+                    <a href="../../index3.html" class="nav-link">Inicio</a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
                     <a href="#" class="nav-link">Contactos</a>
@@ -290,106 +290,64 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>Registrar Periodo Lectivo</h1>
+                            <!-- <h1>Lista de Administradores</h1> -->
                         </div>
+
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="#">Inicio</a></li>
-                                <li class="breadcrumb-item active">Periodo Lectivo</li>
+                                <li class="breadcrumb-item active">Año Lectivo</li>
                             </ol>
                         </div>
+
                     </div>
                 </div><!-- /.container-fluid -->
             </section>
 
             <!-- Main content -->
+
             <section class="content">
                 <div class="container-fluid">
-
-                    <div class="row justify-content-center">
-                        <!-- left column -->
-                        <div class="col-md-10">
-                            <!-- general form elements -->
-                            <div class="card card-primary">
-                                <div class="card-header">
-                                    <h3 class="card-title">Ingresar Datos de Periodo Lectivo</h3>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <span class="h3">Listado de Periodos Lectivos</span>
+                                    <button class="btn btn-primary btn-sm float-right" >Agregar</button>
+                                    <table class="table mt-5 table-striped">
+                                        <thead class="thead-dark">
+                                            <tr>
+                                                <th scope="col">Descrición</th>
+                                                <th scope="col">Fecha Inicio</th>
+                                                <th scope="col">Fecha Fin</th>
+                                                <th scope="col"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>2021 - 2022</td>
+                                                <td>25/08/2021</td>
+                                                <td>22/06/2022</td>
+                                                <td class="float-right">
+                                                    <i class="fas fa-edit fa-lg text-info mr-4"></i>
+                                                    <i class="fas fa-trash-alt fa-lg text-danger"></i>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                   
                                 </div>
-                                <!-- /.card-header -->
-                                <!-- form start -->
-                                <form role="form" >
-                                    <div class="card-body">
-
-                                        <div class="form-group">
-                                            <label for="Codigo">Código</label>
-                                            <input type="text" class="form-control" name="Codigo" id="Codigo"
-                                                placeholder="Codigo"  required>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="Descripcion">Descripción</label>
-                                            <input type="text" class="form-control" name="Descripcion" id="Descripcion"
-                                                placeholder="Descripcion"  required>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="Fecha_inicio">Fecha de inicio de periodo</label>
-                                            <input type="date" class="form-control" name="Fecha_inicio"
-                                                id="Fecha_ninicio" required>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="Fecha_fin">Fecha de finalización de periodo</label>
-                                            <input type="date" class="form-control" name="Fecha_fin"
-                                                id="Fecha_fin" required>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="Nota_maxima">Nota máxima</label>
-                                            <input type="number" class="form-control" id="Nota_maxima"
-                                                name="Nota_maxima" placeholder="Nota_maxima" required>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="Nota_base">Nota base</label>
-                                            <input type="number" class="form-control" id="Nota_base"
-                                                name="Nota_base" placeholder="Nota_base" required>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="Maximo_faltas">Numero de faltas máxima por aula</label>
-                                            <input type="number" class="form-control" name="Maximo_faltas" id="Maximo_faltas"
-                                                placeholder="Maximo_faltas" required>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="Maximo_alumnos">Numero máximo de alunmos por aula</label>
-                                            <input type="number" class="form-control" name="Maximo_alumnos" id="Maximo_alumnos"
-                                                placeholder="Maximo_alumnos" required>
-                                        </div>
-
-                                        <div class="form-group form-check form-switch">
-                                            <input class="form-check-input" type="checkbox" id="Estado" name="Estado" checked>
-                                            <label for="Estado">Estado</label>
-                                        </div>
-
-
-                                    </div>
-                                    <!-- /.card-body -->
-
-                                    <div class="card-footer">
-                                        <button type="submit" value="Registrar"
-                                            class="btn btn-success">Registrar</button>
-                                    </div>
-                                </form>
                             </div>
-                            <!-- /.card -->
+
+                           
+
 
                         </div>
-                        <!--/.col (left) -->
                     </div>
-                    <!-- /.row -->
+
                 </div><!-- /.container-fluid -->
             </section>
+
             <!-- /.content -->
         </div>
         <!-- /.content-wrapper -->

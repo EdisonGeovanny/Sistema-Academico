@@ -22,6 +22,59 @@ export class AuthService {
 
   constructor(private httpClient: HttpClient) { this.token = ''; }
 
+
+
+   //////////////////////// Periodo //////////////////////
+
+  //registrarPeriodo lectivo
+  registerPeriodo(user: any): Observable<any> {
+    return this.httpClient.post<any>(`${this.AUTH_SERVER}/reg-per`,
+      user).pipe(tap(
+        (res: any) => {
+          if (res) {
+            // GUARDAR TOKEN
+            console.log(res.dataUser);
+          }
+        })
+      );
+  }
+
+  //obtener todos los Docentes
+  getPeriodoAll(): Observable<any> {
+    return this.httpClient.get<any>(`${this.AUTH_SERVER}/list-per`);
+  }
+
+   //obtener Docente por id
+   obtenerPeriodoId(id: string): Observable<any> {
+    return this.httpClient.get(`${this.AUTH_SERVER}/list-per/${id}`)
+  }
+
+
+  //eliminiar Docente por id
+  deletePeriodo(id: string): Observable<any> {
+    return this.httpClient.delete(`${this.AUTH_SERVER}/delete-per/${id}`)
+  }
+
+  //actualizar datos
+  updatePeriodo(id: string, user: any): Observable<any> {
+    return this.httpClient.put<any>(`${this.AUTH_SERVER}/update-per/${id}`,
+      user).pipe(tap(
+        (res: any) => {
+          if (res) {
+            // GUARDAR TOKEN
+            console.log(res.dataUser);
+          }
+        })
+        );
+      }
+
+//obtener Docente por Nombres
+obtenerPeridoCodigo(sch: string): Observable<any> {
+  return this.httpClient.get(`${this.AUTH_SERVER}/searcha/${sch}`)
+}
+
+
+  
   ////////////////////////  Autentificacion //////////////////////
 
   //registrar autentificacion de acceso DA
