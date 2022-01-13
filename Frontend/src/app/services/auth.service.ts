@@ -37,6 +37,36 @@ export class AuthService {
       );
   }
 
+   //obtener Docente por id
+   obtenerAccesoId(id: string): Observable<any> {
+    return this.httpClient.get(`${this.AUTH_SERVER}/list-aut/${id}`)
+  }
+
+  //obtener todos los Docentes
+  getAccesoAll(): Observable<UserAdminI[]> {
+    return this.httpClient.get<UserAdminI[]>(`${this.AUTH_SERVER}/list-aut`);
+  }
+
+  //eliminiar Docente por id
+  deleteAcceso(id: string): Observable<any> {
+    return this.httpClient.delete(`${this.AUTH_SERVER}/delete-aut/${id}`)
+  }
+
+  //actualizar datos
+  updateAcceso(id: string, user: any): Observable<any> {
+    return this.httpClient.put<JwtResponseI>(`${this.AUTH_SERVER}/update-aut/${id}`,
+      user).pipe(tap(
+        (res: JwtResponseI) => {
+          if (res) {
+            // GUARDAR TOKEN
+            console.log(res.dataUser);
+          }
+        })
+        );
+      }
+
+
+
   //acceso a Usuarios
   loginA(user: AutentificacionI): Observable<JwtResponseAdminI> {
     return this.httpClient.post<JwtResponseAdminI>(`${this.AUTH_SERVER}/aut`,
@@ -74,6 +104,11 @@ export class AuthService {
   //obtener Docente por id
   obtenerPorfesorId(id: string): Observable<any> {
     return this.httpClient.get(`${this.AUTH_SERVER}/list-da/${id}`)
+  }
+
+  //obtener Docente por id
+  obtenerProfId(id: string): Observable<any> {
+    return this.httpClient.get(`${this.AUTH_SERVER}/prof-da/${id}`)
   }
 
   //obtener Docente por dni

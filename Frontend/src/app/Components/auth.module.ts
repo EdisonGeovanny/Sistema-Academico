@@ -26,6 +26,9 @@ import { ViewRepComponent } from './Representante/view-rep/view-rep.component';
 import { RegFichaComponent } from './Ficha-Estudiante/reg-ficha/reg-ficha.component';
 import { ListFichaComponent } from './Ficha-Estudiante/list-ficha/list-ficha.component';
 import { ViewFichaComponent } from './Ficha-Estudiante/view-ficha/view-ficha.component';
+import { AutSystemEComponent } from './Autentificacion/aut-system-e/aut-system-e.component';
+import { ListAutProfComponent } from './Autentificacion/list-aut-prof/list-aut-prof.component';
+import { ListAutEstComponent } from './Autentificacion/list-aut-est/list-aut-est.component';
 
 
 @NgModule({
@@ -48,7 +51,10 @@ import { ViewFichaComponent } from './Ficha-Estudiante/view-ficha/view-ficha.com
     ViewRepComponent,
     RegFichaComponent,
     ListFichaComponent,
-    ViewFichaComponent
+    ViewFichaComponent,
+    AutSystemEComponent,
+    ListAutProfComponent,
+    ListAutEstComponent
   ],
   imports: [
     CommonModule,

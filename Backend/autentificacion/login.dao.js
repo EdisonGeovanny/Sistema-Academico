@@ -8,15 +8,18 @@ authSchema.statics = {
     },
     login: function (query, cb){
        this.find(query, cb); 
-    },
-    lista: function (query, cb){
+    }, 
+    list: function (query, cb){
         this.find(query,cb);
     },
     update: function (query, cb){
-        this.findOneAndUpdate(query, cb);
+        this.findByIdAndUpdate(query, cb);
     },
-    deleteUser: function (query, cb){
+    delete: function (query, cb){
         this.findByIdAndDelete(query, cb);
+    },
+    ListId: function (query, cb){
+        this.findById(query, cb);
     }
 }
 

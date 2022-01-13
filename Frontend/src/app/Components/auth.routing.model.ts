@@ -19,17 +19,29 @@ import { ViewRepComponent } from './Representante/view-rep/view-rep.component';
 import { RegFichaComponent } from './Ficha-Estudiante/reg-ficha/reg-ficha.component';
 import { ListFichaComponent } from './Ficha-Estudiante/list-ficha/list-ficha.component';
 import { ViewFichaComponent } from './Ficha-Estudiante/view-ficha/view-ficha.component';
+import { AutSystemEComponent } from './Autentificacion/aut-system-e/aut-system-e.component';
+import { ListAutProfComponent } from './Autentificacion/list-aut-prof/list-aut-prof.component';
+import { ListAutEstComponent } from './Autentificacion/list-aut-est/list-aut-est.component';
 
 const routes: Routes = [
   //inicio
   { path: 'pag-inicio', component: PagInicioComponent }, //yes
+  
   //Autentificación
   { path: 'log-admin', component: LogAdminComponent }, //yes
   { path: 'log-prof', component: LoginProfComponent }, //yes
   { path: 'log-est', component: LogEstComponent }, //yes
-  //Crear Usuarios
+
+  //Crear Usuarios Docente/administrador
   { path: 'aut-system', component: AutProfComponent }, //yes
-  { path: 'aut-system/:id', component: AutProfComponent },//yes
+  { path: 'list-aut', component: ListAutProfComponent }, //yes
+  { path: 'edit-aut/:id', component: AutProfComponent },//yes
+   //Crear Usuarios Estudiante
+   { path: 'aut-system-e', component: AutSystemEComponent }, //yes
+   { path: 'list-aut-e', component: ListAutEstComponent }, //yes
+   { path: 'edit-aut-e/:id', component: AutSystemEComponent },//yes
+   
+
   //Profesores
   { path: 'reg-prof', component: RegisterProfComponent }, //yes
   { path: 'edit-prof/:id', component: RegisterProfComponent }, //yes

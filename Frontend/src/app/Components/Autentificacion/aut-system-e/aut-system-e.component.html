@@ -393,7 +393,7 @@
                     <div class="row mb-2">
 
                         <div class="col-sm-6">
-                            <h5><strong>DOCENTE - ADMINISTRADOR: {{Titulo}}</strong></h5>
+                            <h5><strong>ESTUDIANTE: {{Titulo}}</strong></h5>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
@@ -494,11 +494,11 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr *ngFor="let profesor of  data$.dni ">
-                                                                <td>{{profesor.DNI}}</td>
-                                                                <td>{{profesor.Apellidos}} {{profesor.Nombres}}</td>
+                                                            <tr *ngFor="let estudiantes of  data$.dni ">
+                                                                <td>{{estudiantes.DNI}}</td>
+                                                                <td>{{estudiantes.Apellidos}} {{estudiantes.Nombres}}</td>
                                                                 <td class="colum">
-                                                                    <i (click)="viewProf(profesor._id)"
+                                                                    <i (click)="viewProf(estudiantes._id)"
                                                                         class="fas fa-plus fa-lg text-success mr-2"></i>
                                                                 </td>
                                                             </tr>
@@ -515,17 +515,17 @@
 
 
                                                 <address>
-                                                    <strong> Cédula de identidad:</strong><br>{{profesor.DNI}}
+                                                    <strong> Cédula de identidad:</strong><br>{{estudiante.DNI}}
                                                 </address>
 
                                                 <address>
-                                                    <strong> Nombre:</strong><br> {{profesor.Apellidos}}
-                                                    {{profesor.Nombres}}
+                                                    <strong> Nombre:</strong><br> {{estudiante.Apellidos}}
+                                                    {{estudiante.Nombres}}
                                                 </address>
 
                                                 <address>
                                                     <strong> Fecha
-                                                        nacimiento:</strong><br>{{profesor.Fecha_nacimiento |
+                                                        nacimiento:</strong><br>{{estudiante.Fecha_nacimiento |
                                                     date:'dd-MM-yyyy'}}
                                                 </address>
 
@@ -543,23 +543,14 @@
 
                                         <div class="row">
                                             <div class="col-md-12 h2">
-                                                <h2>CREAR USUARIO DE ACCESO DOCENTE - ADMINISTRADOR</h2>
+                                                <h2>CREAR USUARIO DE ACCESO  ESTUDIANTE</h2>
                                             </div>
 
                                         </div>
                                         <!--Datos de Usuario-->
                                         <div class="row">
 
-                                            <!-- Rol-->
-                                            <div class="col-md-3">
-                                                <div class="form-group">
-                                                    <label>Rol de Usuario</label>
-                                                    <select name="Rol" formControlName="Rol" class="form-control combo"
-                                                        ngModel="elegido1">
-                                                        <option *ngFor="let n of Rol">{{ n.name }}</option>
-                                                    </select>
-                                                </div>
-                                            </div>
+                                           <div class="col-md-1"></div>
 
                                             <!-- Usuario-->
                                             <div class="col-md-5">
@@ -588,6 +579,8 @@
                                                 </div>
                                             </div>
 
+                                            <div class="col-md-2"></div>
+
                                         </div>
 
                                     </div>
@@ -607,7 +600,7 @@
                                             </div>
                                             <div class="col-md-6"></div>
                                             <div class="col-md-2">
-                                                <button type="button" routerLink="/app/list-aut"
+                                                <button type="button" routerLink="/app/list-aut-e"
                                                     class="btn btn-block bg-gradient-info" value="Tabla"><i
                                                         class="fas fa-list"></i> Tabla</button>
                                             </div>

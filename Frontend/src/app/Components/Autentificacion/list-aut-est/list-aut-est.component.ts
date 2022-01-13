@@ -5,17 +5,16 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
-  selector: 'app-list-ficha',
-  templateUrl: './list-ficha.component.html',
-  styleUrls: ['./list-ficha.component.css']
+  selector: 'app-list-aut-est',
+  templateUrl: './list-aut-est.component.html',
+  styleUrls: ['./list-aut-est.component.css']
 })
-export class ListFichaComponent implements OnInit {
-
+export class ListAutEstComponent implements OnInit {
   estudiantes: any = {
     dni: []
   }
 
-  fichas: any = {
+  acceso: any = {
     dni: []
   }
 
@@ -27,9 +26,7 @@ export class ListFichaComponent implements OnInit {
     dni: []
   }
 
-  aux: any = {
-    dni: []
-  }
+
 
   AccesoForm: FormGroup;
 
@@ -57,65 +54,71 @@ export class ListFichaComponent implements OnInit {
     })
   }
 
-
   ngOnInit(): void {
-    this.obtenerEstudiantes();
+    this.obtenerAcceso();
   }
+  
 
-
-
-  Redirect(): void {
-    this.router.navigateByUrl('/app/reg-admin');
-  }
-
-  //listar
-  async obtenerEstudiantes() {
-    const eliminados =  this.lista.dni.splice(0, this.lista.dni.length+1);
+   //listar
+   async obtenerAcceso() {
+    const eliminados = this.lista.dni.splice(0, this.lista.dni.length + 1);
     const eliminados2 = this.busqueda.dni.splice(0, this.busqueda.dni.length + 1);
 
     //obtener datos de ficha
-    const FichaEstudiante = new Promise(async (resolve, reject) => {
-      await this.authService.getFichaAll().subscribe(data => {
+    const Acceso = new Promise(async (resolve, reject) => {
+      await this.authService.getAccesoAll().subscribe(data => {
         resolve(data)
       })
     });
-    this.fichas = await FichaEstudiante.then(res => res);
-    //console.log(this.fichas)
+    this.acceso = await Acceso.then(res => res);
+    // console.log(this.acceso)
 
 
 
-    //obtener datos de estudiante
-    const ObtenerEstudiante = new Promise(async (resolve, reject) => {
+    //obtener datos de Docente
+    const estudiante = new Promise(async (resolve, reject) => {
       await this.authService.getEstAll().subscribe(data => {
         resolve(data)
       })
     });
-    this.estudiantes = await ObtenerEstudiante.then(res => res);
-    //console.log(this.estudiantes)
+    this.estudiantes = await estudiante.then(res => res);
+    //console.log(this.docentes)
 
-    this.fichas.dni.forEach((ficha: any, index: any, array: any) => {
-      this.estudiantes.dni.forEach((estudiante: any, index: any, array: any) => {
-        if (ficha.Estudiante == estudiante._id) {
+
+    this.acceso.dni.forEach((acceso: any, index: any, array: any) => {
+      this.estudiantes.dni.forEach((docente: any, index: any, array: any) => {
+        if (acceso.Vinculo[0] == docente._id) {
+
           this.lista.dni.push({
-            _id: ficha._id,
-            Estudiante: estudiante._id,
-            Nombres: estudiante.Nombres,
-            Apellidos: estudiante.Apellidos,
-            DNI: estudiante.DNI,
-            Codigo: estudiante.Codigo
+            _id: acceso._id,
+            Docente: docente._id,
+            Vinculo: docente._id,
+            Nombres: docente.Nombres,
+            Apellidos: docente.Apellidos,
+            DNI: docente.DNI,
+            Usuario: acceso.Usuario,
+            Rol: acceso.Rol
           });
 
           this.busqueda.dni.push({
-            _id: ficha._id,
-            Estudiante: estudiante._id,
-            Nombres: estudiante.Nombres,
-            Apellidos: estudiante.Apellidos,
-            DNI: estudiante.DNI,
-            Codigo: estudiante.Codigo
+            _id: acceso._id,
+            Docente: docente._id,
+            Vinculo: docente._id,
+            Nombres: docente.Nombres,
+            Apellidos: docente.Apellidos,
+            DNI: docente.DNI,
+            Usuario: acceso.Usuario,
+            Rol: acceso.Rol
           })
         }
+
       });
     });
+
+    console.log(this.acceso);
+    console.log(this.estudiantes);
+    console.log(this.lista);
+    //console.log(this.docentes)
 
   }
 
@@ -127,11 +130,10 @@ export class ListFichaComponent implements OnInit {
       Search: this.AccesoForm.get('Search')?.value,
       Combo: this.AccesoForm.get('Combo')?.value,
     }
-    console.log(SCH);
 
 
     if (SCH.Search) {
-      const eliminados =  this.lista.dni.splice(0, this.lista.dni.length+1);
+      const eliminados = this.lista.dni.splice(0, this.lista.dni.length + 1);
 
       if (SCH.Combo == "N° identificación" || SCH.Combo == "elegido2" || SCH.Combo == "") {
         this.searchDni();
@@ -154,11 +156,16 @@ export class ListFichaComponent implements OnInit {
 
     const SCH: any = {
       Search: this.AccesoForm.get('Search')?.value,
-      Combo: this.AccesoForm.get('Buscar')?.value,
+      Combo: this.AccesoForm.get('Combo')?.value,
     }
 
+    console.log(SCH)
+
     if (SCH.Search) {
+      console.log(this.busqueda.dni)
+      console.log(this.lista)
       this.busqueda.dni.forEach((element: any, index: any, array: any) => {
+        console.log(element.Apellidos)
         if (element.Apellidos == SCH.Search) {
           this.lista.dni.push(element);
         }
@@ -200,7 +207,7 @@ export class ListFichaComponent implements OnInit {
     }
 
     if (SCH.Search) {
-    
+
       this.busqueda.dni.forEach((element: any, index: any, array: any) => {
         if (element.DNI == SCH.Search) {
           this.lista.dni.push(element);
@@ -216,7 +223,7 @@ export class ListFichaComponent implements OnInit {
   }
 
   //borrar
-  deleteEst(id: any) {
+  deleteAut(id: any) {
     const swalWithBootstrapButtons = Swal.mixin({
       customClass: {
         confirmButton: 'btn btn-success',
@@ -236,13 +243,13 @@ export class ListFichaComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
 
-        this.authService.deleteFicha(id).subscribe(data => {
-          this.obtenerEstudiantes();
+        this.authService.deleteAcceso(id).subscribe(data => {
+          this.obtenerAcceso();
+        } , error => {
+            console.log(error);
+          });
 
-        }, error => {
-          console.log(error);
-        });
-  
+
         swalWithBootstrapButtons.fire(
           'Eliminado!',
           'Tu registro fue eliminado.',
@@ -254,14 +261,14 @@ export class ListFichaComponent implements OnInit {
 
   /////////  métodos /////////////////////////
 
-  updateEst(id: any) {
-    this.router.navigateByUrl('/app/edit-ficha/' + id);
+  updateAut(id: any) {
+    this.router.navigateByUrl('/app/edit-aut-e/' + id);
+
   }
 
-  viewEst(id: any) {
+  viewAut(id: any) {
     this.router.navigateByUrl('/app/view-est/' + id);
   }
-
 
   /////Alertas/////////////////////////
   AlertNoEncotrado(): void {

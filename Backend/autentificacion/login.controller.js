@@ -7,6 +7,7 @@ const SECRET_KEY = 'secretkey1234';
 exports.createAut = (req, res, next) => {
     const newUser = {
         Usuario: req.body.Usuario,
+        Pass_temp: req.body.Contraseña,
         Contraseña: bcrypt.hashSync(req.body.Contraseña),
         Rol: req.body.Rol,
         Vinculo: req.body.Vinculo
@@ -60,18 +61,86 @@ exports.loginAut = (req, res, next) => {
     })
 }
 
-exports.getAut = (req, res, next)=> {
+exports.ListAut = (req, res, next)=> {
     
-    User.find({}, (err, user)=>{
+    User.find({}, (err, dni)=>{
         if (err) return res. status(500).send('Server error!');
-        if(!user) {
+        if(!dni) {
             //email does not exist
             res.status(484).send({ message: 'El elemento no existe'});
         }else {
             
-                res.send({user});
+                res.send({dni});
             
         }
     })
 }
+
+//update de registros de docentes
+exports.updateAut  = async (req, res) => {
+    try{
+        const { Contraseña, Usuario, Rol, Vinculo} = req.body;
+            let user = await User.findById(req.params.id);
+
+            if(!user) {
+                res.status(404).json({msg: 'No existe el producto'})
+            } 
+            user.Pass_temp = Contraseña;
+            user.Usuario = Usuario;
+            user.Contraseña =  bcrypt.hashSync(Contraseña);
+            user.Rol = Rol;
+            user.Vinculo = Vinculo;
+            
+
+            user = await User.findOneAndUpdate({_id: req.params.id}, user, {new:true})
+            res.json(user);
+
+
+    }catch(err){
+        console.log(err);
+        res.status(500).send('Hubo un error')
+
+    }
+}
+
+//delete de registros de docentes
+exports.deleteAut = async (req, res) => {
+    try{
+        let user = await User.findById(req.params.id);
+
+        if(!user) {
+            res.status(404).json({msg: 'No existe el registro'})
+        }
+        await User.findByIdAndDelete({_id: req.params.id})
+        res.json({msg:'registro eliminado con exito!'});
+
+
+}catch(err){
+    console.log(err);
+    res.status(500).send('Hubo un error')
+
+}
+}
+
+//Listar por ID
+exports.listID = async (req, res) => {
+    try{
+            let user = await User.findById(req.params.id);
+
+            if(!user) {
+                res.status(404).json({msg: 'No existe el registro'})
+            }
+
+                 res.json(user);
+
+
+    }catch(err){
+        console.log(err);
+        res.status(500).send('Hubo un error')
+
+    }
+}
+
+
+
 

@@ -20,5 +20,6 @@ authSchema.statics = {
     }
 
 }
+
 const doceModel = mongoose.model('Docente', authSchema);
 module.exports = doceModel;

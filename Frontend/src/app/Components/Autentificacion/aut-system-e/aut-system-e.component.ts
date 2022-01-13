@@ -3,72 +3,68 @@ import Swal from 'sweetalert2';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
-import { UserRegAcceso } from 'src/app/models/user-reg-acceso';
+import {UserRegAcceso } from 'src/app/models/user-reg-acceso';
 import { Buscador } from 'src/app/models/buscador';
 
+
 @Component({
-  selector: 'app-aut-prof',
-  templateUrl: './aut-prof.component.html',
-  styleUrls: ['./aut-prof.component.css']
+  selector: 'app-aut-system-e',
+  templateUrl: './aut-system-e.component.html',
+  styleUrls: ['./aut-system-e.component.css']
 })
-export class AutProfComponent implements OnInit {
-  //para buscador
-  public isloading = false;
-  public src: string | undefined;
-  public data$: any = {
-    dni: []
-  }
-
-  //formGroup
-  AccesoForm: FormGroup;
-
-  //arreglo de Docentes
-  profesores: any = {
-    user: []
-  }
-
-  profesor: any = {
-
-  }
-
-  //titulo
-  Titulo = 'CREACIÓN DE USUARIOS';
-  id: string | null;
-  aux: string | null;
-  estado: string | null;
-
-  //Nombramiento
-  Rol = [{ name: "Seleccionar opción" }, { name: "Administrador" },
-  { name: "Docente" }];
-  elegido1: string = "";
-
-  //Nombramiento
-  Buscar = [{ name: "N° identificación" },
-  { name: "Apellidos" }, { name: "Nombres" }];
-  elegido2: string = "";
-
-  constructor(private authService: AuthService, private router: Router,
-    private fb: FormBuilder, private aRouter: ActivatedRoute) {
-    //formGroup
-    this.AccesoForm = this.fb.group({
-      Usuario: ['', Validators.required],
-      Contraseña: ['', Validators.required],
-      Rol: ['', Validators.required],
-      Search: [''],
-      Combo: ['']
-    }),
-      this.aux = this.aRouter.snapshot.paramMap.get('id'),
-      this.id = null,
-      
-
-
-    //mapeo de url con atributo
-    this.estado = "";
-  }
-
+export class AutSystemEComponent implements OnInit {
+   //para buscador
+   public isloading = false;
+   public src: string | undefined;
+   public data$: any = {
+     dni: []
+   }
+ 
+   //formGroup
+   AccesoForm: FormGroup;
+ 
+   //objeto de estudiante
+   estudiante: any = {
+  
+   }
+ 
+   //titulo
+   Titulo = 'CREACIÓN DE USUARIOS';
+   id: string | null;
+   aux: string | null;
+   estado: string | null;
+ 
+   //Nombramiento
+   Rol = [{ name: "Administrador" },
+   { name: "Docente" }];
+   elegido1: string = "";
+ 
+   //Nombramiento
+   Buscar = [{ name: "N° identificación" },
+   { name: "Apellidos" }, { name: "Nombres" }];
+   elegido2: string = "";
+ 
+   constructor(private authService: AuthService, private router: Router,
+     private fb: FormBuilder, private aRouter: ActivatedRoute) {
+     //formGroup
+     this.AccesoForm = this.fb.group({
+       Usuario: ['', Validators.required],
+       Contraseña: ['', Validators.required],
+       Search: [''],
+       Combo: ['']
+     }),
+ 
+     //mapeo de url con atributo
+     this.estado = "",
+     this.aux = this.aRouter.snapshot.paramMap.get('id'),
+    this.id = null
+      console.log(this.aux)
+   }
+ 
   ngOnInit(): void {
     this.Obtener();
   }
+
 
   //agregar datos o actualizar datos
   saveData() {
@@ -78,20 +74,19 @@ export class AutProfComponent implements OnInit {
       this.create();
     }
   }
-  //editar para guardar usuario
-  create() {
+   //editar para guardar usuario
+   create() {
     const CUENTA: any = {
       Usuario: this.AccesoForm.get('Usuario')?.value,
       Contraseña: this.AccesoForm.get('Contraseña')?.value,
       Pass_temp:this.AccesoForm.get('Contraseña')?.value,
-      Rol: this.AccesoForm.get('Rol')?.value,
+      Rol: "Estudiante",
       Vinculo: this.id
     }
     console.log(CUENTA);
     this.authService.registerAcceso(CUENTA).subscribe(data => {
       this.AlertExito();
       this.AccesoForm.reset();
-
     }, err => {
       console.log(err);
       this.AlertFracaso();
@@ -101,20 +96,18 @@ export class AutProfComponent implements OnInit {
 
   }
 
-  //Obtener datos para Editar
-  async Obtener() {
+   //Obtener datos para Editar
+   async Obtener() {
     if (this.aux !== null) {
 
       this.authService.obtenerAccesoId(this.aux).subscribe(data => {
-
-        this.AccesoForm.controls['Rol'].setValue(data.Rol);
         this.AccesoForm.controls['Usuario'].setValue(data.Usuario);
         this.AccesoForm.controls['Contraseña'].setValue(data.Pass_temp);
         this.id = data.Vinculo[0];
-
+       
         if (this.id !== null) {
-          this.authService.obtenerPorfesorId(this.id).subscribe(data => {
-            this.profesor = {
+          this.authService.obtenerEstudianteId(this.id).subscribe(data => {
+            this.estudiante = {
               DNI: data.DNI,
               Nombres: data.Nombres + " " + data.Apellidos,
               Fecha_nacimiento: data.Fecha_nacimiento,
@@ -131,23 +124,8 @@ export class AutProfComponent implements OnInit {
 
   }
 
-  async esEditar() {
-    if (this.id !== null) {
 
-      this.authService.obtenerPorfesorId(this.id).subscribe(data => {
-        this.profesor = {
-          DNI: data.DNI,
-          Nombres: data.Nombres + " " + data.Apellidos,
-          Fecha_nacimiento: data.Fecha_nacimiento
-        }
-      })
-
-    }
-  }
-
-
-
-  //editar
+    //editar
   upDate() {
 
     const swalWithBootstrapButtons = Swal.mixin({
@@ -174,8 +152,8 @@ export class AutProfComponent implements OnInit {
            const CUENTA: any = {
             Usuario: this.AccesoForm.get('Usuario')?.value,
             Contraseña: this.AccesoForm.get('Contraseña')?.value,
-            Pass_temp: this.AccesoForm.get('Contraseña')?.value,
-            Rol: this.AccesoForm.get('Rol')?.value
+            Pass_temp:this.AccesoForm.get('Contraseña')?.value,  
+            Rol: "Estudiante"
           }
           console.log(CUENTA);
           this.authService.updateAcceso(this.aux,CUENTA).subscribe(data => {
@@ -211,10 +189,10 @@ export class AutProfComponent implements OnInit {
     console.log(SCH);
 
     if (SCH.Search) {
-      if (SCH.Combo == "N° identificación" || SCH.Combo == "elegido2" || SCH.Combo == "") {
+      if (SCH.Combo == "N° identificación" || SCH.Combo == "elegido2" || SCH.Combo == "" ) {
         this.searchDni();
       }
-      if (SCH.Combo == "Nombres") {
+       if (SCH.Combo == "Nombres") {
         this.searchNombre();
       }
       if (SCH.Combo == "Apellidos") {
@@ -236,18 +214,17 @@ export class AutProfComponent implements OnInit {
 
     if (SCH.Search) {
       const ObtenerApellidos = new Promise(async (resolve, reject) => {
-        await this.authService.obtenerProfesorApellido(SCH.Search).subscribe(data => {
+        await this.authService.obtenerEstudianteApellido(SCH.Search).subscribe(data => {
           resolve(data)
         })
       });
       this.data$ = await ObtenerApellidos.then(res => res);
-
-      if (this.data$.dni.length == 0) {
+     
+      if(this.data$.dni.length == 0){
         this.AlertNoEncotrado();
-      }
     }
+    } 
   }
-
 
   async searchNombre() {
     const SCH: Buscador = {
@@ -257,15 +234,15 @@ export class AutProfComponent implements OnInit {
 
     if (SCH.Search) {
       const ObtenerNombres = new Promise(async (resolve, reject) => {
-        await this.authService.obtenerProfesorNombres(SCH.Search).subscribe(data => {
+        await this.authService.obtenerEstudianteNombres(SCH.Search).subscribe(data => {
           resolve(data)
         })
       });
       this.data$ = await ObtenerNombres.then(res => res);
 
-      if (this.data$.dni.length == 0) {
+      if(this.data$.dni.length == 0){
         this.AlertNoEncotrado();
-      }
+    }
     }
 
   }
@@ -278,26 +255,40 @@ export class AutProfComponent implements OnInit {
 
     if (SCH.Search) {
       const ObtenerProfesorDni = new Promise(async (resolve, reject) => {
-        await this.authService.obtenerProfesorDni(SCH.Search).subscribe(data => {
+        await this.authService.obtenerEstudianteDni(SCH.Search).subscribe(data => {
           resolve(data)
         })
       });
       this.data$ = await ObtenerProfesorDni.then(res => res);
-
-      if (this.data$.dni.length == 0) {
+     
+      if(this.data$.dni.length == 0){
         this.AlertNoEncotrado();
-      }
+    }
     }
 
   }
 
+  async esEditar() {
+    if (this.id !== null) {
 
+      this.authService.obtenerEstudianteId(this.id).subscribe(data => {
+
+        this.estudiante = {
+          DNI: data.DNI,
+          Nombres: data.Nombres +" "+ data.Apellidos,
+          Fecha_nacimiento: data.Fecha_nacimiento,
+        }
+
+      })
+
+    }
+  }
 
   // editar para agregar a _id de Profesor
   viewProf(id: any) {
-    this.id = id;
-    console.log("id :" + this.id)
-    this.esEditar();
+  this.id = id;
+  console.log("id :"+this.id)
+  this.esEditar();
   }
 
   ////////////// Alertas ///////////////////////////
@@ -371,15 +362,7 @@ export class AutProfComponent implements OnInit {
     })
   }
 
-  AlertAcceso(): void {
-    Swal.fire({
-      icon: 'error',
-      title: 'Oops no lograste acceder...',
-      text: '¡Algo salió mal!',
-      footer: '<p>Intenta nuevamente, ingresa los datos <b>correctos</b> </p>'
-    })
-  }
-
+  
   AlertCamposVacios(): void {
     const Toast = Swal.mixin({
       toast: true,
@@ -418,13 +401,6 @@ export class AutProfComponent implements OnInit {
     })
   }
 
-  AlertProblema(): void {
-    Swal.fire(
-      '¿Quieres Recuperar tu cuenta?',
-      'Comunicate con el Administrador del Sistema',
-      'question'
-    )
-  }
 
   ////////////////////////Redirecciones ////////////////////
 
@@ -434,4 +410,3 @@ export class AutProfComponent implements OnInit {
 
 
 }
-

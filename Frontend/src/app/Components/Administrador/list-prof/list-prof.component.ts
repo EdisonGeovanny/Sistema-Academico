@@ -45,7 +45,6 @@ export class ListProfComponent implements OnInit {
   }
 
   
-  
 //listar
   async obtenerProfesores() {
     const ObtenerProfesor = new Promise(async (resolve, reject) => {

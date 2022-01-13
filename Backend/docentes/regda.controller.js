@@ -172,7 +172,7 @@ exports.listID = async (req, res) => {
             let docente = await User.findById(req.params.id);
 
             if(!docente) {
-                res.status(404).json({msg: 'No existe el registro'})
+                res.status(404).json({msg: 'No existe el producto'})
             }
 
                  res.json(docente);
@@ -184,6 +184,22 @@ exports.listID = async (req, res) => {
 
     }
 }
+
+//Listar por ID
+exports.ProfesorID = async (req, res) => {
+    try{
+        let dni = await User.findById(req.params.id);
+        if(!dni){
+                    res.status(404).json({msg: 'La busqueda no existe'})
+        } res.json({dni});
+            
+    }catch(err){
+        console.log(err);
+        res.status(500).send('Hubo un error')
+
+    }
+}
+
 
 //Search - buscador
 exports.searchDNI = async (req, res) => {

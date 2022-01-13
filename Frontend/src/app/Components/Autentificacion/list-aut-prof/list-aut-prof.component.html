@@ -28,8 +28,8 @@
         </nav>
         <!-- /.navbar -->
 
-        <!-- Main Sidebar Container -->
-        <aside class="main-sidebar elevation-4 sidebar-dark-success">
+         <!-- Main Sidebar Container -->
+         <aside class="main-sidebar elevation-4 sidebar-dark-success">
             <!--navbar-orange,warning,pink,secundary,info,success,indigo,purple,vany,teal,cyan,--->
             <!-- Brand Logo -->
             <a routerLink="/app/reg-prof" class="brand-link navbar-warning">
@@ -56,14 +56,14 @@
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                         data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
-             with font-awesome or any other icon font library -->
+                 with font-awesome or any other icon font library -->
 
                         <!-- REGISTRO DE DATOS -->
-                        <li class="nav-item has-treeview">
-                            <a routerLink="/app/reg-prof" class="nav-link">
+                        <li class="nav-item has-treeview menu-open">
+                            <a href="#" class="nav-link active">
                                 <i class="nav-icon fas fa-edit"></i>
                                 <p>
-                                    REGISTRO DE DATOS
+                                    Registro de Datos
                                     <i class="fas fa-angle-left right "></i>
                                 </p>
                             </a>
@@ -71,7 +71,7 @@
 
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a routerLink="/app/reg-prof" class="nav-link">
+                                    <a routerLink="/app/reg-prof" class="nav-link active">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Docente</p>
                                     </a>
@@ -97,82 +97,41 @@
                                     </a>
                                 </li>
 
+                                <li class="nav-item">
+                                    <a routerLink="/app/aut-system" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Usuario de acceso</p>
+                                    </a>
+                                </li>
                             </ul>
                         </li>
 
                         <!-- USUARIOS -->
-                        <li class="nav-item has-treeview menu-open">
-                            <a routerLink="/app/aut-system" class="nav-link active">
-                                <i class="nav-icon fas fa-user-plus"></i>
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-table"></i>
                                 <p>
-                                    USUARIO DE ACCESO
+                                    Creación de Usuario
                                     <i class="fas fa-angle-left right"></i>
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a routerLink="/app/aut-system" class="nav-link active">
+                                    <a href="../tables/simple.html" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Docente / Administrador</p>
+                                        <p>Docente</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a routerLink="/app/aut-system-e" class="nav-link">
+                                    <a href="../tables/data.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Administrador</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="../tables/jsgrid.html" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Estudiante</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li class="nav-item has-treeview">
-                            <a routerLink="/app/aut-system" class="nav-link">
-                                <i class="nav-icon fas fa-circle"></i>
-                                <p>
-                                    OTRO MENU 2 NIVELES
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a routerLink="/app/aut-system" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>dasd</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item has-treeview">
-                                    <a routerLink="/app/aut-system" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>
-                                            Crear Usuarios
-                                            <i class="right fas fa-angle-left"></i>
-                                        </p>
-                                    </a>
-                                    <ul class="nav nav-treeview">
-                                        <li class="nav-item">
-                                            <a href="#" class="nav-link">
-                                                <i class="far fa-dot-circle nav-icon"></i>
-                                                <p> Docente / Administrador</p>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="#" class="nav-link">
-                                                <i class="far fa-dot-circle nav-icon"></i>
-                                                <p>Estudiante</p>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="#" class="nav-link">
-                                                <i class="far fa-dot-circle nav-icon"></i>
-                                                <p>Level 3</p>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Level 2</p>
                                     </a>
                                 </li>
                             </ul>
@@ -385,6 +344,7 @@
             <!-- /.sidebar -->
         </aside>
 
+
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
@@ -393,244 +353,142 @@
                     <div class="row mb-2">
 
                         <div class="col-sm-6">
-                            <h5><strong>DOCENTE - ADMINISTRADOR: {{Titulo}}</strong></h5>
+                            <h5><strong>DOCENTE - ADMINISTRADOR: LISTA DE CUENTAS DE ACCESO</strong></h5>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item">USUARIO DE ACCESO</li>
-                                <li class="breadcrumb-item active"> {{Titulo}}</li>
+                                <li class="breadcrumb-item">{{subnivel}}</li>
+                                <li class="breadcrumb-item active">{{Titulo}}</li>
                             </ol>
                         </div>
+
                     </div>
                 </div><!-- /.container-fluid -->
             </section>
 
             <!-- Main content -->
-            <!--////////////////////////////////Usuario Docente/Admin/////////////////////////-->
+
             <section class="content">
                 <div class="container-fluid">
-
                     <div class="row justify-content-center">
-                        <!-- left column -->
                         <div class="col-md-12">
-                            <!-- general form elements -->
                             <div class="card card-warning">
                                 <div class="card-header">
-                                    <h3 class="card-title">INGRESO DE DATOS</h3>
+                                    <h3 class="card-title">{{Titulo}}</h3>
                                     <div class="card-tools">
                                         <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
                                                 class="fas fa-minus"></i></button>
                                     </div>
                                 </div>
-                                <!-- /.card-header -->
-                                <!-- form start -->
-
-                                <form class="card-body" role="form" [formGroup]="AccesoForm" (ngSubmit)="saveData()">
-                                    <div class="card-body">
-
-                                        <!--busqueda por dni, Nombre o Apellido-->
-                                        <!--Encabezado de agregar usuario-->
+                              
+                                <form class="card-body" role="form" [formGroup]="AccesoForm">
+                                    <div class="clard-footer">
                                         <div class="row">
-                                            <div class="col-md-7 h2">
-                                                <h2>Busqueda de Registro</h2>
-                                            </div>
-                                            <div class="col-md-1">
+                                           
 
-                                            </div>
-                                            <div class="col-md-4 h2">
-                                                <h2>Verificación</h2>
-                                            </div>
-                                        </div>
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <select name="Combo" formControlName="Combo"
+                                                        class="form-control combo" style="width:160px;">
+                                                        ngModel="elegido2">
+                                                        <option *ngFor="let n2 of Buscar">{{ n2.name }}</option>
+                                                    </select>
 
-
-                                        <div class="row">
-                                            <!--Tabla de busqueda-->
-                                            <div class="col-md-7">
-
-                                                <div class="row">
-                                                    <div class="col-md-5">
-
-                                                        <div class="form-group">
-                                                            <select name="Combo" formControlName="Combo"
-                                                                class="form-control combo">
-                                                                ngModel="elegido2">
-                                                                <option *ngFor="let n2 of Buscar">{{ n2.name }}</option>
-                                                            </select>
-                                                        </div>
-
-                                                    </div>
-
-                                                    <div class="col-md-2">
-
-                                                        <div class="card-tools">
-                                                            <div class="input-group input-group-sm"
-                                                                style="width: 250px;">
-                                                                <input type="text" name="search"
-                                                                    formControlName="Search"
-                                                                    class="form-control float-right"
-                                                                    placeholder="Search">
-
-                                                                <div class="input-group-append">
-                                                                    <button type="button" (click)="search()"
-                                                                        class="btn btn-default"><i
-                                                                            class="fas fa-search"></i></button>
-                                                                </div>
-
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-
-
-                                                <div class="card-body table-responsive p-0" style="height: 150px;">
-                                                    <table *ngIf="data$.dni.length > 0"
-                                                        class="table table-hover table-head-fixed text-nowrap">
-                                                        <thead>
-                                                            <tr>
-                                                                <th>Cédula</th>
-                                                                <th>Nombre</th>
-                                                                <th>crear</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr *ngFor="let profesor of  data$.dni ">
-                                                                <td>{{profesor.DNI}}</td>
-                                                                <td>{{profesor.Apellidos}} {{profesor.Nombres}}</td>
-                                                                <td class="colum">
-                                                                    <i (click)="viewProf(profesor._id)"
-                                                                        class="fas fa-plus fa-lg text-success mr-2"></i>
-                                                                </td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                    <h5 style="text-align:start; margin-top: 10px;"
-                                                        *ngIf="data$.dni.length == 0">No hay registros para mostrar</h5>
                                                 </div>
                                             </div>
 
                                             <div class="col-md-1"></div>
 
                                             <div class="col-md-4">
-
-
-                                                <address>
-                                                    <strong> Cédula de identidad:</strong><br>{{profesor.DNI}}
-                                                </address>
-
-                                                <address>
-                                                    <strong> Nombre:</strong><br> {{profesor.Apellidos}}
-                                                    {{profesor.Nombres}}
-                                                </address>
-
-                                                <address>
-                                                    <strong> Fecha
-                                                        nacimiento:</strong><br>{{profesor.Fecha_nacimiento |
-                                                    date:'dd-MM-yyyy'}}
-                                                </address>
-
-
-                                                <!-- identidad -->
-
-                                            </div>
-                                        </div>
-
-
-
-
-
-                                        <hr>
-
-                                        <div class="row">
-                                            <div class="col-md-12 h2">
-                                                <h2>CREAR USUARIO DE ACCESO DOCENTE - ADMINISTRADOR</h2>
-                                            </div>
-
-                                        </div>
-                                        <!--Datos de Usuario-->
-                                        <div class="row">
-
-                                            <!-- Rol-->
-                                            <div class="col-md-3">
                                                 <div class="form-group">
-                                                    <label>Rol de Usuario</label>
-                                                    <select name="Rol" formControlName="Rol" class="form-control combo"
-                                                        ngModel="elegido1">
-                                                        <option *ngFor="let n of Rol">{{ n.name }}</option>
-                                                    </select>
-                                                </div>
-                                            </div>
+                                                    <div class="card-tools">
+                                                        <div class="input-group input-group-default ">
+                                                            <input type="text" name="search"
+                                                                formControlName="Search"
+                                                                class="form-control float-left"
+                                                                placeholder="Search">
 
-                                            <!-- Usuario-->
-                                            <div class="col-md-5">
-                                                <div class="form-group">
-                                                    <label for="Usuario">Nombre de usuario:</label>
-                                                    <input type="text" class="form-control" name="Usuario"
-                                                        formControlName="Usuario" placeholder="usuario">
-                                                    <div class="text-danger"
-                                                        *ngIf="AccesoForm.get('Usuario')?.hasError('required') && AccesoForm.get('Usuario')?.touched">
-                                                        <span>El campo Usuario <strong>es obligatorio</strong></span>
+                                                            <div class="input-group-append">
+                                                                <button type="button" (click)="search()"
+                                                                    class="btn btn-default"><i
+                                                                        class="fas fa-search"></i></button>
+                                                            </div>
+
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
 
-                                            <!-- Contraseña-->
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label for="Contraseña">Contraseña de acceso:</label>
-                                                    <input type="password" class="form-control" name="Contraseña"
-                                                        formControlName="Contraseña" placeholder="contraseña">
-                                                    <div class="text-danger"
-                                                        *ngIf="AccesoForm.get('Contraseña')?.hasError('required') && AccesoForm.get('Contraseña')?.touched">
-                                                        <span>El campo de Apellidos <strong>es
-                                                                obligatorio</strong></span>
-                                                    </div>
-                                                </div>
+                                            <div class="col-md-1"></div>
+
+                                            <div class="col-md-2">
+                                                <button class="btn btn-block bg-gradient-info"
+                                                    (click)="this.obtenerAcceso()"><i class="fas fa-list"> </i>
+                                                    Todo </button>
+                                            </div>
+
+                                            <div class="col-md-2">
+                                                <button class="btn btn-block bg-gradient-success"
+                                                    routerLink="/app/aut-system"><i class="fas fa-users-medical"></i>
+                                                    Nuevo </button>
                                             </div>
 
                                         </div>
+                                    </div><br> <br>
 
-                                    </div>
-                                    <!-- /.card-body -->
+                                    <!--Tabla-->
+                                <div class="card-body table-responsive p-0" style="height: 400px;">
+                                    <table *ngIf="lista.dni.length > 0"
+                                        class="table table-hover table-head-fixed text-nowrap">
+                                        <thead>
+                                            <tr>
+                                                <th>Cédula</th>
+                                                <th>Nombres</th>
+                                                <th>Rol de Usuario</th>
+                                                <th>Nombre de Usuario</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let estudiante of  lista.dni">
+                                                <td>{{estudiante.DNI}}</td>
+                                                <td>{{estudiante.Apellidos}} {{estudiante.Nombres}}</td>
+                                                <td>{{estudiante.Rol}}</td>
+                                                <td>{{estudiante.Usuario}}</td>
+                                                <td class="colum">
+                                                    <i (click)="viewAut(estudiante.Docente)"
+                                                        class="fas fa-eye fa-lg text-warning mr-2"></i>
+                                                    <i (click)="updateAut(estudiante._id)"
+                                                        class="fas fa-edit fa-lg text-info mr-2"></i>
+                                                    <i (click)="deleteAut(estudiante._id)"
+                                                        class="fas fa-trash-alt fa-lg text-danger"></i>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <h5 style="text-align:start; margin-top: 10px;"
+                                        *ngIf="lista.dni.length == 0">No existen registros de
+                                        <strong>Estudiantes</strong> para mostrar..!</h5>
+                                </div>
 
-                                    <div class="card-footer">
-                                        <div class="row">
-                                            <div class="col-md-2">
-                                                <button type="submit" value="Crear" [disabled]="AccesoForm.invalid"
-                                                    class="btn btn-block bg-gradient-success "> <i
-                                                        class="fas fa-archive"></i> Guardar</button>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <button type="button" (click)="RedirectCancel()"
-                                                    class="btn btn-block bg-gradient-secondary" value="Tabla"><i
-                                                        class="fad fa-eraser"></i> Limpiar</button>
-                                            </div>
-                                            <div class="col-md-6"></div>
-                                            <div class="col-md-2">
-                                                <button type="button" routerLink="/app/list-aut"
-                                                    class="btn btn-block bg-gradient-info" value="Tabla"><i
-                                                        class="fas fa-list"></i> Tabla</button>
-                                            </div>
+                                <div class="card-footer">
+                                    <div class="row">
+                                        <div class="col-md-10"></div>
 
+                                        <div class="col-md-2">
                                         </div>
 
                                     </div>
 
-                                    <hr>
-                                    <!-- tabla de Usuarios Docente-->
-                                    <hr>
-
+                                </div>
                                 </form>
-                            </div>
-                            <!-- /.card -->
 
+                            </div>
                         </div>
-                        <!--/.col (left) -->
                     </div>
-                    <!-- /.row -->
+
                 </div><!-- /.container-fluid -->
             </section>
-
 
             <!-- /.content -->
         </div>

@@ -13,6 +13,12 @@ const userSchema = new Schema({
         type: String,
         required: true,
         trim: true
+    }
+    ,
+    Pass_temp: {
+        type: String,
+        required: true,
+        trim: true
     },
     Rol: {
         type: String,
