@@ -312,9 +312,12 @@ export class RegisterProfComponent implements OnInit {
 
 ////////////////////////Redirecciones ////////////////////
 
-  RedirectCancel(): void {
-    this.ProfesoresForm.reset();
-  }
+RedirectCancel(): void {
+  this.ProfesoresForm.reset();
+  this.router.navigateByUrl('/app/reg-prof');
+  this.id=null;
+}
+
 
   
 

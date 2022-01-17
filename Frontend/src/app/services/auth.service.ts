@@ -24,9 +24,267 @@ export class AuthService {
 
 
 
+  //////////////////////////////// GRADO //////////////////////////////////////
+
+  
+ //registrar Grado
+ registerGrado(user: any): Observable<any> {
+  return this.httpClient.post<any>(`${this.AUTH_SERVER}/reg-grado`,
+    user).pipe(tap(
+      (res: any) => {
+        if (res) {
+          // GUARDAR TOKEN
+          //console.log(res.dataUser);
+        }
+      })
+    );
+}
+
+//obtener todos los Grado
+getGradoAll(): Observable<any> {
+  return this.httpClient.get<any>(`${this.AUTH_SERVER}/list-grado`);
+}
+
+ //obtene rGrado por id
+ obtenerGradoId(id: string): Observable<any> {
+  return this.httpClient.get(`${this.AUTH_SERVER}/list-grado/${id}`)
+}
+
+
+//eliminiar Grado por id
+deleteGrado(id: string): Observable<any> {
+  return this.httpClient.delete(`${this.AUTH_SERVER}/delete-grado/${id}`)
+}
+
+//actualizar datos
+updateGrado(id: string, user: any): Observable<any> {
+  return this.httpClient.put<any>(`${this.AUTH_SERVER}/update-grado/${id}`,
+    user).pipe(tap(
+      (res: any) => {
+        if (res) {
+          // GUARDAR TOKEN
+          console.log(res.dataUser);
+        }
+      })
+      );
+    }
+
+//obtener por Grado
+obtenerGradoporJornada(sch: string): Observable<any> {
+  return this.httpClient.get(`${this.AUTH_SERVER}/searchg/${sch}`)
+  }
+
+  //obtener por nivel.paralelo.jornada
+obtenerNPJ(sch: string): Observable<any> {
+  return this.httpClient.get(`${this.AUTH_SERVER}/searchg2/${sch}`)
+  }
+
+
+  //////////////////////////////// Nivel-Materia ////////////////////////////////
+
+ //registrar Nivel-Materia
+ registerNV(user: any): Observable<any> {
+  return this.httpClient.post<any>(`${this.AUTH_SERVER}/reg-nv`,
+    user).pipe(tap(
+      (res: any) => {
+        if (res) {
+          // GUARDAR TOKEN
+          //console.log(res.dataUser);
+        }
+      })
+    );
+}
+
+//obtener todos los Nivel-Materia
+getNVAll(): Observable<any> {
+  return this.httpClient.get<any>(`${this.AUTH_SERVER}/list-nv`);
+}
+
+ //obtenerNivel-Nivel por id
+ obtenerNVId(id: string): Observable<any> {
+  return this.httpClient.get(`${this.AUTH_SERVER}/list-nv/${id}`)
+}
+
+
+//eliminiar Nivel-Materia por id
+deleteNV(id: string): Observable<any> {
+  return this.httpClient.delete(`${this.AUTH_SERVER}/delete-nv/${id}`)
+}
+
+//actualizar datos
+updateNV(id: string, user: any): Observable<any> {
+  return this.httpClient.put<any>(`${this.AUTH_SERVER}/update-nv/${id}`,
+    user).pipe(tap(
+      (res: any) => {
+        if (res) {
+          // GUARDAR TOKEN
+          console.log(res.dataUser);
+        }
+      })
+      );
+    }
+
+//obtener por Nivel-Materia
+obtenerNVPorNivel(sch: string): Observable<any> {
+return this.httpClient.get(`${this.AUTH_SERVER}/searchnv/${sch}`)
+}
+
+
+//////////////////////////////// Materia ////////////////////////////////
+
+ //registrar Materia
+ registerMateria(user: any): Observable<any> {
+  return this.httpClient.post<any>(`${this.AUTH_SERVER}/reg-asig`,
+    user).pipe(tap(
+      (res: any) => {
+        if (res) {
+          // GUARDAR TOKEN
+          console.log(res.dataUser);
+        }
+      })
+    );
+}
+
+//obtener todos los Materia
+getMateriaAll(): Observable<any> {
+  return this.httpClient.get<any>(`${this.AUTH_SERVER}/list-asig`);
+}
+
+ //obtener Nivel por id
+ obtenerMateriaId(id: string): Observable<any> {
+  return this.httpClient.get(`${this.AUTH_SERVER}/list-asig/${id}`)
+}
+
+
+//eliminiar Materia por id
+deleteMateria(id: string): Observable<any> {
+  return this.httpClient.delete(`${this.AUTH_SERVER}/delete-asig/${id}`)
+}
+
+//actualizar datos
+updateMateria(id: string, user: any): Observable<any> {
+  return this.httpClient.put<any>(`${this.AUTH_SERVER}/update-asig/${id}`,
+    user).pipe(tap(
+      (res: any) => {
+        if (res) {
+          // GUARDAR TOKEN
+          console.log(res.dataUser);
+        }
+      })
+      );
+    }
+
+//obtener por Materia
+obtenerPorArea(sch: string): Observable<any> {
+return this.httpClient.get(`${this.AUTH_SERVER}/searchasig/${sch}`)
+}
+
+
+/////////////////////////Paralelo//////////////////////////////////////////
+
+
+ //registrar Nivel
+ registerParalelo(user: any): Observable<any> {
+  return this.httpClient.post<any>(`${this.AUTH_SERVER}/reg-par`,
+    user).pipe(tap(
+      (res: any) => {
+        if (res) {
+          // GUARDAR TOKEN
+          console.log(res.dataUser);
+        }
+      })
+    );
+}
+
+//obtener todos los NIveles
+getParaleloAll(): Observable<any> {
+  return this.httpClient.get<any>(`${this.AUTH_SERVER}/list-par`);
+}
+
+ //obtener Nivel por id
+ obtenerParaleloId(id: string): Observable<any> {
+  return this.httpClient.get(`${this.AUTH_SERVER}/list-par/${id}`)
+}
+
+
+//eliminiar Nivel por id
+deleteParalelo(id: string): Observable<any> {
+  return this.httpClient.delete(`${this.AUTH_SERVER}/delete-par/${id}`)
+}
+
+//actualizar datos
+updateParalelo(id: string, user: any): Observable<any> {
+  return this.httpClient.put<any>(`${this.AUTH_SERVER}/update-par/${id}`,
+    user).pipe(tap(
+      (res: any) => {
+        if (res) {
+          // GUARDAR TOKEN
+          console.log(res.dataUser);
+        }
+      })
+      );
+    }
+
+//obtener por Nivel
+obtenerPorParalelo(sch: string): Observable<any> {
+return this.httpClient.get(`${this.AUTH_SERVER}/searchpar/${sch}`)
+}
+
+
+///////////////////////////////// Nivel /////////////////////////////////
+
+ //registrar Nivel
+ registerNivel(user: any): Observable<any> {
+  return this.httpClient.post<any>(`${this.AUTH_SERVER}/reg-nivel`,
+    user).pipe(tap(
+      (res: any) => {
+        if (res) {
+          // GUARDAR TOKEN
+          console.log(res.dataUser);
+        }
+      })
+    );
+}
+
+//obtener todos los NIveles
+getNivelAll(): Observable<any> {
+  return this.httpClient.get<any>(`${this.AUTH_SERVER}/list-nivel`);
+}
+
+ //obtener Nivel por id
+ obtenerNivelId(id: string): Observable<any> {
+  return this.httpClient.get(`${this.AUTH_SERVER}/list-nivel/${id}`)
+}
+
+
+//eliminiar Nivel por id
+deleteNivel(id: string): Observable<any> {
+  return this.httpClient.delete(`${this.AUTH_SERVER}/delete-nivel/${id}`)
+}
+
+//actualizar datos
+updateNivel(id: string, user: any): Observable<any> {
+  return this.httpClient.put<any>(`${this.AUTH_SERVER}/update-nivel/${id}`,
+    user).pipe(tap(
+      (res: any) => {
+        if (res) {
+          // GUARDAR TOKEN
+          console.log(res.dataUser);
+        }
+      })
+      );
+    }
+
+//obtener por Nivel
+obtenerPorNivel(sch: string): Observable<any> {
+return this.httpClient.get(`${this.AUTH_SERVER}/searchniv/${sch}`)
+}
+
+
+
    //////////////////////// Periodo //////////////////////
 
-  //registrarPeriodo lectivo
+  //registrar Periodo lectivo
   registerPeriodo(user: any): Observable<any> {
     return this.httpClient.post<any>(`${this.AUTH_SERVER}/reg-per`,
       user).pipe(tap(
@@ -39,18 +297,18 @@ export class AuthService {
       );
   }
 
-  //obtener todos los Docentes
+  //obtener todos los Periodo
   getPeriodoAll(): Observable<any> {
     return this.httpClient.get<any>(`${this.AUTH_SERVER}/list-per`);
   }
 
-   //obtener Docente por id
+   //obtener Periodo por id
    obtenerPeriodoId(id: string): Observable<any> {
     return this.httpClient.get(`${this.AUTH_SERVER}/list-per/${id}`)
   }
 
 
-  //eliminiar Docente por id
+  //eliminiar periodo por id
   deletePeriodo(id: string): Observable<any> {
     return this.httpClient.delete(`${this.AUTH_SERVER}/delete-per/${id}`)
   }
@@ -68,7 +326,7 @@ export class AuthService {
         );
       }
 
-//obtener Docente por Nombres
+//obtener por Codigo
 obtenerPeridoCodigo(sch: string): Observable<any> {
   return this.httpClient.get(`${this.AUTH_SERVER}/searcha/${sch}`)
 }

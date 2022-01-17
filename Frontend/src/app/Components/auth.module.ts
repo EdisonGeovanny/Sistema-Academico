@@ -29,6 +29,12 @@ import { ViewFichaComponent } from './Ficha-Estudiante/view-ficha/view-ficha.com
 import { AutSystemEComponent } from './Autentificacion/aut-system-e/aut-system-e.component';
 import { ListAutProfComponent } from './Autentificacion/list-aut-prof/list-aut-prof.component';
 import { ListAutEstComponent } from './Autentificacion/list-aut-est/list-aut-est.component';
+import { GradoComponent } from './Grado/grado/grado.component';
+import { NivelComponent } from './Grado/nivel/nivel.component';
+import { ParaleloComponent } from './Grado/paralelo/paralelo.component';
+import { MateriaComponent } from './Grado/materia/materia.component';
+import { RegMatriculaComponent } from './Matricula/reg-matricula/reg-matricula.component';
+
 
 
 @NgModule({
@@ -54,7 +60,12 @@ import { ListAutEstComponent } from './Autentificacion/list-aut-est/list-aut-est
     ViewFichaComponent,
     AutSystemEComponent,
     ListAutProfComponent,
-    ListAutEstComponent
+    ListAutEstComponent,
+    GradoComponent,
+    NivelComponent,
+    ParaleloComponent,
+    MateriaComponent,
+    RegMatriculaComponent
   ],
   imports: [
     CommonModule,

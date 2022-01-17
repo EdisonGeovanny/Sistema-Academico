@@ -269,6 +269,8 @@ saveData(){
 
   RedirectCancel(): void {
     this.RepresentantesForm.reset();
+    this.router.navigateByUrl('/app/reg-rep');
+    this.id=null;
   }
 
   

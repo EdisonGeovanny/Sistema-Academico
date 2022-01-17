@@ -106,10 +106,32 @@ exports.updateGrado  = async (req, res) => {
 
 exports.searchJornada = async (req, res) => {
     try{
-        let dni = await User.find({Jornada:req.params.sch});
+        const cadena = req.params.sch;
+        const x = cadena.split('-');
+        let dni = await User.find({$and:[{Jornada:x[0]},{Nivel:x[1]}]});
         if(!dni){
                     res.status(404).json({msg: 'La busqueda no existe'})
         } res.json({dni});
+            
+    }catch(err){
+        console.log(err);
+        res.status(500).send('Hubo un error')
+
+    }
+}
+
+exports.searchNJP = async (req, res) => {
+    try{
+        const cadena = req.params.sch;
+        const x = cadena.split('-');
+        console.log(x[0]);
+        console.log(x[1]);
+        console.log(x[2]);
+        let dni = await User.find({$and:[{Nivel:x[0]},{Paralelo:x[1]},{Jornada:x[2]}]});
+        if(!dni){
+            res.status(404).json({msg: 'La busqueda no existe'})   
+        }
+        res.json({dni});
             
     }catch(err){
         console.log(err);

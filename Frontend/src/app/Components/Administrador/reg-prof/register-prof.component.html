@@ -143,49 +143,41 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="../tables/data.html" class="nav-link">
+                                    <a routerLink="/app/reg-grado" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>DataTables</p>
+                                        <p>Grados</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="../tables/jsgrid.html" class="nav-link">
+                                    <a routerLink="/app/reg-nivel" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>jsGrid</p>
+                                        <p>Niveles</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a routerLink="/app/reg-materia" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>materias</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a routerLink="/app/reg-paralelo" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Paralelos</p>
                                     </a>
                                 </li>
                             </ul>
                         </li>
 
                         <!-- MATRICULAS -->
-                        <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link">
+                        <li class="nav-item">
+                            <a routerLink="/app/reg-matricula" class="nav-link">
                                 <i class="nav-icon fas fa-table"></i>
                                 <p>
-                                    Matrículas
+                                    MATRICULA
                                     <i class="fas fa-angle-left right"></i>
                                 </p>
                             </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="../tables/simple.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Simple Tables</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="../tables/data.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>DataTables</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="../tables/jsgrid.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>jsGrid</p>
-                                    </a>
-                                </li>
-                            </ul>
                         </li>
 
                         <!-- CALIFICACIONES -->
@@ -871,7 +863,7 @@
                                             <div class="col-md-2">
                                                 <button type="button" (click)="RedirectCancel()"
                                                     class="btn btn-block bg-gradient-secondary"
-                                                    ><i class="fad fa-eraser"></i> Limpiar</button>
+                                                    ><i class="fad fa-eraser"></i> Nuevo</button>
                                             </div>
                                             <div class="col-md-6"></div>
                                             <div class="col-md-2">

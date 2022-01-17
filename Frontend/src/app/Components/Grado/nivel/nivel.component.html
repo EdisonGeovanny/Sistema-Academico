@@ -56,11 +56,11 @@
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                         data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
-             with font-awesome or any other icon font library -->
+         with font-awesome or any other icon font library -->
 
                         <!-- REGISTRO DE DATOS -->
-                        <li class="nav-item has-treeview">
-                            <a routerLink="/app/reg-prof" class="nav-link">
+                        <li class="nav-item has-treeview menu-open">
+                            <a routerLink="/app/reg-prof" class="nav-link active">
                                 <i class="nav-icon fas fa-edit"></i>
                                 <p>
                                     REGISTRO DE DATOS
@@ -101,8 +101,8 @@
                         </li>
 
                         <!-- USUARIOS -->
-                        <li class="nav-item has-treeview menu-open">
-                            <a routerLink="/app/aut-system" class="nav-link active">
+                        <li class="nav-item has-treeview">
+                            <a routerLink="/app/aut-system" class="nav-link">
                                 <i class="nav-icon fas fa-user-plus"></i>
                                 <p>
                                     USUARIO DE ACCESO
@@ -125,79 +125,27 @@
                             </ul>
                         </li>
 
-                        <li class="nav-item has-treeview">
-                            <a routerLink="/app/aut-system" class="nav-link">
-                                <i class="nav-icon fas fa-circle"></i>
-                                <p>
-                                    OTRO MENU 2 NIVELES
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a routerLink="/app/aut-system" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>dasd</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item has-treeview">
-                                    <a routerLink="/app/aut-system" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>
-                                            Crear Usuarios
-                                            <i class="right fas fa-angle-left"></i>
-                                        </p>
-                                    </a>
-                                    <ul class="nav nav-treeview">
-                                        <li class="nav-item">
-                                            <a href="#" class="nav-link">
-                                                <i class="far fa-dot-circle nav-icon"></i>
-                                                <p> Docente / Administrador</p>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="#" class="nav-link">
-                                                <i class="far fa-dot-circle nav-icon"></i>
-                                                <p>Estudiante</p>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="#" class="nav-link">
-                                                <i class="far fa-dot-circle nav-icon"></i>
-                                                <p>Level 3</p>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Level 2</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
 
                         <!-- ACADEMICO -->
                         <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link">
+                            <a routerLink="/app/reg-periodo" class="nav-link">
                                 <i class="nav-icon fas fa-table"></i>
                                 <p>
-                                    Académico
+                                    ACADÉMICO
                                     <i class="fas fa-angle-left right"></i>
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="../tables/simple.html" class="nav-link">
+                                    <a routerLink="/app/reg-grado" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Simple Tables</p>
+                                        <p>Grado</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="../tables/data.html" class="nav-link">
+                                    <a routerLink="/app/reg-periodo" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>DataTables</p>
+                                        <p>Periodo Lectivo</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
@@ -385,6 +333,7 @@
             <!-- /.sidebar -->
         </aside>
 
+
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
@@ -393,12 +342,12 @@
                     <div class="row mb-2">
 
                         <div class="col-sm-6">
-                            <h5><strong>DOCENTE - ADMINISTRADOR: {{Titulo}}</strong></h5>
+                            <h5><strong>{{Titulo}}</strong></h5>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item">USUARIO DE ACCESO</li>
-                                <li class="breadcrumb-item active"> {{Titulo}}</li>
+                                <li class="breadcrumb-item">{{subnivel}}</li>
+                                <li class="breadcrumb-item active">DATOS DE NIVEL</li>
                             </ol>
                         </div>
                     </div>
@@ -406,7 +355,6 @@
             </section>
 
             <!-- Main content -->
-            <!--////////////////////////////////Usuario Docente/Admin/////////////////////////-->
             <section class="content">
                 <div class="container-fluid">
 
@@ -425,201 +373,107 @@
                                 <!-- /.card-header -->
                                 <!-- form start -->
 
-                                <form class="card-body" role="form" [formGroup]="AccesoForm" (ngSubmit)="saveData()">
+                                <form class="card-body" role="form" [formGroup]="GradoForm" (ngSubmit)="saveData()">
                                     <div class="card-body">
-
+                                        <!--/////////////////////////////////////busqueda de ficha de Estudiante/////////////////////////////////////////-->
                                         <!--busqueda por dni, Nombre o Apellido-->
                                         <!--Encabezado de agregar usuario-->
                                         <div class="row">
-                                            <div class="col-md-7 h2">
-                                                <h2>Busqueda de Registro</h2>
+
+                                            <div class="col-md-12 h2">
+                                                <h2>{{name_n}}</h2>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <br><br>
+                                                        <div class="form-group">
+                                                            <label for="Nivel">Nivel:</label>
+                                                            <input type="text" class="form-control" name="Nivel"
+                                                                formControlName="Nivel" placeholder="1ro de Básica">
+                                                            <div class="text-danger"
+                                                                *ngIf="GradoForm.get('Nivel')?.hasError('required') && GradoForm.get('Nivel')?.touched">
+                                                                <span>El campo: Nivel <strong>es
+                                                                        obligatorio</strong></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <br><br>
+
+                                                <div class="card-footer">
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <button type="submit" value="Crear" [disabled]="GradoForm.invalid"
+                                                                class="btn btn-block bg-gradient-success "><i
+                                                                    class="fas fa-archive"></i> Guardar</button>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <button type="button" (click)="nuevoNivel()"
+                                                                class="btn btn-block bg-gradient-secondary"><i
+                                                                    class="fad fa-eraser"></i> Nuevo</button>
+                                                        </div>
+            
+                                                      
+                                                        <div class="col-md-4">
+                                                          
+                                                        </div>
+            
+                                                    </div>
+            
+                                                </div>
+            
+            
+
                                             </div>
                                             <div class="col-md-1">
 
                                             </div>
-                                            <div class="col-md-4 h2">
-                                                <h2>Verificación</h2>
-                                            </div>
-                                        </div>
-
-
-                                        <div class="row">
-                                            <!--Tabla de busqueda-->
-                                            <div class="col-md-7">
-
-                                                <div class="row">
-                                                    <div class="col-md-5">
-
-                                                        <div class="form-group">
-                                                            <select name="Combo" formControlName="Combo"
-                                                                class="form-control combo">
-                                                                ngModel="elegido2">
-                                                                <option *ngFor="let n2 of Buscar">{{ n2.name }}</option>
-                                                            </select>
-                                                        </div>
-
-                                                    </div>
-
-                                                    <div class="col-md-2">
-
-                                                        <div class="card-tools">
-                                                            <div class="input-group input-group-sm"
-                                                                style="width: 250px;">
-                                                                <input type="text" name="search"
-                                                                    formControlName="Search"
-                                                                    class="form-control float-right"
-                                                                    placeholder="Search">
-
-                                                                <div class="input-group-append">
-                                                                    <button type="button" (click)="search()"
-                                                                        class="btn btn-default"><i
-                                                                            class="fas fa-search"></i></button>
-                                                                </div>
-
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-
-
-                                                <div class="card-body table-responsive p-0" style="height: 150px;">
-                                                    <table *ngIf="data$.dni.length > 0"
-                                                        class="table table-hover table-head-fixed text-nowrap">
-                                                        <thead>
-                                                            <tr>
-                                                                <th>Cédula</th>
-                                                                <th>Nombre</th>
-                                                                <th>crear</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr *ngFor="let profesor of  data$.dni ">
-                                                                <td>{{profesor.DNI}}</td>
-                                                                <td>{{profesor.Apellidos}} {{profesor.Nombres}}</td>
-                                                                <td class="colum">
-                                                                    <i (click)="viewProf(profesor._id)"
-                                                                        class="fas fa-plus fa-lg text-success mr-2"></i>
-                                                                </td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                    <h5 style="text-align:start; margin-top: 10px;"
-                                                        *ngIf="data$.dni.length == 0">No hay registros para mostrar</h5>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-1"></div>
-
-                                            <div class="col-md-4">
-
-
-                                                <address>
-                                                    <strong> Cédula de identidad:</strong><br>{{profesor.DNI}}
-                                                </address>
-
-                                                <address>
-                                                    <strong> Nombre:</strong><br> {{profesor.Apellidos}}
-                                                    {{profesor.Nombres}}
-                                                </address>
-
-                                                <address>
-                                                    <strong> Fecha
-                                                        nacimiento:</strong><br>{{profesor.Fecha_nacimiento |
-                                                    date:'dd-MM-yyyy'}}
-                                                </address>
-
-
-                                                <!-- identidad -->
-
-                                            </div>
-                                        </div>
-
-
-
-
-
-                                        <hr>
-
-                                        <div class="row">
-                                            <div class="col-md-12 h2">
-                                                <h2>CREAR USUARIO DE ACCESO DOCENTE - ADMINISTRADOR</h2>
-                                            </div>
-
-                                        </div>
-                                        <!--Datos de Usuario-->
-                                        <div class="row">
-
-                                            <!-- Rol-->
-                                            <div class="col-md-3">
-                                                <div class="form-group">
-                                                    <label>Rol de Usuario</label>
-                                                    <select name="Rol" formControlName="Rol" class="form-control combo"
-                                                        ngModel="elegido1">
-                                                        <option *ngFor="let n of Rol">{{ n.name }}</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-
-                                            <!-- Usuario-->
                                             <div class="col-md-5">
-                                                <div class="form-group">
-                                                    <label for="Usuario">Nombre de usuario:</label>
-                                                    <input type="text" class="form-control" name="Usuario"
-                                                        formControlName="Usuario" placeholder="usuario">
-                                                    <div class="text-danger"
-                                                        *ngIf="AccesoForm.get('Usuario')?.hasError('required') && AccesoForm.get('Usuario')?.touched">
-                                                        <span>El campo Usuario <strong>es obligatorio</strong></span>
+                                                <div class="row">
+
+                                                    <div class="col-md-12">
+                                                        <div class="card-body table-responsive p-0"
+                                                            style="height: 250px;">
+                                                            <table *ngIf="niveles.dni.length > 0"
+                                                                class="table table-hover table-head-fixed text-nowrap">
+                                                                <thead class="h2">
+                                                                    <tr>
+                                                                        <th>Listado:</th>
+                                                                        <th></th>
+
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr *ngFor="let nv of  niveles.dni ">
+                                                                        <td>{{nv.Nivel}}</td>
+
+                                                                        <td class="colum">
+                                                                            <i (click)="obtenerEdit(nv._id)"
+                                                                                class="fas fa-edit fa-lg text-info mr-2"></i>
+                                                                                <i (click)="delete(nv._id)"
+                                                                                class="fas fa-trash-alt fa-lg text-danger"></i>
+                                                                        </td>
+
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                            <h5 style="text-align:start; margin-top: 10px;"
+                                                                *ngIf="niveles.dni.length == 0">No hay registros para
+                                                                mostrar
+                                                            </h5>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-
-                                            <!-- Contraseña-->
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label for="Contraseña">Contraseña de acceso:</label>
-                                                    <input type="password" class="form-control" name="Contraseña"
-                                                        formControlName="Contraseña" placeholder="contraseña">
-                                                    <div class="text-danger"
-                                                        *ngIf="AccesoForm.get('Contraseña')?.hasError('required') && AccesoForm.get('Contraseña')?.touched">
-                                                        <span>El campo de Apellidos <strong>es
-                                                                obligatorio</strong></span>
-                                                    </div>
-                                                </div>
-                                            </div>
-
                                         </div>
+
 
                                     </div>
                                     <!-- /.card-body -->
 
-                                    <div class="card-footer">
-                                        <div class="row">
-                                            <div class="col-md-2">
-                                                <button type="submit" value="Crear" [disabled]="AccesoForm.invalid"
-                                                    class="btn btn-block bg-gradient-success "> <i
-                                                        class="fas fa-archive"></i> Guardar</button>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <button type="button" (click)="RedirectCancel()"
-                                                    class="btn btn-block bg-gradient-secondary" value="Tabla"><i
-                                                        class="fad fa-eraser"></i> Nuevo</button>
-                                            </div>
-                                            <div class="col-md-6"></div>
-                                            <div class="col-md-2">
-                                                <button type="button" routerLink="/app/list-aut"
-                                                    class="btn btn-block bg-gradient-info" value="Tabla"><i
-                                                        class="fas fa-list"></i> Tabla</button>
-                                            </div>
-
-                                        </div>
-
-                                    </div>
-
-                                    <hr>
-                                    <!-- tabla de Usuarios Docente-->
-                                    <hr>
-
+                                
                                 </form>
                             </div>
                             <!-- /.card -->
@@ -630,6 +484,7 @@
                     <!-- /.row -->
                 </div><!-- /.container-fluid -->
             </section>
+
 
 
             <!-- /.content -->

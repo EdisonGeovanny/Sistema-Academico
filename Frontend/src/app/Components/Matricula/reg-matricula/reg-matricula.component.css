@@ -1,6 +1,5 @@
-.text-danger{
-    text-align: start;
-    margin-left: 7 px;
+.colum{
+    background-color: #F4F4F4;
 }
 .h2{
     background-color: #F4F4F4;
@@ -9,7 +8,7 @@
 .combo{
     background-color: #dbdbdb;
 }
-
-.centrar{
-    text-align:center;
+.text-danger{
+    text-align: start;
+    margin-left: 7 px;
 }

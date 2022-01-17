@@ -22,6 +22,11 @@ import { ViewFichaComponent } from './Ficha-Estudiante/view-ficha/view-ficha.com
 import { AutSystemEComponent } from './Autentificacion/aut-system-e/aut-system-e.component';
 import { ListAutProfComponent } from './Autentificacion/list-aut-prof/list-aut-prof.component';
 import { ListAutEstComponent } from './Autentificacion/list-aut-est/list-aut-est.component';
+import { GradoComponent } from './Grado/grado/grado.component';
+import { NivelComponent } from './Grado/nivel/nivel.component';
+import { ParaleloComponent } from './Grado/paralelo/paralelo.component';
+import { MateriaComponent } from './Grado/materia/materia.component';
+import { RegMatriculaComponent } from './Matricula/reg-matricula/reg-matricula.component';
 
 const routes: Routes = [
   //inicio
@@ -66,8 +71,18 @@ const routes: Routes = [
   { path: 'view-ficha/:id', component: ViewFichaComponent },
 
   //PERIDO-LECTIVO
-  { path: 'reg-periodo', component: RegPeriodoComponent },
-  { path: 'list-periodo', component: ListPeriodoComponent },
+  { path: 'reg-periodo', component: RegPeriodoComponent },//yes
+  { path: 'edit-periodo/:id', component: RegPeriodoComponent },//yes 
+  { path: 'list-periodo', component: ListPeriodoComponent },//yes
+
+  //Grado - paralelos, materias, Nivel, nivel-Materia
+  { path: 'reg-nivel', component: NivelComponent },//yes
+  { path: 'reg-grado', component: GradoComponent },//yes
+  { path: 'reg-paralelo', component: ParaleloComponent },//yes
+  { path: 'reg-materia', component: MateriaComponent },//yes
+  
+  //Matricula
+  { path: 'reg-matricula', component: RegMatriculaComponent },//
 
 ];
 

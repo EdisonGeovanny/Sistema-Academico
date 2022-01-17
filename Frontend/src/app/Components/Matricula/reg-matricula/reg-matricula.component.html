@@ -28,8 +28,8 @@
         </nav>
         <!-- /.navbar -->
 
-        <!-- Main Sidebar Container -->
-        <aside class="main-sidebar elevation-4 sidebar-dark-success">
+         <!-- Main Sidebar Container -->
+         <aside class="main-sidebar elevation-4 sidebar-dark-success">
             <!--navbar-orange,warning,pink,secundary,info,success,indigo,purple,vany,teal,cyan,--->
             <!-- Brand Logo -->
             <a routerLink="/app/reg-prof" class="brand-link navbar-warning">
@@ -59,8 +59,8 @@
              with font-awesome or any other icon font library -->
 
                         <!-- REGISTRO DE DATOS -->
-                        <li class="nav-item has-treeview">
-                            <a routerLink="/app/reg-prof" class="nav-link">
+                        <li class="nav-item has-treeview menu-open">
+                            <a routerLink="/app/reg-prof" class="nav-link active">
                                 <i class="nav-icon fas fa-edit"></i>
                                 <p>
                                     REGISTRO DE DATOS
@@ -101,8 +101,8 @@
                         </li>
 
                         <!-- USUARIOS -->
-                        <li class="nav-item has-treeview menu-open">
-                            <a routerLink="/app/aut-system" class="nav-link active">
+                        <li class="nav-item has-treeview">
+                            <a routerLink="/app/aut-system" class="nav-link">
                                 <i class="nav-icon fas fa-user-plus"></i>
                                 <p>
                                     USUARIO DE ACCESO
@@ -125,119 +125,59 @@
                             </ul>
                         </li>
 
-                        <li class="nav-item has-treeview">
-                            <a routerLink="/app/aut-system" class="nav-link">
-                                <i class="nav-icon fas fa-circle"></i>
-                                <p>
-                                    OTRO MENU 2 NIVELES
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a routerLink="/app/aut-system" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>dasd</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item has-treeview">
-                                    <a routerLink="/app/aut-system" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>
-                                            Crear Usuarios
-                                            <i class="right fas fa-angle-left"></i>
-                                        </p>
-                                    </a>
-                                    <ul class="nav nav-treeview">
-                                        <li class="nav-item">
-                                            <a href="#" class="nav-link">
-                                                <i class="far fa-dot-circle nav-icon"></i>
-                                                <p> Docente / Administrador</p>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="#" class="nav-link">
-                                                <i class="far fa-dot-circle nav-icon"></i>
-                                                <p>Estudiante</p>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="#" class="nav-link">
-                                                <i class="far fa-dot-circle nav-icon"></i>
-                                                <p>Level 3</p>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Level 2</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-
+                        
                         <!-- ACADEMICO -->
                         <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link">
+                            <a routerLink="/app/reg-periodo" class="nav-link">
                                 <i class="nav-icon fas fa-table"></i>
                                 <p>
-                                    Académico
+                                    ACADÉMICO
                                     <i class="fas fa-angle-left right"></i>
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="../tables/simple.html" class="nav-link">
+                                    <a routerLink="/app/reg-periodo" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Simple Tables</p>
+                                        <p>Periodo Lectivo</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="../tables/data.html" class="nav-link">
+                                    <a routerLink="/app/reg-grado" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>DataTables</p>
+                                        <p>Grados</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="../tables/jsgrid.html" class="nav-link">
+                                    <a routerLink="/app/reg-nivel" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>jsGrid</p>
+                                        <p>Niveles</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a routerLink="/app/reg-materia" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>materias</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a routerLink="/app/reg-paralelo" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Paralelos</p>
                                     </a>
                                 </li>
                             </ul>
                         </li>
 
                         <!-- MATRICULAS -->
-                        <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link">
+                        <li class="nav-item">
+                            <a routerLink="/app/reg-matricula" class="nav-link">
                                 <i class="nav-icon fas fa-table"></i>
                                 <p>
-                                    Matrículas
+                                    MATRICULA
                                     <i class="fas fa-angle-left right"></i>
                                 </p>
                             </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="../tables/simple.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Simple Tables</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="../tables/data.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>DataTables</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="../tables/jsgrid.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>jsGrid</p>
-                                    </a>
-                                </li>
-                            </ul>
                         </li>
 
                         <!-- CALIFICACIONES -->
@@ -385,6 +325,7 @@
             <!-- /.sidebar -->
         </aside>
 
+
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
@@ -393,7 +334,7 @@
                     <div class="row mb-2">
 
                         <div class="col-sm-6">
-                            <h5><strong>DOCENTE - ADMINISTRADOR: {{Titulo}}</strong></h5>
+                            <h5><strong>ESTUDIANTE: {{Titulo}}</strong></h5>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
@@ -494,11 +435,11 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr *ngFor="let profesor of  data$.dni ">
-                                                                <td>{{profesor.DNI}}</td>
-                                                                <td>{{profesor.Apellidos}} {{profesor.Nombres}}</td>
+                                                            <tr *ngFor="let estudiantes of  data$.dni ">
+                                                                <td>{{estudiantes.DNI}}</td>
+                                                                <td>{{estudiantes.Apellidos}} {{estudiantes.Nombres}}</td>
                                                                 <td class="colum">
-                                                                    <i (click)="viewProf(profesor._id)"
+                                                                    <i (click)="viewProf(estudiantes._id)"
                                                                         class="fas fa-plus fa-lg text-success mr-2"></i>
                                                                 </td>
                                                             </tr>
@@ -515,17 +456,17 @@
 
 
                                                 <address>
-                                                    <strong> Cédula de identidad:</strong><br>{{profesor.DNI}}
+                                                    <strong> Cédula de identidad:</strong><br>{{estudiante.DNI}}
                                                 </address>
 
                                                 <address>
-                                                    <strong> Nombre:</strong><br> {{profesor.Apellidos}}
-                                                    {{profesor.Nombres}}
+                                                    <strong> Nombre:</strong><br> {{estudiante.Apellidos}}
+                                                    {{estudiante.Nombres}}
                                                 </address>
 
                                                 <address>
                                                     <strong> Fecha
-                                                        nacimiento:</strong><br>{{profesor.Fecha_nacimiento |
+                                                        nacimiento:</strong><br>{{estudiante.Fecha_nacimiento |
                                                     date:'dd-MM-yyyy'}}
                                                 </address>
 
@@ -543,23 +484,14 @@
 
                                         <div class="row">
                                             <div class="col-md-12 h2">
-                                                <h2>CREAR USUARIO DE ACCESO DOCENTE - ADMINISTRADOR</h2>
+                                                <h2>CREAR USUARIO DE ACCESO  ESTUDIANTE</h2>
                                             </div>
 
                                         </div>
                                         <!--Datos de Usuario-->
                                         <div class="row">
 
-                                            <!-- Rol-->
-                                            <div class="col-md-3">
-                                                <div class="form-group">
-                                                    <label>Rol de Usuario</label>
-                                                    <select name="Rol" formControlName="Rol" class="form-control combo"
-                                                        ngModel="elegido1">
-                                                        <option *ngFor="let n of Rol">{{ n.name }}</option>
-                                                    </select>
-                                                </div>
-                                            </div>
+                                           <div class="col-md-1"></div>
 
                                             <!-- Usuario-->
                                             <div class="col-md-5">
@@ -588,6 +520,8 @@
                                                 </div>
                                             </div>
 
+                                            <div class="col-md-2"></div>
+
                                         </div>
 
                                     </div>
@@ -607,7 +541,7 @@
                                             </div>
                                             <div class="col-md-6"></div>
                                             <div class="col-md-2">
-                                                <button type="button" routerLink="/app/list-aut"
+                                                <button type="button" routerLink="/app/list-aut-e"
                                                     class="btn btn-block bg-gradient-info" value="Tabla"><i
                                                         class="fas fa-list"></i> Tabla</button>
                                             </div>

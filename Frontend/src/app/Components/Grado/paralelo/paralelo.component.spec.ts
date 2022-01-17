@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RegPeriodoComponent } from './reg-periodo.component';
+import { ParaleloComponent } from './paralelo.component';
 
-describe('RegPeriodoComponent', () => {
-  let component: RegPeriodoComponent;
-  let fixture: ComponentFixture<RegPeriodoComponent>;
+describe('ParaleloComponent', () => {
+  let component: ParaleloComponent;
+  let fixture: ComponentFixture<ParaleloComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ RegPeriodoComponent ]
+      declarations: [ ParaleloComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RegPeriodoComponent);
+    fixture = TestBed.createComponent(ParaleloComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

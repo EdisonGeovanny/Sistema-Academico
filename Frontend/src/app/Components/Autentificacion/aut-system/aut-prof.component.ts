@@ -430,8 +430,9 @@ export class AutProfComponent implements OnInit {
 
   RedirectCancel(): void {
     this.AccesoForm.reset();
+    this.router.navigateByUrl('/app/aut-system');
+    this.id=null;
   }
-
 
 }
 

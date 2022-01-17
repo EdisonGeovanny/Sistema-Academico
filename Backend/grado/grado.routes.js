@@ -6,5 +6,6 @@ module.exports = (router)=> {
     router.delete('/delete-grado/:id',Users.deleteGrado);// eliminar por id
     router.put('/update-grado/:id', Users.updateGrado);//editar por id
     router.get('/searchg/:sch', Users.searchJornada);  //busqueda
+    router.get('/searchg2/:sch', Users.searchNJP); 
  
 }

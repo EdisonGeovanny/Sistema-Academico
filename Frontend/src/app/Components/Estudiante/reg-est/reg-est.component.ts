@@ -237,6 +237,8 @@ export class RegEstComponent implements OnInit {
 
   RedirectCancel(): void {
     this.EstudianteForm.reset();
+    this.router.navigateByUrl('/app/reg-est');
+    this.id=null;
   }
 
   ///////////   ventanas de alerta    ///////////////////

@@ -324,7 +324,7 @@ saveData(){
         }
 
         swalWithBootstrapButtons.fire(
-          'Eliminado!',
+          'Actualizado!',
           'Tu registro fue actualizado.',
           'success'
         )
@@ -761,6 +761,10 @@ async ObtenerRepresentante() {
 
   RedirectCancel(): void {
     this.FichaForm.reset();
+    this.router.navigateByUrl('/app/reg-ficha');
+    this.id=null;
+    this.ide = null;
+    this.idr = null;
   }
 
 
