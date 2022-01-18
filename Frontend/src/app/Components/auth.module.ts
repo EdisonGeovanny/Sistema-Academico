@@ -34,6 +34,8 @@ import { NivelComponent } from './Grado/nivel/nivel.component';
 import { ParaleloComponent } from './Grado/paralelo/paralelo.component';
 import { MateriaComponent } from './Grado/materia/materia.component';
 import { RegMatriculaComponent } from './Matricula/reg-matricula/reg-matricula.component';
+import { ListMatriculaComponent } from './Matricula/list-matricula/list-matricula.component';
+import { ViewMatriculaComponent } from './Matricula/view-matricula/view-matricula.component';
 
 
 
@@ -65,7 +67,9 @@ import { RegMatriculaComponent } from './Matricula/reg-matricula/reg-matricula.c
     NivelComponent,
     ParaleloComponent,
     MateriaComponent,
-    RegMatriculaComponent
+    RegMatriculaComponent,
+    ListMatriculaComponent,
+    ViewMatriculaComponent
   ],
   imports: [
     CommonModule,

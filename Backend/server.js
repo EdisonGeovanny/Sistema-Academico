@@ -13,6 +13,7 @@ const nivel = require('./nivel/nivel.routes'); // nivel
 const paralelo = require('./paralelo/paralelo.routes'); // paralelo
 const materia = require('./materia/materia.routes'); // Materia
 const nivel_materia = require('./nivel-materia/nivel-materia.routes'); // Nivel y Materia
+const matricula = require('./matricula/matricula.routes'); // Nivel y Materia
 
 
 const express = require('express');
@@ -43,6 +44,7 @@ nivel(router); // nivel
 paralelo(router); // paralelo
 materia(router); // Materia
 nivel_materia(router) //nivel-materia
+matricula(router) //matricula
 
 router.get('/', (req, res)=>{
     res.send('Bienvenido');

@@ -22,6 +22,55 @@ export class AuthService {
 
   constructor(private httpClient: HttpClient) { this.token = ''; }
 
+  /////////////////////////// MATRICULA ///////////////////////////////////////
+
+ //registrar Grado
+ registerMatricula(user: any): Observable<any> {
+  return this.httpClient.post<any>(`${this.AUTH_SERVER}/reg-matricula`,
+    user).pipe(tap(
+      (res: any) => {
+        if (res) {
+          // GUARDAR TOKEN
+          //console.log(res.dataUser);
+        }
+      })
+    );
+}
+
+//obtener todos los Grado
+getMatriculaAll(): Observable<any> {
+  return this.httpClient.get<any>(`${this.AUTH_SERVER}/list-matricula`);
+}
+
+ //obtene rGrado por id
+ obtenerMatriculaId(id: string): Observable<any> {
+  return this.httpClient.get(`${this.AUTH_SERVER}/list-matricula/${id}`)
+}
+
+
+//eliminiar Grado por id
+deleteMatricula(id: string): Observable<any> {
+  return this.httpClient.delete(`${this.AUTH_SERVER}/delete-matricula/${id}`)
+}
+
+//actualizar datos
+updateMatricula(id: string, user: any): Observable<any> {
+  return this.httpClient.put<any>(`${this.AUTH_SERVER}/update-matricula/${id}`,
+    user).pipe(tap(
+      (res: any) => {
+        if (res) {
+          // GUARDAR TOKEN
+          console.log(res.dataUser);
+        }
+      })
+      );
+    }
+
+  //obtener por nivel.paralelo.jornada
+  obtenerMatriculaporEstudiante(sch: string): Observable<any> {
+    return this.httpClient.get(`${this.AUTH_SERVER}/searchma/${sch}`)
+    }
+  
 
 
   //////////////////////////////// GRADO //////////////////////////////////////

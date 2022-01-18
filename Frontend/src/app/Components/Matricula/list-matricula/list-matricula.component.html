@@ -366,213 +366,109 @@
                                 <!-- /.card-header -->
                                 <!-- form start -->
 
-                                <form class="card-body" role="form" [formGroup]="AccesoForm" (ngSubmit)="saveData()">
+                                <form class="card-body" role="form" [formGroup]="AccesoForm" >
                                     <div class="card-body">
 
-                                        <!--busqueda por dni, Nombre o Apellido-->
-                                        <!--Encabezado de agregar usuario-->
+                                        <!--Datos de Usuario-->
                                         <div class="row">
                                             <div class="col-md-12 h2">
-                                                <h2>MATRICULAR A ESTUDIANTE</h2>
+                                                <h2>LISTA DE MATRICULAS</h2>
                                             </div>
-                                            <div class="col-md-7 h2">
-                                                <h2>Busqueda de Registro</h2>
+                                           
+                                            <div class="col-md-12">
+                                               
                                             </div>
-                                            <div class="col-md-1">
 
-                                            </div>
-                                            <div class="col-md-4 h2">
-                                                <h2>Verificación</h2>
-                                            </div>
-                                        </div>
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <select name="Combo" formControlName="Combo"
+                                                        class="form-control combo" style="width:160px;">
+                                                        ngModel="elegido2">
+                                                        <option *ngFor="let n2 of Buscar">{{ n2.name }}</option>
+                                                    </select>
 
-
-                                        <div class="row">
-                                            <!--Tabla de busqueda-->
-                                            <div class="col-md-7">
-
-                                                <div class="row">
-                                                    <div class="col-md-5">
-
-                                                        <div class="form-group">
-                                                            <select name="Combo" formControlName="Combo"
-                                                                class="form-control combo"
-                                                                ngModel="elegido2">
-                                                                <option *ngFor="let n2 of Buscar">{{ n2.name }}</option>
-                                                            </select>
-                                                        </div>
-
-                                                    </div>
-
-                                                    <div class="col-md-2">
-
-                                                        <div class="card-tools">
-                                                            <div class="input-group input-group-sm"
-                                                                style="width: 250px;">
-                                                                <input type="text" name="search"
-                                                                    formControlName="Search"
-                                                                    class="form-control float-right"
-                                                                    placeholder="Search">
-
-                                                                <div class="input-group-append">
-                                                                    <button type="button" (click)="search()"
-                                                                        class="btn btn-default"><i
-                                                                            class="fas fa-search"></i></button>
-                                                                </div>
-
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-
-
-                                                <div class="card-body table-responsive p-0" style="height: 150px;">
-                                                    <table *ngIf="data$.dni.length > 0"
-                                                        class="table table-hover table-head-fixed text-nowrap">
-                                                        <thead>
-                                                            <tr>
-                                                                <th>Cédula</th>
-                                                                <th>Nombre</th>
-                                                                <th>crear</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr *ngFor="let estudiantes of  data$.dni ">
-                                                                <td>{{estudiantes.DNI}}</td>
-                                                                <td>{{estudiantes.Apellidos}} {{estudiantes.Nombres}}</td>
-                                                                <td class="colum">
-                                                                    <i (click)="viewProf(estudiantes._id)"
-                                                                        class="fas fa-plus fa-lg text-success mr-2"></i>
-                                                                </td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                    <h5 style="text-align:start; margin-top: 10px;"
-                                                        *ngIf="data$.dni.length == 0">No hay registros para mostrar</h5>
                                                 </div>
                                             </div>
 
                                             <div class="col-md-1"></div>
 
                                             <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <div class="card-tools">
+                                                        <div class="input-group input-group-default ">
+                                                            <input type="text" name="search" formControlName="Search"
+                                                                class="form-control float-left" placeholder="Search">
 
+                                                            <div class="input-group-append">
+                                                                <button type="button" (click)="search()"
+                                                                    class="btn btn-default"><i
+                                                                        class="fas fa-search"></i></button>
+                                                            </div>
 
-                                                <address>
-                                                    <strong> Cédula de identidad:</strong><br>{{estudiante.DNI}}
-                                                </address>
-
-                                                <address>
-                                                    <strong> Nombre:</strong><br> {{estudiante.Apellidos}}
-                                                    {{estudiante.Nombres}}
-                                                </address>
-
-                                                <address>
-                                                    <strong> Fecha
-                                                        nacimiento:</strong><br>{{estudiante.Fecha_nacimiento |
-                                                    date:'dd-MM-yyyy'}}
-                                                </address>
-
-
-                                                <!-- identidad -->
-
-                                            </div>
-                                        </div>
-
-                                        <hr>
-
-                                        <div class="row">
-                                            <div class="col-md-12 h2">
-                                                <h2>ASIGNAR GRADO</h2>
-                                            </div>
-
-                                        </div>
-                                        <!--Datos de Usuario-->
-                                        <div class="row">
-
-                                            <!-- Usuario-->
-                                            <div class="col-md-3">
-
-                                                <div class="form-group"> 
-                                                    <label>Seleccione el periodo lectivo:</label>    
-                                                    <select class="form-control combo" name="Periodo"
-                                                        formControlName="Periodo" [(ngModel)]="elegir4">
-                                                        <option *ngFor="let per1 of Per">{{ per1.name }}</option>
-                                                    </select>
-                                                </div>
-                                               
-                                            </div>
-
-                                            <div class="col-md-3">
-                                                <div class="form-group"> 
-                                                    <label>Seleccione el nivel:</label>    
-                                                    <select class="form-control combo" name="Nivel"
-                                                        formControlName="Nivel" [(ngModel)]="elegir1">
-                                                        <option *ngFor="let n1 of N">{{ n1.name }}</option>
-                                                    </select>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
 
-                                            <div class="col-md-3">
-                                                <div class="form-group">  
-                                                    <label>Seleccione el paralelo:</label>   
-                                                    <select class="form-control combo" name="Paralelo"
-                                                        formControlName="Paralelo" [(ngModel)]="elegir2">
-                                                        <option *ngFor="let p1 of P">{{ p1.name }}</option>
-                                                    </select>
+                                            <div class="col-md-1"></div>
+
+                                            <div class="col-md-2">
+                                                <button class="btn btn-block bg-gradient-info"
+                                                    (click)="ObtenerMatricula()"><i class="fas fa-list"></i>
+                                                    Listar </button>
+                                            </div>
+
+                                            <div class="col-md-2">
+                                                <button class="btn btn-block bg-gradient-success"
+                                                    routerLink="/app/reg-matricula"><i class="fas fa-users-medical"></i>
+                                                    Nuevo </button>
+                                            </div>
+
+                                            <!-- Contraseña-->
+                                            <div class="col-md-12">
+                                                <div class="card-body table-responsive p-0" style="height: 350px;">
+                                                    <table *ngIf="datam$.dni.length > 0"
+                                                        class="table table-hover table-head-fixed text-nowrap">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Identificación</th>
+                                                                <th>Nombre</th>
+                                                                <th>Periodo lectivo</th>
+                                                                <th>Grado</th>
+                                                                <th>Jornada</th>
+                                                                <th></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr *ngFor="let mat of  datam$.dni ">
+                                                                <td>{{mat.DNI}}</td>
+                                                                <td>{{mat.Apellidos}} {{mat.Nombres}}</td>
+                                                                <td>{{mat.Periodo}}</td>
+                                                                <td>{{mat.Nivel}} {{mat.Paralelo}} </td>
+                                                                <td>{{mat.Jornada}}</td>
+
+                                                                <td class="colum">
+                                                                    <i (click)="View(mat._id)"
+                                                                        class="fas fa-eye fa-lg text-warning mr-2"></i>
+                                                                        <i (click)="Update(mat.Estudiante)"
+                                                                        class="fas fa-edit fa-lg text-info mr-2"></i>
+                                                                        <i (click)="Delete(mat._id)"
+                                                                        class="fas fa-trash-alt fa-lg text-danger"></i>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <h5 style="text-align:start; margin-top: 10px;"
+                                                        *ngIf="datam$.dni.length == 0">No hay registros para mostrar</h5>
                                                 </div>
                                             </div>
-
-                                            <div class="col-md-3">
-
-                                                <div class="form-group">     
-                                                    <label>Seleccione la jornada de estudio:</label>
-                                                    <select class="form-control combo" name="Jornada"
-                                                        formControlName="Jornada" [(ngModel)]="elegir3">
-                                                        <option *ngFor="let j1 of J">{{ j1.name }}</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group form-check form-switch">
-                                                <input class="form-check-input" type="checkbox"
-                                                    formControlName="Estado" name="Estado"  value="true">
-                                                <label for="Estado">Habilitar Matricula</label>
-                                            </div>
-                                          
 
                                         </div>
 
                                     </div>
                                     <!-- /.card-body -->
 
-                                    <div class="card-footer">
-                                        <div class="row">
-                                            <div class="col-md-2">
-                                                <button type="submit" value="Crear" [disabled]="AccesoForm.invalid"
-                                                    class="btn btn-block bg-gradient-success "> <i
-                                                        class="fas fa-archive"></i> Guardar</button>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <button type="button" (click)="RedirectCancel()"
-                                                    class="btn btn-block bg-gradient-secondary" value="Tabla"><i
-                                                        class="fad fa-eraser"></i> Nuevo</button>
-                                            </div>
-                                            <div class="col-md-6"></div>
-                                            <div class="col-md-2">
-                                                <button type="button" routerLink="/app/list-matricula"
-                                                    class="btn btn-block bg-gradient-info" value="Tabla"><i
-                                                        class="fas fa-list"></i> Tabla</button>
-                                            </div>
-
-                                        </div>
-
-                                    </div>
-
-                                    <hr>
-                                    <!-- tabla de Usuarios Docente-->
-                                    <hr>
-
+                                   
                                 </form>
                             </div>
                             <!-- /.card -->

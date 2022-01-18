@@ -27,6 +27,8 @@ import { NivelComponent } from './Grado/nivel/nivel.component';
 import { ParaleloComponent } from './Grado/paralelo/paralelo.component';
 import { MateriaComponent } from './Grado/materia/materia.component';
 import { RegMatriculaComponent } from './Matricula/reg-matricula/reg-matricula.component';
+import { ListMatriculaComponent } from './Matricula/list-matricula/list-matricula.component';
+import { ViewMatriculaComponent } from './Matricula/view-matricula/view-matricula.component';
 
 const routes: Routes = [
   //inicio
@@ -82,8 +84,10 @@ const routes: Routes = [
   { path: 'reg-materia', component: MateriaComponent },//yes
   
   //Matricula
-  { path: 'reg-matricula', component: RegMatriculaComponent },//
-
+  { path: 'reg-matricula', component: RegMatriculaComponent },//yes
+  { path: 'edit-matricula/:id', component: RegMatriculaComponent },//yes
+  { path: 'list-matricula', component: ListMatriculaComponent },//yes
+  { path: 'view-matricula/:id', component: ViewMatriculaComponent },//
 ];
 
 @NgModule({

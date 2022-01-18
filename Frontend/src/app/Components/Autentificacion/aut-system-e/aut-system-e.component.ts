@@ -286,7 +286,6 @@ export class AutSystemEComponent implements OnInit {
   // editar para agregar a _id de Profesor
   viewProf(id: any) {
   this.id = id;
-  console.log("id :"+this.id)
   this.esEditar();
   }
 
@@ -406,7 +405,10 @@ export class AutSystemEComponent implements OnInit {
   RedirectCancel(): void {
     this.AccesoForm.reset();
     this.router.navigateByUrl('/app/aut-system-e');
-    this.id=null;
+    this.id="";
+    this.aux= this.aRouter.snapshot.paramMap.get('id');
+
+
   }
 
 
