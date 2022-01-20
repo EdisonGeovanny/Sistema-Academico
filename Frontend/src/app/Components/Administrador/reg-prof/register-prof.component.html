@@ -28,8 +28,8 @@
         </nav>
         <!-- /.navbar -->
 
-         <!-- Main Sidebar Container -->
-         <aside class="main-sidebar elevation-4 sidebar-dark-success">
+        <!-- Main Sidebar Container -->
+        <aside class="main-sidebar elevation-4 sidebar-dark-success">
             <!--navbar-orange,warning,pink,secundary,info,success,indigo,purple,vany,teal,cyan,--->
             <!-- Brand Logo -->
             <a routerLink="/app/reg-prof" class="brand-link navbar-warning">
@@ -38,7 +38,7 @@
                     class="brand-image img-circle elevation-3" style="opacity: .8">
                 <span class="brand-text text-secondary">ADMINISTRADOR</span>
             </a>
-
+    
             <!-- Sidebar -->
             <div class="sidebar">
                 <!-- Sidebar user (optional) -->
@@ -50,14 +50,14 @@
                         <a href="(click)=RedirectName()" class="d-block">Alexander Pierce</a>
                     </div>
                 </div>
-
+    
                 <!-- Sidebar Menu -->
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                         data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
              with font-awesome or any other icon font library -->
-
+    
                         <!-- REGISTRO DE DATOS -->
                         <li class="nav-item has-treeview menu-open">
                             <a routerLink="/app/reg-prof" class="nav-link active">
@@ -67,8 +67,8 @@
                                     <i class="fas fa-angle-left right "></i>
                                 </p>
                             </a>
-
-
+    
+    
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
                                     <a routerLink="/app/reg-prof" class="nav-link">
@@ -82,30 +82,30 @@
                                         <p>Estudiante</p>
                                     </a>
                                 </li>
-
+    
                                 <li class="nav-item">
                                     <a routerLink="/app/reg-rep" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Representante</p>
                                     </a>
                                 </li>
-
+    
                                 <li class="nav-item">
                                     <a routerLink="/app/reg-ficha" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Ficha Estudiantil</p>
                                     </a>
                                 </li>
-
+    
                             </ul>
                         </li>
-
+    
                         <!-- USUARIOS -->
                         <li class="nav-item has-treeview">
                             <a routerLink="/app/aut-system" class="nav-link">
                                 <i class="nav-icon fas fa-user-plus"></i>
                                 <p>
-                                    USUARIO DE ACCESO
+                                    CREAR USUARIO
                                     <i class="fas fa-angle-left right"></i>
                                 </p>
                             </a>
@@ -124,14 +124,14 @@
                                 </li>
                             </ul>
                         </li>
-
+    
                         
                         <!-- ACADEMICO -->
                         <li class="nav-item has-treeview">
                             <a routerLink="/app/reg-periodo" class="nav-link">
                                 <i class="nav-icon fas fa-table"></i>
                                 <p>
-                                    ACADÉMICO
+                                    DATOS DE AULA
                                     <i class="fas fa-angle-left right"></i>
                                 </p>
                             </a>
@@ -168,32 +168,46 @@
                                 </li>
                             </ul>
                         </li>
-
+    
                         <!-- MATRICULAS -->
                         <li class="nav-item">
                             <a routerLink="/app/reg-matricula" class="nav-link">
                                 <i class="nav-icon fas fa-table"></i>
                                 <p>
-                                    MATRICULA
-                                    <i class="fas fa-angle-left right"></i>
-                                </p>
-                            </a>
-                        </li>
-
-                        <!-- CALIFICACIONES -->
-                        <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-table"></i>
-                                <p>
-                                    Calificaciones
+                                    ACADÉMICO
                                     <i class="fas fa-angle-left right"></i>
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="../tables/simple.html" class="nav-link">
+                                    <a routerLink="/app/reg-matricula" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Simple Tables</p>
+                                        <p>Matricula de Estudiantes</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a routerLink="/app/reg-dist" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Distributivo de Docentes</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+    
+                        <!-- CALIFICACIONES -->
+                        <li class="nav-item has-treeview">
+                            <a routerLink="/app/active-nota" class="nav-link">
+                                <i class="nav-icon fas fa-table"></i>
+                                <p>
+                                    CALIFICACIONES
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a routerLink="/app/active-nota" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Activar ingreso de notas</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
@@ -210,7 +224,7 @@
                                 </li>
                             </ul>
                         </li>
-
+    
                         <!-- HORARIO -->
                         <li class="nav-item has-treeview">
                             <a href="#" class="nav-link">
@@ -241,8 +255,8 @@
                                 </li>
                             </ul>
                         </li>
-
-
+    
+    
                         <li class="nav-header">MISCELLANEOUS</li>
                         <li class="nav-item">
                             <a href="https://adminlte.io/docs/3.0" class="nav-link">
@@ -250,7 +264,7 @@
                                 <p>Documentation</p>
                             </a>
                         </li>
-
+    
                         <li class="nav-header">MULTI LEVEL EXAMPLE</li>
                         <li class="nav-item">
                             <a href="#" class="nav-link">
@@ -258,7 +272,7 @@
                                 <p>Level 1</p>
                             </a>
                         </li>
-
+    
                         <li class="nav-item has-treeview">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-circle"></i>
@@ -311,7 +325,7 @@
                                 </li>
                             </ul>
                         </li>
-
+    
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="fas fa-circle nav-icon"></i>

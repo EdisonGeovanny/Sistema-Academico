@@ -364,7 +364,6 @@ saveData(){
   borrar(nombre: any) {
   
     this.i.forEach((element: any, index:any, array:any) => {
-      this
       if(nombre == element){
         this.hermanos.dato.splice(index, 1);
         this.i.splice(index, 1);

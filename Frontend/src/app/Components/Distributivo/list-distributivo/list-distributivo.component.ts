@@ -5,20 +5,20 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
-  selector: 'app-list-matricula',
-  templateUrl: './list-matricula.component.html',
-  styleUrls: ['./list-matricula.component.css']
+  selector: 'app-list-distributivo',
+  templateUrl: './list-distributivo.component.html',
+  styleUrls: ['./list-distributivo.component.css']
 })
-export class ListMatriculaComponent implements OnInit {
+export class ListDistributivoComponent implements OnInit {
   public datam$: any = {
     dni: []
   }
 
-  public matriculas: any = {
+  public distributivos: any = {
     dni: []
   }
 
-  public estudiantes: any = {
+  public docentes: any = {
     dni: []
   }
 
@@ -30,14 +30,13 @@ export class ListMatriculaComponent implements OnInit {
   AccesoForm: FormGroup;
 
 
-   
      //Nombramiento
    Buscar = [{ name: "N° identificación" },
    { name: "Apellidos" }, { name: "Nombres" }];
    elegido2: string = "";
    
 //titulo
-Titulo = 'MATRICULAS';
+Titulo = 'DISTRIBUTIVO DOCENCIAL';
 id: string | null;
 
 //combobox grado
@@ -67,62 +66,66 @@ this.id = null
 
 
   ngOnInit(): void {
-    this.ObtenerMatricula();
+    this.ObtenerDistributivo();
   }
-
   
+   
   //Obtener datos para Editar
-  async ObtenerMatricula() {
+  async ObtenerDistributivo() {
     const eliminados = this.datam$.dni.splice(0, this.datam$.dni.length + 1);
     const eliminados2 = this.busqueda.dni.splice(0, this.busqueda.dni.length + 1);
 
     const Obtenerm = new Promise(async (resolve, reject) => {
-      await this.authService.getMatriculaAll().subscribe(data => {
+      await this.authService.getDistributivoAll().subscribe(data => {
         resolve(data)
       })
     });
 
-    this.matriculas = await Obtenerm.then(res => res);
-    console.log(this.matriculas)
+    this.distributivos = await Obtenerm.then(res => res);
+    console.log(this.distributivos)
 
     const Obtenere = new Promise(async (resolve, reject) => {
-      await this.authService.getEstAll().subscribe(data => {
+      await this.authService.getProfAll().subscribe(data => {
         resolve(data)
       })
     });
 
-    this.estudiantes = await Obtenere.then(res => res);
-    console.log(this.estudiantes)
+    this.docentes = await Obtenere.then(res => res);
+    console.log(this.docentes)
 
 
-    this.matriculas.dni.forEach((matricula: any, index: any, array: any) => {
-      this.estudiantes.dni.forEach((estudiante: any, index: any, array: any) => {
-        if (matricula.Estudiante[0] == estudiante._id) {
+    this.distributivos.dni.forEach((d: any, index: any, array: any) => {
+      this.docentes.dni.forEach((p: any, index: any, array: any) => {
+        if (d.Docente[0] == p._id) {
 
           this.datam$.dni.push({
-            _id: matricula._id,
-            Estudiante:estudiante._id,
-            Nombres: estudiante.Nombres,
-            Apellidos: estudiante.Apellidos,
-            DNI: estudiante.DNI,
-            Periodo: matricula.Periodo,
-            Nivel: matricula.Nivel,
-            Paralelo: matricula.Paralelo,
-            Jornada: matricula.Jornada,
-            Estado: matricula.Estado
+            _id: d._id,
+            Docente:p._id,
+            Nombres: p.Nombres,
+            Apellidos: p.Apellidos,
+            DNI: p.DNI,
+            Periodo: d.Periodo,
+            Nivel: d.Nivel,
+            Paralelo: d.Paralelo,
+            Jornada: d.Jornada,
+            Area:d.Area,
+            Asignatura: d.Asignatura,
+            Estado: d.Estado
           });
 
           this.busqueda.dni.push({
-            _id: matricula._id,
-            Estudiante:estudiante._id,
-            Nombres: estudiante.Nombres,
-            Apellidos: estudiante.Apellidos,
-            DNI: estudiante.DNI,
-            Periodo: matricula.Periodo,
-            Nivel: matricula.Nivel,
-            Paralelo: matricula.Paralelo,
-            Jornada: matricula.Jornada,
-            Estado: matricula.Estado
+            _id: d._id,
+            Docente:p._id,
+            Nombres: p.Nombres,
+            Apellidos: p.Apellidos,
+            DNI: p.DNI,
+            Periodo: d.Periodo,
+            Nivel:d.Nivel,
+            Paralelo: d.Paralelo,
+            Jornada:d.Jornada,
+            Area:d.Area,
+            Asignatura: d.Asignatura,
+            Estado: d.Estado
           });
         }
 
@@ -216,13 +219,13 @@ console.log(this.busqueda)
 
   //Matricula
   View(id: any) {
-    this.router.navigateByUrl('/app/view-matricula/'+id);
+    this.router.navigateByUrl('/app/view-dist/'+id);
     
     }
   
     Update(id: any) {
       console.log(id);
-      this.router.navigateByUrl('/app/edit-matricula/'+id);
+      this.router.navigateByUrl('/app/edit-dist/'+id);
       }
   
     //borrar
@@ -246,8 +249,8 @@ console.log(this.busqueda)
     }).then((result) => {
       if (result.isConfirmed) {
 
-        this.authService.deleteMatricula(id).subscribe(data => {
-          this.ObtenerMatricula();
+        this.authService.deleteDistributivo(id).subscribe(data => {
+          this.ObtenerDistributivo();
         },error => {
           console.log(error);
         })

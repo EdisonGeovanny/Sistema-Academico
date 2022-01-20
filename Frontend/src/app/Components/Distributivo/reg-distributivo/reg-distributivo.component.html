@@ -1,3 +1,4 @@
+
 <body class="hold-transition sidebar-mini">
     <div class="wrapper">
         <!-- Navbar -->
@@ -28,8 +29,8 @@
         </nav>
         <!-- /.navbar -->
 
-         <!-- Main Sidebar Container -->
-         <aside class="main-sidebar elevation-4 sidebar-dark-success">
+        <!-- Main Sidebar Container -->
+        <aside class="main-sidebar elevation-4 sidebar-dark-success">
             <!--navbar-orange,warning,pink,secundary,info,success,indigo,purple,vany,teal,cyan,--->
             <!-- Brand Logo -->
             <a routerLink="/app/reg-prof" class="brand-link navbar-warning">
@@ -125,13 +126,13 @@
                             </ul>
                         </li>
 
-                        
+
                         <!-- ACADEMICO -->
                         <li class="nav-item has-treeview">
                             <a routerLink="/app/reg-periodo" class="nav-link">
                                 <i class="nav-icon fas fa-table"></i>
                                 <p>
-                                    AULA
+                                    ACADÉMICO
                                     <i class="fas fa-angle-left right"></i>
                                 </p>
                             </a>
@@ -174,32 +175,18 @@
                             <a routerLink="/app/reg-matricula" class="nav-link">
                                 <i class="nav-icon fas fa-table"></i>
                                 <p>
-                                    ACADÉMICO
+                                    MATRICULA
                                     <i class="fas fa-angle-left right"></i>
                                 </p>
                             </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a routerLink="/app/reg-matricula" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Matricula de Estudiantes</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a routerLink="/app/reg-dist" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Distributivo de Docentes</p>
-                                    </a>
-                                </li>
-                            </ul>
                         </li>
 
                         <!-- CALIFICACIONES -->
                         <li class="nav-item has-treeview">
-                            <a routerLink="/app/reg-nota" class="nav-link">
+                            <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-table"></i>
                                 <p>
-                                    CALIFICACIONES
+                                    Calificaciones
                                     <i class="fas fa-angle-left right"></i>
                                 </p>
                             </a>
@@ -387,7 +374,7 @@
                                         <!--Encabezado de agregar usuario-->
                                         <div class="row">
                                             <div class="col-md-12 h2">
-                                                <h2>MATRICULAR A ESTUDIANTE</h2>
+                                                <h2>ASIGNAR DOCENTE</h2>
                                             </div>
                                             <div class="col-md-7 h2">
                                                 <h2>Busqueda de Registro</h2>
@@ -410,8 +397,7 @@
 
                                                         <div class="form-group">
                                                             <select name="Combo" formControlName="Combo"
-                                                                class="form-control combo"
-                                                                ngModel="elegido2">
+                                                                class="form-control combo" ngModel="elegido2">
                                                                 <option *ngFor="let n2 of Buscar">{{ n2.name }}</option>
                                                             </select>
                                                         </div>
@@ -454,9 +440,10 @@
                                                         <tbody>
                                                             <tr *ngFor="let estudiantes of  data$.dni ">
                                                                 <td>{{estudiantes.DNI}}</td>
-                                                                <td>{{estudiantes.Apellidos}} {{estudiantes.Nombres}}</td>
+                                                                <td>{{estudiantes.Apellidos}} {{estudiantes.Nombres}}
+                                                                </td>
                                                                 <td class="colum">
-                                                                    <i (click)="viewProf(estudiantes._id)"
+                                                                    <i (click)="view(estudiantes._id)"
                                                                         class="fas fa-plus fa-lg text-success mr-2"></i>
                                                                 </td>
                                                             </tr>
@@ -473,17 +460,17 @@
 
 
                                                 <address>
-                                                    <strong> Cédula de identidad:</strong><br>{{estudiante.DNI}}
+                                                    <strong> Cédula de identidad:</strong><br>{{docente.DNI}}
                                                 </address>
 
                                                 <address>
-                                                    <strong> Nombre:</strong><br> {{estudiante.Apellidos}}
-                                                    {{estudiante.Nombres}}
+                                                    <strong> Nombre:</strong><br> {{docente.Apellidos}}
+                                                    {{docente.Nombres}}
                                                 </address>
 
                                                 <address>
                                                     <strong> Fecha
-                                                        nacimiento:</strong><br>{{estudiante.Fecha_nacimiento |
+                                                        nacimiento:</strong><br>{{docente.Fecha_nacimiento |
                                                     date:'dd-MM-yyyy'}}
                                                 </address>
 
@@ -497,7 +484,7 @@
 
                                         <div class="row">
                                             <div class="col-md-12 h2">
-                                                <h2>ASIGNAR GRADO</h2>
+                                                <h2>ASIGNAR DISTRIBUTIVO</h2>
                                             </div>
 
                                         </div>
@@ -507,53 +494,202 @@
                                             <!-- Usuario-->
                                             <div class="col-md-3">
 
-                                                <div class="form-group"> 
-                                                    <label>Seleccione el periodo lectivo:</label>    
+                                                <div class="form-group">
+                                                    <label>Seleccione el periodo lectivo:</label>
                                                     <select class="form-control combo" name="Periodo"
                                                         formControlName="Periodo" [(ngModel)]="elegir4">
                                                         <option *ngFor="let per1 of Per">{{ per1.name }}</option>
                                                     </select>
                                                 </div>
-                                               
-                                            </div>
 
-                                            <div class="col-md-3">
-                                                <div class="form-group"> 
-                                                    <label>Seleccione el nivel:</label>    
+                                                <div class="form-group">
+                                                    <label>Seleccione el nivel:</label>
                                                     <select class="form-control combo" name="Nivel"
-                                                        formControlName="Nivel" [(ngModel)]="elegir1">
+                                                        formControlName="Nivel" [(ngModel)]="elegir1"
+                                                        (change)="onSelect($event)">
                                                         <option *ngFor="let n1 of N">{{ n1.name }}</option>
                                                     </select>
                                                 </div>
-                                            </div>
 
-                                            <div class="col-md-3">
-                                                <div class="form-group">  
-                                                    <label>Seleccione el paralelo:</label>   
-                                                    <select class="form-control combo" name="Paralelo"
-                                                        formControlName="Paralelo" [(ngModel)]="elegir2">
-                                                        <option *ngFor="let p1 of P">{{ p1.name }}</option>
-                                                    </select>
+
+                                                <div class="form-group">
+                                                    <label for="Area">Ingrese área de la asignatura:</label>
+                                                    <input type="text" class="form-control" name="Area"
+                                                        formControlName="Area" readonly>
                                                 </div>
+
                                             </div>
 
                                             <div class="col-md-3">
-
-                                                <div class="form-group">     
+                                                <div class="form-group">
                                                     <label>Seleccione la jornada de estudio:</label>
                                                     <select class="form-control combo" name="Jornada"
                                                         formControlName="Jornada" [(ngModel)]="elegir3">
                                                         <option *ngFor="let j1 of J">{{ j1.name }}</option>
                                                     </select>
                                                 </div>
+
+                                                <div class="form-group">
+                                                    <label>Seleccione el paralelo:</label>
+                                                    <select class="form-control combo" name="Paralelo"
+                                                        formControlName="Paralelo" [(ngModel)]="elegir2">
+                                                        <option *ngFor="let p1 of P">{{ p1.name }}</option>
+                                                    </select>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="Asignatura">Asignatura:</label>
+                                                    <input type="text" class="form-control" name="Asignatura"
+                                                        formControlName="Asignatura" readonly>
+                                                </div>
                                             </div>
 
-                                            <div class="form-group form-check form-switch">
-                                                <input class="form-check-input" type="checkbox"
-                                                    formControlName="Estado" name="Estado"  value="true">
-                                                <label for="Estado">Habilitar Matricula</label>
+                                            <div class="col-md-1"></div>
+
+                                            <div class="col-md-5">
+                                                <div class="row">
+                                                    <div class="col-md-12 h2">
+                                                        <h2>Asignar materia:</h2>
+                                                    </div>
+                                                    <div class="card-body table-responsive p-0" style="height: 250px;">
+                                                        <table *ngIf="datam$.dni.length > 0"
+                                                            class="table table-hover table-head-fixed text-nowrap">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th></th>
+                                                                    <th>Área</th>
+                                                                    <th>Asignatura</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr *ngFor="let mat of  datam$.dni ">
+                                                                    <td class="colum">
+                                                                        <i (click)="viewAsig(mat.Area,mat.Asignatura)"
+                                                                            class="fas fa-plus fa-lg text-success mr-2"></i>
+                                                                    </td>
+                                                                    <td>{{mat.Area}}</td>
+                                                                    <td>{{mat.Asignatura}}</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                        <h5 style="text-align:start; margin-top: 10px;"
+                                                            *ngIf="datam$.dni.length == 0">No hay registros para mostrar
+                                                        </h5>
+                                                    </div>
+                                                </div>
+
                                             </div>
-                                          
+
+
+                                        </div>
+
+                                        <hr>
+
+                                        <div class="row">
+                                            <div class="col-md-12 h2">
+                                                <h2>ASIGNAR HORARIO</h2>
+                                            </div>
+
+                                        </div>
+                                        <!--Datos de Usuario-->
+                                        <div class="row">
+
+                                            <!-- Usuario-->
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label>Seleccione el día:</label>
+                                                    <select class="form-control combo" name="Dia" formControlName="Dia"
+                                                        [(ngModel)]="elegir5">
+                                                        <option *ngFor="let d of dia">{{ d.name }}</option>
+                                                    </select>
+                                                </div>
+
+
+                                            </div>
+
+                                            <div class="col-md-3">
+
+                                                <div class="form-group">
+                                                    <label>Hora de inicio de clases:</label>
+
+                                                    <div class="input-group date" id="Hora_inicio"
+                                                        data-target-input="nearest">
+                                                        <input type="time" class="form-control datetimepicker-input"
+                                                             formControlName="Hora_inicio">
+                                                        
+                                                    </div>
+                                                    <!-- /.input group -->
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label>Hora de finalización de clases:</label>
+
+                                                    <div class="input-group date" id="Hora_fin"
+                                                        data-target-input="nearest">
+                                                        <input type="time" class="form-control datetimepicker-input"
+                                                             formControlName="Hora_fin">
+                                                        
+                                                    </div>
+                                                    <!-- /.input group -->
+                                                </div>
+
+
+                                            
+                                            </div>
+
+                                            <div class="col-md-3">
+                                                <label class="text-white">Agregar</label>
+                                                <button type="button" (click)="agregar()"
+                                                    class="btn btn-block bg-gradient-light"><i
+                                                        class="fas fa-plus fa-lg text-dark mr-2"></i></button>
+                                            </div>
+
+
+                                                    <!--Tabla-->
+                                                    <div class="col-md-12">
+                                                        <div class="card-body table-responsive p-0" style="height: 300px;">
+                                                            <table *ngIf="horario.dato.length > 0"
+                                                                class="table table-hover table-head-fixed text-nowrap">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>Día</th>
+                                                                        <th>Hora de inicio</th>
+                                                                        <th>Hora de finalización</th>
+                                                                        <th></th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr *ngFor="let h of  horario.dato">
+                                                                        <td>{{h.Dia}}</td>
+                                                                        <td>{{h.Hora_inicio}}</td>
+                                                                        <td>{{h.Hora_fin}}</td>
+                                                                        <td class="colum">
+                                                                            <i (click)="borrar(h)"
+                                                                                class="fas fa-minus-circle fa-lg text-danger mr-2"></i>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                            <h5 style="text-align:start; margin-top: 10px;"
+                                                                *ngIf="horario.dato.length == 0">No existen
+                                                                <strong>datos</strong> para agregados..!
+                                                            </h5>
+                                                        </div>
+    
+    
+                                                    </div>
+
+                                                    <br><hr><br>
+                                                    
+
+                                            <div class="form-group form-check form-switch">
+                                                <input class="form-check-input" type="checkbox" formControlName="Estado"
+                                                    name="Estado" value="true">
+                                                <label for="Estado">Habilitar distribución</label>
+                                            </div>
+
 
                                         </div>
 
@@ -574,7 +710,7 @@
                                             </div>
                                             <div class="col-md-6"></div>
                                             <div class="col-md-2">
-                                                <button type="button" routerLink="/app/list-matricula"
+                                                <button type="button" routerLink="/app/list-dist"
                                                     class="btn btn-block bg-gradient-info" value="Tabla"><i
                                                         class="fas fa-list"></i> Tabla</button>
                                             </div>

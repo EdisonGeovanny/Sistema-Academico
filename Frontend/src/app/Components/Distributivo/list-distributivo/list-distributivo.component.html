@@ -28,8 +28,8 @@
         </nav>
         <!-- /.navbar -->
 
-        <!-- Main Sidebar Container -->
-        <aside class="main-sidebar elevation-4 sidebar-dark-success">
+         <!-- Main Sidebar Container -->
+         <aside class="main-sidebar elevation-4 sidebar-dark-success">
             <!--navbar-orange,warning,pink,secundary,info,success,indigo,purple,vany,teal,cyan,--->
             <!-- Brand Logo -->
             <a routerLink="/app/reg-prof" class="brand-link navbar-warning">
@@ -125,7 +125,7 @@
                             </ul>
                         </li>
 
-
+                        
                         <!-- ACADEMICO -->
                         <li class="nav-item has-treeview">
                             <a routerLink="/app/reg-periodo" class="nav-link">
@@ -140,6 +140,12 @@
                                     <a routerLink="/app/reg-periodo" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Periodo Lectivo</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a routerLink="/app/reg-grado" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Grados</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
@@ -169,17 +175,6 @@
                                 <i class="nav-icon fas fa-table"></i>
                                 <p>
                                     MATRICULA
-                                    <i class="fas fa-angle-left right"></i>
-                                </p>
-                            </a>
-                        </li>
-
-                         <!-- MATRICULAS -->
-                         <li class="nav-item">
-                            <a routerLink="/app/reg-dist" class="nav-link">
-                                <i class="nav-icon fas fa-table"></i>
-                                <p>
-                                    DISTRIBUTIVO
                                     <i class="fas fa-angle-left right"></i>
                                 </p>
                             </a>
@@ -329,28 +324,30 @@
             </div>
             <!-- /.sidebar -->
         </aside>
+
+
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
             <section class="content-header">
                 <div class="container-fluid">
                     <div class="row mb-2">
-                        <div class="col-sm-6">
-                            <h5><strong>PERIODO LECTIVO: {{Titulo}}</strong></h5>
-                        </div>
 
+                        <div class="col-sm-6">
+                            <h5><strong>ESTUDIANTE: {{Titulo}}</strong></h5>
+                        </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item">{{subnivel}}</li>
-                                <li class="breadcrumb-item active">DATOS DE PERIODO - LECTIVO</li>
+                                <li class="breadcrumb-item">USUARIO DE ACCESO</li>
+                                <li class="breadcrumb-item active"> {{Titulo}}</li>
                             </ol>
                         </div>
-
                     </div>
                 </div><!-- /.container-fluid -->
             </section>
 
             <!-- Main content -->
+            <!--////////////////////////////////Usuario Docente/Admin/////////////////////////-->
             <section class="content">
                 <div class="container-fluid">
 
@@ -369,194 +366,141 @@
                                 <!-- /.card-header -->
                                 <!-- form start -->
 
-                                <form class="card-body" role="form" [formGroup]="PeriodoForm" (ngSubmit)="saveData()">
+                                <form class="card-body" role="form" [formGroup]="AccesoForm" >
                                     <div class="card-body">
 
+                                        <!--Datos de Usuario-->
                                         <div class="row">
                                             <div class="col-md-12 h2">
-                                                <h2>DATOS DE PERIODO LECTIVO</h2>
+                                                <h2>LISTA DE MATRICULAS</h2>
+                                            </div>
+                                           
+                                            <div class="col-md-12">
+                                               
                                             </div>
 
-                                            <div class="col-md-4">
-
+                                            <div class="col-md-2">
                                                 <div class="form-group">
-                                                    <label for="Codigo">Código de periodo:</label>
-                                                    <input type="text" class="form-control" name="Codigo"
-                                                        formControlName="Codigo" placeholder="Ejemplo: Oct2021-Jun2022">
-                                                    <div class="text-danger"
-                                                        *ngIf="PeriodoForm.get('Codigo')?.hasError('required') && PeriodoForm.get('Codigo')?.touched">
-                                                        <span>El campo: Código de periodo<strong>es
-                                                                obligatorio</strong></span>
-                                                    </div>
+                                                    <select name="Combo" formControlName="Combo"
+                                                        class="form-control combo" style="width:160px;">
+                                                        ngModel="elegido2">
+                                                        <option *ngFor="let n2 of Buscar">{{ n2.name }}</option>
+                                                    </select>
+
                                                 </div>
-
-                                                <div class="form-group">
-                                                    <label for="Descripcion">Descripción de periodo:</label>
-                                                    <input type="text" class="form-control" name="Descripcion"
-                                                        formControlName="Descripcion" placeholder="Descripción">
-                                                    <div class="text-danger"
-                                                        *ngIf="PeriodoForm.get('Descripcion')?.hasError('required') && PeriodoForm.get('Descripcion')?.touched">
-                                                        <span>El campo: Descripción <strong>es
-                                                                obligatorio</strong></span>
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label for="Faltas_maximas">Límite de faltas:</label>
-                                                    <input type="number" class="form-control" name="Faltas_maximas"
-                                                        formControlName="Faltas_maximas" placeholder="00.00"
-                                                        maxlength="3">
-                                                    <div class="text-danger"
-                                                        *ngIf="PeriodoForm.get('Faltas_maximas')?.hasError('required') && PeriodoForm.get('Faltas_maximas')?.touched">
-                                                        <span>El campo: Description <strong>es
-                                                                obligatorio</strong></span>
-                                                    </div>
-                                                </div>
-
-
                                             </div>
 
+                                            <div class="col-md-1"></div>
+
                                             <div class="col-md-4">
-
                                                 <div class="form-group">
-                                                    <label for="Fecha_inicio">Fecha inicio de periodo:</label>
-                                                    <input type="date" class="form-control" name="Fecha_inicio"
-                                                        formControlName="Fecha_inicio">
-                                                    <div class="text-danger"
-                                                        *ngIf="PeriodoForm.get('Fecha_inicio')?.hasError('required') && PeriodoForm.get('Fecha_inicio')?.touched">
-                                                        <span>La Fecha de inicio de periodo <strong>es
-                                                                obligatorio</strong></span>
+                                                    <div class="card-tools">
+                                                        <div class="input-group input-group-default ">
+                                                            <input type="text" name="search" formControlName="Search"
+                                                                class="form-control float-left" placeholder="Search">
+
+                                                            <div class="input-group-append">
+                                                                <button type="button" (click)="search()"
+                                                                    class="btn btn-default"><i
+                                                                        class="fas fa-search"></i></button>
+                                                            </div>
+
+                                                        </div>
                                                     </div>
                                                 </div>
-
-
-
-                                                <div class="form-group">
-                                                    <label for="Nota_base">Nota mínima:</label>
-                                                    <input type="number" class="form-control" name="Nota_base"
-                                                        formControlName="Nota_base" placeholder="00.00" maxlength="5">
-                                                    <div class="text-danger"
-                                                        *ngIf="PeriodoForm.get('Nota_base')?.hasError('required') && PeriodoForm.get('Nota_base')?.touched">
-                                                        <span>El campo: Nota mínima <strong>es
-                                                                obligatorio</strong></span>
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label for="Numero_alumnos">Número de alumnos por aula:</label>
-                                                    <input type="number" class="form-control" name="Numero_alumnos"
-                                                        formControlName="Numero_alumnos" placeholder="00" maxlength="2">
-                                                    <div class="text-danger"
-                                                        *ngIf="PeriodoForm.get('Numero_alumnos')?.hasError('required') && PeriodoForm.get('Numero_alumnos')?.touched">
-                                                        <span>El campo: Description <strong>es
-                                                                obligatorio</strong></span>
-                                                    </div>
-                                                </div>
-
-
-
                                             </div>
 
-                                            <div class="col-md-4">
+                                            <div class="col-md-1"></div>
 
+                                            <div class="col-md-2">
+                                                <button class="btn btn-block bg-gradient-info"
+                                                    (click)="ObtenerDistributivo()"><i class="fas fa-list"></i>
+                                                    Listar </button>
+                                            </div>
 
-                                                <div class="form-group">
-                                                    <label for="Fecha_fin">Fecha fin de periodo:</label>
-                                                    <input type="date" class="form-control" name="Fecha_fin"
-                                                        formControlName="Fecha_fin">
-                                                    <div class="text-danger"
-                                                        *ngIf="PeriodoForm.get('Fecha_fin')?.hasError('required') && PeriodoForm.get('Fecha_fin')?.touched">
-                                                        <span>La Fecha de fin de periodo <strong>es
-                                                                obligatorio</strong></span>
-                                                    </div>
+                                            <div class="col-md-2">
+                                                <button class="btn btn-block bg-gradient-success"
+                                                    routerLink="/app/reg-dist"><i class="fas fa-users-medical"></i>
+                                                    Nuevo </button>
+                                            </div>
+
+                                            <!-- Contraseña-->
+                                            <div class="col-md-12">
+                                                <div class="card-body table-responsive p-0" style="height: 350px;">
+                                                    <table *ngIf="datam$.dni.length > 0"
+                                                        class="table table-hover table-head-fixed text-nowrap">
+                                                        <thead class="letra2">
+                                                            <tr>
+                                                                <th>Identificación</th>
+                                                                <th>Nombre</th>
+                                                                <th>Periodo lectivo</th>
+                                                                <th>Grado</th>
+                                                                <th>Jornada</th> 
+                                                                <th>Asignatura</th>
+                                                                <th></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody class="letra1">
+                                                            <tr *ngFor="let mat of  datam$.dni ">
+                                                                <td>{{mat.DNI}}</td>
+                                                                <td>{{mat.Apellidos}} {{mat.Nombres}}</td>
+                                                                <td>{{mat.Periodo}}</td>
+                                                                <td>{{mat.Nivel}} {{mat.Paralelo}} </td>
+                                                                <td>{{mat.Jornada}}</td>
+                                                                <td>{{mat.Asignatura}}</td>
+
+                                                                <td class="colum">
+                                                                    <i (click)="View(mat._id)"
+                                                                        class="fas fa-eye fa-lg text-warning mr-2"></i>
+                                                                        <i (click)="Update(mat.Docente)"
+                                                                        class="fas fa-edit fa-lg text-info mr-2"></i>
+                                                                        <i (click)="Delete(mat._id)"
+                                                                        class="fas fa-trash-alt fa-lg text-danger"></i>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <h5 style="text-align:start; margin-top: 10px;"
+                                                        *ngIf="datam$.dni.length == 0">No hay registros para mostrar</h5>
                                                 </div>
-
-
-
-                                                <div class="form-group">
-                                                    <label for="Nota_maxima">Nota maxima:</label>
-                                                    <input type="number" class="form-control" name="Nota_maxima"
-                                                        formControlName="Nota_maxima" placeholder="00.00" maxlength="5">
-                                                    <div class="text-danger"
-                                                        *ngIf="PeriodoForm.get('Nota_maxima')?.hasError('required') && PeriodoForm.get('Nota_maxima')?.touched">
-                                                        <span>El campo: Nota máxima <strong>es
-                                                                obligatorio</strong></span>
-                                                    </div>
-                                                </div>
-
                                             </div>
 
                                         </div>
-
-
-                                        <div class="form-group form-check form-switch">
-                                            <input class="form-check-input" type="checkbox" formControlName="Estado"
-                                                name="Estado" checked>
-                                            <label for="Estado">Habilitar periodo lectivo</label>
-                                        </div>
-
 
                                     </div>
                                     <!-- /.card-body -->
 
-                                    <div class="card-footer">
-                                        <div class="row">
-                                            <div class="col-md-2">
-                                                <button type="submit" value="Registrar" [disabled]="PeriodoForm.invalid"
-                                                    class="btn btn-block bg-gradient-success "><i
-                                                        class="fas fa-archive"></i> Guardar</button>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <button type="button" (click)="RedirectCancel()"
-                                                    class="btn btn-block bg-gradient-secondary"><i
-                                                        class="fad fa-eraser"></i> Nuevo</button>
-                                            </div>
-                                            
-                                            <div class="col-md-6"></div>
-                                            <div class="col-md-2">
-                                                <button type="button" routerLink="/app/list-periodo"
-                                                    class="btn btn-block bg-gradient-info"><i class="fas fa-list"></i>
-                                                    Tabla</button>
-                                            </div>
-
-
-                                        </div>
-
-                                    </div>
-
                                    
                                 </form>
                             </div>
-                            <!-- /.card-body -->
+                            <!-- /.card -->
 
                         </div>
-                        <!-- /.card -->
-
+                        <!--/.col (left) -->
                     </div>
-                    <!--/.col (left) -->
-                </div>
-                <!-- /.row -->
-                <!-- /.container-fluid -->
+                    <!-- /.row -->
+                </div><!-- /.container-fluid -->
             </section>
+
+
+            <!-- /.content -->
         </div>
-        <!-- /.content -->
-    </div>
-    <!-- /.content-wrapper -->
+        <!-- /.content-wrapper -->
         <footer class="main-footer">
             <div class="float-right d-none d-sm-block">
-                 <b>Copyright &copy;</b> 2021
+                <b>Copyright &copy;</b> 2021
             </div>
-                <strong> <a href="https://www.facebook.com/uecibbenitojuarez/">Unidad Educativa Comunitaria Intercultural
-                Bilingüe "Benito Juárez"</a>.</strong>
+            <strong> <a href="https://www.facebook.com/uecibbenitojuarez/">Unidad Educativa Comunitaria Intercultural
+                    Bilingüe "Benito Juárez"</a>.</strong>
 
         </footer>
 
-    <!-- Control Sidebar -->
-    <aside class="control-sidebar control-sidebar-dark">
-        <!-- Control sidebar content goes here -->
-    </aside>
-    <!-- /.control-sidebar -->
-   
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- Control sidebar content goes here -->
+        </aside>
+        <!-- /.control-sidebar -->
+    </div>
     <!-- ./wrapper -->
 
 </body>

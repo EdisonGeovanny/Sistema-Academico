@@ -13,7 +13,9 @@ const nivel = require('./nivel/nivel.routes'); // nivel
 const paralelo = require('./paralelo/paralelo.routes'); // paralelo
 const materia = require('./materia/materia.routes'); // Materia
 const nivel_materia = require('./nivel-materia/nivel-materia.routes'); // Nivel y Materia
-const matricula = require('./matricula/matricula.routes'); // Nivel y Materia
+const matricula = require('./matricula/matricula.routes'); // Matricula
+const distributivo = require('./distributivo/distributivo.routes'); // Distributivo
+const estado_notas = require('./estado-notas/estado-notas.routes'); // Estado de las notas 
 
 
 const express = require('express');
@@ -43,8 +45,10 @@ grado(router); // grado
 nivel(router); // nivel
 paralelo(router); // paralelo
 materia(router); // Materia
-nivel_materia(router) //nivel-materia
-matricula(router) //matricula
+nivel_materia(router); //nivel-materia
+matricula(router); //matricula
+distributivo(router);//distributivos
+estado_notas(router);//Estado notas
 
 router.get('/', (req, res)=>{
     res.send('Bienvenido');

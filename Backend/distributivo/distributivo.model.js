@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
 
-      Estudiante: {
+      Docente: {
         type:  [mongoose.Types.ObjectId],
         required: true,
         trim:true
@@ -25,6 +25,27 @@ const userSchema = new Schema({
       },
       Jornada: {
         type: String,
+        required: true, 
+        trim:true
+      },
+      Horas_semanales: {
+        type: Number,
+        required: false,
+        default: 0,
+        trim:true
+      },
+      Area: {
+        type: String,
+        required: true, 
+        trim:true
+      },
+      Asignatura: {
+        type: String,
+        required: true, 
+        trim:true
+      },
+      Horario: {
+        type: Array,
         required: true, 
         trim:true
       },

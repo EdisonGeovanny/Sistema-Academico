@@ -22,6 +22,82 @@ export class AuthService {
 
   constructor(private httpClient: HttpClient) { this.token = ''; }
 
+////////////////////////// Estado de edicion de notas /////////////////////////////
+//obtener todos los Grado
+getANAll(): Observable<any> {
+  return this.httpClient.get<any>(`${this.AUTH_SERVER}/list-en`);
+}
+
+//actualizar datos
+updateAN(id: string, user: any): Observable<any> {
+  return this.httpClient.put<any>(`${this.AUTH_SERVER}/update-en/${id}`,
+    user).pipe(tap(
+      (res: any) => {
+        if (res) {
+          // GUARDAR TOKEN
+          console.log(res.dataUser);
+        }
+      })
+      );
+    }
+
+/////////////////////////// Distributivo ///////////////////////////////////////
+
+ //registrar Grado
+ registerDistributivo(user: any): Observable<any> {
+  return this.httpClient.post<any>(`${this.AUTH_SERVER}/reg-dist`,
+    user).pipe(tap(
+      (res: any) => {
+        if (res) {
+          // GUARDAR TOKEN
+          //console.log(res.dataUser);
+        }
+      })
+    );
+}
+
+//obtener todos los Grado
+getDistributivoAll(): Observable<any> {
+  return this.httpClient.get<any>(`${this.AUTH_SERVER}/list-dist`);
+}
+
+ //obtene rGrado por id
+ obtenerDistributivoId(id: string): Observable<any> {
+  return this.httpClient.get(`${this.AUTH_SERVER}/list-dist/${id}`)
+}
+
+
+//eliminiar Grado por id
+deleteDistributivo(id: string): Observable<any> {
+  return this.httpClient.delete(`${this.AUTH_SERVER}/delete-dist/${id}`)
+}
+
+//actualizar datos
+updateDistributivo(id: string, user: any): Observable<any> {
+  return this.httpClient.put<any>(`${this.AUTH_SERVER}/update-dist/${id}`,
+    user).pipe(tap(
+      (res: any) => {
+        if (res) {
+          // GUARDAR TOKEN
+          console.log(res.dataUser);
+        }
+      })
+      );
+    }
+
+  //obtener por nivel.paralelo.jornada
+  obtenerDistributivoporDocente(sch: string): Observable<any> {
+    return this.httpClient.get(`${this.AUTH_SERVER}/search-dist/${sch}`)
+    }
+  
+
+//obtener por nivel.paralelo.jornada
+Repetido(sch: string): Observable<any> {
+  return this.httpClient.get(`${this.AUTH_SERVER}/search2-dist/${sch}`)
+  }
+
+
+
   /////////////////////////// MATRICULA ///////////////////////////////////////
 
  //registrar Grado
@@ -178,55 +254,6 @@ obtenerNVPorNivel(sch: string): Observable<any> {
 return this.httpClient.get(`${this.AUTH_SERVER}/searchnv/${sch}`)
 }
 
-
-//////////////////////////////// Materia ////////////////////////////////
-
- //registrar Materia
- registerMateria(user: any): Observable<any> {
-  return this.httpClient.post<any>(`${this.AUTH_SERVER}/reg-asig`,
-    user).pipe(tap(
-      (res: any) => {
-        if (res) {
-          // GUARDAR TOKEN
-          console.log(res.dataUser);
-        }
-      })
-    );
-}
-
-//obtener todos los Materia
-getMateriaAll(): Observable<any> {
-  return this.httpClient.get<any>(`${this.AUTH_SERVER}/list-asig`);
-}
-
- //obtener Nivel por id
- obtenerMateriaId(id: string): Observable<any> {
-  return this.httpClient.get(`${this.AUTH_SERVER}/list-asig/${id}`)
-}
-
-
-//eliminiar Materia por id
-deleteMateria(id: string): Observable<any> {
-  return this.httpClient.delete(`${this.AUTH_SERVER}/delete-asig/${id}`)
-}
-
-//actualizar datos
-updateMateria(id: string, user: any): Observable<any> {
-  return this.httpClient.put<any>(`${this.AUTH_SERVER}/update-asig/${id}`,
-    user).pipe(tap(
-      (res: any) => {
-        if (res) {
-          // GUARDAR TOKEN
-          console.log(res.dataUser);
-        }
-      })
-      );
-    }
-
-//obtener por Materia
-obtenerPorArea(sch: string): Observable<any> {
-return this.httpClient.get(`${this.AUTH_SERVER}/searchasig/${sch}`)
-}
 
 
 /////////////////////////Paralelo//////////////////////////////////////////

@@ -22,13 +22,16 @@ import { ViewFichaComponent } from './Ficha-Estudiante/view-ficha/view-ficha.com
 import { AutSystemEComponent } from './Autentificacion/aut-system-e/aut-system-e.component';
 import { ListAutProfComponent } from './Autentificacion/list-aut-prof/list-aut-prof.component';
 import { ListAutEstComponent } from './Autentificacion/list-aut-est/list-aut-est.component';
-import { GradoComponent } from './Grado/grado/grado.component';
 import { NivelComponent } from './Grado/nivel/nivel.component';
 import { ParaleloComponent } from './Grado/paralelo/paralelo.component';
 import { MateriaComponent } from './Grado/materia/materia.component';
 import { RegMatriculaComponent } from './Matricula/reg-matricula/reg-matricula.component';
 import { ListMatriculaComponent } from './Matricula/list-matricula/list-matricula.component';
 import { ViewMatriculaComponent } from './Matricula/view-matricula/view-matricula.component';
+import { RegDistributivoComponent } from './Distributivo/reg-distributivo/reg-distributivo.component';
+import { ListDistributivoComponent } from './Distributivo/list-distributivo/list-distributivo.component';
+import { ViewDistributivoComponent } from './Distributivo/view-distributivo/view-distributivo.component';
+import { ActiveNotasComponent } from './active-notas/active-notas.component';
 
 const routes: Routes = [
   //inicio
@@ -79,7 +82,6 @@ const routes: Routes = [
 
   //Grado - paralelos, materias, Nivel, nivel-Materia
   { path: 'reg-nivel', component: NivelComponent },//yes
-  { path: 'reg-grado', component: GradoComponent },//yes
   { path: 'reg-paralelo', component: ParaleloComponent },//yes
   { path: 'reg-materia', component: MateriaComponent },//yes
   
@@ -88,6 +90,16 @@ const routes: Routes = [
   { path: 'edit-matricula/:id', component: RegMatriculaComponent },//yes
   { path: 'list-matricula', component: ListMatriculaComponent },//yes
   { path: 'view-matricula/:id', component: ViewMatriculaComponent },//
+
+  //Distributivo
+  { path: 'reg-dist', component: RegDistributivoComponent },//yes
+  { path: 'edit-dist/:id', component: RegDistributivoComponent },//yes
+  { path: 'list-dist', component: ListDistributivoComponent },//yes
+  { path: 'view-dist/:id', component: ViewDistributivoComponent },//
+
+  //Activar ingreso de Notas
+  { path: 'active-nota', component: ActiveNotasComponent },//yes
+
 ];
 
 @NgModule({
