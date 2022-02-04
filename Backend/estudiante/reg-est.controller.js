@@ -77,7 +77,6 @@ exports.updateEst  = async (req, res) => {
             estudiante.Sector_domicilio = Sector_domicilio;
             estudiante.Referencia_domicilio = Referencia_domicilio;
             estudiante.Estado = Estado;
-            
             estudiante.Observacion = Observacion;
 
             estudiante = await User.findOneAndUpdate({_id: req.params.id}, estudiante, {new:true})
@@ -120,7 +119,6 @@ exports.listID = async (req, res) => {
             }
 
                  res.json(estudiante);
-
 
     }catch(err){
         console.log(err);

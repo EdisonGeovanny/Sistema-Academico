@@ -6,5 +6,5 @@ module.exports = (router)=> {
     router.delete('/delete-per/:id',Users.deletePeriodo);// eliminar por id
     router.put('/update-per/:id', Users.updatePeriodo);//editar por id
     router.get('/searcha/:sch', Users.searchCodigo);  //busqueda
- 
+    router.get('/list-estado', Users.listEstado); 
 }

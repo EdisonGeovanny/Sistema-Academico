@@ -47,6 +47,9 @@ export class AutProfComponent implements OnInit {
   { name: "Apellidos" }, { name: "Nombres" }];
   elegido2: string = "";
 
+  nombre : string | null;
+  usuario: string | null;
+
   constructor(private authService: AuthService, private router: Router,
     private fb: FormBuilder, private aRouter: ActivatedRoute) {
     //formGroup
@@ -57,17 +60,17 @@ export class AutProfComponent implements OnInit {
       Search: [''],
       Combo: ['']
     }),
+    this.nombre = null;
+    this.usuario = null;
       this.aux = this.aRouter.snapshot.paramMap.get('id'),
       this.id = null,
-      
-
-
     //mapeo de url con atributo
     this.estado = "";
   }
 
   ngOnInit(): void {
     this.Obtener();
+    this.loginData();
   }
 
   //agregar datos o actualizar datos
@@ -145,8 +148,6 @@ export class AutProfComponent implements OnInit {
     }
   }
 
-
-
   //editar
   upDate() {
 
@@ -179,8 +180,11 @@ export class AutProfComponent implements OnInit {
           }
           console.log(CUENTA);
           this.authService.updateAcceso(this.aux,CUENTA).subscribe(data => {
-            this.AlertExito()
-      
+            swalWithBootstrapButtons.fire(
+              'Actualizado!',
+              'Tu registro fue actualizado.',
+              'success'
+            )
           }, err => {
             console.log(err);
             this.AlertFracaso();
@@ -190,11 +194,7 @@ export class AutProfComponent implements OnInit {
       
         }
 
-        swalWithBootstrapButtons.fire(
-          'Actualizado!',
-          'Tu registro fue actualizado.',
-          'success'
-        )
+        
       }
     })
 
@@ -418,19 +418,39 @@ export class AutProfComponent implements OnInit {
     })
   }
 
-  AlertProblema(): void {
-    Swal.fire(
-      '¿Quieres Recuperar tu cuenta?',
-      'Comunicate con el Administrador del Sistema',
-      'question'
-    )
+
+  
+  logOut(){
+    this.authService.logoutA();
+    this.router.navigateByUrl('/app/log-admin')
   }
+  
+  
+  loginData(){
+   this.usuario = localStorage.getItem('user');
+   const id = localStorage.getItem('id');
+   if(id!=null){
+     this.authService.obtenerPorfesorId(id).subscribe(data => {
+     this.nombre = data.Apellidos+" "+data.Nombres;
+     }, error => {
+       console.log(error);
+     });
+   }
+   
+  
+  }
+  
+  view() {
+   const id = localStorage.getItem('id');
+   this.router.navigateByUrl('/admin/view-prof/'+id);
+  }
+  
 
   ////////////////////////Redirecciones ////////////////////
 
   RedirectCancel(): void {
     this.AccesoForm.reset();
-    this.router.navigateByUrl('/app/aut-system');
+    this.router.navigateByUrl('/admin/aut-system');
     this.id=null;
   }
 

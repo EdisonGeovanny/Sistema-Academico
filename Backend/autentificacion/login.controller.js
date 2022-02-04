@@ -1,7 +1,7 @@
 const User = require('./login.dao');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
-const SECRET_KEY = 'secretkey1234';
+const SECRET_KEY = 'SGA1234';
 
 // Autentificacion 3 Roles
 exports.createAut = (req, res, next) => {
@@ -45,17 +45,18 @@ exports.loginAut = (req, res, next) => {
             if (resultPassword) {
                 const expiresIn = 24 * 60 * 60;
                 const accessToken = jwt.sign({ id: user.id }, SECRET_KEY, { expiresIn: expiresIn });
-                const dataUser = {
+                const data = {
+                    id: user.id,
                     Usuario: user.Usuario,
                     Rol: user.Rol,
-                    Vinculo: user.Vinculo,
+                    Vinculo: user.Vinculo[0],
                     accessToken: accessToken,
                     expiresIn: expiresIn
                 }
-                res.send({ dataUser });
+                res.send({data});
             } else {
                 //password wrong
-                res.status(409).send({ message: 'algo esta mal' });
+                res.status(409).send({ message: 'algo esta mal con el logeo' });
             }
         }
     })
@@ -141,6 +142,20 @@ exports.listID = async (req, res) => {
     }
 }
 
+//Search - buscador
+exports.UsuarioId = async (req, res) => {
+    try{
+        let dni = await User.find({Vinculo:req.params.sch});
+        if(!dni){
+                    res.status(404).json({msg: 'La busqueda no existe'})
+        } res.json({dni});
+            
+    }catch(err){
+        console.log(err);
+        res.status(500).send('Hubo un error')
+
+    }
+}
 
 
 

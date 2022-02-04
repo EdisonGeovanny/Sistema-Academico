@@ -32,17 +32,25 @@ export class ListEstComponent implements OnInit {
    Titulo = 'LISTA DE REGISTROS';
    subnivel = 'REGISTRO DE DATOS';
 
+   
+  nombre : string | null;
+  usuario: string | null;
+
+
    constructor(private authService: AuthService, private router: Router,
     private fb: FormBuilder, private aRouter: ActivatedRoute) {
     //formGroup
     this.AccesoForm = this.fb.group({
       Search: ['', Validators.required],
       Combo: ['', Validators.required]
-    })
+    }),
+    this.nombre = '';
+    this.usuario = '';
   }
 
   ngOnInit(): void {
     this.obtenerEstudiantes();
+    this.loginData();
   }
  
   Redirect(): void {
@@ -190,14 +198,41 @@ async searchDni() {
   /////////  métodos /////////////////////////
 
   updateEst(id: any) {
-    this.router.navigateByUrl('/app/edit-est/'+id);
+    this.router.navigateByUrl('/admin/edit-est/'+id);
   }
 
   viewEst(id: any) {
-    this.router.navigateByUrl('/app/view-est/'+id);
+    this.router.navigateByUrl('/admin/view-est/'+id);
   }
 
 
+
+  logOut(){
+    this.authService.logoutA();
+    this.router.navigateByUrl('/app/log-admin')
+  }
+ 
+ 
+  loginData(){
+   this.usuario = localStorage.getItem('user');
+   const id = localStorage.getItem('id');
+   if(id!=null){
+     this.authService.obtenerPorfesorId(id).subscribe(data => {
+     this.nombre = data.Apellidos+" "+data.Nombres;
+     }, error => {
+       console.log(error);
+     });
+   }
+   
+  
+ }
+ 
+ view() {
+   const id = localStorage.getItem('id');
+   this.router.navigateByUrl('/admin/view-prof/'+id);
+ }
+ 
+ 
   /////Alertas/////////////////////////
   AlertNoEncotrado(): void {
     const Toast = Swal.mixin({

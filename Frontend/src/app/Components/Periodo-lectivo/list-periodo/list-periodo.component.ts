@@ -26,136 +26,192 @@ export class ListPeriodoComponent implements OnInit {
 
   //visualizar busqueda
   periodo: any = {
- 
+
   }
+
+
+  nombre: string | null;
+  usuario: string | null;
 
   constructor(private authService: AuthService, private router: Router,
     private fb: FormBuilder, private aRouter: ActivatedRoute) {
     this.PeriodoForm = this.fb.group({
       Search: ['']
 
-    })
+    }),
+      this.nombre = null;
+    this.usuario = null;
     this.id = this.aRouter.snapshot.paramMap.get('id'),
-    this.estado=""
+      this.estado = ""
     //  console.log(this.id)
   }
 
 
   ngOnInit(): void {
     this.obtenerPeriodos()
+    this.loginData();
   }
 
-  
-
- //listar
- async obtenerPeriodos() {
-  const Obtener = new Promise(async (resolve, reject) => {
-    await this.authService.getPeriodoAll().subscribe(data => {
-      resolve(data)
-      console.log(data)
-    })
-  });
-
-  this.periodos = await Obtener.then(res => res);
-
-}
 
 
-//Obtener datos para Editar
-esEditar() {
-  if (this.id !== null ) {
-    this.Titulo = 'ACTUALIZACIÓN DE INFORMACIÓN';
-    this.subnivel = 'EDITOR DE DATOS';
-
-    this.authService.obtenerPeriodoId(this.id).subscribe(data => {   
-     this.PeriodoForm.controls['Codigo'].setValue(data.Codigo);
-     this.PeriodoForm.controls['Descripcion'].setValue(data.Descripcion);
-     this.PeriodoForm.controls['Fecha_inicio'].setValue(data.Fecha_inicio);
-     this.PeriodoForm.controls['Fecha_fin'].setValue(data.Fecha_fin);
-     this.PeriodoForm.controls['Nota_base'].setValue(data.Nota_base);
-     this.PeriodoForm.controls['Nota_maxima'].setValue(data.Nota_maxima);
-     this.PeriodoForm.controls['Faltas_maximas'].setValue(data.Faltas_maximas);
-     this.PeriodoForm.controls['Numero_alumnos'].setValue(data.Numero_alumnos);
-     this.PeriodoForm.controls['Estado'].setValue(data.Estado);
-    })
-
-
-  }
-}
-
-
- 
-async search() {
-  const SCH: any = {
-    Search: this.PeriodoForm.get('Search')?.value,
-  }
-
-  if (SCH.Search) {
+  //listar
+  async obtenerPeriodos() {
+    const eliminar = this.periodos.dni.splice(0, this.periodos.dni.length + 1);
     const Obtener = new Promise(async (resolve, reject) => {
-      await this.authService.obtenerPeridoCodigo(SCH.Search).subscribe(data => {
+      await this.authService.getPeriodoAll().subscribe(data => {
         resolve(data)
       })
     });
-    this.periodos = await Obtener.then(res => res);
 
-    if (this.periodos.dni.length == 0) {
-      this.AlertNoEncotrado();
-    }
-  }else{ this.AlertCamposVacios();}
-}
-////////////////////////Redirecciones ////////////////////
+    let p: any = await Obtener.then(res => res);
+
+    p.dni.forEach((element: any, index: any, array: any) => {
+      if (!element.Estado) {
+        this.estado = 'Culminado';
+      } else {
+        this.estado = 'Activo';
+      }
+
+      this.periodos.dni.push({
+        Estado: this.estado,
+        _id: element._id,
+        Codigo: element.Codigo,
+        Descripcion: element.Descripcion,
+        Fecha_inicio: element.Fecha_inicio,
+        Fecha_fin: element.Fecha_fin,
+        Nota_maxima: element.Nota_maxima,
+        Nota_base: element.Nota_base,
+        Faltas_maximas: element.Faltas_maximas,
+        Numero_alumnos: element.Numero_alumnos,
+        createdAt: element.createdAt,
+        updatedAt: element.updatedAt
+      });
+
+    });
+  }
 
 
-//borrar
-deletePer(id: any){
-  const swalWithBootstrapButtons = Swal.mixin({
-    customClass: {
-      confirmButton: 'btn btn-success',
-      cancelButton: 'btn btn-danger'
-    },
-    buttonsStyling: false
-  })
-  
-  swalWithBootstrapButtons.fire({
-    title: '¿Estás seguro?',
-    text: "¡No podrás revertir esto!",
-    icon: 'warning',
-    showCancelButton: true,
-    confirmButtonText: 'Si, eliminar!',
-    cancelButtonText: 'No, cancelar!',
-    reverseButtons: true
-  }).then((result) => {
-    if (result.isConfirmed) {
+  //Obtener datos para Editar
+  esEditar() {
+    if (this.id !== null) {
+      this.Titulo = 'ACTUALIZACIÓN DE INFORMACIÓN';
+      this.subnivel = 'EDITOR DE DATOS';
 
-      this.authService.deletePeriodo(id).subscribe(data => {
-        this.obtenerPeriodos();
-      },error => {
-        console.log(error);
+      this.authService.obtenerPeriodoId(this.id).subscribe(data => {
+        this.PeriodoForm.controls['Codigo'].setValue(data.Codigo);
+        this.PeriodoForm.controls['Descripcion'].setValue(data.Descripcion);
+        this.PeriodoForm.controls['Fecha_inicio'].setValue(data.Fecha_inicio);
+        this.PeriodoForm.controls['Fecha_fin'].setValue(data.Fecha_fin);
+        this.PeriodoForm.controls['Nota_base'].setValue(data.Nota_base);
+        this.PeriodoForm.controls['Nota_maxima'].setValue(data.Nota_maxima);
+        this.PeriodoForm.controls['Faltas_maximas'].setValue(data.Faltas_maximas);
+        this.PeriodoForm.controls['Numero_alumnos'].setValue(data.Numero_alumnos);
+        this.PeriodoForm.controls['Estado'].setValue(data.Estado);
       })
 
-      swalWithBootstrapButtons.fire(
-        'Eliminado!',
-        'Tu registro fue eliminado.',
-        'success'
-      )
-    }   
-  })
-}
 
-/////////  métodos /////////////////////////
+    }
+  }
 
-updatePer(id: any) {
-  this.router.navigateByUrl('/app/edit-periodo/'+id);
-}
 
-viewPer(id: any) {
-  if (id !== null) {
 
-    this.authService.obtenerPeriodoId(id).subscribe(data => {
-      
-      if(data.Estado){
-         this.estado = "habilitado";
-        }else{ this.estado = "deshabilitado";}
+  async search() {
+    const SCH: any = {
+      Search: this.PeriodoForm.get('Search')?.value,
+    }
+
+    if (SCH.Search) {
+      const eliminar = this.periodos.dni.splice(0, this.periodos.dni.length + 1);
+      const Obtener = new Promise(async (resolve, reject) => {
+        await this.authService.obtenerPeridoCodigo(SCH.Search).subscribe(data => {
+          resolve(data)
+        })
+      });
+      let p: any = await Obtener.then(res => res);
+
+      p.dni.forEach((element: any, index: any, array: any) => {
+        if (!element.Estado) {
+          this.estado = 'Culminado';
+        } else {
+          this.estado = 'Activo';
+        }
+  
+        this.periodos.dni.push({
+          Estado: this.estado,
+          _id: element._id,
+          Codigo: element.Codigo,
+          Descripcion: element.Descripcion,
+          Fecha_inicio: element.Fecha_inicio,
+          Fecha_fin: element.Fecha_fin,
+          Nota_maxima: element.Nota_maxima,
+          Nota_base: element.Nota_base,
+          Faltas_maximas: element.Faltas_maximas,
+          Numero_alumnos: element.Numero_alumnos,
+          createdAt: element.createdAt,
+          updatedAt: element.updatedAt
+        });
+  
+      });
+
+      if (this.periodos.dni.length == 0) {
+        this.AlertNoEncotrado();
+      }
+
+    } else { this.AlertCamposVacios(); }
+  }
+  ////////////////////////Redirecciones ////////////////////
+
+
+  //borrar
+  deletePer(id: any) {
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: 'btn btn-success',
+        cancelButton: 'btn btn-danger'
+      },
+      buttonsStyling: false
+    })
+
+    swalWithBootstrapButtons.fire({
+      title: '¿Estás seguro?',
+      text: "¡No podrás revertir esto!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Si, eliminar!',
+      cancelButtonText: 'No, cancelar!',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+
+        this.authService.deletePeriodo(id).subscribe(data => {
+          this.obtenerPeriodos();
+        }, error => {
+          console.log(error);
+        })
+
+        swalWithBootstrapButtons.fire(
+          'Eliminado!',
+          'Tu registro fue eliminado.',
+          'success'
+        )
+      }
+    })
+  }
+
+  /////////  métodos /////////////////////////
+
+  updatePer(id: any) {
+    this.router.navigateByUrl('/admin/edit-periodo/' + id);
+  }
+
+  viewPer(id: any) {
+    if (id !== null) {
+
+      this.authService.obtenerPeriodoId(id).subscribe(data => {
+
+        if (data.Estado) {
+          this.estado = "Activo";
+        } else { this.estado = "Culminado"; }
 
         this.periodo = {
           Codigo: data.Codigo,
@@ -169,81 +225,107 @@ viewPer(id: any) {
           Estado: this.estado
         }
 
-    })
+      })
+
+    }
 
   }
 
-}
 
-///////////   ventanas de alerta    ///////////////////
-AlertExito(): void {
-  Swal.fire({
-    position: 'top-end',
-    icon: 'success',
-    title: 'Tu registro ha sido guardado',
-    showConfirmButton: false,
-    timer: 1500
-  })
-}
-
-AlertExito2(): void {
-  Swal.fire({
-    position: 'top-end',
-    icon: 'success',
-    title: 'Tu registro ha sido actualizado',
-    showConfirmButton: false,
-    timer: 1500
-  })
-}
+  logOut() {
+    this.authService.logoutA();
+    this.router.navigateByUrl('/app/log-admin')
+  }
 
 
-AlertFracaso(): void {
-  Swal.fire({
-    position: 'top-end',
-    icon: 'error',
-    title: 'Conficto..!<br>' +
-      'Existe un registro con el mismo número de identificación',
-    showConfirmButton: false,
-    timer: 2500
-  })
-}
-
-AlertNoEncotrado(): void {
-  const Toast = Swal.mixin({
-    toast: true,
-    position: 'top-end',
-    showConfirmButton: false,
-    timer: 3000,
-    timerProgressBar: true,
-    didOpen: (toast) => {
-      toast.addEventListener('mouseenter', Swal.stopTimer)
-      toast.addEventListener('mouseleave', Swal.resumeTimer)
+  loginData() {
+    this.usuario = localStorage.getItem('user');
+    const id = localStorage.getItem('id');
+    if (id != null) {
+      this.authService.obtenerPorfesorId(id).subscribe(data => {
+        this.nombre = data.Apellidos + " " + data.Nombres;
+      }, error => {
+        console.log(error);
+      });
     }
-  })
 
-  Toast.fire({
-    icon: 'error',
-    title: 'No se encontro ningun registro..!'
-  })
-}
 
-AlertCamposVacios(): void {
-  const Toast = Swal.mixin({
-    toast: true,
-    position: 'top-end',
-    showConfirmButton: false,
-    timer: 3000,
-    timerProgressBar: true,
-    didOpen: (toast) => {
-      toast.addEventListener('mouseenter', Swal.stopTimer)
-      toast.addEventListener('mouseleave', Swal.resumeTimer)
-    }
-  })
+  }
 
-  Toast.fire({
-    icon: 'warning',
-    title: 'El campo de busqueda esta vacio'
-  })
-}
+  view() {
+    const id = localStorage.getItem('id');
+    this.router.navigateByUrl('/admin/view-prof/' + id);
+  }
+
+  ///////////   ventanas de alerta    ///////////////////
+  AlertExito(): void {
+    Swal.fire({
+      position: 'top-end',
+      icon: 'success',
+      title: 'Tu registro ha sido guardado',
+      showConfirmButton: false,
+      timer: 1500
+    })
+  }
+
+  AlertExito2(): void {
+    Swal.fire({
+      position: 'top-end',
+      icon: 'success',
+      title: 'Tu registro ha sido actualizado',
+      showConfirmButton: false,
+      timer: 1500
+    })
+  }
+
+
+  AlertFracaso(): void {
+    Swal.fire({
+      position: 'top-end',
+      icon: 'error',
+      title: 'Conficto..!<br>' +
+        'Existe un registro con el mismo número de identificación',
+      showConfirmButton: false,
+      timer: 2500
+    })
+  }
+
+  AlertNoEncotrado(): void {
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    })
+
+    Toast.fire({
+      icon: 'error',
+      title: 'No se encontro ningun registro..!'
+    })
+  }
+
+  AlertCamposVacios(): void {
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    })
+
+    Toast.fire({
+      icon: 'warning',
+      title: 'El campo de busqueda esta vacio'
+    })
+  }
 
 }

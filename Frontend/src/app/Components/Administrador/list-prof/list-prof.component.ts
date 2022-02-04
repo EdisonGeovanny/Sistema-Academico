@@ -16,6 +16,9 @@ export class ListProfComponent implements OnInit {
   }
   AccesoForm: FormGroup;
 
+  nombre : string | null;
+  usuario: string | null;
+
 
   //para buscador
   public isloading = false;
@@ -37,11 +40,14 @@ export class ListProfComponent implements OnInit {
     this.AccesoForm = this.fb.group({
       Search: ['', Validators.required],
       Combo: ['', Validators.required]
-    })
+    }),
+    this.nombre = '';
+    this.usuario = '';
   }
 
   ngOnInit(): void {
     this.obtenerProfesores();
+    this.loginData();
   }
 
   
@@ -186,16 +192,43 @@ async searchDni() {
 
   /////////  Redireccion /////////////////////////
   Redirect(): void {
-    this.router.navigateByUrl('/app/reg-prof');
+    this.router.navigateByUrl('/admin/reg-prof');
   }
 
   updateProf(id: any) {
-    this.router.navigateByUrl('/app/edit-prof/'+id);
+    this.router.navigateByUrl('/admin/edit-prof/'+id);
   }
 
   viewProf(id: any) {
-    this.router.navigateByUrl('/app/view-prof/'+id);
+    this.router.navigateByUrl('/admin/view-prof/'+id);
   }
+
+
+  // datos de usuario para
+  logOut(){
+    this.authService.logoutA();
+    this.router.navigateByUrl('/app/log-admin')
+  }
+ 
+ 
+  loginData(){
+   this.usuario = localStorage.getItem('user');
+   const id = localStorage.getItem('id');
+   if(id!=null){
+     this.authService.obtenerPorfesorId(id).subscribe(data => {
+     this.nombre = data.Apellidos+" "+data.Nombres;
+     }, error => {
+       console.log(error);
+     });
+   }
+   
+  
+ }
+ 
+ view() {
+   const id = localStorage.getItem('id');
+   this.router.navigateByUrl('/admin/view-prof/'+id);
+ }
 
 ////////////// Alertas ///////////////////////////
 

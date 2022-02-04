@@ -17,6 +17,11 @@ export class ActiveNotasComponent implements OnInit {
   //titulo
 Titulo = 'ESTADOS DE NOTAS: HABILITAR CAMPOS';
 subnivel = 'REGISTRO DE NOTAS';
+
+nombre: string | null;
+usuario: string | null;
+
+
 constructor(private authService: AuthService, private router: Router,
   private fb: FormBuilder, private aRouter: ActivatedRoute) {
   //formGroup
@@ -32,11 +37,14 @@ constructor(private authService: AuthService, private router: Router,
     Q2EXAM: ['', Validators.required],
 
   }),
-  this.id = null
+    this.nombre = null,
+    this.usuario = null,
+    this.id = null
 }
 
   ngOnInit(): void {
     this.ObtenerAN();
+    this.loginData();
   }
 
   ObtenerAN(){
@@ -51,6 +59,32 @@ constructor(private authService: AuthService, private router: Router,
         this.ANForm.controls['Q2EXAM'].setValue(data.dni[0].Q2EXAM);
        
       })
+  }
+
+
+  logOut() {
+    this.authService.logoutA();
+    this.router.navigateByUrl('/app/log-admin')
+  }
+
+
+  loginData() {
+    this.usuario = localStorage.getItem('user');
+    const id = localStorage.getItem('id');
+    if (id != null) {
+      this.authService.obtenerPorfesorId(id).subscribe(data => {
+        this.nombre = data.Apellidos + " " + data.Nombres;
+      }, error => {
+        console.log(error);
+      });
+    }
+
+
+  }
+
+  view() {
+    const id = localStorage.getItem('id');
+    this.router.navigateByUrl('/admin/view-prof/' + id);
   }
 
   //editar

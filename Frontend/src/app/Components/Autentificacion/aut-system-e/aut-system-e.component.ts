@@ -42,6 +42,10 @@ export class AutSystemEComponent implements OnInit {
    Buscar = [{ name: "N° identificación" },
    { name: "Apellidos" }, { name: "Nombres" }];
    elegido2: string = "";
+
+   nombre : string | null;
+   usuario: string | null;
+ 
  
    constructor(private authService: AuthService, private router: Router,
      private fb: FormBuilder, private aRouter: ActivatedRoute) {
@@ -52,7 +56,8 @@ export class AutSystemEComponent implements OnInit {
        Search: [''],
        Combo: ['']
      }),
- 
+     this.nombre = null;
+     this.usuario = null;
      //mapeo de url con atributo
      this.estado = "",
      this.aux = this.aRouter.snapshot.paramMap.get('id'),
@@ -62,6 +67,7 @@ export class AutSystemEComponent implements OnInit {
  
   ngOnInit(): void {
     this.Obtener();
+    this.loginData();
   }
 
 
@@ -289,6 +295,32 @@ export class AutSystemEComponent implements OnInit {
   this.esEditar();
   }
 
+  logOut(){
+    this.authService.logoutA();
+    this.router.navigateByUrl('/app/log-admin')
+  }
+  
+  
+  loginData(){
+   this.usuario = localStorage.getItem('user');
+   const id = localStorage.getItem('id');
+   if(id!=null){
+     this.authService.obtenerPorfesorId(id).subscribe(data => {
+     this.nombre = data.Apellidos+" "+data.Nombres;
+     }, error => {
+       console.log(error);
+     });
+   }
+   
+  
+  }
+  
+  view() {
+   const id = localStorage.getItem('id');
+   this.router.navigateByUrl('/admin/view-prof/'+id);
+  }
+  
+
   ////////////// Alertas ///////////////////////////
   AlertGuardar() {
     Swal.fire({
@@ -404,7 +436,7 @@ export class AutSystemEComponent implements OnInit {
 
   RedirectCancel(): void {
     this.AccesoForm.reset();
-    this.router.navigateByUrl('/app/aut-system-e');
+    this.router.navigateByUrl('/admin/aut-system-e');
     this.id="";
     this.aux= this.aRouter.snapshot.paramMap.get('id');
 

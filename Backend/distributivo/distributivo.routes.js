@@ -7,4 +7,5 @@ module.exports = (router)=> {
     router.put('/update-dist/:id', Users.updateDistributivo);//editar por id
     router.get('/search-dist/:sch', Users.searchDocente);  //busqueda
     router.get('/search2-dist/:sch', Users.searchExitente);  //busqueda
+    router.get('/dist/:sch', Users.searchDocentePeriodo)//busqueda docente periodo
 }

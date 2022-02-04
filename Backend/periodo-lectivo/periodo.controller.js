@@ -131,3 +131,20 @@ exports.searchCodigo = async (req, res) => {
 
     }
 }
+
+
+exports.listEstado = async (req, res) => {
+    try{
+        let dni = await User.find({Estado:true});
+        if(dni[0] == null){
+            res.status(404).json({msg: 'La busqueda no existe'})
+        }else{
+            res.json({dni});
+        } 
+            
+    }catch(err){
+        console.log(err);
+        res.status(500).send('Hubo un error')
+
+    }
+}

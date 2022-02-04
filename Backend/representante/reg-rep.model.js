@@ -149,6 +149,13 @@ const userSchema = new Schema({
         type: String,
         trim: true,
         default:'Ninguna'
+    },
+    Estado: {
+        type: Boolean,
+        trim: true,
+        requerido: true,
+        default: true,
+        trim:true
     }
 },{
     timestamps:true

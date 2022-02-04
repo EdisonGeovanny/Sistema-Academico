@@ -14,6 +14,10 @@ export class ListDistributivoComponent implements OnInit {
     dni: []
   }
 
+  public datam2$: any = {
+    dni: []
+  }
+
   public distributivos: any = {
     dni: []
   }
@@ -29,6 +33,9 @@ export class ListDistributivoComponent implements OnInit {
   //formGroup
   AccesoForm: FormGroup;
 
+
+  nombre: string | null;
+ usuario: string | null;
 
      //Nombramiento
    Buscar = [{ name: "N° identificación" },
@@ -52,14 +59,35 @@ public buscar3: any = {
   dni:[]
 }
 
+//Paralelo
+ public P = [{ name: "Seleccionar opción" }];
+ elegir2: string = "";
+
+ //Nivel
+ public N = [{ name: "Seleccionar opción" }];
+ elegir1: string = "";
+
+ //Jornada
+ public J = [{ name: "Seleccionar opción" }, { name: "MATUTINA" }, { name: "VESPERTINA" }];
+ elegir3: string = "";
+ //Jornada
+ public Per = [{ name: "Seleccionar opción" }];
+ elegir4: string = "";
+   
+
 constructor(private authService: AuthService, private router: Router,
   private fb: FormBuilder, private aRouter: ActivatedRoute) {
   //formGroup
   this.AccesoForm = this.fb.group({
     Search: [''],
     Combo: [''],
-
+    Periodo: ['', Validators.required],
+    Paralelo: ['', Validators.required],
+    Nivel: ['', Validators.required],
+    Jornada: ['', Validators.required]
   }),
+  this.nombre = null,
+  this.usuario = null,
 //mapeo de url con atributo
 this.id = null
 }
@@ -67,12 +95,17 @@ this.id = null
 
   ngOnInit(): void {
     this.ObtenerDistributivo();
+    this.comboNivel();
+    this.comboPeriodo();
+    this.comboParalelo();
+    this.loginData();
   }
   
    
   //Obtener datos para Editar
   async ObtenerDistributivo() {
     const eliminados = this.datam$.dni.splice(0, this.datam$.dni.length + 1);
+    const eliminados3 = this.datam2$.dni.splice(0, this.datam2$.dni.length + 1);
     const eliminados2 = this.busqueda.dni.splice(0, this.busqueda.dni.length + 1);
 
     const Obtenerm = new Promise(async (resolve, reject) => {
@@ -82,8 +115,8 @@ this.id = null
     });
 
     this.distributivos = await Obtenerm.then(res => res);
-    console.log(this.distributivos)
 
+    
     const Obtenere = new Promise(async (resolve, reject) => {
       await this.authService.getProfAll().subscribe(data => {
         resolve(data)
@@ -91,13 +124,28 @@ this.id = null
     });
 
     this.docentes = await Obtenere.then(res => res);
-    console.log(this.docentes)
 
 
     this.distributivos.dni.forEach((d: any, index: any, array: any) => {
       this.docentes.dni.forEach((p: any, index: any, array: any) => {
         if (d.Docente[0] == p._id) {
 
+          this.datam2$.dni.push({
+            _id: d._id,
+            Docente:p._id,
+            Nombres: p.Nombres,
+            Apellidos: p.Apellidos,
+            DNI: p.DNI,
+            Periodo: d.Periodo,
+            Nivel: d.Nivel,
+            Paralelo: d.Paralelo,
+            Jornada: d.Jornada,
+            Area:d.Area,
+            Asignatura: d.Asignatura,
+            Estado: d.Estado
+          });
+        
+        
           this.datam$.dni.push({
             _id: d._id,
             Docente:p._id,
@@ -133,11 +181,74 @@ this.id = null
     });
 
 
-console.log(this.datam$)
-console.log(this.busqueda)
-
   }
   
+  BuscarDistributivos(){
+    const SCH: any = {
+      Nivel: this.AccesoForm.get('Nivel')?.value,
+      Paralelo: this.AccesoForm.get('Paralelo')?.value,
+      Periodo: this.AccesoForm.get('Periodo')?.value,
+      Jornada: this.AccesoForm.get('Jornada')?.value
+    }
+    const eliminados = this.datam2$.dni.splice(0, this.datam2$.dni.length + 1);
+
+    this.busqueda.dni.forEach((docente: any, index: any, array: any) => {
+      if (docente.Nivel == SCH.Nivel) {
+       if(docente.Paralelo == SCH.Paralelo){
+        if(docente.Periodo == SCH.Periodo){
+          if(docente.Jornada == SCH.Jornada){
+            this.datam2$.dni.push(docente);
+          }
+        }
+       }
+      }
+    });
+  }
+
+  async comboNivel() {
+    //obtener nivel para combobox
+    const Obtenern = new Promise(async (resolve, reject) => {
+      await this.authService.getNivelAll().subscribe(data => {
+        resolve(data)
+      })
+    });
+
+    this.buscar = await Obtenern.then(res => res);
+    this.buscar.dni.forEach((element: any, index: any, array: any) => {
+      this.N.push({ name: element.Nivel });
+    });
+  }
+
+  async comboParalelo() {
+    //obtener paralelo para combobox
+    const Obtener = new Promise(async (resolve, reject) => {
+      await this.authService.getParaleloAll().subscribe(data => {
+        resolve(data)
+      })
+    });
+
+    this.buscar2 = await Obtener.then(res => res);
+    this.buscar2.dni.forEach((element: any, index: any, array: any) => {
+      this.P.push({ name: element.Paralelo });
+    });
+
+  }
+
+  async comboPeriodo() {
+    //obtener periodo lectivo para combobox
+    const Obtenerper = new Promise(async (resolve, reject) => {
+      await this.authService.getPeriodoAll().subscribe(data => {
+        resolve(data)
+      })
+    });
+
+    this.buscar3 = await Obtenerper.then(res => res);
+    this.buscar3.dni.forEach((element: any, index: any, array: any) => {
+      this.Per.push({ name: element.Codigo });
+    });
+
+
+  }
 
   // busqueda dinámica 
   async search() {
@@ -219,15 +330,15 @@ console.log(this.busqueda)
 
   //Matricula
   View(id: any) {
-    this.router.navigateByUrl('/app/view-dist/'+id);
+    this.router.navigateByUrl('/admin/view-dist/'+id);
     
     }
   
     Update(id: any) {
-      console.log(id);
-      this.router.navigateByUrl('/app/edit-dist/'+id);
+      this.router.navigateByUrl('/admin/edit-dist/'+id);
       }
   
+      
     //borrar
   Delete(id: any){
     const swalWithBootstrapButtons = Swal.mixin({
@@ -282,6 +393,31 @@ console.log(this.busqueda)
       icon: 'warning',
       title: 'El campo de busqueda esta vacio'
     })
+  }
+
+  logOut() {
+    this.authService.logoutA();
+    this.router.navigateByUrl('/app/log-admin')
+  }
+
+
+  loginData() {
+    this.usuario = localStorage.getItem('user');
+    const id = localStorage.getItem('id');
+    if (id != null) {
+      this.authService.obtenerPorfesorId(id).subscribe(data => {
+        this.nombre = data.Apellidos + " " + data.Nombres;
+      }, error => {
+        console.log(error);
+      });
+    }
+
+
+  }
+
+  view2() {
+    const id = localStorage.getItem('id');
+    this.router.navigateByUrl('/admin/view-prof/' + id);
   }
 
 }

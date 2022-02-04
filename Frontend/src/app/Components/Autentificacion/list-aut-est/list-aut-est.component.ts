@@ -27,6 +27,9 @@ export class ListAutEstComponent implements OnInit {
   }
 
 
+  nombre : string | null;
+  usuario: string | null;
+
 
   AccesoForm: FormGroup;
 
@@ -51,11 +54,15 @@ export class ListAutEstComponent implements OnInit {
     this.AccesoForm = this.fb.group({
       Search: ['', Validators.required],
       Combo: ['', Validators.required]
-    })
+    }),
+    this.nombre = null;
+    this.usuario = null;
   }
 
   ngOnInit(): void {
     this.obtenerAcceso();
+    this.loginData();
+    
   }
   
 
@@ -262,12 +269,12 @@ export class ListAutEstComponent implements OnInit {
   /////////  métodos /////////////////////////
 
   updateAut(id: any) {
-    this.router.navigateByUrl('/app/edit-aut-e/' + id);
+    this.router.navigateByUrl('/admin/edit-aut-e/' + id);
 
   }
 
   viewAut(id: any) {
-    this.router.navigateByUrl('/app/view-est/' + id);
+    this.router.navigateByUrl('/admin/view-est/' + id);
   }
 
   /////Alertas/////////////////////////
@@ -310,4 +317,28 @@ export class ListAutEstComponent implements OnInit {
   }
 
 
+  logOut(){
+    this.authService.logoutA();
+    this.router.navigateByUrl('/app/log-admin')
+  }
+  
+  
+  loginData(){
+   this.usuario = localStorage.getItem('user');
+   const id = localStorage.getItem('id');
+   if(id!=null){
+     this.authService.obtenerPorfesorId(id).subscribe(data => {
+     this.nombre = data.Apellidos+" "+data.Nombres;
+     }, error => {
+       console.log(error);
+     });
+   }
+   
+  
+  }
+  
+  view() {
+   const id = localStorage.getItem('id');
+   this.router.navigateByUrl('/admin/view-prof/'+id);
+  }
 }

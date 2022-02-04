@@ -19,17 +19,22 @@ export class ViewProfComponent implements OnInit {
   Hora:Date | null;
   estado: string | null;
 
+  nombre : string | null;
+  usuario: string | null;
+
   constructor(private authService: AuthService, private router: Router,
     private fb: FormBuilder, private aRouter: ActivatedRoute) {
     
     this.id = this.aRouter.snapshot.paramMap.get('id'),
     this.Hora = new Date(),
     this.estado = "",
-    console.log(this.id)
+    this.nombre = '';
+    this.usuario = '';
   }
 
   ngOnInit(): void {
     this.esEditar();
+    this.loginData();
   }
 
 
@@ -40,24 +45,44 @@ export class ViewProfComponent implements OnInit {
       this.authService.obtenerPorfesorId(this.id).subscribe(data => {
         
         if(data.Estado){
-           this.estado = "habilitado";
-          }else{ this.estado = "deshabilitado";}
+           this.estado = "Activo";
+          }else{ this.estado = "Suspendido";}
 
         this.profesor = {
+          Tipo_documento: data.Tipo_documento,
           DNI: data.DNI,
           Nombres: data.Nombres +" "+ data.Apellidos,
+          Genero: data.Genero,
+          Estado_civil : data.Estado_civil,
+          Fecha_nacimiento: data.Fecha_nacimiento,
+          Lugar_nacimiento: data.Lugar_nacimiento,
+          Etnia : data.Etnia,
+          Nacionalidad : data.Nacionalidad,
+          Grupo_sanguineo: data.Grupo_sanguineo,
+          Tipo_discapacidad: data.Tipo_discapacidad,
+          Carnet_discapacidad: data.Carnet_discapacidad,
+          Porcentaje_discapacidad: data.Porcentaje_discapacidad,
+          Observacion_medica: data.Observacion_medica,
+          Nivel_educacion: data.Nivel_educacion,
+          Institucion: data.Institucion,
+          Lugar_institucion: data.Lugar_institucion,
+          Tipo_institucion: data.Tipo_institucion,
+          Especialidad: data.Especialidad,
+          Nota_grado: data.Nota_grado,
+          Fecha_grado: data.Fecha_grado,
           Fecha_ingreso_magisterio: data.Fecha_ingreso_magisterio,
           Fecha_ingreso_institucion: data.Fecha_ingreso_institucion,
-          Titulo_profesional: data.Titulo_profesional,
           servicio: data.Años_servicio,
           Condicion_laboral: data.Condicion_laboral,
-          Fecha_nacimiento: data.Fecha_nacimiento,
           Direccion: data.Direccion,
+          Sector_domicilio: data.Sector_domicilio,
+          Referencia_domicilio: data.Referencia_domicilio,
+          Nombre_emergente: data.Nombre_emergente,
+          Contacto_emergente: data.Contacto_emergente,
           Email: data.Email,
           Telefono: data.Telefono,
           Celular: data.Celular,
           Estado: this.estado,
-          Genero: data.Genero,
           Observacion: data.Observacion
         }
       })
@@ -65,7 +90,31 @@ export class ViewProfComponent implements OnInit {
     }
   }
 
+  logOut(){
+    this.authService.logoutA();
+    this.router.navigateByUrl('/app/log-admin')
+  }
+ 
+ 
+  loginData(){
+   this.usuario = localStorage.getItem('user');
+   const id = localStorage.getItem('id');
+   if(id!=null){
+     this.authService.obtenerPorfesorId(id).subscribe(data => {
+     this.nombre = data.Apellidos+" "+data.Nombres;
+     }, error => {
+       console.log(error);
+     });
+   }
+   
   
+ }
+ 
+ view() {
+   const id = localStorage.getItem('id');
+   this.router.navigateByUrl('/admin/view-prof/'+id);
+ }
+
 //imprimir
 Print(){
 printJS({

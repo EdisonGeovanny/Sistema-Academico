@@ -75,6 +75,10 @@ elegido1: string = "";
   { name: "Apellidos" }, { name: "Nombres" }];
   elegido2: string = "";
 
+
+  nombre : string | null;
+  usuario: string | null;
+
   constructor(private authService: AuthService, private router: Router,
     private fb: FormBuilder, private aRouter: ActivatedRoute) {
     //formGroup
@@ -119,13 +123,16 @@ elegido1: string = "";
     this.estado = "",
     this.id = this.aRouter.snapshot.paramMap.get('id'),
     this.ide = null,
-    this.idr = null
+    this.idr = null,
+    this.nombre = null;
+    this.usuario = null;
   }
 
   ngOnInit(): void {
     this.ObtenerRepresentante();
     this.ObtenerEstudiante();
     this.esEditar();
+    this.loginData();
   }
 
 
@@ -756,11 +763,40 @@ async ObtenerRepresentante() {
     })
   }
 
+
+
+  logOut(){
+    this.authService.logoutA();
+    this.router.navigateByUrl('/app/log-admin')
+  }
+  
+  
+  loginData(){
+   this.usuario = localStorage.getItem('user');
+   const id = localStorage.getItem('id');
+   if(id!=null){
+     this.authService.obtenerPorfesorId(id).subscribe(data => {
+     this.nombre = data.Apellidos+" "+data.Nombres;
+     }, error => {
+       console.log(error);
+     });
+   }
+   
+  
+  }
+  
+  view() {
+   const id = localStorage.getItem('id');
+   this.router.navigateByUrl('/admin/view-prof/'+id);
+  }
+  
+  
+
   ////////////////////////Redirecciones ////////////////////
 
   RedirectCancel(): void {
     this.FichaForm.reset();
-    this.router.navigateByUrl('/app/reg-ficha');
+    this.router.navigateByUrl('/admin/reg-ficha');
     this.id=null;
     this.ide = null;
     this.idr = null;

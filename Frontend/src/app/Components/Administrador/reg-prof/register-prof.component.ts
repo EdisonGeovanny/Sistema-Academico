@@ -18,6 +18,9 @@ export class RegisterProfComponent implements OnInit {
   //titulo
   Titulo = 'DOCENTE: REGISTRO DE INFORMACIÓN';
   subnivel = 'REGISTRO DE DATOS';
+  nombre : string | null;
+  usuario: string | null;
+  
   id: string | null;
 
   //Nombramiento
@@ -100,12 +103,15 @@ export class RegisterProfComponent implements OnInit {
     Estado : ['', Validators.required],
 
     })
-    this.id = this.aRouter.snapshot.paramMap.get('id')
+    this.id = this.aRouter.snapshot.paramMap.get('id'),
+    this.nombre = '';
+    this.usuario = '';
     //console.log(this.id)
   }
 
   ngOnInit(): void {
     this.esEditar();
+    this.loginData();
   }
 //agregar datos o actualizar datos
  saveData(){
@@ -218,7 +224,7 @@ export class RegisterProfComponent implements OnInit {
       this.ProfesoresForm.controls['Observacion'].setValue(data.Observacion);
       this.ProfesoresForm.controls['Estado'].setValue(data.Estado); 
   
-      })
+      });
     }
   }
 
@@ -288,7 +294,6 @@ export class RegisterProfComponent implements OnInit {
           console.log(PROFESOR);
           this.authService.updateDocente(this.id,PROFESOR).subscribe(data => {
             this.esEditar();
-            this.AlertExito2();
           }, err => {
             console.log(err);
             this.AlertFracaso();
@@ -298,7 +303,7 @@ export class RegisterProfComponent implements OnInit {
         }
 
         swalWithBootstrapButtons.fire(
-          'Eliminado!',
+          'Actualizado!',
           'Tu registro fue actualizado.',
           'success'
         )
@@ -308,18 +313,45 @@ export class RegisterProfComponent implements OnInit {
   }
 
  
+  viewProf(id: any) {
+    this.router.navigateByUrl('/admin/view-prof/'+id);
+  }
+
 
 
 ////////////////////////Redirecciones ////////////////////
 
 RedirectCancel(): void {
   this.ProfesoresForm.reset();
-  this.router.navigateByUrl('/app/reg-prof');
+  this.router.navigateByUrl('/admin/reg-prof');
   this.id=null;
 }
 
 
+ logOut(){
+   this.authService.logoutA();
+   this.router.navigateByUrl('/app/log-admin')
+ }
+
+
+ loginData(){
+  this.usuario = localStorage.getItem('user');
+  const id = localStorage.getItem('id');
+  if(id!=null){
+    this.authService.obtenerPorfesorId(id).subscribe(data => {
+    this.nombre = data.Apellidos+" "+data.Nombres;
+    }, error => {
+      console.log(error);
+    });
+  }
   
+ 
+}
+
+view() {
+  const id = localStorage.getItem('id');
+  this.router.navigateByUrl('/admin/view-prof/'+id);
+}
 
 
   ///////////   ventanas de alerta    ///////////////////

@@ -1,5 +1,4 @@
-
-<body class="hold-transition sidebar-mini">
+<body class="hold-transition sidebar-mini p">
     <div class="wrapper">
         <!-- Navbar -->
         <nav class="main-header navbar navbar-expand navbar-dark navbar-gray-dark">
@@ -17,13 +16,13 @@
 
                 <!-- Cerrar sesion -->
                 <li class="nav-item dropdown">
-                    <a class="nav-link" href="#"> <abbr title="Cerrar Sesión"><i
+                    <a class="nav-link" (click)="logOut()"> <abbr title="Cerrar Sesión"><i
                                 class="far fa-sign-out-alt fa-2x "></i></abbr> </a>
 
                 </li>
                 <!-- Colchones derecha -->
-                <li class="nav-item dropdown"><a class="nav-link" routerLink="/app/reg-prof"> <i></i></a></li>
-                <li class="nav-item dropdown"><a class="nav-link" routerLink="/app/reg-prof"><i></i></a></li>
+                <li class="nav-item dropdown"><a class="nav-link" routerLink="/admin/reg-dist"> <i></i></a></li>
+                <li class="nav-item dropdown"><a class="nav-link" routerLink="/admin/reg-dist"><i></i></a></li>
 
             </ul>
         </nav>
@@ -45,23 +44,24 @@
                 <!-- Sidebar user (optional) -->
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                     <div class="image">
-                        <img src="./assets/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+                        <img src="./assets/dist/img/userAdmin.png" class="img-circle elevation-2" alt="User Image">
                     </div>
                     <div class="info">
-                        <a href="(click)=RedirectName()" class="d-block">Alexander Pierce</a>
+                        <a (click)="view2()" class="d-block centrar">{{nombre}}</a>
+                        <a class="d-block centrar">usuario: {{usuario}}</a>
                     </div>
                 </div>
 
                 <!-- Sidebar Menu -->
-                <nav class="mt-2">
+                <nav class="mt-2 p2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                         data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
-             with font-awesome or any other icon font library -->
+         with font-awesome or any other icon font library -->
 
                         <!-- REGISTRO DE DATOS -->
-                        <li class="nav-item has-treeview menu-open">
-                            <a routerLink="/app/reg-prof" class="nav-link active">
+                        <li class="nav-item has-treeview">
+                            <a routerLink="/admin/reg-prof" class="nav-link">
                                 <i class="nav-icon fas fa-edit"></i>
                                 <p>
                                     REGISTRO DE DATOS
@@ -72,27 +72,27 @@
 
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a routerLink="/app/reg-prof" class="nav-link">
+                                    <a routerLink="/admin/reg-prof" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Docente</p>
+                                        <p class="p">Docente</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a routerLink="/app/reg-est" class="nav-link">
+                                    <a routerLink="/admin/reg-est" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Estudiante</p>
                                     </a>
                                 </li>
 
                                 <li class="nav-item">
-                                    <a routerLink="/app/reg-rep" class="nav-link">
+                                    <a routerLink="/admin/reg-rep" class="nav-link ">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Representante</p>
                                     </a>
                                 </li>
 
                                 <li class="nav-item">
-                                    <a routerLink="/app/reg-ficha" class="nav-link">
+                                    <a routerLink="/admin/reg-ficha" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Ficha Estudiantil</p>
                                     </a>
@@ -102,24 +102,24 @@
                         </li>
 
                         <!-- USUARIOS -->
-                        <li class="nav-item has-treeview">
-                            <a routerLink="/app/aut-system" class="nav-link">
-                                <i class="nav-icon fas fa-user-plus"></i>
+                        <li class="nav-item has-treeview ">
+                            <a routerLink="/admin/aut-system" class="nav-link">
+                                <i class="nav-icon fas fa-user-plus"> </i>
                                 <p>
-                                    USUARIO DE ACCESO
+                                    &nbsp;CREAR USUARIO
                                     <i class="fas fa-angle-left right"></i>
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a routerLink="/app/aut-system" class="nav-link active">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Docente / Administrador</p>
+                                    <a routerLink="/admin/aut-system" class="nav-link">
+                                        <i class="far fa-circle nav-icon"> </i>
+                                        <p> Docente / Administrador</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a routerLink="/app/aut-system-e" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
+                                    <a routerLink="/admin/aut-system-e" class="nav-link">
+                                        <i class="far fa-circle nav-icon"> </i>
                                         <p>Estudiante</p>
                                     </a>
                                 </li>
@@ -129,40 +129,35 @@
 
                         <!-- ACADEMICO -->
                         <li class="nav-item has-treeview">
-                            <a routerLink="/app/reg-periodo" class="nav-link">
-                                <i class="nav-icon fas fa-table"></i>
+                            <a routerLink="/admin/reg-periodo" class="nav-link">
+                                <i class="fas fa-layer-group"> </i>
                                 <p>
-                                    ACADÉMICO
+                                    &nbsp; DATOS DE AULA
                                     <i class="fas fa-angle-left right"></i>
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a routerLink="/app/reg-periodo" class="nav-link">
+                                    <a routerLink="/admin/reg-periodo" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Periodo Lectivo</p>
                                     </a>
                                 </li>
+
                                 <li class="nav-item">
-                                    <a routerLink="/app/reg-grado" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Grados</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a routerLink="/app/reg-nivel" class="nav-link">
+                                    <a routerLink="/admin/reg-nivel" class="nav-link ">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Niveles</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a routerLink="/app/reg-materia" class="nav-link">
+                                    <a routerLink="/admin/reg-materia" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>materias</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a routerLink="/app/reg-paralelo" class="nav-link">
+                                    <a routerLink="/admin/reg-paralelo" class="nav-link ">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Paralelos</p>
                                     </a>
@@ -171,154 +166,49 @@
                         </li>
 
                         <!-- MATRICULAS -->
-                        <li class="nav-item">
-                            <a routerLink="/app/reg-matricula" class="nav-link">
-                                <i class="nav-icon fas fa-table"></i>
+                        <li class="nav-item has-treeview menu-open">
+                            <a routerLink="/admin/reg-matricula" class="nav-link active">
+                                <i class="fas fa-school"></i>
                                 <p>
-                                    MATRICULA
+                                    &nbsp;ACADÉMICO
                                     <i class="fas fa-angle-left right"></i>
                                 </p>
                             </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a routerLink="/admin/reg-matricula" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Matricula de Estudiantes</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a routerLink="/admin/reg-dist" class="nav-link  active">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Distributivo de Docentes</p>
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
 
                         <!-- CALIFICACIONES -->
                         <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-table"></i>
+                            <a routerLink="/admin/active-nota" class="nav-link">
+                                <i class="fas fa-graduation-cap"></i>
                                 <p>
-                                    Calificaciones
+                                    &nbsp;CALIFICACIONES
                                     <i class="fas fa-angle-left right"></i>
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="../tables/simple.html" class="nav-link">
+                                    <a routerLink="/admin/active-nota" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Simple Tables</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="../tables/data.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>DataTables</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="../tables/jsgrid.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>jsGrid</p>
+                                        <p>Activar ingreso de notas</p>
                                     </a>
                                 </li>
                             </ul>
                         </li>
 
-                        <!-- HORARIO -->
-                        <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-table"></i>
-                                <p>
-                                    Horarios
-                                    <i class="fas fa-angle-left right"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="../tables/simple.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Simple Tables</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="../tables/data.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>DataTables</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="../tables/jsgrid.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>jsGrid</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-
-
-                        <li class="nav-header">MISCELLANEOUS</li>
-                        <li class="nav-item">
-                            <a href="https://adminlte.io/docs/3.0" class="nav-link">
-                                <i class="nav-icon fas fa-file"></i>
-                                <p>Documentation</p>
-                            </a>
-                        </li>
-
-                        <li class="nav-header">MULTI LEVEL EXAMPLE</li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="fas fa-circle nav-icon"></i>
-                                <p>Level 1</p>
-                            </a>
-                        </li>
-
-                        <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-circle"></i>
-                                <p>
-                                    Level 1
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Level 2</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item has-treeview">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>
-                                            Level 2
-                                            <i class="right fas fa-angle-left"></i>
-                                        </p>
-                                    </a>
-                                    <ul class="nav nav-treeview">
-                                        <li class="nav-item">
-                                            <a href="#" class="nav-link">
-                                                <i class="far fa-dot-circle nav-icon"></i>
-                                                <p>Level 3</p>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="#" class="nav-link">
-                                                <i class="far fa-dot-circle nav-icon"></i>
-                                                <p>Level 3</p>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="#" class="nav-link">
-                                                <i class="far fa-dot-circle nav-icon"></i>
-                                                <p>Level 3</p>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Level 2</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="fas fa-circle nav-icon"></i>
-                                <p>Level 1</p>
-                            </a>
-                        </li>
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->
@@ -335,11 +225,11 @@
                     <div class="row mb-2">
 
                         <div class="col-sm-6">
-                            <h5><strong>ESTUDIANTE: {{Titulo}}</strong></h5>
+                            <h5><strong>DOCENTE: {{Titulo}}</strong></h5>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item">USUARIO DE ACCESO</li>
+                                <li class="breadcrumb-item">INGRESO DE DATOS</li>
                                 <li class="breadcrumb-item active"> {{Titulo}}</li>
                             </ol>
                         </div>
@@ -374,7 +264,7 @@
                                         <!--Encabezado de agregar usuario-->
                                         <div class="row">
                                             <div class="col-md-12 h2">
-                                                <h2>ASIGNAR DOCENTE</h2>
+                                                <h2>DISTRIBUTIVO DOCENTE</h2>
                                             </div>
                                             <div class="col-md-7 h2">
                                                 <h2>Busqueda de Registro</h2>
@@ -390,7 +280,7 @@
 
                                         <div class="row">
                                             <!--Tabla de busqueda-->
-                                            <div class="col-md-7">
+                                            <div class="col-md-7 shadow p-3 mb-5 bg-white rounded">
 
                                                 <div class="row">
                                                     <div class="col-md-5">
@@ -456,7 +346,7 @@
 
                                             <div class="col-md-1"></div>
 
-                                            <div class="col-md-4">
+                                            <div class="col-md-4 shadow p-3 mb-5 bg-white rounded">
 
 
                                                 <address>
@@ -495,7 +385,7 @@
                                             <div class="col-md-3">
 
                                                 <div class="form-group">
-                                                    <label>Seleccione el periodo lectivo:</label>
+                                                    <label>Periodo lectivo:</label>
                                                     <select class="form-control combo" name="Periodo"
                                                         formControlName="Periodo" [(ngModel)]="elegir4">
                                                         <option *ngFor="let per1 of Per">{{ per1.name }}</option>
@@ -503,7 +393,7 @@
                                                 </div>
 
                                                 <div class="form-group">
-                                                    <label>Seleccione el nivel:</label>
+                                                    <label>Nivel:</label>
                                                     <select class="form-control combo" name="Nivel"
                                                         formControlName="Nivel" [(ngModel)]="elegir1"
                                                         (change)="onSelect($event)">
@@ -513,7 +403,7 @@
 
 
                                                 <div class="form-group">
-                                                    <label for="Area">Ingrese área de la asignatura:</label>
+                                                    <label for="Area">Área de la asignatura:</label>
                                                     <input type="text" class="form-control" name="Area"
                                                         formControlName="Area" readonly>
                                                 </div>
@@ -522,7 +412,7 @@
 
                                             <div class="col-md-3">
                                                 <div class="form-group">
-                                                    <label>Seleccione la jornada de estudio:</label>
+                                                    <label>Jornada de estudio:</label>
                                                     <select class="form-control combo" name="Jornada"
                                                         formControlName="Jornada" [(ngModel)]="elegir3">
                                                         <option *ngFor="let j1 of J">{{ j1.name }}</option>
@@ -530,7 +420,7 @@
                                                 </div>
 
                                                 <div class="form-group">
-                                                    <label>Seleccione el paralelo:</label>
+                                                    <label>Paralelo:</label>
                                                     <select class="form-control combo" name="Paralelo"
                                                         formControlName="Paralelo" [(ngModel)]="elegir2">
                                                         <option *ngFor="let p1 of P">{{ p1.name }}</option>
@@ -544,9 +434,7 @@
                                                 </div>
                                             </div>
 
-                                            <div class="col-md-1"></div>
-
-                                            <div class="col-md-5">
+                                            <div class="col-md-6 shadow p-3 mb-5 bg-white rounded">
                                                 <div class="row">
                                                     <div class="col-md-12 h2">
                                                         <h2>Asignar materia:</h2>
@@ -587,12 +475,12 @@
 
                                         <div class="row">
                                             <div class="col-md-12 h2">
-                                                <h2>ASIGNAR HORARIO</h2>
+                                                <h2>ASIGNAR HORARIO DE CLASE</h2>
                                             </div>
 
                                         </div>
                                         <!--Datos de Usuario-->
-                                        <div class="row">
+                                        <div class="row shadow p-3 mb-5 bg-white rounded">
 
                                             <!-- Usuario-->
                                             <div class="col-md-3">
@@ -610,13 +498,13 @@
                                             <div class="col-md-3">
 
                                                 <div class="form-group">
-                                                    <label>Hora de inicio de clases:</label>
+                                                    <label>Hora de inicio:</label>
 
                                                     <div class="input-group date" id="Hora_inicio"
                                                         data-target-input="nearest">
                                                         <input type="time" class="form-control datetimepicker-input"
-                                                             formControlName="Hora_inicio">
-                                                        
+                                                            formControlName="Hora_inicio">
+
                                                     </div>
                                                     <!-- /.input group -->
                                                 </div>
@@ -624,19 +512,19 @@
 
                                             <div class="col-md-3">
                                                 <div class="form-group">
-                                                    <label>Hora de finalización de clases:</label>
+                                                    <label>Hora de finalización:</label>
 
                                                     <div class="input-group date" id="Hora_fin"
                                                         data-target-input="nearest">
                                                         <input type="time" class="form-control datetimepicker-input"
-                                                             formControlName="Hora_fin">
-                                                        
+                                                            formControlName="Hora_fin">
+
                                                     </div>
                                                     <!-- /.input group -->
                                                 </div>
 
 
-                                            
+
                                             </div>
 
                                             <div class="col-md-3">
@@ -647,42 +535,39 @@
                                             </div>
 
 
-                                                    <!--Tabla-->
-                                                    <div class="col-md-12">
-                                                        <div class="card-body table-responsive p-0" style="height: 300px;">
-                                                            <table *ngIf="horario.dato.length > 0"
-                                                                class="table table-hover table-head-fixed text-nowrap">
-                                                                <thead>
-                                                                    <tr>
-                                                                        <th>Día</th>
-                                                                        <th>Hora de inicio</th>
-                                                                        <th>Hora de finalización</th>
-                                                                        <th></th>
-                                                                    </tr>
-                                                                </thead>
-                                                                <tbody>
-                                                                    <tr *ngFor="let h of  horario.dato">
-                                                                        <td>{{h.Dia}}</td>
-                                                                        <td>{{h.Hora_inicio}}</td>
-                                                                        <td>{{h.Hora_fin}}</td>
-                                                                        <td class="colum">
-                                                                            <i (click)="borrar(h)"
-                                                                                class="fas fa-minus-circle fa-lg text-danger mr-2"></i>
-                                                                        </td>
-                                                                    </tr>
-                                                                </tbody>
-                                                            </table>
-                                                            <h5 style="text-align:start; margin-top: 10px;"
-                                                                *ngIf="horario.dato.length == 0">No existen
-                                                                <strong>datos</strong> para agregados..!
-                                                            </h5>
-                                                        </div>
-    
-    
-                                                    </div>
+                                            <!--Tabla-->
+                                            <div class="col-md-12 shadow p-3 mb-5 bg-white rounded">
+                                                <div class="card-body table-responsive p-0" style="height: 300px;">
+                                                    <table *ngIf="horario.dato.length > 0"
+                                                        class="table table-hover table-head-fixed text-nowrap">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Día</th>
+                                                                <th>Hora de inicio</th>
+                                                                <th>Hora de finalización</th>
+                                                                <th></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr *ngFor="let h of  horario.dato">
+                                                                <td>{{h.Dia}}</td>
+                                                                <td>{{h.Hora_inicio}}</td>
+                                                                <td>{{h.Hora_fin}}</td>
+                                                                <td class="colum">
+                                                                    <i (click)="borrar(h)"
+                                                                        class="fas fa-minus-circle fa-lg text-danger mr-2"></i>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <h5 style="text-align:start; margin-top: 10px;"
+                                                        *ngIf="horario.dato.length == 0">No existen
+                                                        <strong>datos</strong> agregados..!
+                                                    </h5>
+                                                </div>
 
-                                                    <br><hr><br>
-                                                    
+
+                                            </div>
 
                                             <div class="form-group form-check form-switch">
                                                 <input class="form-check-input" type="checkbox" formControlName="Estado"
@@ -690,8 +575,8 @@
                                                 <label for="Estado">Habilitar distribución</label>
                                             </div>
 
-
                                         </div>
+
 
                                     </div>
                                     <!-- /.card-body -->
@@ -710,7 +595,7 @@
                                             </div>
                                             <div class="col-md-6"></div>
                                             <div class="col-md-2">
-                                                <button type="button" routerLink="/app/list-dist"
+                                                <button type="button" routerLink="/admin/list-dist"
                                                     class="btn btn-block bg-gradient-info" value="Tabla"><i
                                                         class="fas fa-list"></i> Tabla</button>
                                             </div>

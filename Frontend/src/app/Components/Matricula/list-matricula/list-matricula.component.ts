@@ -14,6 +14,10 @@ export class ListMatriculaComponent implements OnInit {
     dni: []
   }
 
+  public datam2$: any = {
+    dni: []
+  }
+
   public matriculas: any = {
     dni: []
   }
@@ -29,7 +33,20 @@ export class ListMatriculaComponent implements OnInit {
   //formGroup
   AccesoForm: FormGroup;
 
+ //Paralelo
+ public P = [{ name: "Seleccionar opción" }];
+ elegir2: string = "";
 
+ //Nivel
+ public N = [{ name: "Seleccionar opción" }];
+ elegir1: string = "";
+
+ //Jornada
+ public J = [{ name: "Seleccionar opción" }, { name: "MATUTINA" }, { name: "VESPERTINA" }];
+ elegir3: string = "";
+ //Jornada
+ public Per = [{ name: "Seleccionar opción" }];
+ elegir4: string = "";
    
      //Nombramiento
    Buscar = [{ name: "N° identificación" },
@@ -53,14 +70,23 @@ public buscar3: any = {
   dni:[]
 }
 
+nombre: string | null;
+usuario: string | null;
+
 constructor(private authService: AuthService, private router: Router,
   private fb: FormBuilder, private aRouter: ActivatedRoute) {
   //formGroup
   this.AccesoForm = this.fb.group({
     Search: [''],
     Combo: [''],
+    Periodo: ['', Validators.required],
+    Paralelo: ['', Validators.required],
+    Nivel: ['', Validators.required],
+    Jornada: ['', Validators.required],
 
   }),
+  this.nombre = null,
+  this.usuario = null,
 //mapeo de url con atributo
 this.id = null
 }
@@ -68,12 +94,17 @@ this.id = null
 
   ngOnInit(): void {
     this.ObtenerMatricula();
+    this.comboNivel();
+    this.comboPeriodo();
+    this.comboParalelo();
+    this.loginData();
   }
 
   
   //Obtener datos para Editar
   async ObtenerMatricula() {
     const eliminados = this.datam$.dni.splice(0, this.datam$.dni.length + 1);
+    const eliminados3 = this.datam2$.dni.splice(0, this.datam2$.dni.length + 1);
     const eliminados2 = this.busqueda.dni.splice(0, this.busqueda.dni.length + 1);
 
     const Obtenerm = new Promise(async (resolve, reject) => {
@@ -83,7 +114,7 @@ this.id = null
     });
 
     this.matriculas = await Obtenerm.then(res => res);
-    console.log(this.matriculas)
+
 
     const Obtenere = new Promise(async (resolve, reject) => {
       await this.authService.getEstAll().subscribe(data => {
@@ -92,14 +123,25 @@ this.id = null
     });
 
     this.estudiantes = await Obtenere.then(res => res);
-    console.log(this.estudiantes)
-
-
+    
     this.matriculas.dni.forEach((matricula: any, index: any, array: any) => {
       this.estudiantes.dni.forEach((estudiante: any, index: any, array: any) => {
         if (matricula.Estudiante[0] == estudiante._id) {
 
           this.datam$.dni.push({
+            _id: matricula._id,
+            Estudiante:estudiante._id,
+            Nombres: estudiante.Nombres,
+            Apellidos: estudiante.Apellidos,
+            DNI: estudiante.DNI,
+            Periodo: matricula.Periodo,
+            Nivel: matricula.Nivel,
+            Paralelo: matricula.Paralelo,
+            Jornada: matricula.Jornada,
+            Estado: matricula.Estado
+          });
+
+          this.datam2$.dni.push({
             _id: matricula._id,
             Estudiante:estudiante._id,
             Nombres: estudiante.Nombres,
@@ -129,12 +171,52 @@ this.id = null
       });
     });
 
-
-console.log(this.datam$)
-console.log(this.busqueda)
-
   }
   
+  async comboNivel() {
+    //obtener nivel para combobox
+    const Obtenern = new Promise(async (resolve, reject) => {
+      await this.authService.getNivelAll().subscribe(data => {
+        resolve(data)
+      })
+    });
+
+    this.buscar = await Obtenern.then(res => res);
+    this.buscar.dni.forEach((element: any, index: any, array: any) => {
+      this.N.push({ name: element.Nivel });
+    });
+  }
+
+  async comboParalelo() {
+    //obtener paralelo para combobox
+    const Obtener = new Promise(async (resolve, reject) => {
+      await this.authService.getParaleloAll().subscribe(data => {
+        resolve(data)
+      })
+    });
+
+    this.buscar2 = await Obtener.then(res => res);
+    this.buscar2.dni.forEach((element: any, index: any, array: any) => {
+      this.P.push({ name: element.Paralelo });
+    });
+
+  }
+
+  async comboPeriodo() {
+    //obtener periodo lectivo para combobox
+    const Obtenerper = new Promise(async (resolve, reject) => {
+      await this.authService.getPeriodoAll().subscribe(data => {
+        resolve(data)
+      })
+    });
+
+    this.buscar3 = await Obtenerper.then(res => res);
+    this.buscar3.dni.forEach((element: any, index: any, array: any) => {
+      this.Per.push({ name: element.Codigo });
+    });
+
+
+  }
 
   // busqueda dinámica 
   async search() {
@@ -214,15 +296,63 @@ console.log(this.busqueda)
    
   }
 
+  BuscarMatriculas(){
+    const SCH: any = {
+      Nivel: this.AccesoForm.get('Nivel')?.value,
+      Paralelo: this.AccesoForm.get('Paralelo')?.value,
+      Periodo: this.AccesoForm.get('Periodo')?.value,
+      Jornada: this.AccesoForm.get('Jornada')?.value
+    }
+    const eliminados = this.datam2$.dni.splice(0, this.datam2$.dni.length + 1);
+
+    this.busqueda.dni.forEach((estudiante: any, index: any, array: any) => {
+      if (estudiante.Nivel == SCH.Nivel) {
+       if(estudiante.Paralelo == SCH.Paralelo){
+        if(estudiante.Periodo == SCH.Periodo){
+          if(estudiante.Jornada == SCH.Jornada){
+            this.datam2$.dni.push(estudiante);
+          }
+        }
+       }
+      }
+    });
+  }
+
+  
+  logOut() {
+    this.authService.logoutA();
+    this.router.navigateByUrl('/app/log-admin')
+  }
+
+
+  loginData() {
+    this.usuario = localStorage.getItem('user');
+    const id = localStorage.getItem('id');
+    if (id != null) {
+      this.authService.obtenerPorfesorId(id).subscribe(data => {
+        this.nombre = data.Apellidos + " " + data.Nombres;
+      }, error => {
+        console.log(error);
+      });
+    }
+
+
+  }
+
+  view() {
+    const id = localStorage.getItem('id');
+    this.router.navigateByUrl('/admin/view-prof/' + id);
+  }
+
   //Matricula
   View(id: any) {
-    this.router.navigateByUrl('/app/view-matricula/'+id);
+    this.router.navigateByUrl('/admin/view-matricula/'+id);
     
     }
   
     Update(id: any) {
       console.log(id);
-      this.router.navigateByUrl('/app/edit-matricula/'+id);
+      this.router.navigateByUrl('/admin/edit-matricula/'+id);
       }
   
     //borrar

@@ -42,6 +42,11 @@ export class MateriaComponent implements OnInit {
     dni: []
   }
 
+
+  nombre : string | null;
+  usuario: string | null;
+  
+
   constructor(private authService: AuthService, private router: Router,
     private fb: FormBuilder, private aRouter: ActivatedRoute) {
     this.GradoForm = this.fb.group({
@@ -53,6 +58,8 @@ export class MateriaComponent implements OnInit {
 
 
     }),
+    this.nombre = null,
+    this.usuario = null,
       this.id_n = null
   }
 
@@ -60,6 +67,7 @@ export class MateriaComponent implements OnInit {
   ngOnInit(): void {
     this.obtenerAsignaturas();
     this.combo();
+    this.loginData();
   }
 
   async combo() {
@@ -250,6 +258,32 @@ export class MateriaComponent implements OnInit {
     this.id_n = null;
     this.GradoForm.reset();
   }
+
+  logOut(){
+    this.authService.logoutA();
+    this.router.navigateByUrl('/app/log-admin')
+  }
+  
+  
+  loginData(){
+   this.usuario = localStorage.getItem('user');
+   const id = localStorage.getItem('id');
+   if(id!=null){
+     this.authService.obtenerPorfesorId(id).subscribe(data => {
+     this.nombre = data.Apellidos+" "+data.Nombres;
+     }, error => {
+       console.log(error);
+     });
+   }
+   
+  
+  }
+  
+  view() {
+   const id = localStorage.getItem('id');
+   this.router.navigateByUrl('/admin/view-prof/'+id);
+  }
+  
 
   async Buscar() {
     const SEARCH: any = {

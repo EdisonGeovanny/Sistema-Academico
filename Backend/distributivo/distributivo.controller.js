@@ -155,3 +155,21 @@ exports.searchExitente= async (req, res) => {
 
     }
 }
+
+
+exports.searchDocentePeriodo = async (req, res) => {
+    try {
+
+        const cadena = req.params.sch;
+       const x = cadena.split(',');
+        let dni = await User.find({$and:[{Docente:x[0]},{Periodo:x[1]}]});
+        if (!dni) {
+            res.status(404).json({ msg: 'La busqueda no existe' })
+        } res.json(dni);
+
+    } catch (err) {
+        console.log(err);
+        res.status(500).send('Hubo un error')
+
+    }
+}

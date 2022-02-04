@@ -29,9 +29,8 @@ export class LogAdminComponent implements OnInit {
        Contraseña: this.AutentificacionForm.get('Contraseña')?.value,
        Rol: 'Administrador'
      }
-     console.log(ACCESO);
      this.authService.loginA(ACCESO).subscribe(data => {
-       this.router.navigateByUrl('/app/reg-prof');
+       this.router.navigateByUrl('/admin/reg-prof');
      }, err => {
        console.log(err);
        this.AutentificacionForm.reset();

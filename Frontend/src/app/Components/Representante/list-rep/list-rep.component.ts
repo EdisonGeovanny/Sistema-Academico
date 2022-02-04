@@ -22,6 +22,9 @@ export class ListRepComponent implements OnInit {
    public isloading = false;
    public src: string | undefined;
    
+
+   nombre : string | null;
+   usuario: string | null;
  
     //Nombramiento
     Buscar = [{ name: "N° identificación" },
@@ -38,11 +41,14 @@ export class ListRepComponent implements OnInit {
     this.AccesoForm = this.fb.group({
       Search: ['', Validators.required],
       Combo: ['', Validators.required]
-    })
+    }),
+    this.nombre = null;
+    this.usuario = null;
   }
 
   ngOnInit(): void {
     this.obtenerRepresentantes();
+    this.loginData();
   }
 
   //listar
@@ -185,15 +191,15 @@ async searchDni() {
 
   /////////  Redireccion /////////////////////////
   Redirect(): void {
-    this.router.navigateByUrl('/app/reg-rep');
+    this.router.navigateByUrl('/admin/reg-rep');
   }
 
   updateRep(id: any) {
-    this.router.navigateByUrl('/app/edit-rep/'+id);
+    this.router.navigateByUrl('/admin/edit-rep/'+id);
   }
 
   viewRep(id: any) {
-    this.router.navigateByUrl('/app/view-rep/'+id);
+    this.router.navigateByUrl('/admin/view-rep/'+id);
   }
 
 ////////////// Alertas ///////////////////////////
@@ -234,6 +240,32 @@ AlertCamposVacios(): void {
     icon: 'warning',
     title: 'El campo de busqueda esta vacio'
   })
+}
+
+
+logOut(){
+  this.authService.logoutA();
+  this.router.navigateByUrl('/app/log-admin')
+}
+
+
+loginData(){
+ this.usuario = localStorage.getItem('user');
+ const id = localStorage.getItem('id');
+ if(id!=null){
+   this.authService.obtenerPorfesorId(id).subscribe(data => {
+   this.nombre = data.Apellidos+" "+data.Nombres;
+   }, error => {
+     console.log(error);
+   });
+ }
+ 
+
+}
+
+view() {
+ const id = localStorage.getItem('id');
+ this.router.navigateByUrl('/admin/view-prof/'+id);
 }
 
 }

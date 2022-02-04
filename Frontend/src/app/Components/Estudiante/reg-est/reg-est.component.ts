@@ -44,7 +44,8 @@ export class RegEstComponent implements OnInit {
   { name: "Discapacidad Intelectual" }, { name: "Discapacidad Psíquica" }];
   elegido6: string = "";
 
-
+  nombre : string | null;
+  usuario: string | null;
 
 
   constructor(private authService: AuthService, private router: Router,
@@ -72,12 +73,15 @@ export class RegEstComponent implements OnInit {
       Estado: [''],
       Observacion: ['', Validators.maxLength(200)],
     })
-    this.id = this.aRouter.snapshot.paramMap.get('id')
+    this.id = this.aRouter.snapshot.paramMap.get('id'),
+    this.nombre = '';
+    this.usuario = '';
     //  console.log(this.id)
   }
 
   ngOnInit(): void {
     this.esEditar();
+    this.loginData();
   }
 
 
@@ -136,6 +140,8 @@ export class RegEstComponent implements OnInit {
 
       this.authService.obtenerEstudianteId(this.id).subscribe(data => {
         console.log(data);
+        this.EstudianteForm.controls['Estado'].setValue(data.Estado);
+        this.EstudianteForm.controls['Observacion'].setValue(data.Observacion);
         this.EstudianteForm.controls['Codigo'].setValue(data.Codigo);
         this.EstudianteForm.controls['Tipo_documento'].setValue(data.Tipo_documento);
         this.EstudianteForm.controls['DNI'].setValue(data.DNI);
@@ -156,10 +162,8 @@ export class RegEstComponent implements OnInit {
         this.EstudianteForm.controls['Sector_domicilio'].setValue(data.Sector_domicilio);
         this.EstudianteForm.controls['Referencia_domicilio'].setValue(data.Referencia_domicilio);
         this.EstudianteForm.controls['Condicion_laboral'].setValue(data.Condicion_laboral);
-        this.EstudianteForm.controls['Observacion'].setValue(data.Observacion);
-        this.EstudianteForm.controls['Estado'].setValue(data.Estado);
-
-      })
+        
+      });
     }
   }
 
@@ -213,11 +217,9 @@ export class RegEstComponent implements OnInit {
           console.log(ESTUDIANTE);
           this.authService.updateEst(this.id, ESTUDIANTE).subscribe(data => {
             this.esEditar();
-            this.AlertExito2();
           }, err => {
             console.log(err);
             this.AlertFracaso();
-            //this.ProfesoresForm.reset();
           })
 
 
@@ -237,9 +239,36 @@ export class RegEstComponent implements OnInit {
 
   RedirectCancel(): void {
     this.EstudianteForm.reset();
-    this.router.navigateByUrl('/app/reg-est');
+    this.router.navigateByUrl('/admin/reg-est');
     this.id=null;
   }
+
+  logOut(){
+    this.authService.logoutA();
+    this.router.navigateByUrl('/app/log-admin')
+  }
+ 
+ 
+  loginData(){
+   this.usuario = localStorage.getItem('user');
+   const id = localStorage.getItem('id');
+   if(id!=null){
+     this.authService.obtenerPorfesorId(id).subscribe(data => {
+     this.nombre = data.Apellidos+" "+data.Nombres;
+     }, error => {
+       console.log(error);
+     });
+   }
+   
+  
+ }
+ 
+ view() {
+   const id = localStorage.getItem('id');
+   this.router.navigateByUrl('/admin/view-prof/'+id);
+ }
+ 
+ 
 
   ///////////   ventanas de alerta    ///////////////////
   AlertExito(): void {

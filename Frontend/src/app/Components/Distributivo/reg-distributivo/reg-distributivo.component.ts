@@ -55,7 +55,7 @@ export class RegDistributivoComponent implements OnInit {
   public num : boolean | null;
 
   //titulo
-  Titulo = 'DISTRIBUTIVO';
+  Titulo = 'REGISTRO DE DISTRIBUTIVO';
   id: string | null;
   a: string | null;
   idm: string | null;
@@ -89,6 +89,10 @@ export class RegDistributivoComponent implements OnInit {
   { name: "Apellidos" }, { name: "Nombres" }];
   elegido2: string = "";
 
+  nombre: string | null;
+  usuario: string | null;
+
+
   constructor(private authService: AuthService, private router: Router,
     private fb: FormBuilder, private aRouter: ActivatedRoute) {
     //formGroup
@@ -106,6 +110,8 @@ export class RegDistributivoComponent implements OnInit {
       Hora_fin: [''],
       Estado: ['', Validators.required]
     }),
+      this.nombre = null,
+      this.usuario = null,
       //mapeo de url con atributo
       this.estado = "",
       this.id = this.aRouter.snapshot.paramMap.get('id'),
@@ -119,6 +125,7 @@ export class RegDistributivoComponent implements OnInit {
     this.comboPeriodo();
     this.comboParalelo();
     this.esEditar();
+    this.loginData();
   }
 
 
@@ -158,7 +165,7 @@ export class RegDistributivoComponent implements OnInit {
   }
   //editar para guardar usuario
   create() {
-    if (this.docente._id !== null) {
+    if (this.docente._id !== undefined) {
       const DIS: any = {
         Docente: this.docente._id,
         Periodo: this.AccesoForm.get('Periodo')?.value,
@@ -172,12 +179,11 @@ export class RegDistributivoComponent implements OnInit {
       }
 
       this.repetido(DIS);
-     
 
       if (this.num==false) {
         this.authService.registerDistributivo(DIS).subscribe(data => {
           this.AlertExito();
-          // this.AccesoForm.reset();
+           this.AccesoForm.reset();
         }, err => {
           console.log(err);
           this.AlertFracaso();
@@ -187,6 +193,8 @@ export class RegDistributivoComponent implements OnInit {
         this.AlertFracaso();
       
       }
+    }else{
+      this.AlertCamposVacios();
     }
 
   }
@@ -259,45 +267,35 @@ export class RegDistributivoComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
 
+        
         if (this.id !== null) {
-          this.authService.obtenerMatriculaporEstudiante(this.id).subscribe(data => {
+          const DIS: any = {
+            Docente: this.docente._id,
+            Periodo: this.AccesoForm.get('Periodo')?.value,
+            Nivel: this.AccesoForm.get('Nivel')?.value,
+            Paralelo: this.AccesoForm.get('Paralelo')?.value,
+            Jornada: this.AccesoForm.get('Jornada')?.value,
+            Area: this.AccesoForm.get('Area')?.value,
+            Asignatura: this.AccesoForm.get('Asignatura')?.value,
+            Horario: this.horario.dato,
+            Estado: this.AccesoForm.get('Estado')?.value
+          }
 
-            this.idm = data[0]._id;
-
-            console.log("id matricula: " + this.idm)
-            if (this.idm !== null) {
-              const MATRICULA: any = {
-                Estudiante: this.id,
-                Periodo: this.AccesoForm.get('Periodo')?.value,
-                Nivel: this.AccesoForm.get('Nivel')?.value,
-                Paralelo: this.AccesoForm.get('Paralelo')?.value,
-                Jornada: this.AccesoForm.get('Jornada')?.value,
-                Estado: this.AccesoForm.get('Estado')?.value
-              }
-              this.authService.updateMatricula(this.idm, MATRICULA).subscribe(data => {
-
-
-              }, err => {
-                console.log(err);
-                this.AlertFracaso();
-                //this.ProfesoresForm.reset();
-              })
-
-            }
+          this.authService.updateDistributivo(this.id, DIS).subscribe(data => {
+            swalWithBootstrapButtons.fire(
+              'Actualizado!',
+              'Tu registro fue actualizado.',
+              'success'
+            )
 
           }, err => {
             console.log(err);
             this.AlertFracaso();
             //this.ProfesoresForm.reset();
-          });
-
+          })
         }
 
-        swalWithBootstrapButtons.fire(
-          'Actualizado!',
-          'Tu registro fue actualizado.',
-          'success'
-        )
+       
       }
     })
 
@@ -393,18 +391,19 @@ export class RegDistributivoComponent implements OnInit {
 
   async esEditar() {
     if (this.id !== null) {
-      this.authService.obtenerDistributivoporDocente(this.id).subscribe(data => {
-        this.AccesoForm.controls['Periodo'].setValue(data[0].Periodo);
-        this.AccesoForm.controls['Nivel'].setValue(data[0].Nivel);
-        this.AccesoForm.controls['Paralelo'].setValue(data[0].Paralelo);
-        this.AccesoForm.controls['Jornada'].setValue(data[0].Jornada);
-        this.AccesoForm.controls['Estado'].setValue(data[0].Estado);
-        this.AccesoForm.controls['Area'].setValue(data[0].Area);
-        this.AccesoForm.controls['Asignatura'].setValue(data[0].Asignatura);
-        this.horario.dato = data[0].Horario;
-
+       this.Titulo = 'ACTUALIZACIÓN DE DISTRIBUTIVO';
+       this.authService.obtenerDistributivoId(this.id).subscribe(data => {
+       this.AccesoForm.controls['Periodo'].setValue(data.Periodo);
+        this.AccesoForm.controls['Nivel'].setValue(data.Nivel);
+        this.AccesoForm.controls['Paralelo'].setValue(data.Paralelo);
+        this.AccesoForm.controls['Jornada'].setValue(data.Jornada);
+        this.AccesoForm.controls['Estado'].setValue(data.Estado);
+        this.AccesoForm.controls['Area'].setValue(data.Area);
+        this.AccesoForm.controls['Asignatura'].setValue(data.Asignatura);
+        this.horario.dato = data.Horario;
+         this.view(data.Docente);
       });
-      this.view(this.id);
+     
     }
 
   }
@@ -473,6 +472,31 @@ export class RegDistributivoComponent implements OnInit {
 
   }
 
+
+  logOut() {
+    this.authService.logoutA();
+    this.router.navigateByUrl('/app/log-admin')
+  }
+
+
+  loginData() {
+    this.usuario = localStorage.getItem('user');
+    const id = localStorage.getItem('id');
+    if (id != null) {
+      this.authService.obtenerPorfesorId(id).subscribe(data => {
+        this.nombre = data.Apellidos + " " + data.Nombres;
+      }, error => {
+        console.log(error);
+      });
+    }
+
+
+  }
+
+  view2() {
+    const id = localStorage.getItem('id');
+    this.router.navigateByUrl('/admin/view-prof/' + id);
+  }
 
   ////////////// Alertas ///////////////////////////
   AlertGuardar() {
@@ -598,7 +622,7 @@ export class RegDistributivoComponent implements OnInit {
     console.log(eliminadom)
 
     this.esEditar();
-    this.router.navigateByUrl('/app/reg-dist');
+    this.router.navigateByUrl('/admin/reg-dist');
 
   }
 

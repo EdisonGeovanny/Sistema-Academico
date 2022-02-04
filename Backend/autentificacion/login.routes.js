@@ -6,4 +6,5 @@ module.exports = (router)=> {
     router.get('/list-aut/:id',Users.listID); // listar por id 
     router.put('/update-aut/:id',Users.updateAut);// actualizar datos por id
     router.delete('/delete-aut/:id',Users.deleteAut);// eliminar por id
+    router.get('/sch/:sch', Users.UsuarioId);  //busqueda
 }

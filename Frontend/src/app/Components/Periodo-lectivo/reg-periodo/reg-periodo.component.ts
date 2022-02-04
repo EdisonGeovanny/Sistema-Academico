@@ -27,6 +27,9 @@ export class RegPeriodoComponent implements OnInit {
   periodo: any = {
  
   }
+  
+  nombre : string | null;
+  usuario: string | null;
 
   constructor(private authService: AuthService, private router: Router,
     private fb: FormBuilder, private aRouter: ActivatedRoute) {
@@ -42,7 +45,9 @@ export class RegPeriodoComponent implements OnInit {
       Estado: ['', Validators.required],
       Search: ['']
 
-    })
+    }),
+    this.nombre = null;
+    this.usuario = null;
     this.id = this.aRouter.snapshot.paramMap.get('id'),
     this.estado=""
     //  console.log(this.id)
@@ -50,6 +55,7 @@ export class RegPeriodoComponent implements OnInit {
 
   ngOnInit(): void {
     this.obtenerPeriodo();
+    this.loginData();
   }
 
 
@@ -136,7 +142,7 @@ export class RegPeriodoComponent implements OnInit {
         }
 
         swalWithBootstrapButtons.fire(
-          'Eliminado!',
+          'Actualizado!',
           'Tu registro fue actualizado.',
           'success'
         )
@@ -170,11 +176,34 @@ export class RegPeriodoComponent implements OnInit {
 
   RedirectCancel(): void {
     this.PeriodoForm.reset();
-    this.router.navigateByUrl('/app/reg-periodo');
+    this.router.navigateByUrl('/admin/reg-periodo');
     this.id=null;
   }
 
+  logOut(){
+    this.authService.logoutA();
+    this.router.navigateByUrl('/app/log-admin')
+  }
   
+  
+  loginData(){
+   this.usuario = localStorage.getItem('user');
+   const id = localStorage.getItem('id');
+   if(id!=null){
+     this.authService.obtenerPorfesorId(id).subscribe(data => {
+     this.nombre = data.Apellidos+" "+data.Nombres;
+     }, error => {
+       console.log(error);
+     });
+   }
+   
+  
+  }
+  
+  view() {
+   const id = localStorage.getItem('id');
+   this.router.navigateByUrl('/admin/view-prof/'+id);
+  }
 
   ///////////   ventanas de alerta    ///////////////////
   AlertExito(): void {

@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable, Output} from '@angular/core';
 import { UserAdminI } from '../models/userAdmin';
 import { JwtResponseAdminI } from '../models/jwt-responseAdmin';
 import { tap } from 'rxjs/operators';
@@ -12,15 +12,56 @@ import { UserRegAcceso } from '../models/user-reg-acceso';
 import { Estudiante } from '../models/estudiante';
 import { Representante } from '../models/representante';
 import { Ficha } from '../models/ficha-estudiantil';
+import { JwtHelperService } from "@auth0/angular-jwt";
+ 
+const helper = new JwtHelperService();
 
 @Injectable()
+
+
 export class AuthService {
   AUTH_SERVER: string = 'http://localhost:3000';
-  authSubjet = new BehaviorSubject(false);
-  private token: string;
+
+  constructor(private httpClient: HttpClient) { 
+   }
 
 
-  constructor(private httpClient: HttpClient) { this.token = ''; }
+   ///////////////////// Notas ////////////////////////////////////////////////
+   //registrar Grado
+ registerNota(user: any): Observable<any> {
+  return this.httpClient.post<any>(`${this.AUTH_SERVER}/reg-nota`,
+    user).pipe(tap(
+      (res: any) => {
+        if (res) {
+          // GUARDAR TOKEN
+          console.log(res);
+        }
+      })
+    );
+}
+
+//actualizar datos
+updateNota(id: string, user: any): Observable<any> {
+  return this.httpClient.put<any>(`${this.AUTH_SERVER}/update-nota/${id}`,
+    user).pipe(tap(
+      (res: any) => {
+        if (res) {
+          // GUARDAR TOKEN
+          console.log(res);
+        }
+      })
+      );
+    }
+   
+//obtener por nivel.paralelo.jornada
+RepetidoNota(sch: string): Observable<any> {
+  return this.httpClient.get(`${this.AUTH_SERVER}/nota-sch/${sch}`)
+  }
+
+   //obtene rGrado por id
+ obtenerNotaId(id: string): Observable<any> {
+  return this.httpClient.get(`${this.AUTH_SERVER}/list-nota/${id}`)
+}
 
 ////////////////////////// Estado de edicion de notas /////////////////////////////
 //obtener todos los Grado
@@ -97,6 +138,11 @@ Repetido(sch: string): Observable<any> {
   }
 
 
+//obtener por distributtivo por docente, periodo 
+obtenerDistributivoxDocentePeriodo(sch: string): Observable<any> {
+  return this.httpClient.get(`${this.AUTH_SERVER}/dist/${sch}`)
+  }
+
 
   /////////////////////////// MATRICULA ///////////////////////////////////////
 
@@ -147,6 +193,16 @@ updateMatricula(id: string, user: any): Observable<any> {
     return this.httpClient.get(`${this.AUTH_SERVER}/searchma/${sch}`)
     }
   
+
+  //obtener por nivel.paralelo.jornada
+  obtenerEstPer(sch: string): Observable<any> {
+    return this.httpClient.get(`${this.AUTH_SERVER}/est-per/${sch}`)
+    }
+  
+ //obtener por nivel.paralelo.jornada
+ obtenerGrado(sch: string): Observable<any> {
+  return this.httpClient.get(`${this.AUTH_SERVER}/schgrado/${sch}`)
+  }
 
 
   //////////////////////////////// GRADO //////////////////////////////////////
@@ -407,7 +463,10 @@ obtenerPeridoCodigo(sch: string): Observable<any> {
   return this.httpClient.get(`${this.AUTH_SERVER}/searcha/${sch}`)
 }
 
-
+//obtener por Codigo
+obtenerPeriodoEstado(): Observable<any> {
+  return this.httpClient.get(`${this.AUTH_SERVER}/list-estado`)
+}
   
   ////////////////////////  Autentificacion //////////////////////
 
@@ -424,6 +483,11 @@ obtenerPeridoCodigo(sch: string): Observable<any> {
       );
   }
 
+
+  //obtener usuario por id vinculo
+  obtenerUsuarioPorId(id: string): Observable<any> {
+    return this.httpClient.get(`${this.AUTH_SERVER}/sch/${id}`)
+  }
    //obtener Docente por id
    obtenerAccesoId(id: string): Observable<any> {
     return this.httpClient.get(`${this.AUTH_SERVER}/list-aut/${id}`)
@@ -455,23 +519,33 @@ obtenerPeridoCodigo(sch: string): Observable<any> {
 
 
   //acceso a Usuarios
-  loginA(user: AutentificacionI): Observable<JwtResponseAdminI> {
-    return this.httpClient.post<JwtResponseAdminI>(`${this.AUTH_SERVER}/aut`,
+  loginA(user: any): Observable<any> {
+    return this.httpClient.post<any>(`${this.AUTH_SERVER}/aut`,
       user).pipe(tap(
-        (res: JwtResponseAdminI) => {
-          if (res) {
-            // GUARDAR TOKEN
-            this.saveToken(res.dataUser.accessToken, res.dataUser.expiresIn);
-          }
+        (res: any) => {
+          console.log(res.data);
+         this.saveTokenA(res.data.accessToken, res.data.Rol);
+         localStorage.setItem('user',res.data.Usuario);
+         localStorage.setItem('id', res.data.Vinculo);
         })
       );
   }
-  //cerrar sesión
-  logout(): void {
-    this.token = '';
-    localStorage.removeItem("ACCESS_TOKEN");
-    localStorage.removeItem("EXPIRES_IN");
+ 
+  //guardar access token
+  private saveTokenA(token:string, rol:string): void {
+    localStorage.setItem("token", token);
+    localStorage.setItem("rol", rol);
+  } 
+
+   //cerrar sesión
+   logoutA(): void {
+   localStorage.removeItem("token");
+   localStorage.removeItem("rol");
+   localStorage.removeItem('user');
+    localStorage.removeItem('id');
   }
+
+  
 
 
   ///////////////////////// Docente ////////////////////////////
@@ -536,23 +610,6 @@ obtenerProfesorNombres(sch: string): Observable<any> {
         })
         );
       }
-
-
-  ///////////////// Otros metodos //////////////////////////////////
-  //guardar access token
-  private saveToken(token: string, expiresIn: string): void {
-    localStorage.setItem("ACCESS_TOKEN", token);
-    localStorage.setItem("EXPIRES_IN", expiresIn);
-    this.token = token;
-  }
-  //devolvar access token
-  private getToken(): string {
-    if (!this.token) {
-      this.token = localStorage.getItem("ACCESS_TOKEN")!;
-    }
-    return this.token;
-  }
-
 
 
   ////////////////////////////////////////////////////////////////////////////////////////////

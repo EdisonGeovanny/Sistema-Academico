@@ -40,7 +40,7 @@ export class RegMatriculaComponent implements OnInit {
   }
 
   //titulo
-  Titulo = 'MATRICULAS';
+  Titulo = 'REGISTRO DE MATRICULA';
   id: string | null;
   a: string | null;
   idm: string | null;
@@ -66,6 +66,10 @@ export class RegMatriculaComponent implements OnInit {
   { name: "Apellidos" }, { name: "Nombres" }];
   elegido2: string = "";
 
+
+  nombre: string | null;
+  usuario: string | null;
+
   constructor(private authService: AuthService, private router: Router,
     private fb: FormBuilder, private aRouter: ActivatedRoute) {
     //formGroup
@@ -78,6 +82,8 @@ export class RegMatriculaComponent implements OnInit {
       Jornada: ['', Validators.required],
       Estado: ['', Validators.required]
     }),
+      this.nombre = null,
+      this.usuario = null,
       //mapeo de url con atributo
       this.estado = "",
       this.id = this.aRouter.snapshot.paramMap.get('id'),
@@ -90,6 +96,7 @@ export class RegMatriculaComponent implements OnInit {
     this.comboPeriodo();
     this.comboParalelo();
     this.esEditar();
+    this.loginData();
   }
 
   //agregar datos o actualizar datos
@@ -102,29 +109,36 @@ export class RegMatriculaComponent implements OnInit {
   }
   //editar para guardar usuario
   create() {
-    if(this.estudiante._id!== null){
-    const MATRICULA: any = {
-      Estudiante: this.estudiante._id,
-      Periodo: this.AccesoForm.get('Periodo')?.value,
-      Nivel: this.AccesoForm.get('Nivel')?.value,
-      Paralelo: this.AccesoForm.get('Paralelo')?.value,
-      Jornada: this.AccesoForm.get('Jornada')?.value,
-      Estado: this.AccesoForm.get('Estado')?.value
+    if (this.estudiante._id !== undefined) {
+      const MATRICULA: any = {
+        Estudiante: this.estudiante._id,
+        Periodo: this.AccesoForm.get('Periodo')?.value,
+        Nivel: this.AccesoForm.get('Nivel')?.value,
+        Paralelo: this.AccesoForm.get('Paralelo')?.value,
+        Jornada: this.AccesoForm.get('Jornada')?.value,
+        Estado: this.AccesoForm.get('Estado')?.value
+      }
+      this.authService.obtenerEstPer(MATRICULA.Estudiante + "," + MATRICULA.Periodo).subscribe(data=>{
+      console.log(data)
+        if(!data){
+        console.log(MATRICULA);
+        this.authService.registerMatricula(MATRICULA).subscribe(data => {
+          this.AlertExito();
+           this.AccesoForm.reset();
+        }, err => {
+          console.log(err);
+          this.AlertFracaso();
+        });
+       }else{this.AlertFracaso();}
+      });
+     
+    } else {
+      this.AlertCamposVacios();
     }
-    console.log(MATRICULA);
-    this.authService.registerMatricula(MATRICULA).subscribe(data => {
-      this.AlertExito();
-      // this.AccesoForm.reset();
-    }, err => {
-      console.log(err);
-      this.AlertFracaso();
-      //this.ProfesoresForm.reset();
-    })
-  }
 
   }
 
-async comboNivel() {
+  async comboNivel() {
     //obtener nivel para combobox
     const Obtenern = new Promise(async (resolve, reject) => {
       await this.authService.getNivelAll().subscribe(data => {
@@ -134,11 +148,11 @@ async comboNivel() {
 
     this.buscar = await Obtenern.then(res => res);
     this.buscar.dni.forEach((element: any, index: any, array: any) => {
-      this.N.push({name: element.Nivel});
+      this.N.push({ name: element.Nivel });
     });
-}
+  }
 
-async comboParalelo(){
+  async comboParalelo() {
     //obtener paralelo para combobox
     const Obtener = new Promise(async (resolve, reject) => {
       await this.authService.getParaleloAll().subscribe(data => {
@@ -148,25 +162,25 @@ async comboParalelo(){
 
     this.buscar2 = await Obtener.then(res => res);
     this.buscar2.dni.forEach((element: any, index: any, array: any) => {
-      this.P.push({name: element.Paralelo});
+      this.P.push({ name: element.Paralelo });
     });
 
-}
+  }
 
   async comboPeriodo() {
- //obtener periodo lectivo para combobox
- const Obtenerper = new Promise(async (resolve, reject) => {
-  await this.authService.getPeriodoAll().subscribe(data => {
-    resolve(data)
-  })
-});
+    //obtener periodo lectivo para combobox
+    const Obtenerper = new Promise(async (resolve, reject) => {
+      await this.authService.getPeriodoAll().subscribe(data => {
+        resolve(data)
+      })
+    });
 
-this.buscar3 = await Obtenerper.then(res => res);
-this.buscar3.dni.forEach((element: any, index: any, array: any) => {
-  this.Per.push({name: element.Codigo});
-});
+    this.buscar3 = await Obtenerper.then(res => res);
+    this.buscar3.dni.forEach((element: any, index: any, array: any) => {
+      this.Per.push({ name: element.Codigo });
+    });
 
-   
+
   }
 
 
@@ -193,44 +207,31 @@ this.buscar3.dni.forEach((element: any, index: any, array: any) => {
       if (result.isConfirmed) {
 
         if (this.id !== null) {
-          this.authService.obtenerMatriculaporEstudiante(this.id).subscribe(data => {
-            
-            this.idm = data[0]._id;
-
-            console.log("id matricula: "+this.idm)
-            if (this.idm !== null) {
-              const MATRICULA: any = {
-                Estudiante: this.id,
-                Periodo: this.AccesoForm.get('Periodo')?.value,
-                Nivel: this.AccesoForm.get('Nivel')?.value,
-                Paralelo: this.AccesoForm.get('Paralelo')?.value,
-                Jornada: this.AccesoForm.get('Jornada')?.value,
-                Estado: this.AccesoForm.get('Estado')?.value
-              }
-              this.authService.updateMatricula(this.idm, MATRICULA).subscribe(data => {
-              
-  
-              }, err => {
-                console.log(err);
-                this.AlertFracaso();
-                //this.ProfesoresForm.reset();
-              })
-  
-            }
+          const MATRICULA: any = {
+            Estudiante: this.estudiante._id,
+            Periodo: this.AccesoForm.get('Periodo')?.value,
+            Nivel: this.AccesoForm.get('Nivel')?.value,
+            Paralelo: this.AccesoForm.get('Paralelo')?.value,
+            Jornada: this.AccesoForm.get('Jornada')?.value,
+            Estado: this.AccesoForm.get('Estado')?.value
+          }
+          console.log(MATRICULA)
+          this.authService.updateMatricula(this.id, MATRICULA).subscribe(data => {
+            swalWithBootstrapButtons.fire(
+              'Actualizado!',
+              'Tu registro fue actualizado.',
+              'success'
+            )
 
           }, err => {
             console.log(err);
             this.AlertFracaso();
             //this.ProfesoresForm.reset();
-          });
+          })
 
         }
 
-        swalWithBootstrapButtons.fire(
-          'Actualizado!',
-          'Tu registro fue actualizado.',
-          'success'
-        )
+       
       }
     })
 
@@ -325,33 +326,36 @@ this.buscar3.dni.forEach((element: any, index: any, array: any) => {
   }
 
   async esEditar() {
-  if(this.id !== null){
-    this.authService.obtenerMatriculaporEstudiante(this.id).subscribe(data => { 
-      this.AccesoForm.controls['Periodo'].setValue(data[0].Periodo);
-      this.AccesoForm.controls['Nivel'].setValue(data[0].Nivel);
-      this.AccesoForm.controls['Paralelo'].setValue(data[0].Paralelo);
-     this.AccesoForm.controls['Jornada'].setValue(data[0].Jornada);
-     this.AccesoForm.controls['Estado'].setValue(data[0].Estado);
-    });
+    if (this.id !== null) {
+      this.Titulo = 'ACTUALIZACIÓN DE MATRICULA';
+      this.authService.obtenerMatriculaId(this.id).subscribe(data => {
+       console.log(data);
+       this.AccesoForm.controls['Periodo'].setValue(data.Periodo);
+       this.AccesoForm.controls['Nivel'].setValue(data.Nivel);
+       this.AccesoForm.controls['Paralelo'].setValue(data.Paralelo);
+       this.AccesoForm.controls['Jornada'].setValue(data.Jornada);
+       this.AccesoForm.controls['Estado'].setValue(data.Estado);
 
-    this.viewProf(this.id);
-  }
+
+       this.viewProf(data.Estudiante);
+      });
+    }
 
   }
 
   // editar para agregar a _id de Profesor
   viewProf(id: any) {
 
-      this.authService.obtenerEstudianteId(id).subscribe(data => {
+    this.authService.obtenerEstudianteId(id).subscribe(data => {
 
-        this.estudiante = {
-          _id: data._id,
-          DNI: data.DNI,
-          Nombres: data.Nombres + " " + data.Apellidos,
-          Fecha_nacimiento: data.Fecha_nacimiento,
-        }
+      this.estudiante = {
+        _id: data._id,
+        DNI: data.DNI,
+        Nombres: data.Nombres + " " + data.Apellidos,
+        Fecha_nacimiento: data.Fecha_nacimiento,
+      }
 
-      });
+    });
 
   }
 
@@ -467,13 +471,37 @@ this.buscar3.dni.forEach((element: any, index: any, array: any) => {
   }
 
 
+  logOut() {
+    this.authService.logoutA();
+    this.router.navigateByUrl('/app/log-admin')
+  }
+
+
+  loginData() {
+    this.usuario = localStorage.getItem('user');
+    const id = localStorage.getItem('id');
+    if (id != null) {
+      this.authService.obtenerPorfesorId(id).subscribe(data => {
+        this.nombre = data.Apellidos + " " + data.Nombres;
+      }, error => {
+        console.log(error);
+      });
+    }
+
+
+  }
+
+  view() {
+    const id = localStorage.getItem('id');
+    this.router.navigateByUrl('/admin/view-prof/' + id);
+  }
   ////////////////////////Redirecciones ////////////////////
 
   RedirectCancel(): void {
     this.AccesoForm.reset();
     this.id = null;
     this.esEditar();
-    this.router.navigateByUrl('/app/reg-matricula');
+    this.router.navigateByUrl('/admin/reg-matricula');
 
   }
 

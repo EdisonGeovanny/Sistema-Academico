@@ -54,6 +54,9 @@ export class RegRepComponent implements OnInit {
   Genero = [{ name: "Seleccionar opción" },{ name: "Masculino" }, { name: "Femenino" }];
   elegido2: string = "";
 
+  nombre : string | null;
+  usuario: string | null;
+
   constructor(private authService: AuthService, private router: Router,
     private fb: FormBuilder, private aRouter: ActivatedRoute) {
     this.RepresentantesForm = this.fb.group({
@@ -84,14 +87,18 @@ export class RegRepComponent implements OnInit {
     Celular: ['', Validators.required],
     Email: ['', Validators.required],
     Observacion : ['', Validators.maxLength(400)],
+    Estado: ['', Validators.required],
 
-    })
-    this.id = this.aRouter.snapshot.paramMap.get('id')
+    }),
+    this.id = this.aRouter.snapshot.paramMap.get('id'),
+    this.nombre = '';
+    this.usuario = '';
     //console.log(this.id)
   }
 
   ngOnInit(): void {
     this.esEditar();
+    this.loginData();
   }
 
 //agregar datos o actualizar datos
@@ -154,7 +161,7 @@ saveData(){
       this.subnivel = 'EDITOR DE DATOS';
 
       this.authService.obtenerRepresentanteId(this.id).subscribe(data => {
-        //console.log(data);
+        console.log(data);
         this.RepresentantesForm.controls['Parentesco'].setValue(data.Parentesco);
         this.RepresentantesForm.controls['Tipo_documento'].setValue(data.Tipo_documento);
         this.RepresentantesForm.controls['DNI'].setValue(data.DNI);
@@ -181,8 +188,9 @@ saveData(){
         this.RepresentantesForm.controls['Area'].setValue(data.Area);
         this.RepresentantesForm.controls['Nivel_educacion'].setValue(data.Nivel_educacion);
         this.RepresentantesForm.controls['Observacion'].setValue(data.Observacion);
+        this.RepresentantesForm.controls['Estado'].setValue(data.Estado);
       
-      })
+      });
     }
   }
 
@@ -269,11 +277,37 @@ saveData(){
 
   RedirectCancel(): void {
     this.RepresentantesForm.reset();
-    this.router.navigateByUrl('/app/reg-rep');
+    this.router.navigateByUrl('/admin/reg-rep');
     this.id=null;
   }
 
   
+ logOut(){
+  this.authService.logoutA();
+  this.router.navigateByUrl('/app/log-admin')
+}
+
+
+loginData(){
+ this.usuario = localStorage.getItem('user');
+ const id = localStorage.getItem('id');
+ if(id!=null){
+   this.authService.obtenerPorfesorId(id).subscribe(data => {
+   this.nombre = data.Apellidos+" "+data.Nombres;
+   }, error => {
+     console.log(error);
+   });
+ }
+ 
+
+}
+
+view() {
+ const id = localStorage.getItem('id');
+ this.router.navigateByUrl('/admin/view-prof/'+id);
+}
+
+
 
 
   ///////////   ventanas de alerta    ///////////////////

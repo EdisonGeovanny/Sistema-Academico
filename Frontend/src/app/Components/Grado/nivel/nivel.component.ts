@@ -27,6 +27,10 @@ public niveles: any = {
   dni: [] 
 }
 
+
+nombre : string | null;
+usuario: string | null;
+
 constructor(private authService: AuthService, private router: Router,
   private fb: FormBuilder, private aRouter: ActivatedRoute) {
     this.GradoForm = this.fb.group({
@@ -34,6 +38,8 @@ constructor(private authService: AuthService, private router: Router,
       Nivel: ['', Validators.required],
       
     }),
+    this.nombre = null,
+    this.usuario = null,
     this.id_n=null
 
 
@@ -42,6 +48,7 @@ constructor(private authService: AuthService, private router: Router,
 
   ngOnInit(): void {
     this.obtenerNivel();
+    this.loginData();
   }
 
   saveData(){
@@ -93,7 +100,32 @@ constructor(private authService: AuthService, private router: Router,
      this.GradoForm.controls['Nivel'].setValue(data.Nivel);
     })
   }
-
+  
+  logOut(){
+    this.authService.logoutA();
+    this.router.navigateByUrl('/app/log-admin')
+  }
+  
+  
+  loginData(){
+   this.usuario = localStorage.getItem('user');
+   const id = localStorage.getItem('id');
+   if(id!=null){
+     this.authService.obtenerPorfesorId(id).subscribe(data => {
+     this.nombre = data.Apellidos+" "+data.Nombres;
+     }, error => {
+       console.log(error);
+     });
+   }
+   
+  
+  }
+  
+  view() {
+   const id = localStorage.getItem('id');
+   this.router.navigateByUrl('/admin/view-prof/'+id);
+  }
+  
     //actualizar
   upDate(id:string): void {
 

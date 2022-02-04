@@ -6,5 +6,7 @@ module.exports = (router)=> {
     router.delete('/delete-matricula/:id',Users.deleteMatricula);// eliminar por id
     router.put('/update-matricula/:id', Users.updateMatricula);//editar por id
     router.get('/searchma/:sch', Users.searchEstudiante);  //busqueda
+    router.get('/est-per/:sch', Users.EstudiantePeriodo);  //busqueda matricula existente
+    router.get('/schgrado/:sch', Users.Grado);
  
 }

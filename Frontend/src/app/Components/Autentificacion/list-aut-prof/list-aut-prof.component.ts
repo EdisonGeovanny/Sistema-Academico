@@ -46,6 +46,9 @@ export class ListAutProfComponent implements OnInit {
   //titulo
   Titulo = 'LISTA DE REGISTROS';
   subnivel = 'REGISTRO DE DATOS';
+  
+  nombre : string | null;
+  usuario: string | null;
 
   constructor(private authService: AuthService, private router: Router,
     private fb: FormBuilder, private aRouter: ActivatedRoute) {
@@ -53,12 +56,15 @@ export class ListAutProfComponent implements OnInit {
     this.AccesoForm = this.fb.group({
       Search: ['', Validators.required],
       Combo: ['', Validators.required]
-    })
+    }),
+    this.nombre = null;
+    this.usuario = null;
   }
 
 
   ngOnInit(): void {
     this.obtenerAcceso();
+    this.loginData();
   }
 
   //listar
@@ -264,13 +270,38 @@ export class ListAutProfComponent implements OnInit {
   /////////  métodos /////////////////////////
 
   updateAut(id: any) {
-    this.router.navigateByUrl('/app/edit-aut/' + id);
+    this.router.navigateByUrl('/admin/edit-aut/' + id);
 
   }
 
   viewAut(id: any) {
-    this.router.navigateByUrl('/app/view-prof/' + id);
+    this.router.navigateByUrl('/admin/view-prof/' + id);
   }
+
+  logOut(){
+    this.authService.logoutA();
+    this.router.navigateByUrl('/app/log-admin')
+  }
+   
+  loginData(){
+   this.usuario = localStorage.getItem('user');
+   const id = localStorage.getItem('id');
+   if(id!=null){
+     this.authService.obtenerPorfesorId(id).subscribe(data => {
+     this.nombre = data.Apellidos+" "+data.Nombres;
+     }, error => {
+       console.log(error);
+     });
+   }
+   
+  
+  }
+  
+  view() {
+   const id = localStorage.getItem('id');
+   this.router.navigateByUrl('/admin/view-prof/'+id);
+  }
+  
 
   /////Alertas/////////////////////////
   AlertNoEncotrado(): void {

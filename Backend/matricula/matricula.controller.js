@@ -125,3 +125,40 @@ exports.searchEstudiante = async (req, res) => {
 
     }
 }
+
+
+exports.EstudiantePeriodo = async (req, res) => {
+    try {
+        const cadena = req.params.sch;
+        const x = cadena.split(',');
+        let dni = await User.find({$and:[{Estudiante:x[0]},{Periodo:x[1]}]});
+        if (dni[0]== null) {
+            res.json(false)
+        } else{
+            res.json(true);
+        }
+
+    } catch (err) {
+        console.log(err);
+        res.status(500).send('Hubo un error')
+
+    }
+}
+
+exports.Grado = async (req, res) => {
+    try {
+        const cadena = req.params.sch;
+        const x = cadena.split(',');
+        let dni = await User.find({$and:[{Periodo:x[0]},{Nivel:x[1]},{Paralelo:x[2]},{Jornada:x[3]}]});
+        if (dni[0]== null) {
+            res.status(404).json({ msg: 'La busqueda no existe' })
+        } else{
+            res.json(dni);
+        }
+
+    } catch (err) {
+        console.log(err);
+        res.status(500).send('Hubo un error')
+
+    }
+}

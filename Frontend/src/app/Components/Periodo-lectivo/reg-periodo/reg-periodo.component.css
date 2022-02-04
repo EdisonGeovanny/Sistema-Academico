@@ -9,7 +9,14 @@
 .combo{
     background-color: #dbdbdb;
 }
-
 .centrar{
     text-align:center;
 }
+.p {  
+    font-family: "Segoe UI";
+    
+  }
+.p2 {
+    font-family: cursive;
+    font-size: 95%;
+  }

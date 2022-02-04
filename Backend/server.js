@@ -16,7 +16,7 @@ const nivel_materia = require('./nivel-materia/nivel-materia.routes'); // Nivel 
 const matricula = require('./matricula/matricula.routes'); // Matricula
 const distributivo = require('./distributivo/distributivo.routes'); // Distributivo
 const estado_notas = require('./estado-notas/estado-notas.routes'); // Estado de las notas 
-
+const notas = require('./notas/notas.routes'); // Estado de las notas
 
 const express = require('express');
 const propierties = require('./config/properties');
@@ -49,6 +49,7 @@ nivel_materia(router); //nivel-materia
 matricula(router); //matricula
 distributivo(router);//distributivos
 estado_notas(router);//Estado notas
+notas(router); //ingreso de notas
 
 router.get('/', (req, res)=>{
     res.send('Bienvenido');

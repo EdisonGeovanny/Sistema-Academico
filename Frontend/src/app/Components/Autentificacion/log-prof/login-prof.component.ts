@@ -33,7 +33,7 @@ export class LoginProfComponent implements OnInit {
     }
     console.log(ACCESO);
     this.authService.loginA(ACCESO).subscribe(data => {
-      this.router.navigateByUrl('/app/reg-prof');
+      this.router.navigateByUrl('/prof/aulas');
     }, err => {
       console.log(err);
       this.AutentificacionForm.reset();

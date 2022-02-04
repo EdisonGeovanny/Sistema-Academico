@@ -111,7 +111,7 @@ const userSchema = new Schema({
     },
     Estado:{
         type: Boolean,
-        required: true, 
+        required: false, 
         default: true,
         trim:true
     },

@@ -34,7 +34,8 @@ exports.regRep = (req, res, next) => {
         Email: req.body.Email,
         Telefono: req.body.Telefono,
         Celular: req.body.Celular,
-        Observacion: req.body.Observacion
+        Observacion: req.body.Observacion,
+        Estado: req.body.Estado
     }
 
     User.create (newUser, (err,user)=> {
@@ -78,7 +79,7 @@ exports.updateRep  = async (req, res) => {
             Lugar_nacimiento, Nacionalidad,  Etnia, Grupo_sanguineo, Nivel_educacion, Actividad,
             Area, Observacion_medica, Tipo_discapacidad, Carnet_discapacidad, Porcentaje_discapacidad,
             Direccion, Sector_domicilio, Referencia_domicilio, Telefono, Celular,
-            Email, Observacion} = req.body;
+            Email, Observacion, Estado} = req.body;
             let representante = await User.findById(req.params.id);
 
             if(!representante) {
@@ -111,6 +112,7 @@ exports.updateRep  = async (req, res) => {
             representante.Telefono = Telefono;
             representante.Celular =  Celular; 
             representante.Observacion = Observacion;
+            representante.Estado = Estado;
 
             representante = await User.findOneAndUpdate({_id: req.params.id}, representante, {new:true})
             res.json(representante);

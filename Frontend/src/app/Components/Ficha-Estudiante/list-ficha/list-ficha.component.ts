@@ -38,6 +38,9 @@ export class ListFichaComponent implements OnInit {
   public isloading = false;
   public src: string | undefined;
 
+  nombre : string | null;
+  usuario: string | null;
+
 
   //Nombramiento
   Buscar = [{ name: "N° identificación" },
@@ -54,18 +57,21 @@ export class ListFichaComponent implements OnInit {
     this.AccesoForm = this.fb.group({
       Search: ['', Validators.required],
       Combo: ['', Validators.required]
-    })
+    }),
+    this.nombre = null;
+    this.usuario = null;
   }
 
 
   ngOnInit(): void {
     this.obtenerEstudiantes();
+    this.loginData();
   }
 
 
 
   Redirect(): void {
-    this.router.navigateByUrl('/app/reg-admin');
+    this.router.navigateByUrl('/admin/reg-admin');
   }
 
   //listar
@@ -255,13 +261,39 @@ export class ListFichaComponent implements OnInit {
   /////////  métodos /////////////////////////
 
   updateEst(id: any) {
-    this.router.navigateByUrl('/app/edit-ficha/' + id);
+    this.router.navigateByUrl('/admin/edit-ficha/' + id);
   }
 
   viewEst(id: any) {
-    this.router.navigateByUrl('/app/view-est/' + id);
+    this.router.navigateByUrl('/admin/view-ficha/' + id);
   }
 
+
+  logOut(){
+    this.authService.logoutA();
+    this.router.navigateByUrl('/app/log-admin')
+  }
+  
+  
+  loginData(){
+   this.usuario = localStorage.getItem('user');
+   const id = localStorage.getItem('id');
+   if(id!=null){
+     this.authService.obtenerPorfesorId(id).subscribe(data => {
+     this.nombre = data.Apellidos+" "+data.Nombres;
+     }, error => {
+       console.log(error);
+     });
+   }
+   
+  
+  }
+  
+  view() {
+   const id = localStorage.getItem('id');
+   this.router.navigateByUrl('/admin/view-prof/'+id);
+  }
+  
 
   /////Alertas/////////////////////////
   AlertNoEncotrado(): void {
