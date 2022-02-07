@@ -63,6 +63,12 @@ RepetidoNota(sch: string): Observable<any> {
   return this.httpClient.get(`${this.AUTH_SERVER}/list-nota/${id}`)
 }
 
+
+   //obtener por jornada y Matricula
+obtenerNotaAlumno(sch: string): Observable<any> {
+  return this.httpClient.get(`${this.AUTH_SERVER}/nota/${sch}`)
+  }
+  
 ////////////////////////// Estado de edicion de notas /////////////////////////////
 //obtener todos los Grado
 getANAll(): Observable<any> {
@@ -143,6 +149,11 @@ obtenerDistributivoxDocentePeriodo(sch: string): Observable<any> {
   return this.httpClient.get(`${this.AUTH_SERVER}/dist/${sch}`)
   }
 
+  //obtener por distributtivo por docente, periodo 
+obtenerDistributivoxPeriodoNivelParalelo(sch: string): Observable<any> {
+  return this.httpClient.get(`${this.AUTH_SERVER}/distributivo/${sch}`)
+  }
+
 
   /////////////////////////// MATRICULA ///////////////////////////////////////
 
@@ -199,6 +210,10 @@ updateMatricula(id: string, user: any): Observable<any> {
     return this.httpClient.get(`${this.AUTH_SERVER}/est-per/${sch}`)
     }
   
+    //obtener por nivel.paralelo.jornada
+  obtenerMatriculaEstPer(sch: string): Observable<any> {
+    return this.httpClient.get(`${this.AUTH_SERVER}/matricula/${sch}`)
+    }
  //obtener por nivel.paralelo.jornada
  obtenerGrado(sch: string): Observable<any> {
   return this.httpClient.get(`${this.AUTH_SERVER}/schgrado/${sch}`)
@@ -523,7 +538,7 @@ obtenerPeriodoEstado(): Observable<any> {
     return this.httpClient.post<any>(`${this.AUTH_SERVER}/aut`,
       user).pipe(tap(
         (res: any) => {
-          console.log(res.data);
+         // console.log(res.data);
          this.saveTokenA(res.data.accessToken, res.data.Rol);
          localStorage.setItem('user',res.data.Usuario);
          localStorage.setItem('id', res.data.Vinculo);
@@ -589,8 +604,8 @@ obtenerProfesorNombres(sch: string): Observable<any> {
 
 
   //obtener todos los Docentes
-  getProfAll(): Observable<UserAdminI[]> {
-    return this.httpClient.get<UserAdminI[]>(`${this.AUTH_SERVER}/list-da`);
+  getProfAll(): Observable<any> {
+    return this.httpClient.get<any>(`${this.AUTH_SERVER}/list-da`);
   }
 
   //eliminiar Docente por id

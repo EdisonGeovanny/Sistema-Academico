@@ -32,9 +32,9 @@ export class LogEstComponent implements OnInit {
       Contraseña: this.AutentificacionForm.get('Contraseña')?.value,
       Rol: 'Estudiante'
     }
-    console.log(ACCESO);
+    
     this.authService.loginA(ACCESO).subscribe(data => {
-      this.router.navigateByUrl('/est/horario-est');
+      this.router.navigateByUrl('/est/horario');
     }, err => {
       console.log(err);
       this.AutentificacionForm.reset();

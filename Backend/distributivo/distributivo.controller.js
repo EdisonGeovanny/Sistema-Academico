@@ -173,3 +173,21 @@ exports.searchDocentePeriodo = async (req, res) => {
 
     }
 }
+
+
+exports.searchPorPeriodoNivelParalelo = async (req, res) => {
+    try {
+
+        const cadena = req.params.sch;
+       const x = cadena.split(',');
+        let dni = await User.find({$and:[{Periodo:x[0]},{Nivel:x[1]},{Paralelo:x[2]},{Jornada:x[3]}]});
+        if (!dni) {
+            res.status(404).json({ msg: 'La busqueda no existe' })
+        } res.json(dni);
+
+    } catch (err) {
+        console.log(err);
+        res.status(500).send('Hubo un error')
+
+    }
+}

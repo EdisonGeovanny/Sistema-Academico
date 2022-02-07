@@ -1,1 +1,384 @@
-<p>horario-est works!</p>
+<body class="hold-transition sidebar-mini p">
+    <div class="wrapper">
+        <!-- Navbar -->
+        <nav class="main-header navbar navbar-expand navbar-dark navbar-gray-dark">
+            <!--navbar-primary,secundary,info,success,dark,  -->
+            <!-- Left navbar links -->
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+                </li>
+            </ul>
+
+            <!--------------------------Cerrar Sesión----------------------------->
+
+            <ul class="navbar-nav ml-auto">
+
+                <!-- Cerrar sesion -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link" (click)="logOut()"> <abbr title="Cerrar Sesión"><i
+                                class="far fa-sign-out-alt fa-2x "></i></abbr> </a>
+
+                </li>
+                <!-- Colchones derecha -->
+                <li class="nav-item dropdown"><a class="nav-link" routerLink="/est/horario"> <i></i></a></li>
+                <li class="nav-item dropdown"><a class="nav-link" routerLink="/est/horaro"><i></i></a></li>
+
+            </ul>
+        </nav>
+        <!-- /.navbar -->
+
+        <!-- Main Sidebar Container -->
+        <aside class="main-sidebar elevation-4 sidebar-dark-success">
+            <!--navbar-orange,warning,pink,secundary,info,success,indigo,purple,vany,teal,cyan,--->
+            <!-- Brand Logo -->
+            <a routerLink="/est/horario" class="brand-link navbar-info">
+                <!--navbar-orange,warning,pink,secundary,info,success,indigo,purple,vany,teal,cyan,--->
+                <img src="./assets/dist/img/icon-teacher.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+                    style="opacity: .8">
+                <span class="brand-text text-dark">ESTUDIANTE</span>
+            </a>
+
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <!-- Sidebar user (optional) -->
+                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                    <div class="image">
+                        <img src="./assets/dist/img/userStudent.png" class="img-circle elevation-2" alt="User Image">
+                    </div>
+                    <div class="info">
+                        <a (click)="view()" class="d-block centrar">{{nombre}}</a>
+                        <a class="d-block centrar">usuario: {{usuario}}</a>
+                    </div>
+                </div>
+
+                <!-- Sidebar Menu -->
+                <nav class="mt-2 p2">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                        data-accordion="false">
+                        <!-- Add icons to the links using the .nav-icon class
+         with font-awesome or any other icon font library -->
+
+                        <!-- REGISTRO DE DATOS -->
+                        <li class="nav-item has-treeview menu-open">
+                            <a routerLink="/est/horario" class="nav-link active">
+                                <i class="nav-icon fas fa-edit"></i>
+                                <p>
+                                    MENÚ
+                                    <i class="fas fa-angle-left right "></i>
+                                </p>
+                            </a>
+
+
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a routerLink="/est/horario" class="nav-link active">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p class="p">Horario</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a routerLink="/est/notas" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Notas</p>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </li>
+
+
+
+                    </ul>
+                </nav>
+                <!-- /.sidebar-menu -->
+            </div>
+            <!-- /.sidebar -->
+        </aside>
+
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+
+                        <div class="col-sm-6">
+                            <h5><strong>{{Titulo}}</strong></h5>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item">{{subnivel}}</li>
+                                <li class="breadcrumb-item active">CRONOGRAMA PROGRAMADO</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div><!-- /.container-fluid -->
+            </section>
+
+            <!-- Main Matutina -->
+            <section class="content" id="PrintForm1">
+                <div class="container-fluid">
+
+                    <div class="row justify-content-center">
+                        <!-- left column -->
+                        <div class="col-md-12">
+                            <!-- general form elements -->
+                            <div class="card card-info">
+                                <div class="card-header">
+                                    <h3 class="card-title">JORNADA: {{jornada}}</h3>
+                                    <div class="card-tools">
+                                        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
+                                                class="fas fa-minus"></i></button>
+                                    </div>
+                                </div>
+                                <!-- /.card-header -->
+                                <!-- form start -->
+
+                                <form class="card-body" role="form">
+                                    <div class="card-body">
+                                        <!--/////////////////////////////////////busqueda de ficha de Estudiante/////////////////////////////////////////-->
+                                        <div class="row">
+
+                                            <div class="col-md-12 h2" id="ignore">
+                                                <h2>HORARIO DE CLASES</h2>
+                                            </div>
+
+                                            <div class="col-md-3 ">
+                                                <h6>Periodo Lectivo:</h6> {{periodo}}
+                                            </div>
+                                           
+                                            <div class="col-md-9 "> </div>
+                                           
+                                        </div>
+                                        <!-- Lunes -->
+                                        <div class="row">
+                                            <div class="col-md-12 h2">
+                                                <h5>LUNES</h5>
+                                            </div>
+                                            <div class="col-md-12 shadow p-3 mb-5 bg-white rounded p3">
+                                                <div class="card-body table-responsive p-0" style="height: 220px;">
+                                                    <table *ngIf="Lunes.dni.length > 0"
+                                                        class="table table-hover table-head-fixed text-nowrap">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Hora Inicio</th>
+                                                                <th>Hora Fin</th>
+                                                                <th>Área</th>
+                                                                <th>Asignatura</th>
+                                                                <th>Docente</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr *ngFor="let l of  Lunes.dni ">
+                                                                <td>{{l.Inicio}}</td>
+                                                                <td>{{l.Fin}}</td>
+                                                                <td>{{l.Area}}</td>
+                                                                <td>{{l.Asignatura}}</td>
+                                                                <td>{{l.Docente}}</td>
+                                                                
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <h5 style="text-align:start; margin-top: 10px;"
+                                                        *ngIf="Lunes.dni.length == 0">No hay registros
+                                                        para
+                                                        mostrar
+                                                    </h5>
+                                                </div>
+                                            </div>
+                                        </div> 
+
+                                        <!-- Martes -->
+                                        <div class="row">
+                                            <div class="col-md-12 h2">
+                                                <h5>MARTES</h5>
+                                            </div>
+                                            <div class="col-md-12 shadow p-3 mb-5 bg-white rounded p3">
+                                                <div class="card-body table-responsive p-0" style="height: 220px;">
+                                                    <table *ngIf="Martes.dni.length > 0"
+                                                        class="table table-hover table-head-fixed text-nowrap">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Hora Inicio</th>
+                                                                <th>Hora Fin</th>
+                                                                <th>Área</th>
+                                                                <th>Asignatura</th>
+                                                                <th>Docente</th>
+                                                               
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr *ngFor="let m of  Martes.dni ">
+                                                                <td>{{m.Inicio}}</td>
+                                                                <td>{{m.Fin}}</td>
+                                                                <td>{{m.Area}}</td>
+                                                                <td>{{m.Asignatura}}</td>
+                                                                <td>{{m.Docente}}</td>
+                                                                
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <h5 style="text-align:start; margin-top: 10px;"
+                                                        *ngIf="Martes.dni.length == 0">No hay registros
+                                                        para
+                                                        mostrar
+                                                    </h5>
+                                                </div>
+                                            </div>
+                                        </div> 
+
+                                        <!-- Miercoles -->
+                                        <div class="row">
+                                            <div class="col-md-12 h2">
+                                                <h5>MIERCOLES</h5>
+                                            </div>
+                                            <div class="col-md-12 shadow p-3 mb-5 bg-white rounded p3">
+                                                <div class="card-body table-responsive p-0" style="height: 220px;">
+                                                    <table *ngIf="Miercoles.dni.length > 0"
+                                                        class="table table-hover table-head-fixed text-nowrap">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Hora Inicio</th>
+                                                                <th>Hora Fin</th>
+                                                                <th>Área</th>
+                                                                <th>Asignatura</th>
+                                                                <th>Docente</th>
+                                                                
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr *ngFor="let mi of  Miercoles.dni ">
+                                                                <td>{{mi.Inicio}}</td>
+                                                                <td>{{mi.Fin}}</td>
+                                                                <td>{{mi.Area}}</td>
+                                                                <td>{{mi.Asignatura}}</td>
+                                                                <td>{{mi.Docente}}</td>
+                                                               
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <h5 style="text-align:start; margin-top: 10px;"
+                                                        *ngIf="Miercoles.dni.length == 0">No hay registros
+                                                        para
+                                                        mostrar
+                                                    </h5>
+                                                </div>
+                                            </div>
+                                        </div> 
+
+                                        <!-- Jueves -->
+                                        <div class="row">
+                                            <div class="col-md-12 h2">
+                                                <h5>JUEVES</h5>
+                                            </div>
+                                            <div class="col-md-12 shadow p-3 mb-5 bg-white rounded p3">
+                                                <div class="card-body table-responsive p-0" style="height: 220px;">
+                                                    <table *ngIf="Jueves.dni.length > 0"
+                                                        class="table table-hover table-head-fixed text-nowrap">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Hora Inicio</th>
+                                                                <th>Hora Fin</th>
+                                                                <th>Área</th>
+                                                                <th>Asignatura</th>
+                                                                <th>Docente</th>
+                                                               
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr *ngFor="let j of  Jueves.dni ">
+                                                                <td>{{j.Inicio}}</td>
+                                                                <td>{{j.Fin}}</td>
+                                                                <td>{{j.Area}}</td>
+                                                                <td>{{j.Asignatura}}</td>
+                                                                <td>{{j.Docente}}</td>
+                                                              
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <h5 style="text-align:start; margin-top: 10px;"
+                                                        *ngIf="Jueves.dni.length == 0">No hay registros
+                                                        para
+                                                        mostrar
+                                                    </h5>
+                                                </div>
+                                            </div>
+                                        </div> 
+
+                                        <!-- Viernes -->
+                                        <div class="row">
+                                            <div class="col-md-12 h2">
+                                                <h5>VIERNES</h5>
+                                            </div>
+                                            <div class="col-md-12 shadow p-3 mb-5 bg-white rounded p3">
+                                                <div class="card-body table-responsive p-0" style="height: 220px;">
+                                                    <table *ngIf="Viernes.dni.length > 0"
+                                                        class="table table-hover table-head-fixed text-nowrap">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Hora Inicio</th>
+                                                                <th>Hora Fin</th>
+                                                                <th>Área</th>
+                                                                <th>Asignatura</th>
+                                                                <th>Docente</th>
+                                                                
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr *ngFor="let v of  Viernes.dni ">
+                                                                <td>{{v.Inicio}}</td>
+                                                                <td>{{v.Fin}}</td>
+                                                                <td>{{v.Area}}</td>
+                                                                <td>{{v.Asignatura}}</td>
+                                                                <td>{{v.Docente}}</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <h5 style="text-align:start; margin-top: 10px;"
+                                                        *ngIf="Viernes.dni.length == 0">No hay registros
+                                                        para
+                                                        mostrar
+                                                    </h5>
+                                                </div>
+                                            </div>
+                                        </div> 
+
+                                    </div>
+                                    <!-- /.card-body -->
+
+                                </form>
+                            </div>
+                            <!-- /.card -->
+
+                        </div>
+                        <!--/.col (left) -->
+                    </div>
+                    <!-- /.row -->
+                </div><!-- /.container-fluid -->
+            </section>
+
+          
+
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+        <footer class="main-footer">
+            <div class="float-right d-none d-sm-block">
+                <b>Copyright &copy;</b> 2021
+            </div>
+            <strong> <a href="https://www.facebook.com/uecibbenitojuarez/">Unidad Educativa Comunitaria Intercultural
+                    Bilingüe "Benito Juárez"</a>.</strong>
+
+        </footer>
+
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- Control sidebar content goes here -->
+        </aside>
+        <!-- /.control-sidebar -->
+    </div>
+    <!-- ./wrapper -->
+
+</body>

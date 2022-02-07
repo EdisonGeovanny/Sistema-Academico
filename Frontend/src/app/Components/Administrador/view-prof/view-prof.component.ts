@@ -22,6 +22,11 @@ export class ViewProfComponent implements OnInit {
   nombre : string | null;
   usuario: string | null;
 
+
+  intitucion = "Ishkay Shimipi Ayllucunapak Yachana Wasi 'Benito Juárez'";
+  
+
+
   constructor(private authService: AuthService, private router: Router,
     private fb: FormBuilder, private aRouter: ActivatedRoute) {
     

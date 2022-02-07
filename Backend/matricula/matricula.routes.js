@@ -8,5 +8,6 @@ module.exports = (router)=> {
     router.get('/searchma/:sch', Users.searchEstudiante);  //busqueda
     router.get('/est-per/:sch', Users.EstudiantePeriodo);  //busqueda matricula existente
     router.get('/schgrado/:sch', Users.Grado);
+    router.get('/matricula/:sch', Users.MatriculaEstudiantePeriodo);
  
 }

@@ -1,0 +1,29 @@
+.text-danger{
+    text-align: start;
+    margin-left: 7 px;
+}
+.h2{
+    background-color: #F4F4F4;
+    text-align:center;
+}
+.combo{
+    background-color: #dbdbdb;
+}
+.centrar{
+    text-align:center;
+    font-size: 100%;
+}
+.p {  
+    font-family: "Segoe UI";
+    
+  }
+.p2 {
+    font-family: cursive;
+    font-size: 95%;
+  }
+  .p3{
+    font-size: 75%;
+  }
+  .colum{
+    background-color: #F4F4F4;
+}

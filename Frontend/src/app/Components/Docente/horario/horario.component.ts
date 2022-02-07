@@ -80,7 +80,7 @@ export class HorarioComponent implements OnInit {
   }
 
 ordenarHorario(horario: any): any {
- horario.sort(((a: any, b: any) => {
+ console.table(horario.sort(((a: any, b: any) => {
     if (a.Inicio < b.Inicio) {
       return -1;
     } else if (a.Inicio > b.Inicio) {
@@ -88,7 +88,7 @@ ordenarHorario(horario: any): any {
     } else {
       return 0;
     }
-  }));
+  })));
 
 }
 
@@ -96,6 +96,7 @@ ordenarHorario(horario: any): any {
     //obtener Periodos activos
     this.authService.obtenerPeriodoEstado().subscribe(data => {
       this.per = data.dni[0].Codigo;
+      console.log('periodo', this.per);
 
       const id = localStorage.getItem('id');
       if (id != null) {
@@ -123,7 +124,7 @@ ordenarHorario(horario: any): any {
           });
 
 
-         // console.log('Horario: ', this.Horario.dni)
+          console.log('Horario: ', this.Horario.dni)
          
           //Lunes Matutina
           this.Horario.dni.forEach((element: any, index: any, array: any) => {
@@ -151,7 +152,7 @@ ordenarHorario(horario: any): any {
           //Miercoles Matutina
           this.Horario.dni.forEach((element: any, index: any, array: any) => {
             if (element.Jornada == 'MATUTINA') {
-              if (element.Dia == 'MIERCOLES') {
+              if (element.Dia == 'MIÉRCOLES') {
                 this.Miercoles.dni.push(element);
               }
             }
@@ -211,7 +212,7 @@ ordenarHorario(horario: any): any {
           //Miercoles VESPERTINA
           this.Horario.dni.forEach((element: any, index: any, array: any) => {
             if (element.Jornada == 'VESPERTINA') {
-              if (element.Dia == 'MIERCOLES') {
+              if (element.Dia == 'MIÉRCOLES') {
                 this.Miercolesv.dni.push(element);
               }
             }

@@ -5,9 +5,9 @@ import { NotaEstComponent } from 'src/app/Components/Estudiante/nota-est/nota-es
 import { PerfilEstComponent } from 'src/app/Components/Estudiante/perfil-est/perfil-est.component';
 
 const routes: Routes = [
-  { path: 'perfil-est', component: PerfilEstComponent },
-  { path: 'notas-est', component:  NotaEstComponent },
-  { path: 'horario-est', component: HorarioEstComponent },
+  { path: 'perfil/:id', component: PerfilEstComponent },
+  { path: 'notas', component:  NotaEstComponent },
+  { path: 'horario', component: HorarioEstComponent },
  ];
 
 @NgModule({

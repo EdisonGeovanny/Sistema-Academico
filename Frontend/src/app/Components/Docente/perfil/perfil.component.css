@@ -1,0 +1,19 @@
+.text-danger{
+    text-align: start;
+    margin-left: 7 px;
+}
+.h2{
+    background-color: #F4F4F4;
+    text-align:center;
+}
+.combo{
+    background-color: #dbdbdb;
+}
+.p {  
+    font-family: "Segoe UI";
+    
+  }
+.p2 {
+    font-family: cursive;
+    font-size: 95%;
+  }

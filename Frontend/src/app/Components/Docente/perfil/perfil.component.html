@@ -1,1 +1,289 @@
-<p>perfil works!</p>
+<body class="hold-transition sidebar-mini p">
+    <div class="wrapper">
+       <!-- Navbar -->
+       <nav class="main-header navbar navbar-expand navbar-dark navbar-gray-dark">
+        <!--navbar-primary,secundary,info,success,dark,  -->
+        <!-- Left navbar links -->
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+            </li>
+        </ul>
+
+        <!--------------------------Cerrar Sesión----------------------------->
+
+        <ul class="navbar-nav ml-auto">
+
+            <!-- Cerrar sesion -->
+            <li class="nav-item dropdown">
+                <a class="nav-link" (click)="logOut()"> <abbr title="Cerrar Sesión"><i
+                            class="far fa-sign-out-alt fa-2x "></i></abbr> </a>
+
+            </li>
+            <!-- Colchones derecha -->
+            <li class="nav-item dropdown"><a class="nav-link" routerLink="/prof/aulas"> <i></i></a></li>
+            <li class="nav-item dropdown"><a class="nav-link" routerLink="/prof/aulas"><i></i></a></li>
+
+        </ul>
+    </nav>
+    <!-- /.navbar -->
+
+    <!-- Main Sidebar Container -->
+    <aside class="main-sidebar elevation-4 sidebar-dark-success">
+        <!--navbar-orange,warning,pink,secundary,info,success,indigo,purple,vany,teal,cyan,--->
+        <!-- Brand Logo -->
+        <a routerLink="/prof/aulas" class="brand-link navbar-info">
+            <!--navbar-orange,warning,pink,secundary,info,success,indigo,purple,vany,teal,cyan,--->
+            <img src="./assets/dist/img/D.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+                style="opacity: .8">
+            <span class="brand-text text-dark">DOCENTE</span>
+        </a>
+
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <!-- Sidebar user (optional) -->
+            <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                <div class="image">
+                    <img src="./assets/dist/img/icon-teacher2.png" class="img-circle elevation-2" alt="User Image">
+                </div>
+                <div class="info">
+                    <a (click)="view()" class="d-block centrar">{{nombre}}</a>
+                    <a class="d-block centrar">usuario: {{usuario}}</a>
+                </div>
+            </div>
+
+            <!-- Sidebar Menu -->
+            <nav class="mt-2 p2">
+                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                    data-accordion="false">
+                    <!-- Add icons to the links using the .nav-icon class
+     with font-awesome or any other icon font library -->
+
+                    <!-- REGISTRO DE DATOS -->
+                    <li class="nav-item has-treeview menu-open">
+                        <a routerLink="/prof/aulas" class="nav-link active">
+                            <i class="nav-icon fas fa-edit"></i>
+                            <p>
+                                MENÚ
+                                <i class="fas fa-angle-left right "></i>
+                            </p>
+                        </a>
+
+
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a routerLink="/prof/aulas" class="nav-link active">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p class="p">Grados asignados</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a routerLink="/prof/horarios" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Horario</p>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </li>
+
+
+
+                </ul>
+            </nav>
+            <!-- /.sidebar-menu -->
+        </div>
+        <!-- /.sidebar -->
+    </aside>
+
+        <!-- contenido-->
+        <div class="content-wrapper">
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1>DOCENTE: VISTA DE REGISTRO</h1>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a>VISUALIZACIÓN DE DATOS</a></li>
+                                <li class="breadcrumb-item active">VISTA DE INFORMACIÓN</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content">
+                <div class="container-fluid">
+                    <form method="get" id="PrintForm1">
+                        <div class="row">
+                            <div class="col-11">
+
+                                <div class="callout callout-info">
+                                    <h5><i class="fas fa-info"></i> Nota:</h5>
+                                    <span>Esta página sirve para la visualización de datos docente ingresados. Haga clic
+                                        en el
+                                        botón imprimir si requiere el registro.</span><br><br>
+                                </div>
+
+                                <div class="invoice p-3 mb-3">
+                                    <!-- title row -->
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <h1 id="ignore" class="h2">
+                                                <i class="fas fa-school "></i> Unidad Educativa Comunitaria
+                                                Intercultural Bilingüe "Benito Juárez".
+                                            </h1>
+                                            <h6>
+                                                <small> Fecha: {{Hora | date:'dd-MM-yyyy'}}<br> Hora:{{Hora |
+                                                    date:'HH:mm'}}</small>
+                                            </h6>
+                                        </div>
+
+                                        <!-- /.col -->
+                                    </div>
+                                    <!-- info row -->
+                                    <div class="row invoice-info">
+
+                                        <div class="col-sm-3 invoice-col shadow-sm p-3 mb-5 bg-white rounded">
+                                            <strong> DATOS PERSONALES </strong>
+                                            <address>
+                                                <strong> Tipo de identificación:
+                                                </strong>{{profesor.Tipo_documento}}<br>
+                                                <strong> Número de identidad: </strong>{{profesor.DNI}}<br>
+                                                <strong> Nombre: </strong>{{profesor.Nombres}}<br>
+                                                <strong> Genero: </strong>{{profesor.Genero}}<br>
+                                                <strong> Estado civil: </strong>{{profesor.Estado_civil}}<br>
+                                                <strong> Fecha nacimiento: </strong>{{profesor.Fecha_nacimiento |
+                                                date:'dd-MM-yyyy'}}<br>
+                                                <strong> Lugar de nacimiento:
+                                                </strong><br>{{profesor.Lugar_nacimiento}}<br>
+                                                <strong> Nacionalidad: </strong>{{profesor.Nacionalidad}}<br>
+                                                <strong> Etnia: </strong>{{profesor.Etnia}}
+                                            </address>
+                                        </div>
+                                        <!-- /.col -->
+                                        <div class="col-sm-3 invoice-col shadow-sm p-3 mb-5 bg-white rounded">
+                                            <strong> ESPECIFICACIÓN PROFESIONAL </strong>
+                                            <address>
+                                                <strong>Nivel de educación: </strong>{{profesor.Nivel_educacion}}<br>
+                                                <strong>Nombre de la Institución: </strong>{{profesor.Institucion}}<br>
+                                                <strong>Lugar de la Institución:
+                                                </strong>{{profesor.Lugar_institucion}}<br>
+                                                <strong>Tipo de la Institución:
+                                                </strong>{{profesor.Tipo_institucion}}<br>
+                                                <strong>Titulo Profesional: </strong>{{profesor.Especialidad}}<br>
+                                                <strong>Nota de graduación: </strong><br>{{profesor.Nota_grado}}<br>
+                                                <strong>Fecha de graduación: </strong><br>{{profesor.Fecha_grado|
+                                                date:'dd-MM-yyyy'}}<br>
+                                                <strong>Ingreso al magisterio: </strong><br>
+                                                {{profesor.Fecha_ingreso_magisterio | date:'dd-MM-yyyy'}}<br>
+                                                <strong>Ingreso a la institución: </strong><br>
+                                                {{profesor.Fecha_ingreso_institucion | date:'dd-MM-yyyy'}}<br>
+                                                <strong>Condición laboral: </strong>{{profesor.Condicion_laboral}}<br>
+                                            </address>
+                                        </div>
+                                        <!-- /.col -->
+                                        <div class="col-sm-3 invoice-col shadow-sm p-3 mb-5 bg-white rounded">
+                                            <strong> DATOS DE CONTACTO Y UBICACIÓN </strong>
+                                            <address>
+                                                <strong> Lugar de residencia: </strong><br>{{profesor.Direccion}}<br>
+                                                <strong> Dirección: </strong><br>{{profesor.Sector_domicilio}}<br>
+                                                <strong> Referencia de domicilio:
+                                                </strong><br>{{profesor.Referencia_domicilio}}<br>
+                                                <strong> Teléfono: </strong><br>{{profesor.Telefono}}<br>
+                                                <strong> Celular: </strong><br>{{profesor.Celular}}<br>
+                                                <strong> Correo electrónico: </strong><br>{{profesor.Email}}<br>
+                                                <strong> Nombre de contacto de emergencia:
+                                                </strong><br>{{profesor.Nombre_emergente}}<br>
+                                                <strong> Número de contacto de emergencia:
+                                                </strong><br>{{profesor.Contacto_emergente}}<br>
+                                            </address>
+                                        </div>
+                                        <div class="col-sm-1 invoice-col"></div>
+                                    </div>
+
+                                    <div class="row invoice-info">
+
+                                        <div class="col-sm-4 invoice-col ">
+                                            <strong> INFORMACIÓN DE SALUD </strong>
+                                            <address>
+                                                <strong> Grupo sanguineo: </strong>{{profesor.Grupo_sanguineo}}<br>
+                                                <strong> Tipo de discapacidad:
+                                                </strong>{{profesor.Tipo_discapacidad}}<br>
+                                                <strong> Carnet de discapacidad:
+                                                </strong>{{profesor.Carnet_discapacidad}}<br>
+                                                <strong> Porcentaje de discapacidad:
+                                                </strong>{{profesor.Porcentaje_discapacidad}}<br>
+                                                <strong>Observacion médica: </strong>{{profesor.Observacion_medica}}
+                                            </address>
+                                        </div>
+                                        <div class="col-sm-1 invoice-col"></div>
+                                        <!-- /.col -->
+                                        <div class="col-sm-5 invoice-col ">
+                                            <strong> INFORMACIÓN DE USUARIO</strong>
+                                            <address>
+                                                <strong> Usuario: </strong>{{usuario}}<br>
+                                                <strong>Estado de perfil: </strong> {{profesor.Estado}}<br>
+                                                <strong>Observaciones adicionales: </strong>{{profesor.Observacion}}<br>
+
+
+
+                                            </address>
+                                        </div>
+                                        <!-- /.col -->
+                                        <div class="col-sm-1 invoice-col"></div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-1"></div>
+                        </div>
+
+                    </form>
+
+                    <div class="card-footer no-print">
+                        <div class="row">
+                            <div class="col-md-2">
+
+                            </div>
+
+                            <div class="col-md-5"></div>
+                            <div class="col-md-2">
+
+                                <button type="button" (click)="Print()" class="btn btn-block bg-gradient-success"><i
+                                        class="fas fa-print"></i> Imprimir</button>
+                            </div>
+                            <div class="col-md-2">
+                                <button type="button" (click)="Regresar()" class="btn btn-block btn-outline-dark"><i
+                                        class="fad fa-undo"></i>
+                                    Regresar</button>
+                            </div>
+                            <div class="col-md-1"></div>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </section>
+        </div>
+
+        <footer class="main-footer">
+            <div class="float-right d-none d-sm-block">
+                <b>Copyright &copy;</b> 2021
+            </div>
+            <strong> <a href="https://www.facebook.com/uecibbenitojuarez/">Unidad Educativa Comunitaria Intercultural
+                    Bilingüe "Benito Juárez"</a>.</strong>
+
+        </footer>
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- Control sidebar content goes here -->
+        </aside>
+        <!-- /.control-sidebar -->
+    </div>
+</body>

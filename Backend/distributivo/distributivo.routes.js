@@ -8,4 +8,5 @@ module.exports = (router)=> {
     router.get('/search-dist/:sch', Users.searchDocente);  //busqueda
     router.get('/search2-dist/:sch', Users.searchExitente);  //busqueda
     router.get('/dist/:sch', Users.searchDocentePeriodo)//busqueda docente periodo
+    router.get('/distributivo/:sch', Users.searchPorPeriodoNivelParalelo)//busqueda docente periodo
 }

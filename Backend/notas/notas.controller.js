@@ -146,3 +146,24 @@ exports.searchNota = async (req, res) => {
 
     }
 }
+
+
+exports.NotaAlumno = async (req, res) => {
+    try {
+        const cadena = req.params.sch;
+        const x = cadena.split(',');
+
+
+        let dni = await User.find({ $and: [{ Periodo: x[0] }, { Estudiante: x[1]}] });
+        if (!dni) {
+            res.status(404).json({ msg: 'La busqueda no existe' })
+        } else {
+            res.json(dni);
+        }
+
+    } catch (err) {
+        console.log(err);
+        res.status(500).send('Hubo un error')
+
+    }
+}

@@ -127,6 +127,25 @@ exports.searchEstudiante = async (req, res) => {
 }
 
 
+exports.MatriculaEstudiantePeriodo = async (req, res) => {
+    try {
+        const cadena = req.params.sch;
+        const x = cadena.split(',');
+        let dni = await User.find({$and:[{Estudiante:x[0]},{Periodo:x[1]}]});
+        if (dni[0]== null) {
+            res.status(404).json({ msg: 'La busqueda no existe' });
+        } else{
+            res.json(dni);
+        }
+
+    } catch (err) {
+        console.log(err);
+        res.status(500).send('Hubo un error')
+
+    }
+}
+
+
 exports.EstudiantePeriodo = async (req, res) => {
     try {
         const cadena = req.params.sch;

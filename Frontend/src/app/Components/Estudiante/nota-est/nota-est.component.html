@@ -1,1 +1,319 @@
-<p>nota-est works!</p>
+<body class="hold-transition sidebar-mini p">
+    <div class="wrapper">
+        <!-- Navbar -->
+        <nav class="main-header navbar navbar-expand navbar-dark navbar-gray-dark">
+            <!--navbar-primary,secundary,info,success,dark,  -->
+            <!-- Left navbar links -->
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+                </li>
+            </ul>
+
+            <!--------------------------Cerrar Sesión----------------------------->
+
+            <ul class="navbar-nav ml-auto">
+
+                <!-- Cerrar sesion -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link" (click)="logOut()"> <abbr title="Cerrar Sesión"><i
+                                class="far fa-sign-out-alt fa-2x "></i></abbr> </a>
+
+                </li>
+                <!-- Colchones derecha -->
+                <li class="nav-item dropdown"><a class="nav-link" routerLink="/est/horario"> <i></i></a></li>
+                <li class="nav-item dropdown"><a class="nav-link" routerLink="/est/horaro"><i></i></a></li>
+
+            </ul>
+        </nav>
+        <!-- /.navbar -->
+
+        <!-- Main Sidebar Container -->
+        <aside class="main-sidebar elevation-4 sidebar-dark-success">
+            <!--navbar-orange,warning,pink,secundary,info,success,indigo,purple,vany,teal,cyan,--->
+            <!-- Brand Logo -->
+            <a routerLink="/est/horario" class="brand-link navbar-info">
+                <!--navbar-orange,warning,pink,secundary,info,success,indigo,purple,vany,teal,cyan,--->
+                <img src="./assets/dist/img/icon-teacher.png" alt="AdminLTE Logo"
+                    class="brand-image img-circle elevation-3" style="opacity: .8">
+                <span class="brand-text text-dark">ESTUDIANTE</span>
+            </a>
+
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <!-- Sidebar user (optional) -->
+                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                    <div class="image">
+                        <img src="./assets/dist/img/userStudent.png" class="img-circle elevation-2" alt="User Image">
+                    </div>
+                    <div class="info">
+                        <a (click)="view()" class="d-block centrar">{{nombre}}</a>
+                        <a class="d-block centrar">usuario: {{usuario}}</a>
+                    </div>
+                </div>
+
+                <!-- Sidebar Menu -->
+                <nav class="mt-2 p2">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                        data-accordion="false">
+                        <!-- Add icons to the links using the .nav-icon class
+         with font-awesome or any other icon font library -->
+
+                        <!-- REGISTRO DE DATOS -->
+                        <li class="nav-item has-treeview menu-open">
+                            <a routerLink="/est/horario" class="nav-link active">
+                                <i class="nav-icon fas fa-edit"></i>
+                                <p>
+                                    MENÚ
+                                    <i class="fas fa-angle-left right "></i>
+                                </p>
+                            </a>
+
+
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a routerLink="/est/horario" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p class="p">Horario</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a routerLink="/est/notas" class="nav-link active">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Notas</p>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </li>
+
+
+
+                    </ul>
+                </nav>
+                <!-- /.sidebar-menu -->
+            </div>
+            <!-- /.sidebar -->
+        </aside>
+
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+
+                        <div class="col-sm-6">
+                            <h5><strong>{{Titulo}}</strong></h5>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item">{{subnivel}}</li>
+                                <li class="breadcrumb-item active">ESTUDIANTE</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div><!-- /.container-fluid -->
+            </section>
+
+            <!-- Main Matutina -->
+            <section class="content" id="PrintForm1">
+                <div class="container-fluid">
+
+                    <div class="row justify-content-center">
+                        <!-- left column -->
+                        <div class="col-md-12">
+                            <!-- general form elements -->
+                            <div class="card card-info">
+                                <div class="card-header">
+                                    <h3 class="card-title">VISUALIZACIÓN DE CALIFICACIONES</h3>
+                                    <div class="card-tools">
+                                        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
+                                                class="fas fa-minus"></i></button>
+                                    </div>
+                                </div>
+                                <!-- /.card-header -->
+                                <!-- form start -->
+
+                                <form class="card-body" role="form">
+                                    <div class="card-body">
+                                        <!--/////////////////////////////////////busqueda de ficha de Estudiante/////////////////////////////////////////-->
+                                        <div class="row">
+
+                                            <div class="col-md-12 h2">
+                                                <h2>CALIFICACIONES</h2>
+                                            </div>
+
+                                            <div class="col-md-3 ">
+                                                <h6>Periodo Lectivo:</h6> {{periodo}}
+                                            </div>
+                                            <div class="col-md-2 ">
+                                                <h6>Jornada:</h6> {{jornada}}
+                                            </div>
+                                            <div class="col-md-2 ">
+                                                <h6>Nivel: </h6> {{nivel}}
+                                            </div>
+                                            <div class="col-md-2 ">
+                                                <h6>Paralelo:</h6> {{paralelo}}
+                                            </div>
+                                            <div class="col-md-1"></div>
+                                            <div class="col-md-2 " id="ignore">
+                                                <button type="button" (click)="Print()"
+                                                    class="btn btn-block bg-gradient-success"><i
+                                                        class="fas fa-print"></i> Imprimir</button>
+                                            </div>
+
+                                        </div>
+                                        <br>
+                                        <!-- Notas -->
+                                        <div class="row">
+                                            <div class="col-md-12 h2">
+                                                <h2>REPORTE ANUAL DE CALIFICACIONES</h2>
+                                            </div>
+                                            <div class="col-md-12 shadow p-3 mb-5 bg-white rounded">
+                                                <div class="card-body table-responsive p-0" style="height: 440px;">
+                                                    <table *ngIf="Notas.dni.length > 0"
+                                                        class="table table-hover table-head-fixed text-nowrap p3">
+                                                        <thead class="centrar">
+                                                            <tr>
+                                                                <th colspan="2"></th>
+                                                                <th colspan="8" style="background-color: #F4F4F4">Primer
+                                                                    Quimestre</th>
+                                                                <th></th>
+                                                                <th colspan="8" style="background-color: #F4F4F4">
+                                                                    Segundo Quimestre</th>
+                                                                <th></th>
+                                                                <th colspan="2" style="background-color: #F4F4F4">
+                                                                    Promedio Anual</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Área</th>
+                                                                <th>Asignatura</th>
+                                                                <th>P1</th>
+                                                                <th>P2</th>
+                                                                <th>PROM</th>
+                                                                <th>PRO(80%)</th>
+                                                                <th>EXAM</th>
+                                                                <th>EX(20%)</th>
+                                                                <th style="background-color: #F4F4F4">QUI</th>
+                                                                <th style="background-color: #F4F4F4">EC</th>
+                                                                <th></th>
+                                                                <th>P1</th>
+                                                                <th>P2</th>
+                                                                <th>PROM</th>
+                                                                <th>PRO(80%)</th>
+                                                                <th>EXAM</th>
+                                                                <th>EX(20%)</th>
+                                                                <th style="background-color: #F4F4F4">QUI</th>
+                                                                <th style="background-color: #F4F4F4">EC</th>
+                                                                <th></th>
+                                                                <th>PA</th>
+                                                                <th>EC</th>
+                                                            </tr>
+
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr *ngFor="let l of  Notas.dni ">
+                                                                <td>{{l.Area}}</td>
+                                                                <td>{{l.Asignatura}}</td>
+                                                                <td>{{l.Q1P1}}</td>
+                                                                <td>{{l.Q1P2}}</td>
+                                                                <td>{{l.Q1PROM}}</td>
+                                                                <td>{{l.Q1PROM80}}</td>
+                                                                <td>{{l.Q1EXAM}}</td>
+                                                                <td>{{l.Q1EXAM20}}</td>
+                                                                <td style="background-color: #F4F4F4">{{l.Q1QUI}}</td>
+                                                                <td style="background-color: #F4F4F4">{{l.Q1EC}}</td>
+                                                                <td></td>
+                                                                <td>{{l.Q2P1}}</td>
+                                                                <td>{{l.Q2P2}}</td>
+                                                                <td>{{l.Q2PROM}}</td>
+                                                                <td>{{l.Q2PROM80}}</td>
+                                                                <td>{{l.Q2EXAM}}</td>
+                                                                <td>{{l.Q2EXAM20}}</td>
+                                                                <td style="background-color: #F4F4F4">{{l.Q2QUI}}</td>
+                                                                <td style="background-color: #F4F4F4">{{l.Q2EC}}</td>
+                                                                <td></td>
+                                                                <td>{{l.PA}}</td>
+                                                                <td>{{l.EC}}</td>
+
+                                                            </tr>
+                                                            <tr>
+                                                                <th>Promedio General</th>
+                                                                <th></th>
+                                                                <th>{{General1.G1P1}}</th>
+                                                                <th>{{General1.G1P2}}</th>
+                                                                <th>{{General1.G1PROM}}</th>
+                                                                <th>{{General1.G1PROM80}}</th>
+                                                                <th>{{General1.G1EXAM}}</th>
+                                                                <th>{{General1.G1EXAM20}}</th>
+                                                                <th style="background-color: #F4F4F4">{{General1.G1QUI}}
+                                                                </th>
+                                                                <th style="background-color: #F4F4F4">{{General1.G1EC}}
+                                                                </th>
+                                                                <th></th>
+                                                                <th>{{General1.G2P1}}</th>
+                                                                <th>{{General1.G2P2}}</th>
+                                                                <th>{{General1.G2PROM}}</th>
+                                                                <th>{{General1.G2PROM80}}</th>
+                                                                <th>{{General1.G2EXAM}}</th>
+                                                                <th>{{General1.G2EXAM20}}</th>
+                                                                <th style="background-color: #F4F4F4">{{General1.G2QUI}}
+                                                                </th>
+                                                                <th style="background-color: #F4F4F4">{{General1.G2EC}}
+                                                                </th>
+                                                                <th></th>
+                                                                <th>{{General1.PA}}</th>
+                                                                <th>{{General1.CE}}</th>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <h5 style="text-align:start; margin-top: 10px;"
+                                                        *ngIf="Notas.dni.length == 0">No hay registros
+                                                        para
+                                                        mostrar
+                                                    </h5>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <!-- /.card-body -->
+
+                                </form>
+                            </div>
+                            <!-- /.card -->
+
+                        </div>
+                        <!--/.col (left) -->
+                    </div>
+                    <!-- /.row -->
+                </div><!-- /.container-fluid -->
+            </section>
+
+
+
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+        <footer class="main-footer">
+            <div class="float-right d-none d-sm-block">
+                <b>Copyright &copy;</b> 2021
+            </div>
+            <strong> <a href="https://www.facebook.com/uecibbenitojuarez/">Unidad Educativa Comunitaria Intercultural
+                    Bilingüe "Benito Juárez"</a>.</strong>
+
+        </footer>
+
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- Control sidebar content goes here -->
+        </aside>
+        <!-- /.control-sidebar -->
+    </div>
+    <!-- ./wrapper -->
+
+</body>

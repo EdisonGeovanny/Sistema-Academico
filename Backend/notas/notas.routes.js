@@ -5,5 +5,6 @@ module.exports = (router)=> {
     router.get('/list-nota/:id',Users.listID); // listar por id 
     router.put('/update-nota/:id', Users.updateNota);//editar por id
     router.get('/nota-sch/:sch', Users.searchNota);  //busqueda
+    router.get('/nota/:sch', Users.NotaAlumno);  //Notas de alumnos
  
 }
