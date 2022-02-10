@@ -6,7 +6,7 @@
             <!-- Left navbar links -->
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" data-widget="pushmenu"  role="button"><i class="fas fa-bars"></i></a>
+                    <a class="nav-link" data-widget="pushmenu" role="button"><i class="fas fa-bars"></i></a>
                 </li>
             </ul>
 
@@ -245,23 +245,29 @@
                         <div class="row">
                             <div class="col-11">
 
-                                <div class="callout callout-info">
+                                <div class="callout callout-info" id="ignore">
                                     <h5><i class="fas fa-info"></i> Nota:</h5>
                                     <span>Esta página sirve para la visualización de datos docente ingresados. Haga clic
                                         en el
-                                        botón imprimir si requiere el registro.</span><br><br>
+                                        botón imprimir si requiere el registro.
+
+                                    </span><br><br>
                                 </div>
 
+                                
+                                <button type="button" (click)="Castellano()"  class="btn btn-outline-dark" id="ignore">Español</button>
+                                <button type="button" (click)="Kichwa()"  class="btn btn-outline-dark" id="ignore">Kichwa</button>
+                                
                                 <div class="invoice p-3 mb-3">
                                     <!-- title row -->
                                     <div class="row">
+                                            
                                         <div class="col-12">
                                             <h1 id="ignore" class="h2">
-                                                <i class="fas fa-school "></i> Unidad Educativa Comunitaria
-                                                Intercultural Bilingüe "Benito Juárez".
+                                                <i class="fas fa-school "></i> {{institucion}}
                                             </h1>
                                             <h6>
-                                                <small> Fecha: {{Hora | date:'dd-MM-yyyy'}}<br> Hora:{{Hora |
+                                                <small> {{tfecha}} {{Hora | date:'dd-MM-yyyy'}}<br> {{thora}}{{Hora |
                                                     date:'HH:mm'}}</small>
                                             </h6>
                                         </div>
@@ -272,57 +278,56 @@
                                     <div class="row invoice-info">
 
                                         <div class="col-sm-3 invoice-col shadow-sm p-3 mb-5 bg-white rounded">
-                                            <strong> DATOS PERSONALES </strong>
+                                            <strong> {{tdatosdocente}} </strong>
                                             <address>
-                                                <strong> Tipo de identificación:
+                                                <strong> {{ttipodedni}}
                                                 </strong>{{profesor.Tipo_documento}}<br>
-                                                <strong> Número de identidad: </strong>{{profesor.DNI}}<br>
-                                                <strong> Nombre: </strong>{{profesor.Nombres}}<br>
-                                                <strong> Genero: </strong>{{profesor.Genero}}<br>
-                                                <strong> Estado civil: </strong>{{profesor.Estado_civil}}<br>
-                                                <strong> Fecha nacimiento: </strong>{{profesor.Fecha_nacimiento |
+                                                <strong> {{tnumidentificacion}} </strong>{{profesor.DNI}}<br>
+                                                <strong> {{tnombre}} </strong>{{profesor.Nombres}}<br>
+                                                <strong> {{tgenero}} </strong>{{profesor.Genero}}<br>
+                                                <strong> {{testado_civil}} </strong>{{profesor.Estado_civil}}<br>
+                                                <strong> {{tfecha_naci}} </strong><br>{{profesor.Fecha_nacimiento |
                                                 date:'dd-MM-yyyy'}}<br>
-                                                <strong> Lugar de nacimiento:
+                                                <strong> {{tLugar_naci}}
                                                 </strong><br>{{profesor.Lugar_nacimiento}}<br>
-                                                <strong> Nacionalidad: </strong>{{profesor.Nacionalidad}}<br>
-                                                <strong> Etnia: </strong>{{profesor.Etnia}}
+                                                <strong> {{tnacionalidad}} </strong>{{profesor.Nacionalidad}}<br>
+                                                <strong>{{tetnia}}</strong>{{profesor.Etnia}}
                                             </address>
                                         </div>
                                         <!-- /.col -->
                                         <div class="col-sm-3 invoice-col shadow-sm p-3 mb-5 bg-white rounded">
-                                            <strong> ESPECIFICACIÓN PROFESIONAL </strong>
+                                            <strong> {{tdescriptionprof}} </strong>
                                             <address>
-                                                <strong>Nivel de educación: </strong>{{profesor.Nivel_educacion}}<br>
-                                                <strong>Nombre de la Institución: </strong>{{profesor.Institucion}}<br>
-                                                <strong>Lugar de la Institución:
+                                                <strong>{{tnivel_edu}} </strong>{{profesor.Nivel_educacion}}<br>
+                                                <strong>{{tnombre_inst}} </strong>{{profesor.Institucion}}<br>
+                                                <strong>{{tlugar_inst}}
                                                 </strong>{{profesor.Lugar_institucion}}<br>
-                                                <strong>Tipo de la Institución:
+                                                <strong>{{ttipo_inst}}
                                                 </strong>{{profesor.Tipo_institucion}}<br>
-                                                <strong>Titulo Profesional: </strong>{{profesor.Especialidad}}<br>
-                                                <strong>Nota de graduación: </strong><br>{{profesor.Nota_grado}}<br>
-                                                <strong>Fecha de graduación: </strong><br>{{profesor.Fecha_grado|
+                                                <strong>{{ttitulo_prof}} </strong>{{profesor.Especialidad}}<br>
+                                                <strong>{{tfecha_grado}} </strong><br>{{profesor.Fecha_grado|
                                                 date:'dd-MM-yyyy'}}<br>
-                                                <strong>Ingreso al magisterio: </strong><br>
+                                                <strong>{{tfecha_mag}}</strong><br>
                                                 {{profesor.Fecha_ingreso_magisterio | date:'dd-MM-yyyy'}}<br>
-                                                <strong>Ingreso a la institución: </strong><br>
+                                                <strong>{{tfecha_inst}}</strong><br>
                                                 {{profesor.Fecha_ingreso_institucion | date:'dd-MM-yyyy'}}<br>
-                                                <strong>Condición laboral: </strong>{{profesor.Condicion_laboral}}<br>
+                                                <strong>{{tcondicion_lab}} </strong>{{profesor.Condicion_laboral}}<br>
                                             </address>
                                         </div>
                                         <!-- /.col -->
                                         <div class="col-sm-3 invoice-col shadow-sm p-3 mb-5 bg-white rounded">
-                                            <strong> DATOS DE CONTACTO Y UBICACIÓN </strong>
+                                            <strong> {{tcont_ubi}} </strong>
                                             <address>
-                                                <strong> Lugar de residencia: </strong><br>{{profesor.Direccion}}<br>
-                                                <strong> Dirección: </strong><br>{{profesor.Sector_domicilio}}<br>
-                                                <strong> Referencia de domicilio:
+                                                <strong> {{tlugar_res}} </strong><br>{{profesor.Direccion}}<br>
+                                                <strong> {{tdireccion}} </strong><br>{{profesor.Sector_domicilio}}<br>
+                                                <strong> {{tref_dom}}
                                                 </strong><br>{{profesor.Referencia_domicilio}}<br>
-                                                <strong> Teléfono: </strong><br>{{profesor.Telefono}}<br>
-                                                <strong> Celular: </strong><br>{{profesor.Celular}}<br>
-                                                <strong> Correo electrónico: </strong><br>{{profesor.Email}}<br>
-                                                <strong> Nombre de contacto de emergencia:
+                                                <strong> {{ttelf}} </strong><br>{{profesor.Telefono}}<br>
+                                                <strong> {{tcel}} </strong><br>{{profesor.Celular}}<br>
+                                                <strong> {{temail}}</strong><br>{{profesor.Email}}<br>
+                                                <strong>{{tnom_emerg}}
                                                 </strong><br>{{profesor.Nombre_emergente}}<br>
-                                                <strong> Número de contacto de emergencia:
+                                                <strong> {{tnum_emerg}}
                                                 </strong><br>{{profesor.Contacto_emergente}}<br>
                                             </address>
                                         </div>
@@ -332,26 +337,26 @@
                                     <div class="row invoice-info">
 
                                         <div class="col-sm-4 invoice-col ">
-                                            <strong> INFORMACIÓN DE SALUD </strong>
+                                            <strong> {{tinfo_salud}} </strong>
                                             <address>
-                                                <strong> Grupo sanguineo: </strong>{{profesor.Grupo_sanguineo}}<br>
-                                                <strong> Tipo de discapacidad:
+                                                <strong> {{tgrupo_sang}}</strong>{{profesor.Grupo_sanguineo}}<br>
+                                                <strong> {{ttipo_disc}}
                                                 </strong>{{profesor.Tipo_discapacidad}}<br>
-                                                <strong> Carnet de discapacidad:
+                                                <strong> {{tcarnet}}
                                                 </strong>{{profesor.Carnet_discapacidad}}<br>
-                                                <strong> Porcentaje de discapacidad:
+                                                <strong> {{tporcen}}
                                                 </strong>{{profesor.Porcentaje_discapacidad}}<br>
-                                                <strong>Observacion médica: </strong>{{profesor.Observacion_medica}}
+                                                <strong>{{tob_med}}</strong>{{profesor.Observacion_medica}}
                                             </address>
                                         </div>
                                         <div class="col-sm-1 invoice-col"></div>
                                         <!-- /.col -->
                                         <div class="col-sm-5 invoice-col ">
-                                            <strong> INFORMACIÓN DE USUARIO</strong>
+                                            <strong> {{tinfo_us}}</strong>
                                             <address>
-                                                <strong> Usuario: </strong>{{usuario}}<br>
-                                                <strong>Estado de perfil: </strong> {{profesor.Estado}}<br>
-                                                <strong>Observaciones adicionales: </strong>{{profesor.Observacion}}<br>
+                                                <strong> {{tusuario}} </strong>{{usuario}}<br>
+                                                <strong>{{tperfil}}</strong> {{profesor.Estado}}<br>
+                                                <strong>{{tobservacion}} </strong>{{profesor.Observacion}}<br>
 
 
 

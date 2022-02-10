@@ -93,7 +93,6 @@ export class RegisterProfComponent implements OnInit {
     Tipo_institucion: ['', Validators.required],
     Especialidad: ['', Validators.required],
     Fecha_grado: ['', Validators.required],
-    Nota_grado: ['', Validators.required],
    // Otros_titulos: [''],
     Fecha_ingreso_magisterio: ['', Validators.required],
     Fecha_ingreso_institucion: ['', Validators.required], 
@@ -154,8 +153,6 @@ export class RegisterProfComponent implements OnInit {
       Tipo_institucion: this.ProfesoresForm.get('Tipo_institucion')?.value,
       Especialidad: this.ProfesoresForm.get('Especialidad')?.value,
       Fecha_grado: this.ProfesoresForm.get('Fecha_grado')?.value,
-      Nota_grado: this.ProfesoresForm.get('Nota_grado')?.value,
-     // Otros_titulos: this.ProfesoresForm.get('Otros_titulos')?.value,
       Fecha_ingreso_magisterio: this.ProfesoresForm.get('Fecha_ingreso_magisterio')?.value,
       Fecha_ingreso_institucion: this.ProfesoresForm.get('Fecha_ingreso_institucion')?.value, 
       Años_servicio: this.ProfesoresForm.get('Años_servicio')?.value,
@@ -171,7 +168,6 @@ export class RegisterProfComponent implements OnInit {
     }, err => {
       console.log(err);
       this.AlertFracaso();
-      //this.ProfesoresForm.reset();
     })
 
 
@@ -216,7 +212,7 @@ export class RegisterProfComponent implements OnInit {
       this.ProfesoresForm.controls['Tipo_institucion'].setValue(data.Tipo_institucion);
       this.ProfesoresForm.controls['Especialidad'].setValue(data.Especialidad);
       this.ProfesoresForm.controls['Fecha_grado'].setValue(data.Fecha_grado);
-      this.ProfesoresForm.controls['Nota_grado'].setValue(data.Nota_grado);
+     // this.ProfesoresForm.controls['Nota_grado'].setValue(data.Nota_grado);
       this.ProfesoresForm.controls['Fecha_ingreso_magisterio'].setValue(data.Fecha_ingreso_magisterio);
       this.ProfesoresForm.controls['Fecha_ingreso_institucion'].setValue(data.Fecha_ingreso_institucion,);
       this.ProfesoresForm.controls['Años_servicio'].setValue(data.Años_servicio);
@@ -282,7 +278,7 @@ export class RegisterProfComponent implements OnInit {
             Tipo_institucion: this.ProfesoresForm.get('Tipo_institucion')?.value,
             Especialidad: this.ProfesoresForm.get('Especialidad')?.value,
             Fecha_grado: this.ProfesoresForm.get('Fecha_grado')?.value,
-            Nota_grado: this.ProfesoresForm.get('Nota_grado')?.value,
+           // Nota_grado: this.ProfesoresForm.get('Nota_grado')?.value,
            // Otros_titulos: this.ProfesoresForm.get('Otros_titulos')?.value,
             Fecha_ingreso_magisterio: this.ProfesoresForm.get('Fecha_ingreso_magisterio')?.value,
             Fecha_ingreso_institucion: this.ProfesoresForm.get('Fecha_ingreso_institucion')?.value, 

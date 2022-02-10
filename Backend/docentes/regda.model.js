@@ -164,7 +164,7 @@ const userSchema = new Schema({
         required: true, 
         trim:true
     },
-    Nota_grado:{
+   /* Nota_grado:{
         type: Number,
         required: true, 
         trim:true
@@ -173,7 +173,7 @@ const userSchema = new Schema({
         type: Array,
         required: true, 
         trim:true
-    },
+    },*/
     Fecha_ingreso_magisterio:{
         type: Date,
         required: true,

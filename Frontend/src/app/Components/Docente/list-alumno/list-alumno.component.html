@@ -127,7 +127,7 @@
                             <!-- general form elements -->
                             <div class="card card-info">
                                 <div class="card-header">
-                                    <h3 class="card-title"><strong>ÁREA:</strong> {{area}}  &nbsp;&nbsp;&nbsp;&nbsp; <strong>ASIGNATURA:</strong> {{asignatura}}</h3>
+                                    <h3 class="card-title"><strong>{{tarea}}</strong> {{area}}  &nbsp;&nbsp;&nbsp;&nbsp; <strong>{{tasig}}</strong> {{asignatura}}</h3>
                                     <div class="card-tools">
                                         <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
                                                 class="fas fa-minus"></i></button>
@@ -143,21 +143,24 @@
                                         <!--Encabezado de agregar usuario-->
                                         <div class="row">
 
+                                            <button type="button" (click)="Castellano()"  class="btn btn-outline-dark" id="ignore">Español</button>
+                                            <button type="button" (click)="Kichwa()"  class="btn btn-outline-dark" id="ignore">Kichwa</button>
+            
                                             <div class="col-md-12 h2" id="ignore">
-                                                <h2>LISTA DE ESTUDIANTES</h2>
+                                                <h2>{{tsubtitulo}}</h2>
                                             </div>
 
                                             <div class="col-md-3">
-                                               <h6>Periodo Lectivo:</h6> {{per}}
+                                               <h6>{{toeriodo}}</h6> {{per}}
                                             </div>
                                             <div class="col-md-2">
-                                                <h6>Nivel:</h6> {{niv}}
+                                                <h6>{{tnivel}}</h6> {{niv}}
                                             </div>
                                             <div class="col-md-2">
-                                                <h6>Paralelo:</h6> {{par}}
+                                                <h6>{{tparalelo}}</h6> {{par}}
                                             </div>
                                             <div class="col-md-3">
-                                              <h6>Jornada:</h6> {{jor}}
+                                              <h6>{{tjornada}}</h6> {{jor}}
                                             </div>
                                             <div class="col-md-2" id="ignore">
                                                 <button type="button" (click)="Print()"
@@ -171,22 +174,22 @@
 
                                             
                                         </div>
-                                        <div class="row">
+                                        <div class="row p3">
                                             <div class="col-md-9 ">
                                                 <div class="card-body table-responsive p-0" style="height: 600px;">
                                                     <table *ngIf="aula.dni.length > 0"
                                                         class="table table-hover table-head-fixed text-nowrap">
                                                         <thead>
                                                             <tr>
-                                                                <th>Código</th>
-                                                                <th>N° de identificación</th>
-                                                                <th>Nombre</th>
-                                                                <th id="ignore">Notas</th>
+                                                                <th id="ignore">{{tcodigo}}</th>
+                                                                <th>{{tnumidentificacion}}</th>
+                                                                <th>{{tnombre}}</th>
+                                                                <th id="ignore">{{tnota}}</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
                                                             <tr *ngFor="let b of  aula.dni ">
-                                                                <td>{{b.Codigo}}</td>
+                                                                <td id="ignore">{{b.Codigo}}</td>
                                                                 <td>{{b.DNI}}</td>
                                                                 <td>{{b.Apellidos}} {{b.Nombres}}</td>
 

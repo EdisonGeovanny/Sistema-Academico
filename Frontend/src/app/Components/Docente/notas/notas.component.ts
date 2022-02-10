@@ -15,6 +15,17 @@ export class NotasComponent implements OnInit {
   Titulo = 'CALIFICACIONES DEL ALUMNO';
   subnivel = 'NOTAS';
 
+
+  //hablilitar notas
+  q1p1: boolean ;
+  q1p2: boolean ;
+  q2p1: boolean ;
+  q2p2: boolean ;
+  q1exam: boolean ;
+  q2exam: boolean ;
+
+
+
   //variables Notas Q1
   Q1P1: number = 0;
   Q1P2: number = 0;
@@ -74,14 +85,34 @@ export class NotasComponent implements OnInit {
       this.jor = null,
       this.niv = null,
       this.par = null,
-      this.dis = null
+      this.dis = null,
+      this.q1p1 = false,
+      this.q1p2 = false,
+      this.q2p1 = false,
+      this.q2p2 = false,
+      this.q1exam = false,
+      this.q2exam = false
   }
 
   ngOnInit(): void {
     this.loginData();
     this.obtenerNota();
+    this.activarNotas();
 
   }
+
+activarNotas() {
+  this.authService.getANAll().subscribe(data => {
+    console.log('notas activas: ',data.dni[0].Q1P1);
+    this.q1p1 = Boolean(data.dni[0].Q1P1);
+    this.q1p2 = data.dni[0].Q1P2;
+    this.q1exam = data.dni[0].Q1EXAM;
+    this.q2p1 = data.dni[0].Q2P1;
+    this.q2p2 = data.dni[0].Q2P2;
+    this.q2exam = data.dni[0].Q2EXAM;
+
+  })
+}
 
   obtenerNota() {
     if (this.id !== null) {

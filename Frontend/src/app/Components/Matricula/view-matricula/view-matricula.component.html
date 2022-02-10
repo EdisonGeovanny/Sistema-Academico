@@ -240,21 +240,24 @@
                         <div class="row">
                             <div class="col-11">
 
-                                <div class="callout callout-info">
+                                <div class="callout callout-info" id="ignore">
                                     <h5><i class="fas fa-info"></i> Nota:</h5>
                                    <span>Esta página sirve para la visualización de datos de matricula de estudiante ingresado. Haga clic en el
                                     botón imprimir si requiere el registro.</span><br><br>
                                 </div>
+
+                                <button type="button" (click)="Castellano()"  class="btn btn-outline-dark" id="ignore">Español</button>
+                                <button type="button" (click)="Kichwa()"  class="btn btn-outline-dark" id="ignore">Kichwa</button>
 
                                 <div class="invoice p-3 mb-3">
                                     <!-- title row -->
                                     <div class="row">
                                         <div class="col-12">
                                             <h2 id="ignore" class="h2">
-                                                <i class="fas fa-school centrar" ></i>  Unidad Educativa Comunitaria Intercultural Bilingüe "Benito Juárez".
+                                                <i class="fas fa-school centrar" ></i> {{tinstitucion}}.
                                             </h2>
                                             <h6>
-                                                <small > Fecha: {{Hora | date:'dd-MM-yyyy'}}<br> Hora:{{Hora | date:'HH:mm'}}</small>
+                                                <small > {{tfecha}} {{Hora | date:'dd-MM-yyyy'}}<br> {{thora}} {{Hora | date:'HH:mm'}}</small>
                                             </h6>     
                                         </div>
                                         
@@ -264,36 +267,35 @@
                                     <div class="row invoice-info">
                                         
                                         <div class="col-sm-5 invoice-col shadow-sm p-3 mb-5 bg-white rounded">
-                                            <strong> DATOS ESTUDIANTE </strong>
+                                            <strong> {{tdatosest}} </strong>
                                             <address> 
-                                                <strong> Código único: </strong> {{estudiante.Codigo}}<br>
-                                                <strong> Tipo de identificación: </strong>{{estudiante.Tipo_documento}}<br>
-                                                <strong> Cédula de identidad: </strong>{{estudiante.DNI}}<br> 
-                                                <strong> Nombre: </strong>{{estudiante.Apellidos}} {{estudiante.Nombres}}<br> 
-                                                <a (click)="viewEst(estudiante.id)" class="text-info stretched-link">Ver
+                                                <strong> {{tcodigo}} </strong> {{estudiante.Codigo}}<br>
+                                                <strong> {{tnumidentificacion}}</strong>{{estudiante.DNI}}<br> 
+                                                <strong> {{tnombre}}</strong>{{estudiante.Apellidos}} {{estudiante.Nombres}}<br> 
+                                                <a (click)="viewEst(estudiante.id)" class="text-info stretched-link" id="ignore">Ver
                                                     más...</a>
                                             </address>
                                         </div>
 
                                         
                                         <div class="col-sm-4 invoice-col shadow-sm p-3 mb-5 bg-white rounded">
-                                            <strong> MATRICULADO EN: </strong>
+                                            <strong>{{tinfo_matricula}}</strong>
                                             <address>    
-                                                <strong> Periodo Lectivo: </strong> {{matricula.Periodo}}<br>
-                                                <strong> Jornada: </strong>{{matricula.Jornada}}<br>
-                                                <strong> Nivel: </strong>{{matricula.Nivel}}<br> 
-                                                <strong>Paralelo: </strong>{{matricula.Paralelo}}<br> 
+                                                <strong> {{toeriodo}} </strong> {{matricula.Periodo}}<br>
+                                                <strong> {{tjornada}} </strong>{{matricula.Jornada}}<br>
+                                                <strong> {{tnivel}} </strong>{{matricula.Nivel}}<br> 
+                                                <strong>{{tparalelo}} </strong>{{matricula.Paralelo}}<br> 
                                             </address>
                                         </div>
 
                                         <div class="col-sm-9 invoice-col shadow-sm p-3 mb-5 bg-white rounded">
-                                            <strong> MATERIAS ASIGNADAS </strong>
+                                            <strong> {{tmaterias}}</strong>
                                             <table *ngIf="materias.dato.length > 0"
                                                 class="table table-hover table-head-fixed text-nowrap">
                                                 <thead>
                                                     <tr>
-                                                        <th>Área</th>
-                                                        <th>Asignatura</th>
+                                                        <th>{{tarea}}</th>
+                                                        <th>{{tasig}}</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>

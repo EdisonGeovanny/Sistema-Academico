@@ -245,21 +245,24 @@
                         <div class="row">
                             <div class="col-11">
 
-                                <div class="callout callout-info">
+                                <div class="callout callout-info" id="ignore">
                                     <h5><i class="fas fa-info"></i> Nota:</h5>
                                    <span>Esta página sirve para la visualización de datos de estudiante ingresado. Haga clic en el
                                     botón imprimir si requiere el registro.</span><br><br>
                                 </div>
+
+                                <button type="button" (click)="Castellano()"  class="btn btn-outline-dark" id="ignore">Español</button>
+                                <button type="button" (click)="Kichwa()"  class="btn btn-outline-dark" id="ignore">Kichwa</button>
 
                                 <div class="invoice p-3 mb-3">
                                     <!-- title row -->
                                     <div class="row">
                                         <div class="col-12">
                                             <h2 id="ignore" class="h2">
-                                                <i class="fas fa-school centrar" ></i>  Unidad Educativa Comunitaria Intercultural Bilingüe "Benito Juárez".
+                                                <i class="fas fa-school centrar" ></i>  {{institucion}}.
                                             </h2>
                                             <h6>
-                                                <small > Fecha: {{Hora | date:'dd-MM-yyyy'}}<br> Hora:{{Hora | date:'HH:mm'}}</small>
+                                                <small > {{tfecha}}: {{Hora | date:'dd-MM-yyyy'}}<br> {{thora}}:{{Hora | date:'HH:mm'}}</small>
                                             </h6>     
                                         </div>
                                         
@@ -270,31 +273,31 @@
                                        
                                        
                                         <div class="col-sm-4 invoice-col shadow-sm p-3 mb-5 bg-white rounded">
-                                            <strong> DATOS PERSONALES </strong>
+                                            <strong> {{tdatos}}</strong>
                                             <address>
                                                 
-                                                <strong> Código único: </strong> {{estudiante.Codigo}}<br>
-                                                <strong> Tipo de identificación: </strong>{{estudiante.Tipo_documento}}<br>
-                                                <strong> Cédula de identidad: </strong>{{estudiante.DNI}}<br> 
-                                                <strong> Apellido: </strong>{{estudiante.Apellidos}} {{estudiante.Nombres}}<br> 
-                                                <strong> Genero : </strong>{{estudiante.Genero}}<br>
-                                                <strong> Estado civil: </strong>{{estudiante.Estado_civil}}<br>
-                                                <strong> Fecha nacimiento: </strong>{{estudiante.Fecha_nacimiento |
+                                                <strong> {{tcodigo}} </strong> {{estudiante.Codigo}}<br>
+                                                <strong> {{ttipodedni}} </strong>{{estudiante.Tipo_documento}}<br>
+                                                <strong> {{tnumidentificacion}} </strong>{{estudiante.DNI}}<br> 
+                                                <strong> {{tnombre}} </strong>{{estudiante.Apellidos}} {{estudiante.Nombres}}<br> 
+                                                <strong> {{tgenero}} </strong>{{estudiante.Genero}}<br>
+                                                <strong> {{testado_civil}} </strong>{{estudiante.Estado_civil}}<br>
+                                                <strong> {{tfecha_naci}} </strong>{{estudiante.Fecha_nacimiento |
                                                 date:'dd-MM-yyyy'}}<br>
-                                                <strong> Lugar de nacimiento: </strong><br>{{estudiante.Lugar_nacimiento}}<br>
-                                                <strong> Nacionalidad: </strong>{{estudiante.Nacionalidad}}<br>
-                                                <strong> Etnia: </strong>{{estudiante.Etnia}}
+                                                <strong> {{tLugar_naci}} </strong><br>{{estudiante.Lugar_nacimiento}}<br>
+                                                <strong> {{tnacionalidad}} </strong>{{estudiante.Nacionalidad}}<br>
+                                                <strong> {{tetnia}} </strong>{{estudiante.Etnia}}
                                             </address>
                                         </div>
 
                                         <div class="col-sm-1 invoice-col"></div>
                                         <!-- /.col -->
                                         <div class="col-sm-5 invoice-col shadow-sm p-3 mb-5 bg-white rounded">
-                                            <strong> DATOS DE CONTACTO Y UBICACIÓN </strong>
+                                            <strong> {{tcont_ubi}} </strong>
                                             <address>
-                                                <strong> Lugar de residencia: </strong><br>{{estudiante.Direccion}}<br>
-                                                <strong> Dirección: </strong><br>{{estudiante.Sector_domicilio}}<br>
-                                                <strong> Referencia de domicilio: </strong><br>{{estudiante.Referencia_domicilio}}<br>
+                                                <strong> {{tlugar_res}} </strong><br>{{estudiante.Direccion}}<br>
+                                                <strong> {{tdireccion}} </strong><br>{{estudiante.Sector_domicilio}}<br>
+                                                <strong> {{tref_dom}} </strong><br>{{estudiante.Referencia_domicilio}}<br>
                                             </address>
                                         </div>
 
@@ -306,25 +309,24 @@
 
                                     <div class="row invoice-info">
                                         <div class="col-sm-4 invoice-col shadow-sm p-3 mb-5 bg-white rounded">
-                                            <strong> INFORMACIÓN DE SALUD </strong>
+                                            <strong> {{tinfo_salud}} </strong>
                                             <address>
-                                                <strong> Grupo sanguineo: </strong>{{estudiante.Grupo_sanguineo}}<br>
-                                                <strong> Tipo de discapacidad: </strong>{{estudiante.Tipo_discapacidad}}<br>
-                                                <strong> Carnet de discapacidad: </strong>{{estudiante.Carnet_discapacidad}}<br>
-                                                <strong> Porcentaje de discapacidad: </strong>{{estudiante.Porcentaje_discapacidad}}<br>
-                                                <strong>Observacion médica: </strong>{{estudiante.Observacion_medica}}
+                                                <strong> {{tgrupo_sang}}</strong>{{estudiante.Grupo_sanguineo}}<br>
+                                                <strong> {{ttipo_disc}} </strong>{{estudiante.Tipo_discapacidad}}<br>
+                                                <strong> {{tcarnet}} </strong>{{estudiante.Carnet_discapacidad}}<br>
+                                                <strong> {{tporcen}} </strong>{{estudiante.Porcentaje_discapacidad}}<br>
+                                                <strong>{{tob_med}} </strong>{{estudiante.Observacion_medica}}
                                             </address>
                                         </div>
 
                                         <div class="col-sm-1 invoice-col"></div>
 
                                         <div class="col-sm-5 invoice-col shadow-sm p-3 mb-5 bg-white rounded">
-                                            <strong> INFORMACIÓN DE USUARIO</strong>
+                                            <strong> {{tinfo_us}}</strong>
                                             <address>
-                                                <strong> Rol: </strong>{{Rol}}<br>
-                                                <strong> Usuario: </strong>{{usuarioEst}}<br>
-                                                <strong>Estado de perfil: </strong> {{estudiante.Estado}}<br>
-                                                <strong>Observaciones adicionales: </strong>{{estudiante.Observacion}}<br>
+                                                <strong> {{tusuario}} </strong>{{usuarioEst}}<br>
+                                                <strong>{{tperfil}} </strong> {{estudiante.Estado}}<br>
+                                                <strong>{{tobservacion}} </strong>{{estudiante.Observacion}}<br>
                                                 
 
                                                

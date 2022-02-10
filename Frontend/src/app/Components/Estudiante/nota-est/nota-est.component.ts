@@ -4,6 +4,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { PdfMakeWrapper, Txt, ITable,Table } from 'pdfmake-wrapper';
 
+
+
+
 interface TablaData {
   Area: string,
   Asignatura: string,
@@ -62,6 +65,32 @@ type TableRow = [string, string, number, number, number, number, number, number,
 })
 export class NotaEstComponent implements OnInit {
  
+//idioma 
+idioma: string | null;
+
+UE = 'Ishkay Shimipi Ayllucunapak Yachana Wasi  "BENITO JUÁREZ"';
+Ttiltulo = 'Wawa Wasi'
+tNombre = 'Shuti: ';
+tJornada = 'Ima pachapi: ';
+tNivel = 'Ima niki: ';
+tParalelo = 'Ima tandanajuipi: ';
+tPeriodo = 'Ima watacunapi: ';
+T2titulo = 'REPORTE ANUAL DE CALIFICACIONES'
+
+ //Matricula
+ tinfo_matricula = "MATRICULADO EN";
+ toeriodo = "Periodo Lectivo: ";
+ tjornada = "Jornada: ";
+ tnivel = "Nivel: ";
+ tparalelo = "Paralelo: ";
+ tasig = "ASIGNATURA: ";
+ tarea = "ÁREA: ";
+tmaterias = "MATERIAS ASIGNADAS: "
+tinicio= "Inicio";
+tfin =" Fin";
+tdia = "Día";
+tsubtitulo = "LISTA DE ESTUDIANTES";
+tnota = "Nota";
 
   //titulo
   Titulo = 'CALIFICACIONES DE PERIODO LECTIVO';
@@ -95,7 +124,8 @@ export class NotaEstComponent implements OnInit {
       this.periodo = null,
       this.jornada = null,
       this.nivel = null,
-      this.paralelo = null
+      this.paralelo = null,
+      this.idioma = "Español"
 
   }
 
@@ -108,6 +138,7 @@ export class NotaEstComponent implements OnInit {
 
 
   Print() {
+    if(this.idioma == "Español"){
     let UE = 'UNIDAD EDUCATIVA COMUNITARIA INTERCULTURAL BILINGÜE "BENITO JUÁREZ"';
     let Ttiltulo = ' Educación General Básica '
     let tNombre = 'Nombre: ';
@@ -214,7 +245,116 @@ export class NotaEstComponent implements OnInit {
       pdf.add(this.createGeneral(general));
 
     pdf.create().open();
-
+    }
+    if(this.idioma == "Kichwa"){
+      let UE = 'Ishkay Shimipi Ayllucunapak Yachana Wasi  "BENITO JUÁREZ"';
+      let Ttiltulo = 'Wawa Wasi'
+      let tNombre = 'Shuti: ';
+      let tJornada = 'Ima pachapi: ';
+      let tNivel = 'Ima niki: ';
+      let tParalelo = 'Ima tandanajuipi: ';
+      let tPeriodo = 'Ima watacunapi: ';
+      let T2titulo = 'REPORTE ANUAL DE CALIFICACIONES'
+  
+      let notas = this.Notas.dni;
+      let general = this.General1;
+  
+  
+      // impresion 
+      const pdf = new PdfMakeWrapper();
+  
+      //formato de Hoja
+      //pdf.pageSize('A4');
+  
+      //margen
+      pdf.pageMargins([40, 50, 40, 50]);
+      //estilo por defaul toda la hoja
+      pdf.defaultStyle({
+        background: 'white'
+      })
+      // estilos por id
+      pdf.styles({
+        style1: {
+          bold: true,
+          fontSize: 15,
+          alignment: 'center',
+          margin: 5
+        },
+        style2: {
+          bold: true,
+          fontSize: 13,
+          alignment: 'center',
+          margin: 5
+        },
+        style3: {
+          bold: true,
+          fontSize: 10,
+          alignment: 'center',
+          margin: 5
+        }
+        , style4: {
+          bold: true,
+          fontSize: 9,
+          alignment: 'center',
+          margin: 15
+        }
+        , style5: {
+          bold: true,
+          fontSize: 12,
+          alignment: 'center',
+          margin: [5, 5]
+         // background: '#F4F4F4'
+        //  lineHeight: 2,
+  
+        }, style6: {
+          fontSize: 7,
+          alignment: 'left',
+          margin: 0
+        },
+         style7: {
+          bold: true,
+          fontSize: 8,
+          alignment: 'center',
+          margin: 0
+        }
+      });
+      pdf.pageOrientation('landscape');
+  
+      pdf.add(
+        new Txt(UE).style('style1').end
+      );
+  
+      pdf.add(
+        new Txt(Ttiltulo).style('style2').end
+      );
+  
+      pdf.add(
+        new Txt(tPeriodo + this.periodo).style('style3').end
+      );
+  
+      pdf.add(
+        new Txt(
+  
+          tNombre + this.nombre + '                ' +
+          tNivel + this.nivel + '                ' +
+          tParalelo + this.paralelo + '                ' +
+          tJornada + this.jornada
+  
+        ).style('style4').end
+      );
+  
+      pdf.add(
+        new Txt(T2titulo).style('style5').end
+      );
+  
+      pdf.add(this.createEncabezado())
+        pdf.add(this.createTables(notas));
+        console.log(general)
+        pdf.add(this.createGeneral(general));
+  
+      pdf.create().open();
+  
+    }
   }
 
 
@@ -464,5 +604,55 @@ export class NotaEstComponent implements OnInit {
     this.router.navigateByUrl('/est/perfil/' + id);
   }
 
+
+
+  Kichwa(){
+    this.idioma = "Kichwa";
+   
+this.UE = 'Ishkay Shimipi Ayllucunapak Yachana Wasi  "BENITO JUÁREZ"';
+this.Ttiltulo = 'Wawa Wasi'
+this.tNombre = 'Shuti: ';
+this.tJornada = 'Ima pachapi: ';
+this.tNivel = 'Ima niki: ';
+this.tParalelo = 'Ima tandanajuipi: ';
+this.tPeriodo = 'Ima watacunapi: ';
+this.T2titulo = 'REPORTE ANUAL DE CALIFICACIONES'
+  this.toeriodo = "Ima watacunapi: ";
+    this.tjornada = "Ima pachapi: ";
+    this.tnivel = "Ima niki: ";
+    this.tparalelo = "Ima tandanajuipi: ";
+    this.tasig = "IMA YACHAIPI";
+    this.tarea = "IMA UCU";
+ 
+
+  }
+  
+  Castellano(){
+    this.idioma = "Español";
+   
+ 
+    this.UE = 'UNIDAD EDUCATIVA COMUNITARIA INTERCULTURAL BILINGÜE "BENITO JUÁREZ"';
+    this.Ttiltulo = ' Educación General Básica '
+    this.tNombre = 'Nombre: ';
+    this.tJornada = 'Jornada: ';
+    this.tNivel = 'Nivel: ';
+    this.tParalelo = 'Paralelo: ';
+    this.tPeriodo = 'Año Lectivo: ';
+    this.T2titulo = 'REPORTE ANUAL DE CALIFICACIONES'
+ //Matricula
+ this.tinfo_matricula = "MATRICULADO EN";
+ this.toeriodo = "Periodo Lectivo: ";
+ this.tjornada = "Jornada: ";
+ this.tnivel = "Nivel: ";
+ this.tparalelo = "Paralelo: ";
+ this.tasig = "ASIGNATURA: ";
+ this.tarea = "ÁREA: ";
+this.tmaterias = "MATERIAS ASIGNADAS: "
+this.tinicio= "Inicio";
+this.tfin =" Fin";
+this.tdia = "Día";
+this.tsubtitulo = "LISTA DE ESTUDIANTES";
+this.tnota = "Nota";
+  }
 
 }

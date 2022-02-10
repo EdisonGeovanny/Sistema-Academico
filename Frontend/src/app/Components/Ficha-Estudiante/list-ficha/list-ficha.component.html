@@ -32,7 +32,7 @@
         <aside class="main-sidebar elevation-4 sidebar-dark-success">
             <!--navbar-orange,warning,pink,secundary,info,success,indigo,purple,vany,teal,cyan,--->
             <!-- Brand Logo -->
-            <a routerLink="/app/reg-prof" class="brand-link navbar-warning">
+            <a routerLink="/admin/reg-prof" class="brand-link navbar-warning">
                 <!--navbar-orange,warning,pink,secundary,info,success,indigo,purple,vany,teal,cyan,--->
                 <img src="./assets/dist/img/AdminLTELogo.png" alt="AdminLTE Logo"
                     class="brand-image img-circle elevation-3" style="opacity: .8">
@@ -258,6 +258,14 @@
                                 </div>
                               
                                 <form class="card-body" role="form" [formGroup]="AccesoForm">
+                                    
+                                    <div class="row h2">
+                                        <div class="col-md-12">
+                                            <h2> LISTA DE ESTUDIANTES CON FICHAS ESTUDIANTILES REGISTRADAS</h2>
+                                        </div>
+                                    </div>
+
+                                    <br><br>
                                     <div class="clard-footer">
                                         <div class="row">
                                            
@@ -310,7 +318,7 @@
                                             </div>
 
                                         </div>
-                                    </div><br> <br>
+                                    </div><br>
 
                                     <!--Tabla-->
                                 <div class="card-body table-responsive p-0" style="height: 400px;">

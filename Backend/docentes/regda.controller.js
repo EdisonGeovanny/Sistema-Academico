@@ -39,8 +39,8 @@ exports.regDA = (req, res, next) => {
         Tipo_institucion:req.body.Tipo_institucion,
         Especialidad:req.body.Especialidad,
         Fecha_grado:req.body.Fecha_grado,
-        Nota_grado:req.body.Nota_grado,
-        Otros_titulos:req.body.Otros_titulos,
+       // Nota_grado:req.body.Nota_grado,
+       // Otros_titulos:req.body.Otros_titulos,
         Fecha_ingreso_magisterio:req.body.Fecha_ingreso_magisterio,
         Fecha_ingreso_institucion:req.body.Fecha_ingreso_institucion, 
         Años_servicio:req.body.Años_servicio,
@@ -91,7 +91,11 @@ exports.updateDA  = async (req, res) => {
             Observacion_medica, Tipo_discapacidad, Carnet_discapacidad, Porcentaje_discapacidad,
             Direccion, Sector_domicilio, Referencia_domicilio,  Nombre_emergente, Contacto_emergente,
             Nivel_educacion, Institucion, Lugar_institucion, Tipo_institucion, Especialidad, 
-            Fecha_grado, Nota_grado, Otros_titulos, Fecha_ingreso_magisterio, Fecha_ingreso_institucion,
+            Fecha_grado,
+             //Nota_grado,
+            //Otros_titulos
+            Fecha_ingreso_magisterio,
+            Fecha_ingreso_institucion,
             Años_servicio, Condicion_laboral, Observacion, Estado} = req.body;
             let profesor = await User.findById(req.params.id);
 
@@ -127,8 +131,8 @@ exports.updateDA  = async (req, res) => {
             profesor.Tipo_institucion = Tipo_institucion;
             profesor.Especialidad = Especialidad; 
             profesor.Fecha_grado = Fecha_grado;
-            profesor.Nota_grado = Nota_grado;
-            profesor.Otros_titulos = Otros_titulos;
+           // profesor.Nota_grado = Nota_grado;
+          //  profesor.Otros_titulos = Otros_titulos;
             profesor.Fecha_ingreso_magisterio = Fecha_ingreso_magisterio;
             profesor.Fecha_ingreso_institucion = Fecha_ingreso_institucion;
             profesor.Años_servicio = Años_servicio;

@@ -240,20 +240,22 @@
                         <div class="row">
                             <div class="col-11">
 
-                                <div class="callout callout-info">
+                                <div class="callout callout-info" id="ignore">
                                     <h5><i class="fas fa-info"></i> Nota:</h5>
                                     <span>Esta página sirve para la visualización de datos de distributivo docencial
                                         ingresados. Haga clic en el
                                         botón imprimir si requiere el registro.</span><br><br>
                                 </div>
 
+                                <button type="button" (click)="Castellano()"  class="btn btn-outline-dark" id="ignore">Español</button>
+                                <button type="button" (click)="Kichwa()"  class="btn btn-outline-dark" id="ignore">Kichwa</button>
+
                                 <div class="invoice p-3 mb-3">
                                     <!-- title row -->
                                     <div id="ignore"  class="row">
                                         <div class="col-12">
                                             <h2 class="h2">
-                                                <i class="fas fa-school centrar"></i> Unidad Educativa Comunitaria
-                                                Intercultural Bilingüe "Benito Juárez".
+                                                <i class="fas fa-school centrar"></i> {{tinstitucion}}.
                                             </h2>
                                             
                                         </div>
@@ -266,7 +268,7 @@
                                         <div class="col-8"></div>
                                         <div class="col-2 ">
                                             <h6 >
-                                                <small> Fecha: {{Hora | date:'dd-MM-yyyy'}}<br> Hora:{{Hora |
+                                                <small> {{tfecha}} {{Hora | date:'dd-MM-yyyy'}}<br> {{thora}}{{Hora |
                                                     date:'HH:mm'}}</small>
                                             </h6>
                                         </div>
@@ -274,26 +276,26 @@
 
                                         <div class="col-sm-10"
                                             *ngIf="Horario.dato.length > 0">
-                                            <strong> DATOS DE DOCENTE: </strong>
+                                            <strong> {{tdatosest}} </strong>
                                             <address>
-                                                <strong> Número de identificación: </strong> {{docente.DNI}}<br>
-                                                <strong> Nombre: </strong>{{docente.Nombre}}<br>
-                                                <strong> Especialidad: </strong>{{docente.Especialidad}}<br>
-                                                <a (click)="viewDoc(docente.id)" class="text-info stretched-link">Ver
+                                                <strong> {{tnumidentificacion}}</strong> {{docente.DNI}}<br>
+                                                <strong> {{tnombre}} </strong>{{docente.Nombre}}<br>
+                                                <strong> {{ttitulo_prof}} </strong>{{docente.Especialidad}}<br>
+                                                <a (click)="viewDoc(docente.id)" class="text-info stretched-link" id="ignore">Ver
                                                     más...</a>
                                             </address>
                                             <br>
-                                            <strong> MATERIAS ASIGNADAS </strong>
+                                            <strong> {{tmaterias}} </strong>
                                             <address *ngFor="let m of  Horario.dato">
-                                                <strong> Periodo: </strong> {{m.Periodo}}&nbsp; &nbsp;
-                                                <strong> Jornada: </strong>{{m.Jornada}}&nbsp; &nbsp;
-                                                <strong> Grado: </strong>{{m.Nivel}} '{{m.Paralelo}}'
+                                                <strong> {{toeriodo}} </strong> {{m.Periodo}}&nbsp; &nbsp;
+                                                <strong> {{tjornada}} </strong>{{m.Jornada}}&nbsp; &nbsp;
+                                                <strong> {{tnivel}} </strong>{{m.Nivel}} '{{m.Paralelo}}'
 
                                                 <table class="table table-hover table-head-fixed text-nowrap">
                                                     <thead>
                                                         <tr>
-                                                            <th>Área</th>
-                                                            <th>Asignatura</th>
+                                                            <th>{{tarea}}</th>
+                                                            <th>{{tasig}}</th>
                                                             <th>Día</th>
                                                             <th>Inicia</th>
                                                             <th>Finaliza</th>

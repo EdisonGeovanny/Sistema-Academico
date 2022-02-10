@@ -184,11 +184,11 @@
                                                 <div class="row p3">
                                                     <div class="col-md-2">P1
                                                         <input type="number" class="form-control form-control-sm"
-                                                            [(ngModel)]="Q1P1" name="Q1P1">
+                                                            [(ngModel)]="Q1P1" name="Q1P1" [disabled]="!q1p1">
                                                     </div>
                                                     <div class="col-md-2">P2
                                                         <input type="number" class="form-control form-control-sm"
-                                                            [(ngModel)]="Q1P2" name="Q1P2">
+                                                            [(ngModel)]="Q1P2" name="Q1P2" [disabled]="!q1p2">
                                                     </div>
                                                     <div class="col-md-1">PROM
                                                         <input type="number" class="form-control form-control-sm"
@@ -200,7 +200,7 @@
                                                     </div>
                                                     <div class="col-md-2">EXAM
                                                         <input type="number" class="form-control form-control-sm"
-                                                            [(ngModel)]="Q1EXAM" name="Q1EXAM">
+                                                            [(ngModel)]="Q1EXAM" name="Q1EXAM" [disabled]="!q1exam">
                                                     </div>
                                                     <div class="col-md-1">EXAM (20%)
                                                         <input type="number" class="form-control form-control-sm"
@@ -226,11 +226,11 @@
                                                 <div class="row p3">
                                                     <div class="col-md-2">P1
                                                         <input type="number" class="form-control form-control-sm"
-                                                            [(ngModel)]="Q2P1" name="Q2P1">
+                                                            [(ngModel)]="Q2P1" name="Q2P1" [disabled]="!q2p1">
                                                     </div>
                                                     <div class="col-md-2">P2
                                                         <input type="number" class="form-control form-control-sm"
-                                                            [(ngModel)]="Q2P2" name="Q2P2">
+                                                            [(ngModel)]="Q2P2" name="Q2P2" [disabled]="!q2p2">
                                                     </div>
                                                     <div class="col-md-1">PROM
                                                         <input type="number" class="form-control form-control-sm"
@@ -242,7 +242,7 @@
                                                     </div>
                                                     <div class="col-md-2">EXAM
                                                         <input type="number" class="form-control form-control-sm"
-                                                            [(ngModel)]="Q2EXAM" name="Q2EXAM">
+                                                            [(ngModel)]="Q2EXAM" name="Q2EXAM" [disabled]="!q2exam">
                                                     </div>
                                                     <div class="col-md-1">EXAM (20%)
                                                         <input type="number" class="form-control form-control-sm"

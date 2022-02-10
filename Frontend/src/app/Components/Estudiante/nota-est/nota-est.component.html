@@ -141,21 +141,25 @@
                                         <!--/////////////////////////////////////busqueda de ficha de Estudiante/////////////////////////////////////////-->
                                         <div class="row">
 
+                                            <button type="button" (click)="Castellano()"  class="btn btn-outline-dark" id="ignore">Español</button>
+                                            <button type="button" (click)="Kichwa()"  class="btn btn-outline-dark" id="ignore">Kichwa</button>
+                                            
+                                            
                                             <div class="col-md-12 h2">
-                                                <h2>CALIFICACIONES</h2>
+                                                <h2>{{T2titulo}}</h2>
                                             </div>
 
                                             <div class="col-md-3 ">
-                                                <h6>Periodo Lectivo:</h6> {{periodo}}
+                                                <h6>{{toeriodo}}</h6> {{periodo}}
                                             </div>
                                             <div class="col-md-2 ">
-                                                <h6>Jornada:</h6> {{jornada}}
+                                                <h6>{{tjornada}}</h6> {{jornada}}
                                             </div>
                                             <div class="col-md-2 ">
-                                                <h6>Nivel: </h6> {{nivel}}
+                                                <h6>{{tnivel}} </h6> {{nivel}}
                                             </div>
                                             <div class="col-md-2 ">
-                                                <h6>Paralelo:</h6> {{paralelo}}
+                                                <h6>{{tparalelo}}</h6> {{paralelo}}
                                             </div>
                                             <div class="col-md-1"></div>
                                             <div class="col-md-2 " id="ignore">
@@ -168,9 +172,7 @@
                                         <br>
                                         <!-- Notas -->
                                         <div class="row">
-                                            <div class="col-md-12 h2">
-                                                <h2>REPORTE ANUAL DE CALIFICACIONES</h2>
-                                            </div>
+                                           
                                             <div class="col-md-12 shadow p-3 mb-5 bg-white rounded">
                                                 <div class="card-body table-responsive p-0" style="height: 440px;">
                                                     <table *ngIf="Notas.dni.length > 0"
@@ -190,8 +192,8 @@
                                                         </thead>
                                                         <thead>
                                                             <tr>
-                                                                <th>Área</th>
-                                                                <th>Asignatura</th>
+                                                                <th>{{tarea}}</th>
+                                                                <th>{{tasig}}</th>
                                                                 <th>P1</th>
                                                                 <th>P2</th>
                                                                 <th>PROM</th>

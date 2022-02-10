@@ -32,7 +32,7 @@
         <aside class="main-sidebar elevation-4 sidebar-dark-success">
             <!--navbar-orange,warning,pink,secundary,info,success,indigo,purple,vany,teal,cyan,--->
             <!-- Brand Logo -->
-            <a routerLink="/app/reg-prof" class="brand-link navbar-warning">
+            <a routerLink="/admin/reg-prof" class="brand-link navbar-warning">
                 <!--navbar-orange,warning,pink,secundary,info,success,indigo,purple,vany,teal,cyan,--->
                 <img src="./assets/dist/img/AdminLTELogo.png" alt="AdminLTE Logo"
                     class="brand-image img-circle elevation-3" style="opacity: .8">
@@ -244,24 +244,25 @@
                     <form method="get" id="PrintForm1">
                         <div class="row">
                             <div class="col-11">
-                                <div class="callout callout-info">
+                                <div class="callout callout-info" id="ignore">
                                     <h5><i class="fas fa-info"></i> Nota:</h5>
                                     <span>Esta página sirve para la visualización de datos de la ficha estudiantil
                                         ingresada. Haga clic en el
                                         botón imprimir si requiere el registro.</span><br><br>
                                 </div>
 
+                                <button type="button" (click)="Castellano()"  class="btn btn-outline-dark" id="ignore">Español</button>
+                                <button type="button" (click)="Kichwa()"  class="btn btn-outline-dark" id="ignore">Kichwa</button>
+
                                 <div class="invoice p-3 mb-3">
                                     <!-- title row -->
                                     <div class="row">
                                         <div class="col-9">
                                             <h2 id="ignore" class="h2">
-                                                <i class="fas fa-school centrar"></i> <strong> Unidad Educativa
-                                                    Comunitaria
-                                                    Intercultural Bilingüe "Benito Juárez".</strong>
+                                                <i class="fas fa-school centrar"></i> <strong> {{tinstitucion}}.</strong>
                                             </h2>
                                             <h6>
-                                                <small> Fecha: {{Hora | date:'dd-MM-yyyy'}}<br> Hora:{{Hora |
+                                                <small> {{tfecha}} {{Hora | date:'dd-MM-yyyy'}}<br> {{thora}}{{Hora |
                                                     date:'HH:mm'}}</small>
                                             </h6>
                                         </div>
@@ -272,50 +273,50 @@
                                     <!-- info row -->
                                     <div class="row invoice-info">
                                         <div class="col-sm-4 invoice-col shadow-sm p-3 mb-5 bg-white rounded">
-                                            <strong> DATOS ESTUDIANTE </strong>
+                                            <strong> {{tdatosest}} </strong>
                                             <address>
-                                                <strong> Código único: </strong> {{estudiante.Codigo}}<br>
-                                                <strong> Número de identificación: </strong> {{estudiante.DNI}}<br>
-                                                <strong> Nombre: </strong> {{estudiante.Nombre}}<br>
-                                                <strong> Fecha de nacimiento: </strong>
+                                                <strong> {{tcodigo}}</strong> {{estudiante.Codigo}}<br>
+                                                <strong> {{tnumidentificacion}} </strong> {{estudiante.DNI}}<br>
+                                                <strong> {{tnombre}} </strong> {{estudiante.Nombre}}<br>
+                                                <strong> {{tfecha_naci}} </strong>
                                                 {{estudiante.Fecha_nacimiento|date:'dd-MM-yyyy'}}<br>
-                                                <a (click)="viewEst(estudiante.id)" class="text-info stretched-link">Ver
+                                                <a (click)="viewEst(estudiante.id)" class="text-info stretched-link" id="ignore">Ver
                                                     más...</a>
                                             </address>
                                         </div>
                                         <!-- /.col -->
                                         <div class="col-sm-5 invoice-col shadow-sm p-3 mb-5 bg-white rounded">
-                                            <strong> DATOS REPRESENTANTE </strong>
+                                            <strong> {{tdatosrep}} </strong>
                                             <address>
-                                                <strong> Parentesco con alumno: </strong>
+                                                <strong> {{tparentesco}} </strong>
                                                 {{representante.Parentesco}}<br>
-                                                <strong> Número de identificación: </strong> {{representante.DNI}}<br>
-                                                <strong> Nombre: </strong> {{representante.Nombre}}<br>
-                                                <strong> Fecha de nacimiento: </strong>
+                                                <strong> {{tnumidentificacion}} </strong> {{representante.DNI}}<br>
+                                                <strong> {{tnombre}}</strong> {{representante.Nombre}}<br>
+                                                <strong>{{tfecha_naci}} </strong>
                                                 {{representante.Fecha_nacimiento|date:'dd-MM-yyyy'}}<br>
                                                 <a (click)="viewRep(representante.id)"
-                                                    class="text-info stretched-link">Ver más...</a>
+                                                    class="text-info stretched-link" id="ignore">Ver más...</a>
                                             </address>
                                         </div>
                                     </div>
 
                                     <div class="row invoice-info">
                                         <div class="col-sm-9 invoice-col shadow-sm p-3 mb-5 bg-white rounded">
-                                            <strong> DATOS DE GRUPO FAMILIAR</strong>
+                                            <strong> {{tinfo_fam}}</strong>
                                             <address>
-                                                <strong>Nombre de Padre: </strong> {{ficha.Nombre_padre}}&nbsp;&nbsp;
-                                                <strong>Nombre de Madre: </strong> {{ficha.Nombre_madre}}<br>
-                                                <strong>Convive con: </strong> {{ficha.Convive}}<br>
-                                                <strong>Hermanos del grupo familiar: </strong>
+                                                <strong>{{tnombre_pa}}</strong> {{ficha.Nombre_padre}}&nbsp;&nbsp;
+                                                <strong>{{tnombre_ma}} </strong> {{ficha.Nombre_madre}}<br>
+                                                <strong>{{tconvive}} </strong> {{ficha.Convive}}<br>
+                                                <strong>{{thermanos}}</strong>
                                                 {{ficha.Numero_hermanos}}<br>
 
                                                 <table *ngIf="hermanos.dato.length > 0"
                                                     class="table table-hover table-head-fixed text-nowrap">
                                                     <thead>
                                                         <tr>
-                                                            <th>Nombre</th>
-                                                            <th>Edad</th>
-                                                            <th>Puesto</th>
+                                                            <th>{{tnombre}}</th>
+                                                            <th>{{tedad}}</th>
+                                                            <th>{{tpuesto}}</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -332,16 +333,16 @@
                                                 </h5>
 
 
-                                                <strong>Hermanos dentro de la institución:
+                                                <strong>{{thermanos_ins}}
                                                 </strong>{{ficha.Numero_en_institucion}}<br><br>
 
                                                 <table *ngIf="institucion.dato.length > 0"
                                                     class="table table-hover table-head-fixed text-nowrap">
                                                     <thead>
                                                         <tr>
-                                                            <th>Nombre</th>
-                                                            <th>Edad</th>
-                                                            <th>Puesto</th>
+                                                            <th>{{tnombre}}</th>
+                                                            <th>{{tedad}}</th>
+                                                            <th>{{tpuesto}}</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -368,11 +369,11 @@
 
                                     <div class="row invoice-info">
                                         <div class="col-sm-5 invoice-col shadow-sm p-3 mb-5 bg-white rounded">
-                                            <strong>INFORMACIÓN DE VIVIENDA</strong>
+                                            <strong>{{tinfo_casa}}</strong>
                                             <address>
-                                                <strong>Tipo de vivienda: </strong> {{ficha.Tipo_vivienda}}<br>
-                                                <strong>Material de vivienda: </strong> {{ficha.Material_vivienda}}<br>
-                                                <strong>Servicios básicos: </strong> <small *ngFor="let s of  servicios.dato"> {{s.name}},  </small>
+                                                <strong>{{ttipo_casa}}</strong> {{ficha.Tipo_vivienda}}<br>
+                                                <strong>{{tmaterial_casa}} </strong> {{ficha.Material_vivienda}}<br>
+                                                <strong>{{tservicios}} </strong> <small *ngFor="let s of  servicios.dato"> {{s.name}},  </small>
                                                 <h5 style="text-align:start; margin-top: 10px;"
                                                     *ngIf="servicios.dato.length == 0">No existen
                                                     <strong>datos</strong>!
@@ -380,13 +381,13 @@
                                             </address>
                                         </div>
                                         <div class="col-sm-4 invoice-col shadow-sm p-3 mb-5 bg-white rounded">
-                                            <strong>OTROS DATOS</strong>
+                                            <strong>{{tindo_otros}}</strong>
                                             <address>
-                                                <strong>En caso de emergencia, Nombre: </strong>
+                                                <strong>{{temer_nombre}}</strong>
                                                 {{ficha.Nombre_emergente}}<br>
-                                                <strong>En caso de emergencia, Contacto: </strong>
+                                                <strong>{{temer_contacto}} </strong>
                                                 {{ficha.Contacto_emergente}}<br>
-                                                <strong>Observaciones adicionales: </strong> {{ficha.Observacion}}<br>
+                                                <strong>{{tobservacion}} </strong> {{ficha.Observacion}}<br>
                                             </address>
                                         </div>
                                         <div class="col-sm-2 invoice-col"> </div>

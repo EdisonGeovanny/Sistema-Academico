@@ -14,6 +14,46 @@ import * as printJS from 'print-js';
 
 export class ViewFichaComponent implements OnInit {
   
+//idioma 
+idioma: string | null;
+
+//traducido 
+tinstitucion = "Unidad Educativa Comunitaria Intercultural Bilingüe 'Benito Juárez'";
+tfecha = "Fecha: ";
+thora = "Hora: ";
+
+ //estudiante
+ tdatosest = "DATOS DE ESTUDIANTE";
+ tcodigo = "Código electrónico: ";
+ tnumidentificacion = "Número de identificación: ";
+ tfecha_naci = "Fecha de nacimiento: ";
+ tnombre = "Nombre: ";
+
+ //representante
+ tdatosrep = "DATOS DE REPRESENTANTE";
+ tparentesco = "Parentesco con el alumno: ";
+
+ //matricula
+ tinfo_fam = "DATOS DE GRUPO FAMILIAR";
+ tnombre_pa = "Nombre de padre: ";
+ tnombre_ma = "Nombre de madre: ";
+ tconvive = "Convive con: ";
+ thermanos = "Hermanos de grupo familiar: ";
+ thermanos_ins= "Hermanos en la institución: ";
+ tedad = "Edad";
+ tpuesto = "Puesto"; 
+
+ tinfo_casa = "INFORMACIÓN DE VIVIENDA";
+ ttipo_casa = "Tipo de vivienda: ";
+ tmaterial_casa = "Material de vivienda: ";
+ tservicios = "Servicios básicos: ";
+ 
+ tindo_otros = "OTROS DATOS";
+ temer_nombre = "En caso de emergencia, Nombre: ";
+ temer_contacto = "es caso de emergencia, Contacto: ";
+ tobservacion = "Observaciones adicionales: "
+
+
   hermanos: any = { dato: [] }
   institucion: any = { dato: [] }
   servicios: any = { dato: [] }
@@ -63,6 +103,7 @@ export class ViewFichaComponent implements OnInit {
       this.estado = null;
     this.idEstudiante = null;
     this.idRepsentante = null;
+    this.idioma = "Español";
   }
 
   ngOnInit(): void {
@@ -188,15 +229,114 @@ desactivar(): boolean {
     this.router.navigateByUrl('/admin/view-rep/' + id);
   }
 
-  //imprimir
-  Print() {
+   //imprimir
+Print(){
+  if(this.idioma == "Español"){
     printJS({
-      printable: 'PrintForm1',
+      printable:'PrintForm1',
       type: 'html',
       targetStyles: ['*'],
-      ignoreElements: ['ignore'],
+      ignoreElements:['ignore'],
       header: '<h2>Unidad Educativa Comunitaria Intercultural Bilingüe "Benito Juárez"</h2>'
     })
+  }
+  if(this.idioma == "Kichwa"){
+    printJS({
+      printable:'PrintForm1',
+      type: 'html',
+      targetStyles: ['*'],
+      ignoreElements:['ignore'],
+      header: '<h2>Ishkay Shimipi Ayllucunapak Yachana Wasi "Benito Juárez"</h2>'
+    })
+  }
+
+}
+
+  Kichwa(){
+    this.idioma = "Kichwa";
+
+    //titulo
+    this.tinstitucion = "Ishkay Shimipi Ayllucunapak Yachana Wasi 'Benito Juárez'";
+    this.tfecha = "Punllacuna: ";
+    this.thora = "Pacha: ";
+
+   //estudiante
+    this.tdatosest = "YACHACHICPAK SHUTICUNA";
+    this.tcodigo = "Paipaclla yupairuna: ";
+    this.tnumidentificacion = "Paypak yapaycuna: ";
+    this.tfecha_naci = "Wacharishca punlla: ";
+    this.tnombre = "Shuti: ";
+
+    //representante
+    this.tdatosrep = "TAYTAPA SHUTICUNA ";
+    this.tparentesco = "Maijambacta aillupura: ";
+    this.tfecha_naci = "Wacharishca punlla: ";
+
+
+    //matricula
+    this.tinfo_fam = "AILLUCUNAPA SHUTICUNA";
+    this.tnombre_pa = "Taitapa shuti: ";
+    this.tnombre_ma = "Mamapa shuti: ";
+    this.tconvive = "Piwandac kausan: ";
+    this.thermanos = "Wawkicunapa aillucuna";
+    this.thermanos_ins= "Yachana ucupi wawkicuna";
+    this.tedad = "mashnawatata";
+    this.tpuesto = "Kusca"; 
+
+ 
+    this.tinfo_casa = "IMASHNA WASITACAN";
+    this.ttipo_casa = "Imashnata wasi: ";
+    this.tmaterial_casa = "Imaguanda shinashca paipawasi: ";
+    this.tservicios = "Tucui mutourishcotachu charin: ";
+
+    this.tindo_otros = "SHUK YACHANACUNA";
+    this.temer_nombre = "Amashpapash: ";
+    this.temer_contacto = "Cayana: ";
+    this.tobservacion = "Ashtawan yachana: "
+
+
+  }
+  
+  Castellano(){
+    this.idioma = "Español";
+    //traducido 
+    this.tinstitucion = "Unidad Educativa Comunitaria Intercultural Bilingüe 'Benito Juárez'";
+    this.tfecha = "Fecha: ";
+    this.thora = "Hora: ";
+
+     //estudiante
+     this.tdatosest = "DATOS DE ESTUDIANTE";
+     this.tcodigo = "Código electrónico: ";
+     this.tnumidentificacion = "Número de identificación: ";
+     this.tfecha_naci = "Fecha de nacimiento: ";
+     this.tnombre = "Nombre: ";
+ 
+     //representante
+     this.tdatosrep = "DATOS DE REPRESENTANTE";
+     this.tparentesco = "Parentesco con el alumno: ";
+     this.tfecha_naci = "Fecha de nacimiento: ";
+ 
+ 
+     //matricula
+     this.tinfo_fam = "DATOS DE GRUPO FAMILIAR";
+     this.tnombre_pa = "Nombre de padre: ";
+     this.tnombre_ma = "Nombre de madre: ";
+     this.tconvive = "Convive con: ";
+     this.thermanos = "Hermanos de grupo familiar: ";
+     this.thermanos_ins= "Hermanos en la institución: ";
+     this.tedad = "Edad";
+     this.tpuesto = "Puesto"; 
+
+     this.tinfo_casa = "INFORMACIÓN DE VIVIENDA";
+     this.ttipo_casa = "Tipo de vivienda: ";
+     this.tmaterial_casa = "Material de vivienda: ";
+     this.tservicios = "Servicios básicos: ";
+ 
+     this.tindo_otros = "OTROS DATOS";
+     this.temer_nombre = "En caso de emergencia, Nombre: ";
+     this.temer_contacto = "es caso de emergencia, Contacto: ";
+     this.tobservacion = "Observaciones adicionales: "
+   
   }
 
 }

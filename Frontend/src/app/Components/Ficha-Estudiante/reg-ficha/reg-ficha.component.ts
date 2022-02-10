@@ -84,17 +84,17 @@ elegido1: string = "";
     //formGroup
     this.FichaForm = this.fb.group({
       //busquedas representante
-      Search: ['', Validators.required],
-      Combo: ['', Validators.required],
+      Search: [''],
+      Combo: [''],
 
       //busqueda estudiante
-      Searche: ['', Validators.required],
-      Comboe: ['', Validators.required],
+      Searche: [''],
+      Comboe: [''],
      
       // array hermanos 
-      Nombre: ['', Validators.required],
-      Edad: ['', Validators.required],
-      Puesto: ['', Validators.required],
+      Nombre: [''],
+      Edad: [''],
+      Puesto: [''],
 
       //check servicios básicos
       agua: [''],
@@ -221,6 +221,18 @@ saveData(){
        this.idr = Ficha.Representante;
        this.hermanos.dato = Ficha.Hermanos;
        this.institucion.dato = Ficha.En_institucion;
+
+       Ficha.Hermanos.forEach((element: any, index: any, array: any)=>{
+        this.i.push(element.nombre);
+        console.log(element)
+       });
+
+       Ficha.En_institucion.forEach((element: any, index: any, array: any)=>{
+        this.i2.push(element.nombre);
+       });
+
+       console.log(this.i);
+       console.log(this.i2);
 
        this.ObtenerEstudiante();
        this.ObtenerRepresentante();
@@ -360,10 +372,6 @@ saveData(){
 
 
     this.i.push(HERMANO.Nombre)
-
-    console.log(this.i)
-    console.log(this.hermanos.dato)
-
 
   }
 
@@ -800,6 +808,8 @@ async ObtenerRepresentante() {
     this.id=null;
     this.ide = null;
     this.idr = null;
+    this.i = null;
+    this.i2 = null;
   }
 
 
