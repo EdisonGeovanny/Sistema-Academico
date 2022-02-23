@@ -57,7 +57,7 @@ constructor(private authService: AuthService, private router: Router,
         this.ANForm.controls['Q2P1'].setValue(data.dni[0].Q2P1);
         this.ANForm.controls['Q2P2'].setValue(data.dni[0].Q2P2);
         this.ANForm.controls['Q2EXAM'].setValue(data.dni[0].Q2EXAM);
-       
+       console.log(data)
       })
   }
 
@@ -120,7 +120,13 @@ constructor(private authService: AuthService, private router: Router,
           }
 
           this.authService.updateAN(this.id,ACTIVAR).subscribe(data => {
+            console.log('update: ',data)
             this.ObtenerAN();
+            swalWithBootstrapButtons.fire(
+              'Exito!',
+              'Sus campos fueron activados.',
+              'success'
+            )
           }, err => {
             console.log(err);
             this.AlertFracaso();
@@ -129,11 +135,7 @@ constructor(private authService: AuthService, private router: Router,
       
         }
 
-        swalWithBootstrapButtons.fire(
-          'Exito!',
-          'Sus campos fueron activados.',
-          'success'
-        )
+       
       }   
     })
     
