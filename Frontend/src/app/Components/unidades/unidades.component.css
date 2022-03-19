@@ -1,0 +1,48 @@
+.text-danger{
+    text-align: start;
+    margin-left: 7 px;
+}
+.h2{
+    background-color: #F4F4F4;
+    text-align:center;
+}
+.combo{
+    background-color: #dbdbdb;
+}
+.centrar{
+    text-align:center;
+}
+.p {  
+    font-family: "Segoe UI";
+    
+  }
+.p2 {
+    font-family: cursive;
+    font-size: 95%;
+  }
+  .p3{
+    font-size: 90%;
+    font-size: 95%;
+
+}
+
+.p4{
+  font-size:75%;
+  text-align:center;
+  
+}
+.p5{
+  font-size:84%;
+  text-align:center;
+}
+.p6{
+  font-size:90%;
+  text-align:center;
+}
+.p7{
+  font-size:84%;
+  text-align:center;
+}
+  .colum{
+    background-color: #F4F4F4;
+}

@@ -159,7 +159,9 @@
                                                                 <th>Paralelo</th>
                                                                 <th>Área</th>
                                                                 <th>Asignatura</th>
-                                                                <th></th>
+                                                                <th class="centrar">Lista</th>
+                                                                <th class="text-white">.</th>
+                                                                <th class="centrar">Notas</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
@@ -170,9 +172,16 @@
                                                                 <td>{{b.Area}}</td>
                                                                 <td>{{b.Asignatura}}</td>
 
-                                                                <td class="colum">
+                                                                <td class="colum centrar">
                                                                             <i (click)="obtenerlista(b._id)"
                                                                                 class="fas fa-edit fa-list-ul text-success mr-2"></i>
+                                                                        </td>
+
+                                                                        <td></td>
+
+                                                                <td class="colum centrar" >
+                                                                            <i (click)="unidadesNotas(b._id)"
+                                                                                class="fas fa-file-signature text-info mr-6"></i>
                                                                         </td>
 
                                                             </tr>

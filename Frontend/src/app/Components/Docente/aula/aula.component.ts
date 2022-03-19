@@ -145,4 +145,8 @@ name_n = 'TABLA JORNADA VESPERTINA';
     this.router.navigateByUrl('/prof/lista/'+id);
   }
 
+  unidadesNotas(id:string) {
+    this.router.navigateByUrl('/prof/U1/'+id);
+  }
+
 }

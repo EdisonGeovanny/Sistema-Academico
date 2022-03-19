@@ -12,12 +12,12 @@ const routes: Routes = [
   { path: 'nota/:id', component: NotasComponent },
 
   //unidades de periodo lectivo para ingreso de notas
-  { path: 'U1', component: UnidadesComponent },
-  { path: 'U2', component: UnidadesComponent },
-  { path: 'U3', component: UnidadesComponent },
-  { path: 'U4', component: UnidadesComponent },
-  { path: 'U5', component: UnidadesComponent },
-  { path: 'U6', component: UnidadesComponent },
+  { path: 'U1/:id', component: UnidadesComponent },
+  { path: 'U2/:id', component: UnidadesComponent },
+  { path: 'U3/:id', component: UnidadesComponent },
+  { path: 'U4/:id', component: UnidadesComponent },
+  { path: 'U5/:id', component: UnidadesComponent },
+  { path: 'U6/:id', component: UnidadesComponent },
 
   { path: 'perfil/:id', component: PerfilComponent },
   { path: 'lista/:id', component: ListAlumnoComponent},
