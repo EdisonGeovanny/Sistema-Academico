@@ -5,10 +5,20 @@ import { ListAlumnoComponent } from 'src/app/Components/Docente/list-alumno/list
 import { NotasComponent } from 'src/app/Components/Docente/notas/notas.component';
 import { PerfilComponent } from 'src/app/Components/Docente/perfil/perfil.component';
 import { AulaComponent } from '../../Components/Docente/aula/aula.component';
+import { UnidadesComponent } from 'src/app/Components/unidades/unidades.component';
 
 const routes: Routes = [
   { path: 'aulas', component: AulaComponent },
   { path: 'nota/:id', component: NotasComponent },
+
+  //unidades de periodo lectivo para ingreso de notas
+  { path: 'U1', component: UnidadesComponent },
+  { path: 'U2', component: UnidadesComponent },
+  { path: 'U3', component: UnidadesComponent },
+  { path: 'U4', component: UnidadesComponent },
+  { path: 'U5', component: UnidadesComponent },
+  { path: 'U6', component: UnidadesComponent },
+
   { path: 'perfil/:id', component: PerfilComponent },
   { path: 'lista/:id', component: ListAlumnoComponent},
   { path: 'horarios', component: HorarioComponent},

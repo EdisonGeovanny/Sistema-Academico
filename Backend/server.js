@@ -17,6 +17,7 @@ const matricula = require('./matricula/matricula.routes'); // Matricula
 const distributivo = require('./distributivo/distributivo.routes'); // Distributivo
 const estado_notas = require('./estado-notas/estado-notas.routes'); // Estado de las notas 
 const notas = require('./notas/notas.routes'); // Estado de las notas
+const unidades = require('./unidades-notas/uni-notas.routes'); // unidades de notas de periodo lectivo
 
 const express = require('express');
 const propierties = require('./config/properties');
@@ -50,6 +51,7 @@ matricula(router); //matricula
 distributivo(router);//distributivos
 estado_notas(router);//Estado notas
 notas(router); //ingreso de notas
+unidades(router); //ingreso de notas por unidades
 
 router.get('/', (req, res)=>{
     res.send('Bienvenido');

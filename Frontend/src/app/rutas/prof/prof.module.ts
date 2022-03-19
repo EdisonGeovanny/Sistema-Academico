@@ -12,6 +12,7 @@ import { NotasComponent } from 'src/app/Components/Docente/notas/notas.component
 import { PerfilComponent } from 'src/app/Components/Docente/perfil/perfil.component';
 import { ListAlumnoComponent } from 'src/app/Components/Docente/list-alumno/list-alumno.component';
 import { HorarioComponent } from 'src/app/Components/Docente/horario/horario.component';
+import { UnidadesComponent } from 'src/app/Components/unidades/unidades.component';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { HorarioComponent } from 'src/app/Components/Docente/horario/horario.com
     PerfilComponent,
     ListAlumnoComponent,
     HorarioComponent,
+    UnidadesComponent,
   ],
   imports: [
     CommonModule,

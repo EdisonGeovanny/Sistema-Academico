@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "benito-juarez-5ff86": {
+      "hosting": {
+        "Frontend": [
+          "benito-juarez-5ff86"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "benito-juarez-5ff86"
+  }
+}

@@ -9,7 +9,12 @@ import { AppComponent } from './app.component';
 
 // Importar pdfmake-wrapper y las fuentes para usar 
 import  {  PdfMakeWrapper  }  from  'pdfmake-wrapper' ; 
-import  *  as  pdfFonts  from  "pdfmake/build/vfs_fonts" ;  // fuentes proporcionadas para pdfmake
+import  *  as  pdfFonts  from  "pdfmake/build/vfs_fonts";
+import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
+import { provideAuth,getAuth } from '@angular/fire/auth';
+import { provideFirestore,getFirestore } from '@angular/fire/firestore';
+import { provideStorage,getStorage } from '@angular/fire/storage' ;  // fuentes proporcionadas para pdfmake
 
 // Si hay algún problema con la importación de fuentes anteriores. puede probar esto: 
 // import pdfFonts from "pdfmake/build/vfs_fonts";
@@ -30,6 +35,10 @@ PdfMakeWrapper . setFonts ( pdfFonts ) ;
     ReactiveFormsModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideAuth(() => getAuth()),
+    provideFirestore(() => getFirestore()),
+    provideStorage(() => getStorage()),
   ],
   providers: [],
   bootstrap: [AppComponent]

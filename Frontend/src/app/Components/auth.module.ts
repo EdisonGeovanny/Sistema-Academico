@@ -11,7 +11,7 @@ import { LoginProfComponent } from './Autentificacion/log-prof/login-prof.compon
 import { PagInicioComponent } from './pag-inicio/pag-inicio.component';
 import { LogAdminComponent } from './Autentificacion/log-admin/log-admin.component';
 import { Error404Component } from './mensaje/error404/error404.component';
-import { HorarioComponent } from './Docente/horario/horario.component';
+
 
 
 
@@ -24,6 +24,7 @@ import { HorarioComponent } from './Docente/horario/horario.component';
     LogEstComponent,
     LogAdminComponent,
     Error404Component,
+  
   ],
   imports: [
     CommonModule,

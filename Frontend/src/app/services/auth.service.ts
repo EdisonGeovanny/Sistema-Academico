@@ -20,7 +20,7 @@ const helper = new JwtHelperService();
 
 
 export class AuthService {
-  AUTH_SERVER: string = 'http://localhost:3000';
+  AUTH_SERVER: string =  'https://api-usuarios-gestion.herokuapp.com';//'http://localhost:3000';
 
   constructor(private httpClient: HttpClient) { 
    }
